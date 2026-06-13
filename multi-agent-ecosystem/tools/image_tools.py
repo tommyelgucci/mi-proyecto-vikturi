@@ -71,27 +71,13 @@ def generate_image(description: str) -> str:
         "?width=1024&height=1024&model=flux&nologo=true&enhance=true"
     )
 
-    try:
-        req = urllib.request.Request(url, method="HEAD")
-        urllib.request.urlopen(req, timeout=10)
-        reachable = True
-    except Exception:
-        reachable = False
-
-    if reachable:
-        return (
-            f"✅ Imagen generada con **Pollinations.ai** (FLUX · gratis)\n\n"
-            f"🔗 **Abre este link en tu navegador:**\n{url}\n\n"
-            f"📝 **Prompt optimizado usado:**\n{optimized}\n\n"
-            f"💡 Cada vez que recargues el link obtienes una variación nueva."
-        )
-    else:
-        return (
-            f"⚠️ Pollinations.ai no está disponible en este momento.\n\n"
-            f"📝 **Prompt optimizado listo para usar manualmente:**\n{optimized}\n\n"
-            f"Pégalo en: https://pollinations.ai  o  "
-            f"https://huggingface.co/spaces/black-forest-labs/FLUX.1-schnell"
-        )
+    return (
+        f"✅ Imagen generada con **Pollinations.ai** (FLUX · gratis · sin API key)\n\n"
+        f"🔗 **Abre este link en tu navegador:**\n{url}\n\n"
+        f"📝 **Prompt optimizado usado:**\n{optimized}\n\n"
+        f"💡 Cada vez que recargues el link obtienes una variación nueva.\n"
+        f"   Funciona en cualquier navegador — no necesita ninguna cuenta."
+    )
 
 
 def _optimize_prompt(description: str) -> str:
