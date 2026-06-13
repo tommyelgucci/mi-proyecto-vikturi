@@ -1,4 +1,4 @@
-from crewai.tools import tool
+from langchain.tools import tool
 from duckduckgo_search import DDGS
 
 
