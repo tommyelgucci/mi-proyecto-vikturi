@@ -1,3 +1,13 @@
+---
+title: Vikturi AI
+emoji: ⚡
+colorFrom: purple
+colorTo: cyan
+sdk: docker
+app_file: app.py
+pinned: false
+---
+
 # Multi-Agent Ecosystem
 
 A Python multi-agent AI system powered by CrewAI and Claude.
