@@ -1,0 +1,30 @@
+# Vikturi AI — Streamlit server & security configuration
+
+[theme]
+base                  = "dark"
+primaryColor          = "#7C6EFA"
+backgroundColor       = "#0E1117"
+secondaryBackgroundColor = "#1E1E2E"
+textColor             = "#FAFAFA"
+font                  = "sans serif"
+
+[server]
+# ── CORS ──────────────────────────────────────────────────────────────
+# false = Streamlit does NOT send permissive CORS headers, so the
+# browser's default same-origin policy applies (most restrictive).
+# Set to true only if you need cross-origin iframe embedding.
+enableCORS = false
+
+# ── XSRF / CSRF protection ────────────────────────────────────────────
+# Validates the Streamlit XSRF token on every WebSocket connection.
+enableXsrfProtection = true
+
+# ── Uploads ───────────────────────────────────────────────────────────
+maxUploadSize = 5          # MB — limits file-upload attack surface
+
+# ── Headless (required for Codespaces / cloud) ────────────────────────
+headless = true
+
+[browser]
+# Opt out of anonymous usage telemetry
+gatherUsageStats = false
