@@ -79,25 +79,47 @@ def _try_hf(token: str, optimized: str) -> str | None:
 
 
 def _generate_image(description: str) -> str:
-    """HF first (if HF_TOKEN set), Pollinations fallback."""
+    """HF first (if HF_TOKEN set), then Pollinations fetched server-side."""
+    import time
+    import requests as _req
+
     optimized = _optimize_prompt(description)
 
+    # 1) Try Hugging Face
     hf_token = os.getenv("HF_TOKEN", "")
     if hf_token:
         result = _try_hf(hf_token, optimized)
         if result:
             return result
 
-    encoded = urllib.parse.quote(optimized)
+    # 2) Pollinations — fetch NOW (server has internet), save to /tmp/
+    # Trim prompt so URL stays short
+    short = description[:180].rstrip()
+    encoded = urllib.parse.quote(short)
     url = (
         f"https://image.pollinations.ai/prompt/{encoded}"
         "?width=512&height=512&model=flux&nologo=true"
     )
-    return (
-        f"✅ Imagen generada con **Pollinations.ai** (FLUX · gratis)\n\n"
-        f"POLLINATIONS_IMG:{url}\n\n"
-        f"📝 **Prompt:** {optimized}"
-    )
+    try:
+        resp = _req.get(url, timeout=90)
+        if resp.status_code == 200 and len(resp.content) > 1000:
+            out = Path(f"/tmp/vikturi_img_{int(time.time())}.png")
+            out.write_bytes(resp.content)
+            return (
+                f"✅ Imagen generada con **Pollinations.ai** (FLUX · gratis)\n\n"
+                f"🖼️ IMAGE:{out}\n\n"
+                f"📝 **Prompt:** {short}"
+            )
+        return (
+            f"⚠️ Pollinations respondió con status {resp.status_code}. "
+            "Intenta de nuevo en unos segundos."
+        )
+    except Exception as exc:
+        return (
+            f"⚠️ No se pudo conectar a Pollinations: `{exc}`\n\n"
+            "Agrega `HF_TOKEN` en los Secrets de Streamlit Cloud para usar "
+            "Hugging Face como generador de imágenes."
+        )
 
 
 def _route(request: str) -> tuple[str, str]:
