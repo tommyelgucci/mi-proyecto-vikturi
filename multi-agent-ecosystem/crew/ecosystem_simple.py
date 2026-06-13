@@ -96,58 +96,63 @@ def _try_hf(token: str, optimized: str) -> str | None:
     return None
 
 
-def _generate_image(description: str) -> str:
-    """HF first (if HF_TOKEN set), then Pollinations fetched server-side."""
-    import time
+def _try_craiyon(description: str) -> str | None:
+    """Try Craiyon (free, no API key, different domain than HF/Pollinations)."""
+    import base64
     import requests as _req
+    import time
+    try:
+        resp = _req.post(
+            "https://api.craiyon.com/v3",
+            json={
+                "prompt": description[:500],
+                "negative_prompt": "blurry, low quality",
+                "model": "none",
+                "token": None,
+                "version": "35s5hfwn9n78gb06",
+            },
+            timeout=120,
+            headers={"Content-Type": "application/json"},
+        )
+        if resp.status_code == 200:
+            images = resp.json().get("images", [])
+            if images:
+                img_bytes = base64.b64decode(images[0])
+                out = Path(f"/tmp/vikturi_img_{int(time.time())}.jpg")
+                out.write_bytes(img_bytes)
+                return (
+                    f"✅ Imagen generada con **Craiyon** (AI · gratis)\n\n"
+                    f"🖼️ IMAGE:{out}\n\n"
+                    f"📝 **Prompt:** {description[:200]}"
+                )
+    except Exception:
+        pass
+    return None
 
+
+def _generate_image(description: str) -> str:
+    """Try HF → Craiyon → clear error message."""
     optimized = _optimize_prompt(description)
 
-    # 1) Try Hugging Face
+    # 1) Try Hugging Face (works if network allows)
     hf_token = os.getenv("HF_TOKEN", "")
     if hf_token:
         result = _try_hf(hf_token, optimized)
         if result:
             return result
-        # _try_hf returned None = all models failed/loading, show diagnostic
-        return (
-            "⚠️ **Hugging Face**: todos los modelos están ocupados o cargando.\n\n"
-            "Intenta de nuevo en 30 segundos."
-        )
 
-    # 2) Pollinations — fetch NOW (server has internet), save to /tmp/
-    # Trim prompt so URL stays short
-    short = description[:180].rstrip()
-    encoded = urllib.parse.quote(short)
-    url = (
-        f"https://image.pollinations.ai/prompt/{encoded}"
-        "?width=512&height=512&model=flux&nologo=true"
+    # 2) Try Craiyon (free, no key needed)
+    result = _try_craiyon(description)
+    if result:
+        return result
+
+    return (
+        "⚠️ **Las APIs de imagen no están disponibles** desde los servidores "
+        "de Streamlit Cloud en este momento.\n\n"
+        "**Opciones:**\n"
+        "- Prueba de nuevo en unos minutos\n"
+        "- Usa la app localmente con `streamlit run app.py` donde HF sí funciona"
     )
-    try:
-        resp = _req.get(url, timeout=90)
-        data = resp.content
-        # Validate it's actually an image (PNG or JPEG magic bytes)
-        is_img = data[:4] == b'\x89PNG' or data[:3] == b'\xff\xd8\xff'
-        if resp.status_code == 200 and is_img:
-            out = Path(f"/tmp/vikturi_img_{int(time.time())}.png")
-            out.write_bytes(data)
-            return (
-                f"✅ Imagen generada con **Pollinations.ai** (FLUX · gratis)\n\n"
-                f"🖼️ IMAGE:{out}\n\n"
-                f"📝 **Prompt:** {short}"
-            )
-        return (
-            f"⚠️ Pollinations no devolvió una imagen válida "
-            f"(status {resp.status_code}, {len(data)} bytes).\n\n"
-            "Los servidores están saturados. Agrega `HF_TOKEN` en Secrets "
-            "para usar Hugging Face en su lugar."
-        )
-    except Exception as exc:
-        return (
-            f"⚠️ No se pudo conectar a Pollinations: `{exc}`\n\n"
-            "Agrega `HF_TOKEN` en los Secrets de Streamlit Cloud para usar "
-            "Hugging Face como generador de imágenes."
-        )
 
 
 def _route(request: str) -> tuple[str, str]:
