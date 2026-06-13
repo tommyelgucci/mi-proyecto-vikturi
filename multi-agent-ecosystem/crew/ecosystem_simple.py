@@ -43,56 +43,46 @@ def _optimize_prompt(description: str) -> str:
 
 
 def _try_hf(token: str, optimized: str) -> str | None:
-    """Try HF image models; save PNG to /tmp/; return IMAGE marker or error string."""
+    """Try HF InferenceClient (uses internal HF routing, different from raw API URL)."""
+    import time
+    try:
+        from huggingface_hub import InferenceClient
+        client = InferenceClient(token=token)
+        image = client.text_to_image(optimized,
+                                     model="black-forest-labs/FLUX.1-schnell")
+        out = Path(f"/tmp/vikturi_img_{int(time.time())}.png")
+        image.save(str(out))
+        return (
+            f"✅ Imagen generada con **FLUX.1-schnell** (Hugging Face)\n\n"
+            f"🖼️ IMAGE:{out}\n\n"
+            f"📝 **Prompt:** {optimized}"
+        )
+    except Exception:
+        return None
+
+
+def _try_pollinations(description: str) -> str | None:
+    """Try Pollinations — works from HF Spaces (different IPs than Streamlit Cloud)."""
     import time
     import requests as _req
-
-    models = [
-        "black-forest-labs/FLUX.1-schnell",
-        "stabilityai/stable-diffusion-xl-base-1.0",
-        "runwayml/stable-diffusion-v1-5",
-    ]
-    headers = {"Authorization": f"Bearer {token}"}
-
-    for model in models:
-        url = f"https://api-inference.huggingface.co/models/{model}"
-        for attempt in range(2):
-            try:
-                resp = _req.post(url, headers=headers,
-                                 json={"inputs": optimized}, timeout=60)
-            except Exception as exc:
-                return f"⚠️ HF sin conexión: `{exc}`"
-
-            if resp.status_code == 503:
-                wait = 20
-                try:
-                    wait = min(resp.json().get("estimated_time", 20), 35)
-                except Exception:
-                    pass
-                if attempt == 0:
-                    time.sleep(wait)
-                    continue
-                break  # try next model
-
-            if resp.status_code == 401:
-                return "❌ HF_TOKEN inválido — verifica el secret en Streamlit Cloud."
-
-            if resp.status_code != 200:
-                break  # try next model
-
-            data = resp.content
-            is_img = data[:4] == b'\x89PNG' or data[:3] == b'\xff\xd8\xff'
-            if not is_img:
-                break  # try next model
-
+    short = description[:180].rstrip()
+    encoded = urllib.parse.quote(short)
+    url = (f"https://image.pollinations.ai/prompt/{encoded}"
+           "?width=512&height=512&nologo=true")
+    try:
+        resp = _req.get(url, timeout=90)
+        data = resp.content
+        is_img = data[:4] == b'\x89PNG' or data[:3] == b'\xff\xd8\xff'
+        if resp.status_code == 200 and is_img:
             out = Path(f"/tmp/vikturi_img_{int(time.time())}.png")
             out.write_bytes(data)
             return (
-                f"✅ Imagen generada con **{model.split('/')[1]}** (Hugging Face)\n\n"
+                f"✅ Imagen generada con **Pollinations.ai** (FLUX · gratis)\n\n"
                 f"🖼️ IMAGE:{out}\n\n"
-                f"📝 **Prompt:** {optimized}"
+                f"📝 **Prompt:** {short}"
             )
-
+    except Exception:
+        pass
     return None
 
 
@@ -141,17 +131,20 @@ def _generate_image(description: str) -> str:
         if result:
             return result
 
-    # 2) Try Craiyon (free, no key needed)
+    # 2) Try Pollinations (works from HF Spaces)
+    result = _try_pollinations(description)
+    if result:
+        return result
+
+    # 3) Try Craiyon (free, no key needed)
     result = _try_craiyon(description)
     if result:
         return result
 
     return (
-        "⚠️ **Las APIs de imagen no están disponibles** desde los servidores "
-        "de Streamlit Cloud en este momento.\n\n"
-        "**Opciones:**\n"
-        "- Prueba de nuevo en unos minutos\n"
-        "- Usa la app localmente con `streamlit run app.py` donde HF sí funciona"
+        "⚠️ **Generación de imágenes no disponible en este momento.**\n\n"
+        "Todos los servicios de imagen están ocupados o bloqueados. "
+        "Intenta de nuevo en 30 segundos."
     )
 
 
