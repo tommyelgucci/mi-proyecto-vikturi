@@ -21,6 +21,7 @@ jobs:
         run: |
           git config user.email "action@github.com"
           git config user.name "GitHub Action"
+          git branch -D hf-deploy 2>/dev/null || true
           git subtree split --prefix=multi-agent-ecosystem -b hf-deploy
           git push \
             https://GucciTommy:${HF_TOKEN}@huggingface.co/spaces/GucciTommy/vikturi-ai \
