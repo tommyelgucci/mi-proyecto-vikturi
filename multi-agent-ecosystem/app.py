@@ -10,37 +10,8 @@ from pathlib import Path
 # Ensure project root is on sys.path when launched via `streamlit run`
 sys.path.insert(0, str(Path(__file__).parent))
 
-# Intercept ALL chromadb imports with a single meta path hook.
-# CrewAI pulls in chromadb transitively; we use memory=False so none of it
-# is needed. This avoids whack-a-mole mocking of individual submodules.
-import importlib.abc
-import importlib.machinery
-from unittest.mock import MagicMock as _MM
-
-
-class _ChromaBlocker(importlib.abc.MetaPathFinder, importlib.abc.Loader):
-    def find_spec(self, fullname, path, target=None):
-        if fullname == "chromadb" or fullname.startswith("chromadb."):
-            return importlib.machinery.ModuleSpec(fullname, self, is_package=True)
-        return None
-
-    def create_module(self, spec):
-        from unittest.mock import MagicMock
-        m = MagicMock()
-        m.__path__ = []
-        m.__spec__ = spec
-        m.__name__ = spec.name
-        m.__package__ = spec.name
-        return m
-
-    def exec_module(self, module):
-        pass
-
-
-sys.meta_path.insert(0, _ChromaBlocker())
-del _ChromaBlocker
-
 os.environ.setdefault("ANONYMIZED_TELEMETRY", "false")
+os.environ.setdefault("CREWAI_STORAGE_DIR", "/tmp/vikturi_storage")
 
 import streamlit as st
 

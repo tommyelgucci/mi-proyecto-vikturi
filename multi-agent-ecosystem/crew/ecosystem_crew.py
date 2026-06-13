@@ -82,7 +82,8 @@ class EcosystemCrew:
             tasks=[master_task],
             process=Process.sequential,
             verbose=True,
-            memory=False,  # disable ChromaDB — not needed and breaks cloud deploys
+            memory=False,
+            cache=False,
         )
 
         result = crew.kickoff()
