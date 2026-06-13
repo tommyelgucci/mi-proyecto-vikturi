@@ -13,7 +13,7 @@ def make_master_agent() -> Agent:
         goal="Understand the user's request and delegate it to the right specialist, or train agents using context files",
         backstory=backstory,
         tools=[context_loader],
-        llm=f"anthropic/{settings.model}",
+        llm=settings.llm,
         verbose=True,
         allow_delegation=True,
     )

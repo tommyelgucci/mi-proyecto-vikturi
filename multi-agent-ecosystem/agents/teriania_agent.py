@@ -13,6 +13,6 @@ def make_teriania_agent() -> Agent:
         goal="Find, read, and summarize documentation and articles with precision, objectivity, and clarity",
         backstory=backstory,
         tools=[web_search],
-        llm=f"anthropic/{settings.model}",
+        llm=settings.llm,
         verbose=True,
     )

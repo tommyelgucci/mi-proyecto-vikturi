@@ -11,6 +11,6 @@ def make_yvannia_agent() -> Agent:
         role="Tutor & Learning Guide",
         goal="Explain complex concepts step by step with clear examples and patient, encouraging guidance",
         backstory=backstory,
-        llm=f"anthropic/{settings.model}",
+        llm=settings.llm,
         verbose=True,
     )

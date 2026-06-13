@@ -1,5 +1,5 @@
 from pathlib import Path
-from langchain.tools import tool
+from crewai.tools import tool
 
 _CONTEXT_DIR = Path(__file__).parent.parent / "context"
 

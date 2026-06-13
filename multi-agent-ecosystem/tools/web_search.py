@@ -1,4 +1,4 @@
-from langchain.tools import tool
+from crewai.tools import tool
 from duckduckgo_search import DDGS
 
 _NO_RESULTS_MSG = (

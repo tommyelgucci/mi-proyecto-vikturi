@@ -11,6 +11,6 @@ def make_dimelis_agent() -> Agent:
         role="Code Organizer & Developer Assistant",
         goal="Organize, structure, and explain code projects clearly and concisely with best practices",
         backstory=backstory,
-        llm=f"anthropic/{settings.model}",
+        llm=settings.llm,
         verbose=True,
     )
