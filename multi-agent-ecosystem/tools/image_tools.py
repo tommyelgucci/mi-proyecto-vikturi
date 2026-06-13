@@ -22,6 +22,7 @@ _MEDIA_TYPES = {
 
 _HF_API_URL = "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-schnell"
 _OUT_DIR = Path(__file__).parent.parent / "context" / "generated_images"
+_POLLINATIONS_BASE = "https://image.pollinations.ai/prompt/"
 
 
 @tool("Analyze Image")
@@ -67,62 +68,75 @@ def analyze_image(image_source: str) -> str:
 @tool("Generate Image")
 def generate_image(description: str) -> str:
     """
-    Generates an image using Hugging Face FLUX.1-schnell (free with HF_TOKEN).
-    Saves the image locally and returns an IMAGE: marker for the UI to render it.
+    Generates an image. Tries Hugging Face FLUX.1-schnell first (embedded in chat).
+    Falls back to Pollinations.ai URL if network is restricted (e.g. Codespaces).
     """
-    hf_token = os.getenv("HF_TOKEN", "")
-    if not hf_token:
-        return (
-            "❌ **HF_TOKEN no configurado.** Para generar imágenes gratis:\n\n"
-            "1. Crea cuenta en huggingface.co\n"
-            "2. Settings → Access Tokens → New token (tipo **Read**)\n"
-            "3. Agrega `HF_TOKEN=hf_...` a tu archivo `.env`\n"
-            "4. Reinicia la app con `streamlit run app.py`"
-        )
-
     optimized = _optimize_prompt(description)
-    headers = {"Authorization": f"Bearer {hf_token}"}
-    payload = {"inputs": optimized}
+    hf_token = os.getenv("HF_TOKEN", "")
 
-    for attempt in range(3):
+    if hf_token:
+        result = _try_hf(hf_token, optimized)
+        if result:
+            return result
+
+    # Fallback: Pollinations URL (always works in any browser)
+    return _pollinations_url(optimized)
+
+
+def _try_hf(token: str, optimized: str) -> str | None:
+    """Calls HF FLUX API. Returns result string on success, None on any network/API error."""
+    headers = {"Authorization": f"Bearer {token}"}
+    for attempt in range(2):
         try:
-            resp = _requests.post(_HF_API_URL, headers=headers, json=payload, timeout=90)
-        except _requests.Timeout:
-            if attempt < 2:
-                time.sleep(5)
-                continue
-            return "❌ Timeout: el modelo tardó demasiado. Intenta de nuevo en unos segundos."
+            resp = _requests.post(
+                _HF_API_URL, headers=headers,
+                json={"inputs": optimized}, timeout=60,
+            )
+        except Exception:
+            return None  # network unreachable — fall through to Pollinations
 
         if resp.status_code == 503:
-            # Model is loading — wait and retry
             wait = 20
             try:
-                wait = min(resp.json().get("estimated_time", 20), 40)
+                wait = min(resp.json().get("estimated_time", 20), 35)
             except Exception:
                 pass
-            if attempt < 2:
+            if attempt == 0:
                 time.sleep(wait)
                 continue
-            return "❌ El modelo sigue cargando. Espera un momento e intenta de nuevo."
+            return None
 
         if resp.status_code == 401:
-            return "❌ HF_TOKEN inválido. Verifica que sea correcto en tu archivo `.env`."
+            return "❌ HF_TOKEN inválido. Verifica que sea correcto en tu `.env`."
 
         if resp.status_code != 200:
-            return f"❌ Error de Hugging Face API ({resp.status_code}): {resp.text[:300]}"
+            return None  # unknown error — fall through to Pollinations
 
-        break
+        _OUT_DIR.mkdir(parents=True, exist_ok=True)
+        out_path = _OUT_DIR / f"img_{int(time.time())}.png"
+        out_path.write_bytes(resp.content)
+        return (
+            f"✅ Imagen generada con **FLUX.1-schnell** (Hugging Face)\n\n"
+            f"🖼️ IMAGE:{out_path}\n\n"
+            f"📝 **Prompt usado:** {optimized}"
+        )
+    return None
 
-    # Save image to context/generated_images/
-    _OUT_DIR.mkdir(parents=True, exist_ok=True)
-    filename = f"img_{int(time.time())}.png"
-    out_path = _OUT_DIR / filename
-    out_path.write_bytes(resp.content)
 
+def _pollinations_url(optimized: str) -> str:
+    """Returns a Pollinations.ai image URL (always works in any browser)."""
+    import urllib.parse
+    encoded = urllib.parse.quote(optimized)
+    url = (
+        f"{_POLLINATIONS_BASE}{encoded}"
+        "?width=1024&height=1024&model=flux&nologo=true&enhance=true"
+    )
     return (
-        f"✅ Imagen generada con **FLUX.1-schnell** (Hugging Face · gratis)\n\n"
-        f"🖼️ IMAGE:{out_path}\n\n"
-        f"📝 **Prompt optimizado:** {optimized}"
+        f"✅ Imagen lista con **Pollinations.ai** (FLUX · gratis · sin API key)\n\n"
+        f"🔗 **Abre este link en tu navegador:**\n{url}\n\n"
+        f"📝 **Prompt optimizado:** {optimized}\n\n"
+        f"💡 *Nota: en Codespaces la imagen se genera vía link. "
+        f"Ejecutando la app en tu máquina local aparecerá directamente en el chat.*"
     )
 
 
