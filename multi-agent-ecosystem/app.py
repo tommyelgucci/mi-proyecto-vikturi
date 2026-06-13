@@ -198,14 +198,14 @@ if prompt := st.chat_input(_placeholder):
     with st.chat_message("assistant", avatar="⚡"):
         with st.status("🧠 Analizando y delegando al agente correcto…", expanded=False) as status_box:
             try:
-                from crew.ecosystem_crew import EcosystemCrew
-                result = EcosystemCrew().run(prompt, training_mode=training_mode)
+                from crew.ecosystem_simple import run_simple
+                result = run_simple(prompt, training_mode=training_mode)
                 status_box.update(label="✅ Respuesta lista", state="complete", expanded=False)
             except Exception as exc:
                 result = (
                     f"❌ **Error del ecosistema**\n\n"
                     f"```\n{exc}\n```\n\n"
-                    f"Revisa que `ANTHROPIC_API_KEY` esté configurada en `.env`."
+                    f"Revisa que `ANTHROPIC_API_KEY` esté configurada en los secrets."
                 )
                 status_box.update(label="❌ Error", state="error", expanded=True)
 
