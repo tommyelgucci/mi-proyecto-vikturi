@@ -11,16 +11,29 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 
 # Block chromadb before crewai imports it — we use memory=False so it's not needed.
-# Prevents "unable to infer type for attribute chroma_server_nofile" on Streamlit Cloud.
+# Prevents cloud crashes; each entry needs __path__ so Python treats it as a package.
 from unittest.mock import MagicMock as _MM
+
+def _pkg() -> _MM:
+    m = _MM()
+    m.__path__ = []
+    m.__spec__ = None
+    return m
+
 for _mod in [
-    "chromadb", "chromadb.api", "chromadb.api.client", "chromadb.api.fastapi",
-    "chromadb.api.models", "chromadb.config", "chromadb.db",
-    "chromadb.errors", "chromadb.telemetry", "chromadb.utils",
+    "chromadb",
+    "chromadb.api", "chromadb.api.client", "chromadb.api.fastapi",
+    "chromadb.api.models", "chromadb.api.segment",
+    "chromadb.config",
+    "chromadb.db",
+    "chromadb.errors",
+    "chromadb.telemetry", "chromadb.telemetry.product_telemetry",
+    "chromadb.types",
+    "chromadb.utils", "chromadb.utils.embedding_functions",
 ]:
     if _mod not in sys.modules:
-        sys.modules[_mod] = _MM()
-del _MM, _mod
+        sys.modules[_mod] = _pkg()
+del _MM, _mod, _pkg
 
 os.environ.setdefault("CHROMA_SERVER_NOFILE", "65536")
 os.environ.setdefault("ANONYMIZED_TELEMETRY", "false")
