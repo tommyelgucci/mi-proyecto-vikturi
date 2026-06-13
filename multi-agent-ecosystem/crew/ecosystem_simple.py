@@ -29,8 +29,7 @@ _RESEARCH_KW = ("investiga", "busca información", "qué sabes de", "research",
                 "fuentes", "documentación", "comparación entre", "últimas noticias")
 
 
-def _generate_image(description: str) -> str:
-    """Build a Pollinations URL without importing crewai.tools."""
+def _optimize_prompt(description: str) -> str:
     suffix = ", high quality, detailed, professional lighting, 4K"
     if len(description) <= 250:
         d = description.lower()
@@ -40,11 +39,59 @@ def _generate_image(description: str) -> str:
             suffix += ", illustration style, vibrant colors, clean lines"
         elif any(w in d for w in ("publicidad", "ad", "advertising", "banner")):
             suffix += ", commercial photography, studio lighting, clean background"
-    optimized = description.rstrip(".") + suffix
+    return description.rstrip(".") + suffix
+
+
+def _try_hf(token: str, optimized: str) -> str | None:
+    """Try HF FLUX.1-schnell; save PNG to /tmp/; return IMAGE marker or None."""
+    import time
+    import requests as _req
+    _HF_URL = "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-schnell"
+    headers = {"Authorization": f"Bearer {token}"}
+    for attempt in range(2):
+        try:
+            resp = _req.post(_HF_URL, headers=headers,
+                             json={"inputs": optimized}, timeout=60)
+        except Exception:
+            return None
+        if resp.status_code == 503:
+            wait = 20
+            try:
+                wait = min(resp.json().get("estimated_time", 20), 35)
+            except Exception:
+                pass
+            if attempt == 0:
+                time.sleep(wait)
+                continue
+            return None
+        if resp.status_code == 401:
+            return "❌ HF_TOKEN inválido — verifica el secret en Streamlit Cloud."
+        if resp.status_code != 200:
+            return None
+        out = Path(f"/tmp/vikturi_img_{int(time.time())}.png")
+        out.write_bytes(resp.content)
+        return (
+            f"✅ Imagen generada con **FLUX.1-schnell** (Hugging Face)\n\n"
+            f"🖼️ IMAGE:{out}\n\n"
+            f"📝 **Prompt:** {optimized}"
+        )
+    return None
+
+
+def _generate_image(description: str) -> str:
+    """HF first (if HF_TOKEN set), Pollinations fallback."""
+    optimized = _optimize_prompt(description)
+
+    hf_token = os.getenv("HF_TOKEN", "")
+    if hf_token:
+        result = _try_hf(hf_token, optimized)
+        if result:
+            return result
+
     encoded = urllib.parse.quote(optimized)
     url = (
         f"https://image.pollinations.ai/prompt/{encoded}"
-        "?width=1024&height=1024&model=flux&nologo=true&enhance=true"
+        "?width=512&height=512&model=flux&nologo=true"
     )
     return (
         f"✅ Imagen generada con **Pollinations.ai** (FLUX · gratis)\n\n"
