@@ -9,3 +9,4 @@ build/
 .pytest_cache/
 memory/history.json
 context/session_memory.md
+context/knowledge_base/*.md
