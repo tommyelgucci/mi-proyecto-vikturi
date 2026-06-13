@@ -6,10 +6,11 @@ from __future__ import annotations
 import os
 from pathlib import Path
 
+import urllib.parse
+
 import anthropic
 
 from memory.session_memory import save_interaction, get_recent_context
-from tools.image_tools import generate_image
 
 _PROMPTS = Path(__file__).parent.parent / "prompts"
 
@@ -26,6 +27,30 @@ _LEARN_KW = ("explícame", "explica", "qué es", "cómo funciona", "enseñame",
 
 _RESEARCH_KW = ("investiga", "busca información", "qué sabes de", "research",
                 "fuentes", "documentación", "comparación entre", "últimas noticias")
+
+
+def _generate_image(description: str) -> str:
+    """Build a Pollinations URL without importing crewai.tools."""
+    suffix = ", high quality, detailed, professional lighting, 4K"
+    if len(description) <= 250:
+        d = description.lower()
+        if any(w in d for w in ("photo", "foto", "realistic", "realista")):
+            suffix += ", photorealistic, DSLR camera, sharp focus"
+        elif any(w in d for w in ("cartoon", "dibujo", "anime")):
+            suffix += ", illustration style, vibrant colors, clean lines"
+        elif any(w in d for w in ("publicidad", "ad", "advertising", "banner")):
+            suffix += ", commercial photography, studio lighting, clean background"
+    optimized = description.rstrip(".") + suffix
+    encoded = urllib.parse.quote(optimized)
+    url = (
+        f"https://image.pollinations.ai/prompt/{encoded}"
+        "?width=1024&height=1024&model=flux&nologo=true&enhance=true"
+    )
+    return (
+        f"✅ Imagen generada con **Pollinations.ai** (FLUX · gratis)\n\n"
+        f"POLLINATIONS_IMG:{url}\n\n"
+        f"📝 **Prompt:** {optimized}"
+    )
 
 
 def _route(request: str) -> tuple[str, str]:
@@ -75,7 +100,7 @@ def run_simple(user_request: str, training_mode: bool = False) -> str:
 
         # Image generation — call tool directly, skip LLM
         if agent_label == "DrewAI" and any(kw in user_request.lower() for kw in _IMAGE_KW):
-            result = generate_image.func(description=user_request)
+            result = _generate_image(user_request)
             save_interaction(user_request, result)
             return result
 
