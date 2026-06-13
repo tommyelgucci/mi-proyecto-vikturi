@@ -43,38 +43,56 @@ def _optimize_prompt(description: str) -> str:
 
 
 def _try_hf(token: str, optimized: str) -> str | None:
-    """Try HF FLUX.1-schnell; save PNG to /tmp/; return IMAGE marker or None."""
+    """Try HF image models; save PNG to /tmp/; return IMAGE marker or error string."""
     import time
     import requests as _req
-    _HF_URL = "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-schnell"
+
+    models = [
+        "black-forest-labs/FLUX.1-schnell",
+        "stabilityai/stable-diffusion-xl-base-1.0",
+        "runwayml/stable-diffusion-v1-5",
+    ]
     headers = {"Authorization": f"Bearer {token}"}
-    for attempt in range(2):
-        try:
-            resp = _req.post(_HF_URL, headers=headers,
-                             json={"inputs": optimized}, timeout=60)
-        except Exception:
-            return None
-        if resp.status_code == 503:
-            wait = 20
+
+    for model in models:
+        url = f"https://api-inference.huggingface.co/models/{model}"
+        for attempt in range(2):
             try:
-                wait = min(resp.json().get("estimated_time", 20), 35)
-            except Exception:
-                pass
-            if attempt == 0:
-                time.sleep(wait)
-                continue
-            return None
-        if resp.status_code == 401:
-            return "❌ HF_TOKEN inválido — verifica el secret en Streamlit Cloud."
-        if resp.status_code != 200:
-            return None
-        out = Path(f"/tmp/vikturi_img_{int(time.time())}.png")
-        out.write_bytes(resp.content)
-        return (
-            f"✅ Imagen generada con **FLUX.1-schnell** (Hugging Face)\n\n"
-            f"🖼️ IMAGE:{out}\n\n"
-            f"📝 **Prompt:** {optimized}"
-        )
+                resp = _req.post(url, headers=headers,
+                                 json={"inputs": optimized}, timeout=60)
+            except Exception as exc:
+                return f"⚠️ HF sin conexión: `{exc}`"
+
+            if resp.status_code == 503:
+                wait = 20
+                try:
+                    wait = min(resp.json().get("estimated_time", 20), 35)
+                except Exception:
+                    pass
+                if attempt == 0:
+                    time.sleep(wait)
+                    continue
+                break  # try next model
+
+            if resp.status_code == 401:
+                return "❌ HF_TOKEN inválido — verifica el secret en Streamlit Cloud."
+
+            if resp.status_code != 200:
+                break  # try next model
+
+            data = resp.content
+            is_img = data[:4] == b'\x89PNG' or data[:3] == b'\xff\xd8\xff'
+            if not is_img:
+                break  # try next model
+
+            out = Path(f"/tmp/vikturi_img_{int(time.time())}.png")
+            out.write_bytes(data)
+            return (
+                f"✅ Imagen generada con **{model.split('/')[1]}** (Hugging Face)\n\n"
+                f"🖼️ IMAGE:{out}\n\n"
+                f"📝 **Prompt:** {optimized}"
+            )
+
     return None
 
 
@@ -91,6 +109,11 @@ def _generate_image(description: str) -> str:
         result = _try_hf(hf_token, optimized)
         if result:
             return result
+        # _try_hf returned None = all models failed/loading, show diagnostic
+        return (
+            "⚠️ **Hugging Face**: todos los modelos están ocupados o cargando.\n\n"
+            "Intenta de nuevo en 30 segundos."
+        )
 
     # 2) Pollinations — fetch NOW (server has internet), save to /tmp/
     # Trim prompt so URL stays short
