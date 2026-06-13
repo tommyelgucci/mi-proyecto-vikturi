@@ -19,10 +19,11 @@ jobs:
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
+          git clone https://GucciTommy:${HF_TOKEN}@huggingface.co/spaces/GucciTommy/vikturi-ai /tmp/hf-space
+          cp -r multi-agent-ecosystem/. /tmp/hf-space/
+          cd /tmp/hf-space
           git config user.email "action@github.com"
           git config user.name "GitHub Action"
-          git branch -D hf-deploy 2>/dev/null || true
-          git subtree split --prefix=multi-agent-ecosystem -b hf-deploy
-          git push \
-            https://GucciTommy:${HF_TOKEN}@huggingface.co/spaces/GucciTommy/vikturi-ai \
-            hf-deploy:main --force
+          git add -A
+          git commit -m "Sync from GitHub" || echo "Nothing to commit"
+          git push origin main
