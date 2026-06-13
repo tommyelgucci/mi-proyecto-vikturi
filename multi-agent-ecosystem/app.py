@@ -37,18 +37,22 @@ def _render_message(content: str) -> None:
             st.markdown(remaining[0])
         return
 
-    # ── Pollinations browser-side image ──────────────────────────────
+    # ── Pollinations image ────────────────────────────────────────────
     if "POLLINATIONS_IMG:" in content:
         before, rest = content.split("POLLINATIONS_IMG:", 1)
         if before.strip():
             st.markdown(before)
         first_line, *remaining = rest.split("\n", 1)
         url = first_line.strip()
-        # <img> tag loads from user's browser, not the Codespace server
-        st.markdown(
-            f'<img src="{url}" style="width:100%;border-radius:10px;margin:8px 0">',
-            unsafe_allow_html=True,
-        )
+        try:
+            # On Streamlit Cloud the server can fetch external URLs directly
+            st.image(url, use_container_width=True)
+        except Exception:
+            # Fallback: browser-side <img> tag (for restricted network envs)
+            st.markdown(
+                f'<img src="{url}" style="width:100%;border-radius:10px;margin:8px 0">',
+                unsafe_allow_html=True,
+            )
         if remaining and remaining[0].strip():
             st.markdown(remaining[0])
         return
