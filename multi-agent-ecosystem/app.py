@@ -25,7 +25,8 @@ class _ChromaBlocker(importlib.abc.MetaPathFinder, importlib.abc.Loader):
         return None
 
     def create_module(self, spec):
-        m = _MM()
+        from unittest.mock import MagicMock
+        m = MagicMock()
         m.__path__ = []
         m.__spec__ = spec
         m.__name__ = spec.name
@@ -37,7 +38,7 @@ class _ChromaBlocker(importlib.abc.MetaPathFinder, importlib.abc.Loader):
 
 
 sys.meta_path.insert(0, _ChromaBlocker())
-del _MM, _ChromaBlocker
+del _ChromaBlocker
 
 os.environ.setdefault("ANONYMIZED_TELEMETRY", "false")
 
