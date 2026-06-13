@@ -13,24 +13,43 @@ import streamlit as st
 
 
 def _render_message(content: str) -> None:
-    """Renders a message — handles 🖼️ IMAGE: markers for inline image display."""
-    if "🖼️ IMAGE:" not in content:
-        st.markdown(content)
+    """Renders a message, handling image markers:
+    - 🖼️ IMAGE:<path>  → local file via st.image() (HF result, runs locally)
+    - POLLINATIONS_IMG:<url> → browser-side <img> tag (no server request needed)
+    """
+    # ── HF local image ───────────────────────────────────────────────
+    if "🖼️ IMAGE:" in content:
+        before, rest = content.split("🖼️ IMAGE:", 1)
+        if before.strip():
+            st.markdown(before)
+        first_line, *remaining = rest.split("\n", 1)
+        img_path = Path(first_line.strip())
+        if img_path.exists():
+            st.image(str(img_path), use_container_width=True)
+        else:
+            st.warning(f"Imagen no encontrada: `{img_path}`")
+        if remaining and remaining[0].strip():
+            st.markdown(remaining[0])
         return
 
-    before, rest = content.split("🖼️ IMAGE:", 1)
-    if before.strip():
-        st.markdown(before)
+    # ── Pollinations browser-side image ──────────────────────────────
+    if "POLLINATIONS_IMG:" in content:
+        before, rest = content.split("POLLINATIONS_IMG:", 1)
+        if before.strip():
+            st.markdown(before)
+        first_line, *remaining = rest.split("\n", 1)
+        url = first_line.strip()
+        # <img> tag loads from user's browser, not the Codespace server
+        st.markdown(
+            f'<img src="{url}" style="width:100%;border-radius:10px;margin:8px 0">',
+            unsafe_allow_html=True,
+        )
+        if remaining and remaining[0].strip():
+            st.markdown(remaining[0])
+        return
 
-    first_line, *remaining = rest.split("\n", 1)
-    img_path = Path(first_line.strip())
-    if img_path.exists():
-        st.image(str(img_path), use_container_width=True)
-    else:
-        st.warning(f"Imagen no encontrada: `{img_path}`")
-
-    if remaining and remaining[0].strip():
-        st.markdown(remaining[0])
+    # ── Plain text ────────────────────────────────────────────────────
+    st.markdown(content)
 
 
 # ── Page config (must be first Streamlit call) ────────────────────────

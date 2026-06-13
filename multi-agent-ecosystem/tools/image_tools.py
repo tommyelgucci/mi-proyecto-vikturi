@@ -124,19 +124,19 @@ def _try_hf(token: str, optimized: str) -> str | None:
 
 
 def _pollinations_url(optimized: str) -> str:
-    """Returns a Pollinations.ai image URL (always works in any browser)."""
+    """Returns a marker so app.py renders the image inline via browser-side <img> tag."""
     import urllib.parse
     encoded = urllib.parse.quote(optimized)
     url = (
         f"{_POLLINATIONS_BASE}{encoded}"
         "?width=1024&height=1024&model=flux&nologo=true&enhance=true"
     )
+    # POLLINATIONS_IMG: marker is handled by app.py _render_message()
+    # The browser (not the server) loads the image — bypasses Codespaces network restriction
     return (
-        f"✅ Imagen lista con **Pollinations.ai** (FLUX · gratis · sin API key)\n\n"
-        f"🔗 **Abre este link en tu navegador:**\n{url}\n\n"
-        f"📝 **Prompt optimizado:** {optimized}\n\n"
-        f"💡 *Nota: en Codespaces la imagen se genera vía link. "
-        f"Ejecutando la app en tu máquina local aparecerá directamente en el chat.*"
+        f"✅ Imagen generada con **Pollinations.ai** (FLUX · gratis)\n\n"
+        f"POLLINATIONS_IMG:{url}\n\n"
+        f"📝 **Prompt:** {optimized}"
     )
 
 
