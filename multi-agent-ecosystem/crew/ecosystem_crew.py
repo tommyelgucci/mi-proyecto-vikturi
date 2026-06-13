@@ -6,6 +6,18 @@ from agents.teriania_agent import make_teriania_agent
 from agents.drewai_agent import make_drewai_agent
 from memory.session_memory import save_interaction, get_recent_context
 
+_IMAGE_KEYWORDS = (
+    "genera", "generate", "crea una imagen", "create an image",
+    "hazme una imagen", "make an image", "dibuja", "draw",
+    "diseña una imagen", "imagen de", "image of", "foto de",
+    "ilustración", "illustration",
+)
+
+
+def _is_image_request(request: str) -> bool:
+    r = request.lower()
+    return any(kw in r for kw in _IMAGE_KEYWORDS)
+
 
 class EcosystemCrew:
     def __init__(self):
@@ -31,6 +43,15 @@ class EcosystemCrew:
                 f"{memory_block}"
             )
         else:
+            image_note = ""
+            if _is_image_request(user_request):
+                image_note = (
+                    "\n\n⚠️ IMAGE GENERATION DETECTED: Delegate to DrewAI and instruct "
+                    "DrewAI to CALL THE generate_image TOOL with the image description. "
+                    "DrewAI must use the tool to produce an actual image — "
+                    "NOT write text prompts for the user to copy elsewhere."
+                )
+
             description = (
                 f"User request: '{user_request}'\n\n"
                 "Identify which specialist should handle this request:\n"
@@ -38,15 +59,22 @@ class EcosystemCrew:
                 "- Yvannia AI: explanations, tutorials, learning, step-by-step teaching\n"
                 "- Teriania: research, documentation, comparisons, web search\n"
                 "- DrewAI: visual creativity, image analysis, social media content, "
-                "advertising briefs, image generation prompts, TikTok/reel hooks\n\n"
+                "advertising briefs, TikTok/reel hooks, and ACTUAL IMAGE GENERATION "
+                "(DrewAI uses the generate_image tool — it produces real images, not text prompts)\n\n"
                 "Delegate to the correct agent and return their complete response."
+                f"{image_note}"
                 f"{memory_block}"
             )
 
         master_task = Task(
             description=description,
             agent=self.master,
-            expected_output="A complete, helpful, and well-structured response to the user's request",
+            expected_output=(
+                "A complete, helpful, and well-structured response to the user's request. "
+                "If image generation was requested, the response MUST contain the output "
+                "of the generate_image tool (including the IMAGE: file path marker), "
+                "not a list of text prompts."
+            ),
         )
 
         crew = Crew(
