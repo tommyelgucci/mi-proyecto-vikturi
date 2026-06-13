@@ -102,17 +102,22 @@ def _generate_image(description: str) -> str:
     )
     try:
         resp = _req.get(url, timeout=90)
-        if resp.status_code == 200 and len(resp.content) > 1000:
+        data = resp.content
+        # Validate it's actually an image (PNG or JPEG magic bytes)
+        is_img = data[:4] == b'\x89PNG' or data[:3] == b'\xff\xd8\xff'
+        if resp.status_code == 200 and is_img:
             out = Path(f"/tmp/vikturi_img_{int(time.time())}.png")
-            out.write_bytes(resp.content)
+            out.write_bytes(data)
             return (
                 f"✅ Imagen generada con **Pollinations.ai** (FLUX · gratis)\n\n"
                 f"🖼️ IMAGE:{out}\n\n"
                 f"📝 **Prompt:** {short}"
             )
         return (
-            f"⚠️ Pollinations respondió con status {resp.status_code}. "
-            "Intenta de nuevo en unos segundos."
+            f"⚠️ Pollinations no devolvió una imagen válida "
+            f"(status {resp.status_code}, {len(data)} bytes).\n\n"
+            "Los servidores están saturados. Agrega `HF_TOKEN` en Secrets "
+            "para usar Hugging Face en su lugar."
         )
     except Exception as exc:
         return (
