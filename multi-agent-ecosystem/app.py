@@ -45,14 +45,15 @@ def _render_message(content: str) -> None:
         first_line, *remaining = rest.split("\n", 1)
         url = first_line.strip()
         try:
-            # On Streamlit Cloud the server can fetch external URLs directly
-            st.image(url, use_container_width=True)
-        except Exception:
-            # Fallback: browser-side <img> tag (for restricted network envs)
-            st.markdown(
-                f'<img src="{url}" style="width:100%;border-radius:10px;margin:8px 0">',
-                unsafe_allow_html=True,
-            )
+            import requests as _req
+            with st.spinner("🎨 Generando imagen…"):
+                resp = _req.get(url, timeout=90)
+            if resp.status_code == 200:
+                st.image(resp.content, use_container_width=True)
+            else:
+                st.warning(f"Pollinations devolvió status {resp.status_code}. Intenta de nuevo.")
+        except Exception as e:
+            st.warning(f"No se pudo cargar la imagen: {e}")
         if remaining and remaining[0].strip():
             st.markdown(remaining[0])
         return
