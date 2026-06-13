@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vikturi AI — Guía Completa</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #0E1117;
+      color: #E0E0E0;
+      line-height: 1.7;
+      padding: 40px 20px;
+    }
+
+    .container { max-width: 860px; margin: 0 auto; }
+
+    /* Header */
+    .hero {
+      text-align: center;
+      padding: 60px 20px 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 48px;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #7C6EFA 0%, #3ECFCF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -1px;
+    }
+    .hero .subtitle {
+      font-size: 0.85rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: #666;
+      margin-top: 6px;
+    }
+    .hero .badge {
+      display: inline-block;
+      margin-top: 20px;
+      background: rgba(124,110,250,0.15);
+      border: 1px solid rgba(124,110,250,0.4);
+      color: #A89EFF;
+      border-radius: 20px;
+      padding: 6px 18px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .url-box {
+      margin-top: 24px;
+      display: inline-block;
+      background: #1E1E2E;
+      border: 1px solid rgba(62,207,207,0.3);
+      border-radius: 10px;
+      padding: 10px 24px;
+      font-family: monospace;
+      font-size: 1rem;
+      color: #3ECFCF;
+    }
+
+    /* Sections */
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #fff;
+      margin: 48px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid rgba(124,110,250,0.3);
+    }
+    h3 { font-size: 1.1rem; font-weight: 700; color: #C0BAFF; margin: 24px 0 10px; }
+    p { color: #C0C0C0; margin-bottom: 14px; }
+
+    /* Agent cards */
+    .agents-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .agent-card {
+      background: #1A1A2E;
+      border-radius: 14px;
+      padding: 20px;
+      border-left: 4px solid;
+      transition: transform 0.2s;
+    }
+    .agent-card:hover { transform: translateY(-2px); }
+    .agent-card.drewai  { border-color: #FF6B9D; }
+    .agent-card.yvannia { border-color: #4ECDC4; }
+    .agent-card.dimelis { border-color: #7C6EFA; }
+    .agent-card.teriania{ border-color: #FFD93D; }
+
+    .agent-card .icon { font-size: 2rem; margin-bottom: 10px; }
+    .agent-card .name { font-weight: 800; font-size: 1.05rem; color: #fff; }
+    .agent-card .role { font-size: 0.8rem; color: #888; margin-top: 2px; margin-bottom: 10px; }
+    .agent-card p { font-size: 0.88rem; color: #AAA; margin: 0; }
+
+    .agent-card .triggers {
+      margin-top: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .trigger-tag {
+      background: rgba(255,255,255,0.07);
+      border-radius: 6px;
+      padding: 2px 8px;
+      font-size: 0.72rem;
+      color: #999;
+      font-family: monospace;
+    }
+
+    /* Steps */
+    .steps { counter-reset: step; }
+    .step {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 20px;
+      align-items: flex-start;
+    }
+    .step-num {
+      counter-increment: step;
+      min-width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #7C6EFA, #3ECFCF);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.85rem;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .step-content { flex: 1; }
+    .step-content strong { color: #fff; display: block; margin-bottom: 4px; }
+    .step-content p { margin: 0; font-size: 0.9rem; }
+
+    /* Code blocks */
+    .code-block {
+      background: #0D1117;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: 16px 20px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.88rem;
+      color: #7DD3A8;
+      margin: 14px 0;
+      overflow-x: auto;
+      white-space: pre;
+    }
+
+    /* Tips */
+    .tip {
+      background: rgba(124,110,250,0.08);
+      border-left: 3px solid #7C6EFA;
+      border-radius: 0 10px 10px 0;
+      padding: 14px 18px;
+      margin: 16px 0;
+      font-size: 0.9rem;
+    }
+    .tip strong { color: #A89EFF; }
+
+    .warning {
+      background: rgba(255,107,107,0.08);
+      border-left: 3px solid #FF6B6B;
+      border-radius: 0 10px 10px 0;
+      padding: 14px 18px;
+      margin: 16px 0;
+      font-size: 0.9rem;
+    }
+
+    /* Example prompts */
+    .prompt-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin: 14px 0;
+    }
+    .prompt-item {
+      background: #1A1A2E;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 0.88rem;
+      color: #C8C8C8;
+      border: 1px solid rgba(255,255,255,0.06);
+      font-style: italic;
+    }
+    .prompt-item::before { content: '💬 '; }
+
+    /* Table */
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.88rem; }
+    th { background: rgba(124,110,250,0.15); color: #A89EFF; text-align: left; padding: 10px 14px; }
+    td { padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.05); color: #C0C0C0; }
+    tr:hover td { background: rgba(255,255,255,0.02); }
+
+    /* Footer */
+    footer {
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      text-align: center;
+      color: #555;
+      font-size: 0.8rem;
+    }
+    footer span { color: #7C6EFA; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>⚡ Vikturi AI</h1>
+    <div class="subtitle">The Multi-Agent Lore</div>
+    <div class="badge">Guía Completa v1.0 · GucciTommy</div>
+    <br/>
+    <div class="url-box">huggingface.co/spaces/GucciTommy/vikturi-ai</div>
+  </div>
+
+  <!-- QUÉ ES -->
+  <h2>¿Qué es Vikturi AI?</h2>
+  <p>
+    Vikturi AI es un <strong>ecosistema multi-agente</strong> construido sobre Claude (Anthropic) y desplegado en Hugging Face Spaces. En lugar de un solo chatbot, cuenta con <strong>4 agentes especializados</strong> que el sistema activa automáticamente según lo que escribas — sin que tengas que elegir manualmente cuál usar.
+  </p>
+  <p>
+    El agente maestro analiza tu mensaje y delega al especialista correcto en milisegundos. Tú solo escribes — él decide.
+  </p>
+
+  <div class="tip">
+    <strong>Powered by:</strong> Claude Sonnet (Anthropic) · FLUX.1-schnell (Hugging Face) · Streamlit · Python 3.11
+  </div>
+
+  <!-- LOS AGENTES -->
+  <h2>Los 4 Agentes</h2>
+
+  <div class="agents-grid">
+    <div class="agent-card drewai">
+      <div class="icon">🎨</div>
+      <div class="name">DrewAI</div>
+      <div class="role">Visual · Imágenes · Creatividad</div>
+      <p>Genera imágenes con IA (FLUX.1-schnell), analiza contenido visual, crea hooks para TikTok/Reels y briefs de publicidad.</p>
+      <div class="triggers">
+        <span class="trigger-tag">genera</span>
+        <span class="trigger-tag">dibuja</span>
+        <span class="trigger-tag">imagen de</span>
+        <span class="trigger-tag">diseña</span>
+      </div>
+    </div>
+
+    <div class="agent-card yvannia">
+      <div class="icon">📚</div>
+      <div class="name">Yvannia AI</div>
+      <div class="role">Tutora · Paso a paso</div>
+      <p>Explica cualquier concepto desde cero con analogías, ejemplos y estructura clara. Ideal para aprender algo nuevo.</p>
+      <div class="triggers">
+        <span class="trigger-tag">explícame</span>
+        <span class="trigger-tag">qué es</span>
+        <span class="trigger-tag">cómo funciona</span>
+        <span class="trigger-tag">tutorial</span>
+      </div>
+    </div>
+
+    <div class="agent-card dimelis">
+      <div class="icon">💻</div>
+      <div class="name">Dimelis AI</div>
+      <div class="role">Código · Estructura · PEP8</div>
+      <p>Escribe, debugea y organiza código Python. Domina FastAPI, Django, Flask, SQL y buenas prácticas de desarrollo.</p>
+      <div class="triggers">
+        <span class="trigger-tag">código</span>
+        <span class="trigger-tag">función</span>
+        <span class="trigger-tag">debug</span>
+        <span class="trigger-tag">refactor</span>
+      </div>
+    </div>
+
+    <div class="agent-card teriania">
+      <div class="icon">🔍</div>
+      <div class="name">Teriania</div>
+      <div class="role">Investigación · Fuentes verificadas</div>
+      <p>Investiga temas, compara tecnologías, busca documentación y produce resúmenes con fuentes reales.</p>
+      <div class="triggers">
+        <span class="trigger-tag">investiga</span>
+        <span class="trigger-tag">busca info</span>
+        <span class="trigger-tag">comparación</span>
+        <span class="trigger-tag">fuentes</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CÓMO USAR -->
+  <h2>Cómo Usar la App</h2>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <strong>Abre la app</strong>
+        <p>Ve a <code>huggingface.co/spaces/GucciTommy/vikturi-ai</code> desde cualquier navegador. No necesitas cuenta ni instalar nada.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <strong>Escribe tu mensaje</strong>
+        <p>Escribe en español o inglés. El sistema detecta automáticamente qué agente usar según las palabras clave de tu mensaje.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <strong>Espera la respuesta</strong>
+        <p>El agente procesa tu solicitud. Las imágenes tardan 10-30 segundos; las respuestas de texto 3-8 segundos.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <strong>Modo Entrenamiento (opcional)</strong>
+        <p>Activa el toggle en el sidebar para que los agentes lean tu historial y contexto personal, mejorando sus respuestas futuras.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROMPTS DE EJEMPLO -->
+  <h2>Prompts de Ejemplo por Agente</h2>
+
+  <h3>🎨 DrewAI — Imágenes</h3>
+  <div class="prompt-list">
+    <div class="prompt-item">Genera una imagen de un astronauta en Marte, estilo cyberpunk neón</div>
+    <div class="prompt-item">Dibuja un logo minimalista para una marca de ropa streetwear</div>
+    <div class="prompt-item">Crea una imagen de portada para un podcast de tecnología, estilo dark futurista</div>
+    <div class="prompt-item">Genera una foto realista de un café moderno con luz natural</div>
+  </div>
+
+  <h3>📚 Yvannia AI — Aprendizaje</h3>
+  <div class="prompt-list">
+    <div class="prompt-item">Explícame qué es una API como si tuviera 10 años</div>
+    <div class="prompt-item">¿Cuál es la diferencia entre Python y JavaScript?</div>
+    <div class="prompt-item">Enséñame decoradores en Python paso a paso con ejemplos</div>
+    <div class="prompt-item">¿Cómo funciona el machine learning? Usa una analogía simple</div>
+  </div>
+
+  <h3>💻 Dimelis AI — Código</h3>
+  <div class="prompt-list">
+    <div class="prompt-item">Escríbeme una función en Python que lea un CSV y calcule el promedio</div>
+    <div class="prompt-item">Tengo este error: AttributeError: 'NoneType' has no attribute 'strip' — ¿qué está mal?</div>
+    <div class="prompt-item">Crea una API REST con FastAPI que tenga endpoints CRUD para usuarios</div>
+    <div class="prompt-item">Refactoriza este código para que siga PEP8 y sea más legible</div>
+  </div>
+
+  <h3>🔍 Teriania — Investigación</h3>
+  <div class="prompt-list">
+    <div class="prompt-item">Investiga las diferencias entre PostgreSQL y MongoDB</div>
+    <div class="prompt-item">Busca información sobre las últimas tendencias en IA generativa 2025</div>
+    <div class="prompt-item">¿Qué frameworks de Python son mejores para machine learning?</div>
+    <div class="prompt-item">Comparación entre Streamlit, Gradio y Dash para apps de datos</div>
+  </div>
+
+  <!-- MODO ENTRENAMIENTO -->
+  <h2>Modo Entrenamiento</h2>
+  <p>
+    El Modo Entrenamiento permite que los agentes lean tu historial de sesión y archivos de contexto para darte respuestas más personalizadas y relevantes para ti.
+  </p>
+
+  <h3>Cómo activarlo</h3>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <strong>Activa el toggle en el sidebar</strong>
+        <p>Busca "⚙️ Modo Entrenamiento" en la barra lateral izquierda y actívalo.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <strong>Escribe una instrucción</strong>
+        <p>Puedes escribir algo como <em>"actualiza tu briefing"</em> o <em>"resume lo que sabes de mí"</em>.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <strong>El Master Agent crea el briefing</strong>
+        <p>Todos los agentes reciben un resumen de tu perfil, preferencias e historial para mejorar sus respuestas.</p>
+      </div>
+    </div>
+  </div>
+
+  <h3>Archivos de contexto personalizados</h3>
+  <p>
+    Para una personalización avanzada, agrega archivos <code>.md</code> en la carpeta <code>context/</code> del repositorio con información sobre ti:
+  </p>
+  <div class="code-block">## Mi Perfil
+- Nombre: Tommy Gucci
+- Especialidad: Diseño + Desarrollo
+- Stack favorito: Python, FastAPI, Streamlit
+- Estilo visual: Dark, neón, futurista
+
+## Mis proyectos actuales
+- Vikturi AI (este ecosistema)
+- Contenido para redes sociales
+
+## Preferencias
+- Respuestas directas y sin rodeos
+- Código siempre con ejemplos
+- Imágenes: alta calidad, estilo cinematográfico</div>
+
+  <!-- GENERACIÓN DE IMÁGENES -->
+  <h2>Generación de Imágenes</h2>
+
+  <p>DrewAI usa <strong>FLUX.1-schnell</strong> de Hugging Face para generar imágenes de alta calidad en 10-30 segundos.</p>
+
+  <table>
+    <tr><th>Modelo</th><th>Calidad</th><th>Tiempo</th></tr>
+    <tr><td>FLUX.1-schnell</td><td>⭐⭐⭐⭐⭐</td><td>10-30 seg</td></tr>
+  </table>
+
+  <h3>Tips para mejores imágenes</h3>
+  <div class="prompt-list">
+    <div class="prompt-item">Sé específico: "gato cartoon con ojos grandes, fondo rosa pastel, estilo Studio Ghibli"</div>
+    <div class="prompt-item">Indica el estilo: "fotorrealista", "acuarela", "cyberpunk", "minimalista", "anime"</div>
+    <div class="prompt-item">Menciona la iluminación: "luz de atardecer", "estudio profesional", "luz neón azul"</div>
+    <div class="prompt-item">Especifica la perspectiva: "primer plano", "vista aérea", "retrato", "panorámica"</div>
+  </div>
+
+  <!-- ESTADÍSTICAS -->
+  <h2>Panel de Estadísticas</h2>
+  <p>
+    El sidebar muestra estadísticas en tiempo real:
+  </p>
+  <table>
+    <tr><th>Métrica</th><th>Qué muestra</th></tr>
+    <tr><td><strong>Total</strong></td><td>Número total de interacciones acumuladas en todas las sesiones</td></tr>
+    <tr><td><strong>Sesiones</strong></td><td>Cuántas veces se activó el Modo Entrenamiento</td></tr>
+    <tr><td><strong>Última actividad</strong></td><td>Fecha de la interacción más reciente</td></tr>
+  </table>
+
+  <!-- CONFIGURACIÓN TÉCNICA -->
+  <h2>Configuración Técnica</h2>
+
+  <table>
+    <tr><th>Variable</th><th>Para qué sirve</th><th>Requerida</th></tr>
+    <tr><td><code>ANTHROPIC_API_KEY</code></td><td>Chat con Claude (todos los agentes de texto)</td><td>✅ Sí</td></tr>
+    <tr><td><code>HF_TOKEN</code></td><td>Generación de imágenes con FLUX.1-schnell</td><td>Para imágenes</td></tr>
+    <tr><td><code>MODEL</code></td><td>Modelo de Claude a usar (default: claude-sonnet-4-6)</td><td>❌ Opcional</td></tr>
+    <tr><td><code>MAX_TOKENS</code></td><td>Máximo de tokens por respuesta (default: 4096)</td><td>❌ Opcional</td></tr>
+  </table>
+
+  <div class="warning">
+    Nunca compartas tu <code>ANTHROPIC_API_KEY</code> ni tu <code>HF_TOKEN</code> públicamente. Guárdalos solo en los Secrets de HF Spaces.
+  </div>
+
+  <!-- ACTUALIZAR LA APP -->
+  <h2>Cómo Actualizar la App</h2>
+  <p>
+    Cualquier cambio en GitHub se despliega automáticamente a HF Spaces gracias al workflow de GitHub Actions.
+  </p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <strong>Edita los archivos en GitHub</strong>
+        <p>Modifica prompts, contexto o código directamente en <code>github.com/tommygucci/mis-proyectos-python</code></p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <strong>Haz push a main</strong>
+        <p>El workflow <code>sync_hf.yml</code> se activa automáticamente con cualquier cambio en <code>multi-agent-ecosystem/</code></p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <strong>HF Spaces se actualiza</strong>
+        <p>En 1-3 minutos la app en HF Spaces refleja los cambios.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>⚡ <span>Vikturi AI</span> · The Multi-Agent Lore · GucciTommy · 2026</p>
+    <p style="margin-top:8px">Construido con Claude (Anthropic) · FLUX.1-schnell (HF) · Streamlit · Python</p>
+  </footer>
+
+</div>
+</body>
+</html>
