@@ -3,11 +3,17 @@ Vikturi AI — Streamlit web interface for the multi-agent ecosystem.
 Run: streamlit run app.py
 """
 from __future__ import annotations
+import os
 import sys
 from pathlib import Path
 
 # Ensure project root is on sys.path when launched via `streamlit run`
 sys.path.insert(0, str(Path(__file__).parent))
+
+# Prevent ChromaDB from crashing on cloud environments that don't expose
+# system ulimits (fixes "unable to infer type for attribute chroma_server_nofile")
+os.environ.setdefault("CHROMA_SERVER_NOFILE", "65536")
+os.environ.setdefault("ANONYMIZED_TELEMETRY", "false")
 
 import streamlit as st
 
