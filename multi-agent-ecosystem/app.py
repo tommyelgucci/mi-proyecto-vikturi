@@ -10,8 +10,18 @@ from pathlib import Path
 # Ensure project root is on sys.path when launched via `streamlit run`
 sys.path.insert(0, str(Path(__file__).parent))
 
-# Prevent ChromaDB from crashing on cloud environments that don't expose
-# system ulimits (fixes "unable to infer type for attribute chroma_server_nofile")
+# Block chromadb before crewai imports it — we use memory=False so it's not needed.
+# Prevents "unable to infer type for attribute chroma_server_nofile" on Streamlit Cloud.
+from unittest.mock import MagicMock as _MM
+for _mod in [
+    "chromadb", "chromadb.api", "chromadb.api.client", "chromadb.api.fastapi",
+    "chromadb.api.models", "chromadb.config", "chromadb.db",
+    "chromadb.errors", "chromadb.telemetry", "chromadb.utils",
+]:
+    if _mod not in sys.modules:
+        sys.modules[_mod] = _MM()
+del _MM, _mod
+
 os.environ.setdefault("CHROMA_SERVER_NOFILE", "65536")
 os.environ.setdefault("ANONYMIZED_TELEMETRY", "false")
 
