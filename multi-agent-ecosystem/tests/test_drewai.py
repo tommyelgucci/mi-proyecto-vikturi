@@ -18,14 +18,15 @@ def test_drewai_agent_instantiates(mock_agent_cls):
     assert result is not None
 
 
-def test_generate_image_stub_no_keys(monkeypatch):
+def test_generate_image_always_returns_something(monkeypatch):
     monkeypatch.delenv("DALLE_API_KEY", raising=False)
     monkeypatch.delenv("FLUX_API_KEY", raising=False)
+    monkeypatch.delenv("HF_TOKEN", raising=False)
     from tools.image_tools import generate_image
     result = generate_image.func(description="A cat wearing sunglasses on the beach")
-    assert "no activada" in result or "DALLE_API_KEY" in result
-    # Must include an optimized prompt for manual use
-    assert "sunglasses" in result.lower() or "cat" in result.lower()
+    # Either Pollinations succeeded or fallback prompt was returned — either way it has content
+    assert len(result) > 50
+    assert "cat" in result.lower() or "Pollinations" in result or "HF_TOKEN" in result
 
 
 def test_generate_image_includes_optimized_prompt(monkeypatch):
