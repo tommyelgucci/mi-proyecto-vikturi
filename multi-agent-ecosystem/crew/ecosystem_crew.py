@@ -3,6 +3,7 @@ from agents.master_agent import make_master_agent
 from agents.dimelis_agent import make_dimelis_agent
 from agents.yvannia_agent import make_yvannia_agent
 from agents.teriania_agent import make_teriania_agent
+from agents.drewai_agent import make_drewai_agent
 from memory.session_memory import save_interaction, get_recent_context
 
 
@@ -12,6 +13,7 @@ class EcosystemCrew:
         self.dimelis = make_dimelis_agent()
         self.yvannia = make_yvannia_agent()
         self.teriania = make_teriania_agent()
+        self.drew = make_drewai_agent()
 
     def run(self, user_request: str, training_mode: bool = False) -> str:
         recent_memory = get_recent_context(n=5)
@@ -21,9 +23,10 @@ class EcosystemCrew:
             description = (
                 "Training mode activated. "
                 "Use the Context Loader tool to read all files in the context/ folder "
-                "(including session_memory.md if it exists). "
-                "Then produce a structured enriched briefing for each agent — Dimelis, Yvannia, and Teriania — "
-                "based on the user's notes, preferences, and previous session history found in those files. "
+                "(including session_memory.md and knowledge_base/ entries if they exist). "
+                "Then produce a structured enriched briefing for each agent — "
+                "Dimelis, Yvannia, Teriania, and DrewAI — "
+                "based on the user's notes, preferences, and previous session history. "
                 f"Additional user instruction: {user_request}"
                 f"{memory_block}"
             )
@@ -33,8 +36,10 @@ class EcosystemCrew:
                 "Identify which specialist should handle this request:\n"
                 "- Dimelis AI: code, project structure, developer tools, best practices\n"
                 "- Yvannia AI: explanations, tutorials, learning, step-by-step teaching\n"
-                "- Teriania: research, documentation, comparisons, web search\n\n"
-                "Delegate to the correct agent and return their complete response to the user."
+                "- Teriania: research, documentation, comparisons, web search\n"
+                "- DrewAI: visual creativity, image analysis, social media content, "
+                "advertising briefs, image generation prompts, TikTok/reel hooks\n\n"
+                "Delegate to the correct agent and return their complete response."
                 f"{memory_block}"
             )
 
@@ -45,7 +50,7 @@ class EcosystemCrew:
         )
 
         crew = Crew(
-            agents=[self.master, self.dimelis, self.yvannia, self.teriania],
+            agents=[self.master, self.dimelis, self.yvannia, self.teriania, self.drew],
             tasks=[master_task],
             process=Process.sequential,
             verbose=True,
