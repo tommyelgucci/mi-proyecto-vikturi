@@ -10,6 +10,7 @@ from pathlib import Path
 # Ensure project root is on sys.path when launched via `streamlit run`
 sys.path.insert(0, str(Path(__file__).parent))
 
+os.environ.setdefault("CHROMA_SERVER_NOFILE", "65536")
 os.environ.setdefault("ANONYMIZED_TELEMETRY", "false")
 os.environ.setdefault("CREWAI_STORAGE_DIR", "/tmp/vikturi_storage")
 
