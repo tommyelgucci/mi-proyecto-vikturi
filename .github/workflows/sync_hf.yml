@@ -1,0 +1,27 @@
+name: Sync to HuggingFace Spaces
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "multi-agent-ecosystem/**"
+  workflow_dispatch:
+
+jobs:
+  sync-to-hub:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push multi-agent-ecosystem/ to HF Space
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          git config user.email "action@github.com"
+          git config user.name "GitHub Action"
+          git subtree split --prefix=multi-agent-ecosystem -b hf-deploy
+          git push \
+            https://GucciTommy:${HF_TOKEN}@huggingface.co/spaces/GucciTommy/vikturi-ai \
+            hf-deploy:main --force
