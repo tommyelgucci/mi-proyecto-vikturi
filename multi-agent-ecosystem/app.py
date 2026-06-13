@@ -11,6 +11,28 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 import streamlit as st
 
+
+def _render_message(content: str) -> None:
+    """Renders a message — handles 🖼️ IMAGE: markers for inline image display."""
+    if "🖼️ IMAGE:" not in content:
+        st.markdown(content)
+        return
+
+    before, rest = content.split("🖼️ IMAGE:", 1)
+    if before.strip():
+        st.markdown(before)
+
+    first_line, *remaining = rest.split("\n", 1)
+    img_path = Path(first_line.strip())
+    if img_path.exists():
+        st.image(str(img_path), use_container_width=True)
+    else:
+        st.warning(f"Imagen no encontrada: `{img_path}`")
+
+    if remaining and remaining[0].strip():
+        st.markdown(remaining[0])
+
+
 # ── Page config (must be first Streamlit call) ────────────────────────
 st.set_page_config(
     page_title="Vikturi AI",
@@ -133,7 +155,7 @@ if not st.session_state.messages:
 for msg in st.session_state.messages:
     avatar = "⚡" if msg["role"] == "assistant" else "🧑"
     with st.chat_message(msg["role"], avatar=avatar):
-        st.markdown(msg["content"])
+        _render_message(msg["content"])
 
 # ── Chat input ────────────────────────────────────────────────────────
 _placeholder = (
@@ -163,7 +185,7 @@ if prompt := st.chat_input(_placeholder):
                 )
                 status_box.update(label="❌ Error", state="error", expanded=True)
 
-        st.markdown(result)
+        _render_message(result)
 
     st.session_state.messages.append({"role": "assistant", "content": result})
     st.rerun()

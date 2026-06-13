@@ -2,13 +2,16 @@
 Image tools for DrewAI.
 
 - analyze_image   → Claude vision (uses ANTHROPIC_API_KEY)
-- generate_image  → Pollinations.ai FLUX (100% free, no key needed)
+- generate_image  → Hugging Face FLUX.1-schnell (free with HF_TOKEN)
 """
 from __future__ import annotations
 import base64
-import urllib.parse
+import os
+import time
 import urllib.request
 from pathlib import Path
+
+import requests as _requests
 from crewai.tools import tool
 
 _MEDIA_TYPES = {
@@ -16,6 +19,9 @@ _MEDIA_TYPES = {
     ".png": "image/png",  ".gif": "image/gif",
     ".webp": "image/webp",
 }
+
+_HF_API_URL = "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-schnell"
+_OUT_DIR = Path(__file__).parent.parent / "context" / "generated_images"
 
 
 @tool("Analyze Image")
@@ -61,22 +67,62 @@ def analyze_image(image_source: str) -> str:
 @tool("Generate Image")
 def generate_image(description: str) -> str:
     """
-    Generates an image from a text description using Pollinations.ai (free, no API key).
-    Returns a direct image URL — open it in any browser to see the result.
+    Generates an image using Hugging Face FLUX.1-schnell (free with HF_TOKEN).
+    Saves the image locally and returns an IMAGE: marker for the UI to render it.
     """
+    hf_token = os.getenv("HF_TOKEN", "")
+    if not hf_token:
+        return (
+            "❌ **HF_TOKEN no configurado.** Para generar imágenes gratis:\n\n"
+            "1. Crea cuenta en huggingface.co\n"
+            "2. Settings → Access Tokens → New token (tipo **Read**)\n"
+            "3. Agrega `HF_TOKEN=hf_...` a tu archivo `.env`\n"
+            "4. Reinicia la app con `streamlit run app.py`"
+        )
+
     optimized = _optimize_prompt(description)
-    encoded = urllib.parse.quote(optimized)
-    url = (
-        f"https://image.pollinations.ai/prompt/{encoded}"
-        "?width=1024&height=1024&model=flux&nologo=true&enhance=true"
-    )
+    headers = {"Authorization": f"Bearer {hf_token}"}
+    payload = {"inputs": optimized}
+
+    for attempt in range(3):
+        try:
+            resp = _requests.post(_HF_API_URL, headers=headers, json=payload, timeout=90)
+        except _requests.Timeout:
+            if attempt < 2:
+                time.sleep(5)
+                continue
+            return "❌ Timeout: el modelo tardó demasiado. Intenta de nuevo en unos segundos."
+
+        if resp.status_code == 503:
+            # Model is loading — wait and retry
+            wait = 20
+            try:
+                wait = min(resp.json().get("estimated_time", 20), 40)
+            except Exception:
+                pass
+            if attempt < 2:
+                time.sleep(wait)
+                continue
+            return "❌ El modelo sigue cargando. Espera un momento e intenta de nuevo."
+
+        if resp.status_code == 401:
+            return "❌ HF_TOKEN inválido. Verifica que sea correcto en tu archivo `.env`."
+
+        if resp.status_code != 200:
+            return f"❌ Error de Hugging Face API ({resp.status_code}): {resp.text[:300]}"
+
+        break
+
+    # Save image to context/generated_images/
+    _OUT_DIR.mkdir(parents=True, exist_ok=True)
+    filename = f"img_{int(time.time())}.png"
+    out_path = _OUT_DIR / filename
+    out_path.write_bytes(resp.content)
 
     return (
-        f"✅ Imagen generada con **Pollinations.ai** (FLUX · gratis · sin API key)\n\n"
-        f"🔗 **Abre este link en tu navegador:**\n{url}\n\n"
-        f"📝 **Prompt optimizado usado:**\n{optimized}\n\n"
-        f"💡 Cada vez que recargues el link obtienes una variación nueva.\n"
-        f"   Funciona en cualquier navegador — no necesita ninguna cuenta."
+        f"✅ Imagen generada con **FLUX.1-schnell** (Hugging Face · gratis)\n\n"
+        f"🖼️ IMAGE:{out_path}\n\n"
+        f"📝 **Prompt optimizado:** {optimized}"
     )
 
 

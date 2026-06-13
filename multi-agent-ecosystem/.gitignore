@@ -10,3 +10,4 @@ build/
 memory/history.json
 context/session_memory.md
 context/knowledge_base/*.md
+context/generated_images/
