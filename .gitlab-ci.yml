@@ -1,31 +1,5 @@
 stages:
-  - recover
   - deploy
-
-recover-hf-history:
-  stage: recover
-  image: python:3.11-slim
-  rules:
-    - if: '$CI_COMMIT_BRANCH == "main"'
-  script:
-    - apt-get update -qq && apt-get install -y -qq git
-    - pip install --no-cache-dir "huggingface_hub>=0.23.0"
-    - python scripts/recover_hf_history.py
-    - rm -rf multi-agent-ecosystem/*
-    - cp -r recovered/. multi-agent-ecosystem/
-    - git config user.email "ci@gitlab.com"
-    - git config user.name "GitLab CI"
-    - git checkout -B "$CI_COMMIT_REF_NAME"
-    - git add multi-agent-ecosystem
-    - >
-      git commit -m "Restore verified v1.1 multi-agent-ecosystem files (7 agents + password) [skip ci]"
-      || echo "Nothing to commit"
-    - git push "https://oauth2:${GITLAB_PUSH_TOKEN}@${CI_SERVER_HOST}/${CI_PROJECT_PATH}.git" "HEAD:$CI_COMMIT_REF_NAME"
-  artifacts:
-    when: always
-    paths:
-      - recovered/
-    expire_in: 1 day
 
 sync-to-hf-spaces:
   stage: deploy
