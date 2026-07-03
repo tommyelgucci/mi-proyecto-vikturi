@@ -253,8 +253,9 @@ def _try_gemini(api_key: str, optimized: str) -> str | None:
                     f"🖼️ IMAGE:{out}\n\n"
                     f"📝 **Prompt:** {optimized}"
                 )
-    except Exception:
-        pass
+        print("[_try_gemini] no inline_data part in response")
+    except Exception as e:
+        print(f"[_try_gemini] failed: {type(e).__name__}: {e}")
     return None
 
 
@@ -273,7 +274,8 @@ def _try_hf(token: str, optimized: str) -> str | None:
             f"🖼️ IMAGE:{out}\n\n"
             f"📝 **Prompt:** {optimized}"
         )
-    except Exception:
+    except Exception as e:
+        print(f"[_try_hf] failed: {type(e).__name__}: {e}")
         return None
 
 
@@ -297,8 +299,10 @@ def _try_pollinations(description: str) -> str | None:
                 f"🖼️ IMAGE:{out}\n\n"
                 f"📝 **Prompt:** {short}"
             )
-    except Exception:
-        pass
+        print(f"[_try_pollinations] status={resp.status_code} is_img={is_img} "
+              f"first_bytes={data[:20]!r}")
+    except Exception as e:
+        print(f"[_try_pollinations] failed: {type(e).__name__}: {e}")
     return None
 
 
@@ -330,8 +334,9 @@ def _try_craiyon(description: str) -> str | None:
                     f"🖼️ IMAGE:{out}\n\n"
                     f"📝 **Prompt:** {description[:200]}"
                 )
-    except Exception:
-        pass
+        print(f"[_try_craiyon] status={resp.status_code} body={resp.text[:200]!r}")
+    except Exception as e:
+        print(f"[_try_craiyon] failed: {type(e).__name__}: {e}")
     return None
 
 
@@ -340,6 +345,8 @@ def _generate_image(description: str) -> str:
     optimized = _optimize_prompt(description)
 
     gemini_key = os.getenv("GEMINI_API_KEY", "")
+    print(f"[_generate_image] GEMINI_API_KEY set={bool(gemini_key)} "
+          f"HF_TOKEN set={bool(os.getenv('HF_TOKEN'))}")
     if gemini_key:
         result = _try_gemini(gemini_key, optimized)
         if result:
