@@ -5,9 +5,6 @@ Used by app.py when running on cloud.
 from __future__ import annotations
 import base64
 import os
-import re
-import tempfile
-import uuid
 from pathlib import Path
 
 import urllib.parse
@@ -23,71 +20,7 @@ _IMAGE_KW = ("genera", "generate", "crea una imagen", "hazme una imagen",
 
 _CODE_KW = ("código", "code", "función", "function", "clase", "class",
             "script", "pep8", "debugear", "debug", "error en", "refactor",
-            "fastapi", "django", "flask", "sql", "api", "def ", "return",
-            "html", "css", "javascript", "typescript", "react",
-            "frontend", "backend")
-
-# Extensions accepted by the "Documento" uploader that should be treated as
-# source code — force-routed to Dimelis AI regardless of the chat message text.
-CODE_EXTENSIONS = {
-    ".html", ".htm", ".md", ".markdown",
-    ".py", ".js", ".jsx", ".ts", ".tsx",
-    ".css", ".scss",
-    ".java", ".kt",
-    ".c", ".cpp", ".h", ".hpp",
-    ".go", ".rb", ".php", ".rs",
-    ".sh", ".bash",
-    ".json", ".xml", ".yaml", ".yml",
-    ".sql",
-}
-
-# Above this size a full-file rewrite risks exceeding the model's max output
-# tokens and truncating mid-file — Dimelis is instructed to review by section instead.
-CODE_FILE_SIZE_WARN_THRESHOLD = 300_000  # bytes
-
-_FILE_BLOCK_RE = re.compile(
-    r"<<<VIKTURI_FILE:(?P<filename>[^>\n]+)>>>\n(?P<content>.*?)\n<<<END_VIKTURI_FILE>>>",
-    re.DOTALL,
-)
-_GENERATED_FILES_DIR = Path(tempfile.gettempdir()) / "vikturi_generated"
-
-
-def is_code_file_too_large(doc_bytes: bytes | None, doc_suffix: str | None) -> bool:
-    """True if an uploaded code file is large enough to risk exceeding max output tokens."""
-    if not doc_bytes or (doc_suffix or "").lower() not in CODE_EXTENSIONS:
-        return False
-    return len(doc_bytes) > CODE_FILE_SIZE_WARN_THRESHOLD
-
-
-def _extract_and_stash_generated_files(text: str) -> str:
-    """Replace <<<VIKTURI_FILE:...>>> blocks with a 🖼️-IMAGE-style downloadable marker."""
-    if "<<<VIKTURI_FILE:" not in text:
-        return text
-
-    _GENERATED_FILES_DIR.mkdir(parents=True, exist_ok=True)
-
-    def _replace(match: re.Match) -> str:
-        raw_name = os.path.basename(match.group("filename").strip())
-        safe_name = f"{uuid.uuid4().hex}_{raw_name}"
-        out_path = _GENERATED_FILES_DIR / safe_name
-        out_path.write_text(match.group("content"), encoding="utf-8")
-        return f"📄 FILE:{out_path}"
-
-    return _FILE_BLOCK_RE.sub(_replace, text)
-
-
-def _create_message(
-    client: "anthropic.Anthropic",
-    model: str,
-    max_tokens: int,
-    system: str,
-    messages: list[dict],
-) -> "anthropic.types.Message":
-    """Streaming call — avoids SDK timeouts on large `max_tokens` code-generation responses."""
-    with client.messages.stream(
-        model=model, max_tokens=max_tokens, system=system, messages=messages,
-    ) as stream:
-        return stream.get_final_message()
+            "fastapi", "django", "flask", "sql", "api", "def ", "return")
 
 _LEARN_KW = ("explícame", "explica", "qué es", "cómo funciona", "enseñame",
              "no entiendo", "aprend", "tutorial", "paso a paso", "analogía",
@@ -379,9 +312,10 @@ def _analyze_video(video_bytes: bytes, suffix: str, user_text: str, hf_token: st
     content.append({"type": "text", "text": body})
 
     system = (_PROMPTS / "drewai_prompt.md").read_text(encoding="utf-8")
-    response = _create_message(
-        client, model, max_tokens, system,
-        [{"role": "user", "content": content}],
+    response = client.messages.create(
+        model=model, max_tokens=max_tokens,
+        system=system,
+        messages=[{"role": "user", "content": content}],
     ).content[0].text
 
     parts = ["🎬 **DrewAI** · Análisis de video"]
@@ -407,17 +341,7 @@ def _document_content(doc_bytes: bytes, doc_suffix: str, user_text: str) -> list
         extracted = "\n".join(p.text for p in doc.paragraphs if p.text.strip())
     else:
         extracted = doc_bytes.decode("utf-8", errors="replace")
-
-    label = "[Archivo de código adjunto]" if suffix in CODE_EXTENSIONS else "[Documento adjunto]"
-    body = f"{label}\n\n{extracted}\n\n---\n\n{user_text}"
-    if is_code_file_too_large(doc_bytes, doc_suffix):
-        body = (
-            "[NOTA: este archivo es grande y probablemente exceda el límite de "
-            "tokens de salida del modelo. NO intentes reescribirlo completo — "
-            "resume su estructura, lista problemas/mejoras concretas, y ofrece "
-            "reescribir una sección específica si el usuario lo pide.]\n\n" + body
-        )
-    return [{"type": "text", "text": body}]
+    return [{"type": "text", "text": f"[Documento adjunto]\n\n{extracted}\n\n---\n\n{user_text}"}]
 
 
 # ── Web search helper ─────────────────────────────────────────────────────────
@@ -557,7 +481,7 @@ def run_simple(
         )
 
     model = os.getenv("MODEL", "claude-sonnet-4-6")
-    max_tokens = int(os.getenv("MAX_TOKENS", "16000"))
+    max_tokens = int(os.getenv("MAX_TOKENS", "4096"))
     client = anthropic.Anthropic(api_key=api_key)
 
     # ── Training mode ─────────────────────────────────────────────────
@@ -569,9 +493,10 @@ def run_simple(
             f"un briefing para todos los agentes.\n\n{recent}\n\n"
             f"Instrucción adicional: {user_request}"
         )
-        response = _create_message(
-            client, model, max_tokens, system,
-            [{"role": "user", "content": user_msg}],
+        response = client.messages.create(
+            model=model, max_tokens=max_tokens,
+            system=system,
+            messages=[{"role": "user", "content": user_msg}],
         ).content[0].text
         result = f"🧠 **Master Trainer**\n\n{response}"
         save_interaction(user_request, result, training_mode=True)
@@ -589,22 +514,23 @@ def run_simple(
         system = (_PROMPTS / "drewai_prompt.md").read_text(encoding="utf-8")
         messages = _build_conv_messages(chat_history)
         messages.append({"role": "user", "content": _vision_content(image_path, user_request)})
-        response = _create_message(client, model, max_tokens, system, messages).content[0].text
+        response = client.messages.create(
+            model=model, max_tokens=max_tokens,
+            system=system, messages=messages,
+        ).content[0].text
         result = f"🎨 **DrewAI** · Análisis visual\n\n{response}"
         save_interaction(user_request, result)
         return result
 
     # ── Document upload ───────────────────────────────────────────────
     if doc_bytes and doc_suffix:
-        suffix = doc_suffix.lower()
-        if suffix in CODE_EXTENSIONS:
-            agent_label, system = "Dimelis AI", (_PROMPTS / "dimelis_prompt.md").read_text(encoding="utf-8")
-        else:
-            agent_label, system = _route(user_request)
+        agent_label, system = _route(user_request)
         messages = _build_conv_messages(chat_history)
         messages.append({"role": "user", "content": _document_content(doc_bytes, doc_suffix, user_request)})
-        response = _create_message(client, model, max_tokens, system, messages).content[0].text
-        response = _extract_and_stash_generated_files(response)
+        response = client.messages.create(
+            model=model, max_tokens=max_tokens,
+            system=system, messages=messages,
+        ).content[0].text
         icon = _AGENT_ICONS.get(agent_label, "⚡")
         result = f"{icon} **{agent_label}**\n\n{response}"
         save_interaction(user_request, result)
@@ -641,8 +567,10 @@ def run_simple(
 
     messages.append({"role": "user", "content": current_msg})
 
-    response = _create_message(client, model, max_tokens, system, messages).content[0].text
-    response = _extract_and_stash_generated_files(response)
+    response = client.messages.create(
+        model=model, max_tokens=max_tokens,
+        system=system, messages=messages,
+    ).content[0].text
 
     icon = _AGENT_ICONS.get(agent_label, "⚡")
     result = f"{icon} **{agent_label}**\n\n{response}"
