@@ -111,17 +111,33 @@ def _clean_text_for_tts(content: str) -> str:
     return text
 
 
-def text_to_speech(text: str, hf_token: str) -> bytes | None:
-    """Generate spoken audio for `text` via a free HF model. Returns None on failure."""
-    if not text or not hf_token:
+def text_to_speech(text: str, hf_token: str = "") -> bytes | None:
+    """Generate spoken audio (MP3 bytes) for `text`. Tries gTTS (free, no key
+    needed) first, then falls back to a HuggingFace model if a token is available.
+    Returns None if both fail.
+    """
+    if not text:
         return None
+
     try:
-        from huggingface_hub import InferenceClient
-        client = InferenceClient(token=hf_token)
-        audio = client.text_to_speech(text, model="facebook/mms-tts-spa")
-        return bytes(audio)
+        import io
+        from gtts import gTTS
+        buf = io.BytesIO()
+        gTTS(text=text, lang="es").write_to_fp(buf)
+        return buf.getvalue()
     except Exception:
-        return None
+        pass
+
+    if hf_token:
+        try:
+            from huggingface_hub import InferenceClient
+            client = InferenceClient(token=hf_token)
+            audio = client.text_to_speech(text, model="facebook/mms-tts-spa")
+            return bytes(audio)
+        except Exception:
+            pass
+
+    return None
 
 _LEARN_KW = ("explícame", "explica", "qué es", "cómo funciona", "enseñame",
              "no entiendo", "aprend", "tutorial", "paso a paso", "analogía",

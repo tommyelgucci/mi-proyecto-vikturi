@@ -671,7 +671,7 @@ for _idx, msg in enumerate(st.session_state.messages):
                 else:
                     st.warning("No se pudo generar el audio. Intenta de nuevo.")
             if f"tts_audio_{_idx}" in st.session_state:
-                st.audio(st.session_state[f"tts_audio_{_idx}"])
+                st.audio(st.session_state[f"tts_audio_{_idx}"], format="audio/mp3")
 
 # ── Chat input ────────────────────────────────────────────────────────
 _placeholder = (
