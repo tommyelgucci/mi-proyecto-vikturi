@@ -4,6 +4,8 @@ stages:
 sync-to-hf-spaces:
   stage: deploy
   image: alpine/git
+  variables:
+    GIT_LFS_SKIP_SMUDGE: "1"
   rules:
     - if: '$CI_COMMIT_BRANCH == "main"'
       changes:
@@ -11,11 +13,9 @@ sync-to-hf-spaces:
     - if: '$CI_COMMIT_BRANCH == "main"'
       when: manual
   script:
-    - apk add --no-cache git-lfs
-    - git lfs install --system
     - git config --global user.email "ci@gitlab.com"
     - git config --global user.name "GitLab CI"
-    - GIT_LFS_SKIP_SMUDGE=1 git clone https://GucciTommy:${HF_TOKEN}@huggingface.co/spaces/GucciTommy/vikturi-ai /tmp/hf-space
+    - git clone https://GucciTommy:${HF_TOKEN}@huggingface.co/spaces/GucciTommy/vikturi-ai /tmp/hf-space
     - cp -r multi-agent-ecosystem/. /tmp/hf-space/
     - cd /tmp/hf-space
     - git add -A
