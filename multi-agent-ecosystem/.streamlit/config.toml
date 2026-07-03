@@ -17,7 +17,7 @@ enableCORS = false
 
 # ── XSRF / CSRF protection ────────────────────────────────────────────
 # Validates the Streamlit XSRF token on every WebSocket connection.
-enableXsrfProtection = true
+enableXsrfProtection = false
 
 # ── Uploads ───────────────────────────────────────────────────────────
 maxUploadSize = 5          # MB — limits file-upload attack surface
