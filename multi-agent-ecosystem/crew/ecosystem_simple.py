@@ -131,7 +131,7 @@ def text_to_speech(text: str, hf_token: str = "") -> bytes | None:
     if hf_token:
         try:
             from huggingface_hub import InferenceClient
-            client = InferenceClient(token=hf_token)
+            client = InferenceClient(provider="hf-inference", token=hf_token)
             audio = client.text_to_speech(text, model="facebook/mms-tts-spa")
             return bytes(audio)
         except Exception:
@@ -260,11 +260,16 @@ def _try_gemini(api_key: str, optimized: str) -> str | None:
 
 
 def _try_hf(token: str, optimized: str) -> str | None:
-    """Try HF InferenceClient (uses internal HF routing)."""
+    """Try HF InferenceClient, pinned to HF's own free inference provider.
+
+    Without an explicit `provider=`, HF's router auto-picks a third-party
+    provider (e.g. "nscale") that requires separate billing/token scope and
+    401s — "hf-inference" is HF's own infrastructure, covered by the free tier.
+    """
     import time
     try:
         from huggingface_hub import InferenceClient
-        client = InferenceClient(token=token)
+        client = InferenceClient(provider="hf-inference", token=token)
         image = client.text_to_image(optimized,
                                      model="black-forest-labs/FLUX.1-schnell")
         out = Path(f"/tmp/vikturi_img_{int(time.time())}.png")
@@ -465,7 +470,7 @@ def _analyze_video(video_bytes: bytes, suffix: str, user_text: str, hf_token: st
         )
         if audio.exists() and audio.stat().st_size > 0 and hf_token:
             from huggingface_hub import InferenceClient
-            hf_client = InferenceClient(token=hf_token)
+            hf_client = InferenceClient(provider="hf-inference", token=hf_token)
             result = hf_client.automatic_speech_recognition(
                 audio.read_bytes(), model="openai/whisper-large-v3"
             )

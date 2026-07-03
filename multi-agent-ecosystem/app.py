@@ -486,7 +486,7 @@ with st.sidebar:
         if st.session_state.get("_pending_audio_id") != _audio_id:
             try:
                 from huggingface_hub import InferenceClient as _HFClient
-                _hf_client = _HFClient(token=_hf_token)
+                _hf_client = _HFClient(provider="hf-inference", token=_hf_token)
                 _transcription = _hf_client.automatic_speech_recognition(
                     _audio_source.getvalue(),
                     model="openai/whisper-large-v3",
