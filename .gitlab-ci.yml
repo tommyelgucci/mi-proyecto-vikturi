@@ -3,9 +3,7 @@ stages:
 
 sync-to-hf-spaces:
   stage: deploy
-  image: alpine/git
-  variables:
-    GIT_LFS_SKIP_SMUDGE: "1"
+  image: python:3.11-slim
   rules:
     - if: '$CI_COMMIT_BRANCH == "main"'
       changes:
@@ -13,11 +11,11 @@ sync-to-hf-spaces:
     - if: '$CI_COMMIT_BRANCH == "main"'
       when: manual
   script:
-    - git config --global user.email "ci@gitlab.com"
-    - git config --global user.name "GitLab CI"
-    - git clone https://GucciTommy:${HF_TOKEN}@huggingface.co/spaces/GucciTommy/vikturi-ai /tmp/hf-space
-    - cp -r multi-agent-ecosystem/. /tmp/hf-space/
-    - cd /tmp/hf-space
-    - git add -A
-    - git commit -m "Sync from GitLab" || echo "Nothing to commit"
-    - git push origin main
+    - pip install --no-cache-dir "huggingface_hub>=0.23.0"
+    - >
+      python -c "import os; from huggingface_hub import HfApi;
+      HfApi(token=os.environ['HF_TOKEN']).upload_folder(
+      folder_path='multi-agent-ecosystem',
+      repo_id='GucciTommy/vikturi-ai',
+      repo_type='space',
+      commit_message='Sync from GitLab CI')"
