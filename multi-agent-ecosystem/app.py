@@ -655,10 +655,23 @@ if not st.session_state.messages:
     })
 
 # ── Render chat history ───────────────────────────────────────────────
-for msg in st.session_state.messages:
+for _idx, msg in enumerate(st.session_state.messages):
     avatar = "⚡" if msg["role"] == "assistant" else "🧑"
     with st.chat_message(msg["role"], avatar=avatar):
         _render_message(msg["content"])
+        if msg["role"] == "assistant":
+            if st.button("🔊 Escuchar", key=f"tts_btn_{_idx}"):
+                from crew.ecosystem_simple import _clean_text_for_tts, text_to_speech
+                with st.spinner("🔊 Generando audio…"):
+                    _audio_bytes = text_to_speech(
+                        _clean_text_for_tts(msg["content"]), os.getenv("HF_TOKEN", "")
+                    )
+                if _audio_bytes:
+                    st.session_state[f"tts_audio_{_idx}"] = _audio_bytes
+                else:
+                    st.warning("No se pudo generar el audio. Intenta de nuevo.")
+            if f"tts_audio_{_idx}" in st.session_state:
+                st.audio(st.session_state[f"tts_audio_{_idx}"])
 
 # ── Chat input ────────────────────────────────────────────────────────
 _placeholder = (

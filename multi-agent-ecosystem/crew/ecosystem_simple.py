@@ -89,6 +89,40 @@ def _create_message(
     ) as stream:
         return stream.get_final_message()
 
+
+# ── Text-to-speech ("🔊 Escuchar" button) ──────────────────────────────────────
+
+_AGENT_LABEL_RE = re.compile(r"^[^\n]*\*\*[^*\n]+\*\*[^\n]*\n\n")
+_MD_EMPHASIS_RE = re.compile(r"(\*\*|\*|`)")
+_TTS_MAX_CHARS = 2000
+
+
+def _clean_text_for_tts(content: str) -> str:
+    """Strip markers/markdown so the TTS model reads only the narrative text."""
+    text = _FILE_BLOCK_RE.sub("", content)
+    text = re.sub(r"🖼️ IMAGE:[^\n]*", "", text)
+    text = re.sub(r"POLLINATIONS_IMG:[^\n]*", "", text)
+    text = re.sub(r"📄 FILE:[^\n]*", "", text)
+    text = _AGENT_LABEL_RE.sub("", text, count=1)
+    text = _MD_EMPHASIS_RE.sub("", text)
+    text = re.sub(r"\n{2,}", "\n\n", text).strip()
+    if len(text) > _TTS_MAX_CHARS:
+        text = text[:_TTS_MAX_CHARS].rsplit(" ", 1)[0] + "…"
+    return text
+
+
+def text_to_speech(text: str, hf_token: str) -> bytes | None:
+    """Generate spoken audio for `text` via a free HF model. Returns None on failure."""
+    if not text or not hf_token:
+        return None
+    try:
+        from huggingface_hub import InferenceClient
+        client = InferenceClient(token=hf_token)
+        audio = client.text_to_speech(text, model="facebook/mms-tts-spa")
+        return bytes(audio)
+    except Exception:
+        return None
+
 _LEARN_KW = ("explícame", "explica", "qué es", "cómo funciona", "enseñame",
              "no entiendo", "aprend", "tutorial", "paso a paso", "analogía",
              "diferencia entre", "cuándo usar")
