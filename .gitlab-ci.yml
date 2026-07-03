@@ -20,8 +20,9 @@ recover-hf-history:
     - >
       git commit -m "Restore v1.1 multi-agent-ecosystem files recovered from HF history [skip ci]"
       || echo "Nothing to commit"
-    - git push "https://gitlab-ci-token:${CI_JOB_TOKEN}@${CI_SERVER_HOST}/${CI_PROJECT_PATH}.git" "HEAD:$CI_COMMIT_REF_NAME"
+    - git push "https://oauth2:${GITLAB_PUSH_TOKEN}@${CI_SERVER_HOST}/${CI_PROJECT_PATH}.git" "HEAD:$CI_COMMIT_REF_NAME"
   artifacts:
+    when: always
     paths:
       - recovered/
     expire_in: 1 day
