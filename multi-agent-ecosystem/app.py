@@ -118,10 +118,36 @@ def _convert_document(file_bytes: bytes, suffix: str, original_name: str) -> tup
 
 
 def _render_message(content: str) -> None:
-    """Renders a message, handling image markers:
+    """Renders a message, handling image/file markers:
     - 🖼️ IMAGE:<path>  → local file via st.image() (HF/Pollinations downloaded locally)
     - POLLINATIONS_IMG:<url> → fetched server-side and rendered as bytes
+    - 📄 FILE:<path> → generated/improved code file, offered as a download button
     """
+    # ── Generated code file (Dimelis) ─────────────────────────────────
+    if "📄 FILE:" in content:
+        import mimetypes
+
+        before, rest = content.split("📄 FILE:", 1)
+        if before.strip():
+            st.markdown(before)
+        first_line, *remaining = rest.split("\n", 1)
+        file_path = Path(first_line.strip())
+        if file_path.exists():
+            display_name = file_path.name.split("_", 1)[-1]
+            mime, _ = mimetypes.guess_type(display_name)
+            st.download_button(
+                f"⬇️ Descargar {display_name}",
+                data=file_path.read_bytes(),
+                file_name=display_name,
+                mime=mime or "application/octet-stream",
+                key=f"dl_{file_path.name}",
+            )
+        else:
+            st.warning(f"Archivo no encontrado: `{file_path}`")
+        if remaining and remaining[0].strip():
+            st.markdown(remaining[0])
+        return
+
     # ── HF / downloaded local image ──────────────────────────────────
     if "🖼️ IMAGE:" in content:
         before, rest = content.split("🖼️ IMAGE:", 1)
@@ -479,15 +505,29 @@ with st.sidebar:
 
     # ── Document uploader ─────────────────────────────────────────────
     st.markdown("---")
-    st.markdown("### 📄 Documento")
-    st.caption("Sube un PDF, DOCX o TXT para incluirlo en tu consulta.")
+    st.markdown("### 📄 Documento / Código")
+    st.caption(
+        "Sube un PDF, DOCX, TXT o un archivo de código (HTML, Python, JS, Java, "
+        "CSS, etc.) para que Dimelis lo revise, mejore o lo uses como base."
+    )
 
     if "doc_uploader_key" not in st.session_state:
         st.session_state["doc_uploader_key"] = 0
 
     _uploaded_doc = st.file_uploader(
         "Subir documento",
-        type=["pdf", "docx", "txt"],
+        type=[
+            "pdf", "docx", "txt",
+            "html", "htm", "md", "markdown",
+            "py", "js", "jsx", "ts", "tsx",
+            "css", "scss",
+            "java", "kt",
+            "c", "cpp", "h", "hpp",
+            "go", "rb", "php", "rs",
+            "sh", "bash",
+            "json", "xml", "yaml", "yml",
+            "sql",
+        ],
         label_visibility="collapsed",
         key=f"doc_upload_{st.session_state['doc_uploader_key']}",
     )
@@ -499,6 +539,19 @@ with st.sidebar:
             st.session_state["pending_doc_name"] = _uploaded_doc.name
             st.session_state["_pending_doc_id"] = _doc_id
         st.caption(f"✅ {_uploaded_doc.name} — envía tu mensaje")
+
+        from crew.ecosystem_simple import is_code_file_too_large
+        if is_code_file_too_large(
+            st.session_state["pending_doc_bytes"], st.session_state["pending_doc_suffix"]
+        ):
+            _size_kb = len(st.session_state["pending_doc_bytes"]) // 1024
+            st.info(
+                f"⚠️ Este archivo (~{_size_kb} KB) es grande para que Dimelis lo "
+                "reescriba completo en una sola respuesta (el modelo tiene un límite "
+                "de ~128,000 tokens de salida). Dimelis hará una revisión dirigida "
+                "por secciones en vez de reescribir todo. Si quieres una parte "
+                "específica reescrita, indícalo en tu mensaje."
+            )
     else:
         for k in ("pending_doc_bytes", "pending_doc_suffix", "pending_doc_name", "_pending_doc_id"):
             st.session_state.pop(k, None)
