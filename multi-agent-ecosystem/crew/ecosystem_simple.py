@@ -231,6 +231,33 @@ def _optimize_prompt(description: str) -> str:
     return description.rstrip(".") + suffix
 
 
+def _try_gemini(api_key: str, optimized: str) -> str | None:
+    """Try Gemini 2.5 Flash Image ("Nano Banana") — free tier, 500 images/day."""
+    import time
+    try:
+        from google import genai
+        from google.genai import types
+        client = genai.Client(api_key=api_key)
+        response = client.models.generate_content(
+            model="gemini-2.5-flash-image",
+            contents=optimized,
+            config=types.GenerateContentConfig(response_modalities=["IMAGE"]),
+        )
+        for part in response.parts:
+            if part.inline_data:
+                image = part.as_image()
+                out = Path(f"/tmp/vikturi_img_{int(time.time())}.png")
+                image.save(str(out))
+                return (
+                    f"✅ Imagen generada con **Gemini 2.5 Flash (Nano Banana)**\n\n"
+                    f"🖼️ IMAGE:{out}\n\n"
+                    f"📝 **Prompt:** {optimized}"
+                )
+    except Exception:
+        pass
+    return None
+
+
 def _try_hf(token: str, optimized: str) -> str | None:
     """Try HF InferenceClient (uses internal HF routing)."""
     import time
@@ -309,8 +336,14 @@ def _try_craiyon(description: str) -> str | None:
 
 
 def _generate_image(description: str) -> str:
-    """Try HF → Pollinations → Craiyon → error message."""
+    """Try Gemini (Nano Banana) → HF → Pollinations → Craiyon → error message."""
     optimized = _optimize_prompt(description)
+
+    gemini_key = os.getenv("GEMINI_API_KEY", "")
+    if gemini_key:
+        result = _try_gemini(gemini_key, optimized)
+        if result:
+            return result
 
     hf_token = os.getenv("HF_TOKEN", "")
     if hf_token:
