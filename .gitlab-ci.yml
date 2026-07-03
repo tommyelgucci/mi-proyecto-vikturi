@@ -1,5 +1,19 @@
 stages:
+  - recover
   - deploy
+
+recover-hf-history:
+  stage: recover
+  image: python:3.11-slim
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
+  script:
+    - pip install --no-cache-dir "huggingface_hub>=0.23.0"
+    - python scripts/recover_hf_history.py
+  artifacts:
+    paths:
+      - recovered/
+    expire_in: 1 day
 
 sync-to-hf-spaces:
   stage: deploy
