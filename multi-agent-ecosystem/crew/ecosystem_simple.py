@@ -231,31 +231,33 @@ def _optimize_prompt(description: str) -> str:
     return description.rstrip(".") + suffix
 
 
-def _try_gemini(api_key: str, optimized: str) -> str | None:
-    """Try Gemini 2.5 Flash Image ("Nano Banana") — free tier, 500 images/day."""
+def _try_cloudflare(account_id: str, api_token: str, optimized: str) -> str | None:
+    """Try Cloudflare Workers AI (FLUX) — free tier, no credit card, 10k neurons/day."""
     import time
+    import requests as _req
     try:
-        from google import genai
-        from google.genai import types
-        client = genai.Client(api_key=api_key)
-        response = client.models.generate_content(
-            model="gemini-2.5-flash-image",
-            contents=optimized,
-            config=types.GenerateContentConfig(response_modalities=["IMAGE"]),
+        resp = _req.post(
+            f"https://api.cloudflare.com/client/v4/accounts/{account_id}"
+            "/ai/run/@cf/black-forest-labs/flux-1-schnell",
+            headers={"Authorization": f"Bearer {api_token}"},
+            json={"prompt": optimized[:2000]},
+            timeout=60,
         )
-        for part in response.parts:
-            if part.inline_data:
-                image = part.as_image()
+        if resp.status_code == 200:
+            data = resp.json()
+            b64 = data.get("result", {}).get("image")
+            if b64:
+                img_bytes = base64.b64decode(b64)
                 out = Path(f"/tmp/vikturi_img_{int(time.time())}.png")
-                image.save(str(out))
+                out.write_bytes(img_bytes)
                 return (
-                    f"✅ Imagen generada con **Gemini 2.5 Flash (Nano Banana)**\n\n"
+                    f"✅ Imagen generada con **Cloudflare Workers AI (FLUX)**\n\n"
                     f"🖼️ IMAGE:{out}\n\n"
                     f"📝 **Prompt:** {optimized}"
                 )
-        print("[_try_gemini] no inline_data part in response")
+        print(f"[_try_cloudflare] status={resp.status_code} body={resp.text[:200]!r}")
     except Exception as e:
-        print(f"[_try_gemini] failed: {type(e).__name__}: {e}")
+        print(f"[_try_cloudflare] failed: {type(e).__name__}: {e}")
     return None
 
 
@@ -346,14 +348,15 @@ def _try_craiyon(description: str) -> str | None:
 
 
 def _generate_image(description: str) -> str:
-    """Try Gemini (Nano Banana) → HF → Pollinations → Craiyon → error message."""
+    """Try Cloudflare Workers AI → HF → Pollinations → Craiyon → error message."""
     optimized = _optimize_prompt(description)
 
-    gemini_key = os.getenv("GEMINI_API_KEY", "")
-    print(f"[_generate_image] GEMINI_API_KEY set={bool(gemini_key)} "
+    cf_account = os.getenv("CLOUDFLARE_ACCOUNT_ID", "")
+    cf_token = os.getenv("CLOUDFLARE_API_TOKEN", "")
+    print(f"[_generate_image] CLOUDFLARE set={bool(cf_account and cf_token)} "
           f"HF_TOKEN set={bool(os.getenv('HF_TOKEN'))}")
-    if gemini_key:
-        result = _try_gemini(gemini_key, optimized)
+    if cf_account and cf_token:
+        result = _try_cloudflare(cf_account, cf_token, optimized)
         if result:
             return result
 
