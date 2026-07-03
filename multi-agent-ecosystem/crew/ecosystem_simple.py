@@ -184,16 +184,50 @@ _AGENT_ICONS: dict[str, str] = {
 
 # ── Image generation helpers ──────────────────────────────────────────────────
 
+# Category → richer descriptor phrase (lighting, camera/lens, composition, mood),
+# in the spirit of well-structured prompt-gallery entries. Order matters — first
+# match wins, so more specific categories are checked before general ones.
+_PROMPT_STYLE_PATTERNS: list[tuple[tuple[str, ...], str]] = [
+    (("logo", "logotipo", "marca", "branding", "icono", "isotipo"),
+     ", minimalist vector logo, clean geometric shapes, flat design, "
+     "balanced negative space, centered composition, brand-ready, white background"),
+    (("retrato", "portrait", "rostro", "cara de", "headshot"),
+     ", portrait photography, softbox lighting, shallow depth of field, "
+     "85mm lens, bokeh background, natural skin texture, sharp eyes"),
+    (("paisaje", "landscape", "montaña", "atardecer", "amanecer", "naturaleza", "bosque", "playa"),
+     ", landscape photography, golden hour lighting, wide-angle lens, "
+     "rule of thirds composition, dramatic sky, rich color grading"),
+    (("cine", "cinematic", "cinematográfic", "escena de película", "dramátic"),
+     ", cinematic still, anamorphic lens flare, moody volumetric lighting, "
+     "wide shot composition, film grain, teal and orange color grade"),
+    (("fantasía", "fantasy", "dragón", "mágic", "sci-fi", "ciencia ficción", "futurista", "espacial"),
+     ", fantasy concept art, dramatic rim lighting, epic wide shot, "
+     "intricate detail, atmospheric fog, vivid saturated colors"),
+    (("acuarela", "watercolor", "pintura", "painting", "óleo", "oil painting"),
+     ", traditional painting style, visible brush strokes, soft color bleed, "
+     "textured paper, artistic composition, warm palette"),
+    (("minimalista", "minimalist", "flat design", "plano", "simple y limpio"),
+     ", minimalist flat design, simple geometric shapes, generous negative space, "
+     "limited color palette, clean composition"),
+    (("publicidad", "ad", "advertising", "banner", "anuncio", "producto", "product shot"),
+     ", commercial product photography, studio softbox lighting, "
+     "clean seamless background, three-quarter angle, sharp focus, ad-ready"),
+    (("cartoon", "dibujo", "anime", "caricatura"),
+     ", illustration style, vibrant colors, clean bold linework, "
+     "expressive characters, flat cel shading"),
+    (("photo", "foto", "realistic", "realista", "fotorrealista"),
+     ", photorealistic, DSLR camera, 85mm lens, natural lighting, sharp focus"),
+]
+
+
 def _optimize_prompt(description: str) -> str:
     suffix = ", high quality, detailed, professional lighting, 4K"
     if len(description) <= 250:
         d = description.lower()
-        if any(w in d for w in ("photo", "foto", "realistic", "realista")):
-            suffix += ", photorealistic, DSLR camera, sharp focus"
-        elif any(w in d for w in ("cartoon", "dibujo", "anime")):
-            suffix += ", illustration style, vibrant colors, clean lines"
-        elif any(w in d for w in ("publicidad", "ad", "advertising", "banner")):
-            suffix += ", commercial photography, studio lighting, clean background"
+        for keywords, style_suffix in _PROMPT_STYLE_PATTERNS:
+            if any(w in d for w in keywords):
+                suffix += style_suffix
+                break
     return description.rstrip(".") + suffix
 
 
