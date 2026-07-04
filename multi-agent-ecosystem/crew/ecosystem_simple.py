@@ -13,6 +13,7 @@ from pathlib import Path
 import urllib.parse
 
 import anthropic
+import requests
 
 from memory.session_memory import save_interaction, get_recent_context
 
@@ -231,12 +232,25 @@ def _optimize_prompt(description: str) -> str:
     return description.rstrip(".") + suffix
 
 
+class _Tls12Adapter(requests.adapters.HTTPAdapter):
+    """Caps the TLS handshake at 1.2 — some middleboxes reset on TLS 1.3 extensions."""
+
+    def init_poolmanager(self, *args, **kwargs):
+        import ssl
+        ctx = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
+        ctx.maximum_version = ssl.TLSVersion.TLSv1_2
+        kwargs["ssl_context"] = ctx
+        return super().init_poolmanager(*args, **kwargs)
+
+
 def _try_cloudflare(account_id: str, api_token: str, optimized: str) -> str | None:
     """Try Cloudflare Workers AI (FLUX) — free tier, no credit card, 10k neurons/day."""
     import time
     import requests as _req
     try:
-        resp = _req.post(
+        session = _req.Session()
+        session.mount("https://", _Tls12Adapter())
+        resp = session.post(
             f"https://api.cloudflare.com/client/v4/accounts/{account_id}"
             "/ai/run/@cf/black-forest-labs/flux-1-schnell",
             headers={
