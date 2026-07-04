@@ -139,17 +139,17 @@ def _try_nvidia_tts(api_key: str, text: str) -> bytes | None:
         )
         service = riva.client.SpeechSynthesisService(auth)
         resp = service.synthesize(
-            text=text,
-            voice_name="Chatterbox-Multilingual.es-ES.Female",
-            language_code="es-ES",
+            text=text[:600],  # ~15s recommended max per generation
+            voice_name="Chatterbox-Multilingual.es-US.Female",
+            language_code="es-US",
             encoding=riva.client.AudioEncoding.LINEAR_PCM,
-            sample_rate_hz=44100,
+            sample_rate_hz=24000,
         )
         buf = io.BytesIO()
         with wave.open(buf, "wb") as wav:
             wav.setnchannels(1)
             wav.setsampwidth(2)
-            wav.setframerate(44100)
+            wav.setframerate(24000)
             wav.writeframes(resp.audio)
         return buf.getvalue()
     except Exception as e:
