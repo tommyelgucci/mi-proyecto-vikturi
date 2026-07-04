@@ -115,13 +115,62 @@ def _clean_text_for_tts(content: str) -> str:
     return text
 
 
+_RIVA_CHATTERBOX_FUNCTION_ID = "ddacc747-1269-4fab-bfd9-8f593dead106"
+
+
+def _try_nvidia_tts(api_key: str, text: str) -> bytes | None:
+    """Try NVIDIA Riva Chatterbox Multilingual TTS — same free NVIDIA account/key.
+
+    Unlike the other NVIDIA tiers this uses gRPC (via nvidia-riva-client), not a
+    plain REST POST, since Riva's hosted Preview API only exposes a gRPC endpoint.
+    """
+    try:
+        import io
+        import wave
+        import riva.client
+
+        auth = riva.client.Auth(
+            uri="grpc.nvcf.nvidia.com:443",
+            use_ssl=True,
+            metadata_args=[
+                ["function-id", _RIVA_CHATTERBOX_FUNCTION_ID],
+                ["authorization", f"Bearer {api_key}"],
+            ],
+        )
+        service = riva.client.SpeechSynthesisService(auth)
+        resp = service.synthesize(
+            text=text,
+            voice_name="Chatterbox-Multilingual.es-ES.Female",
+            language_code="es-ES",
+            encoding=riva.client.AudioEncoding.LINEAR_PCM,
+            sample_rate_hz=44100,
+        )
+        buf = io.BytesIO()
+        with wave.open(buf, "wb") as wav:
+            wav.setnchannels(1)
+            wav.setsampwidth(2)
+            wav.setframerate(44100)
+            wav.writeframes(resp.audio)
+        return buf.getvalue()
+    except Exception as e:
+        print(f"[_try_nvidia_tts] failed: {type(e).__name__}: {e}")
+        return None
+
+
 def text_to_speech(text: str, hf_token: str = "") -> bytes | None:
-    """Generate spoken audio (MP3 bytes) for `text`. Tries gTTS (free, no key
-    needed) first, then falls back to a HuggingFace model if a token is available.
-    Returns None if both fail.
+    """Generate spoken audio for `text`. Tries NVIDIA Riva Chatterbox (free,
+    more natural voice) first, then gTTS (free, no key needed), then falls
+    back to a HuggingFace model if a token is available.
+    Returns None if all fail.
     """
     if not text:
         return None
+
+    nvidia_key = os.getenv("NVIDIA_API_KEY", "")
+    if nvidia_key:
+        audio = _try_nvidia_tts(nvidia_key, text)
+        if audio:
+            return audio
 
     try:
         import io
