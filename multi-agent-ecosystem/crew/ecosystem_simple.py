@@ -158,19 +158,16 @@ def _try_nvidia_tts(api_key: str, text: str) -> bytes | None:
 
 
 def text_to_speech(text: str, hf_token: str = "") -> bytes | None:
-    """Generate spoken audio for `text`. Tries NVIDIA Riva Chatterbox (free,
-    more natural voice) first, then gTTS (free, no key needed), then falls
-    back to a HuggingFace model if a token is available.
-    Returns None if all fail.
+    """Generate spoken audio (MP3 bytes) for `text`. Tries gTTS (free, no key
+    needed) first, then falls back to a HuggingFace model if a token is available.
+    Returns None if both fail.
+
+    NVIDIA Riva Chatterbox (_try_nvidia_tts) was tried as the first tier but the
+    trial account doesn't have that function enabled ("Not found for account"
+    RPC error) — left unused above rather than deleted in case NVIDIA enables it.
     """
     if not text:
         return None
-
-    nvidia_key = os.getenv("NVIDIA_API_KEY", "")
-    if nvidia_key:
-        audio = _try_nvidia_tts(nvidia_key, text)
-        if audio:
-            return audio
 
     try:
         import io
