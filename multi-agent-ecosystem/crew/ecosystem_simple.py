@@ -13,7 +13,6 @@ from pathlib import Path
 import urllib.parse
 
 import anthropic
-import requests
 
 from memory.session_memory import save_interaction, get_recent_context
 
@@ -232,51 +231,46 @@ def _optimize_prompt(description: str) -> str:
     return description.rstrip(".") + suffix
 
 
-class _Tls12Adapter(requests.adapters.HTTPAdapter):
-    """Caps the TLS handshake at 1.2 — some middleboxes reset on TLS 1.3 extensions."""
-
-    def init_poolmanager(self, *args, **kwargs):
-        import ssl
-        ctx = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
-        ctx.maximum_version = ssl.TLSVersion.TLSv1_2
-        kwargs["ssl_context"] = ctx
-        return super().init_poolmanager(*args, **kwargs)
-
-
-def _try_cloudflare(account_id: str, api_token: str, optimized: str) -> str | None:
-    """Try Cloudflare Workers AI (FLUX) — free tier, no credit card, 10k neurons/day."""
+def _try_modelslab(api_key: str, optimized: str) -> str | None:
+    """Try ModelsLab (FLUX) — free tier, no credit card, 100 calls/day."""
     import time
     import requests as _req
     try:
-        session = _req.Session()
-        session.mount("https://", _Tls12Adapter())
-        resp = session.post(
-            f"https://api.cloudflare.com/client/v4/accounts/{account_id}"
-            "/ai/run/@cf/black-forest-labs/flux-1-schnell",
-            headers={
-                "Authorization": f"Bearer {api_token}",
-                "Content-Type": "application/json",
-                "Accept": "application/json",
-                "User-Agent": "Mozilla/5.0 (compatible; VikturiAI/1.0)",
+        resp = _req.post(
+            "https://modelslab.com/api/v6/images/text2img",
+            json={
+                "key": api_key,
+                "model_id": "flux",
+                "prompt": optimized[:2000],
+                "width": "512",
+                "height": "512",
+                "samples": "1",
+                "safety_checker": "no",
+                "base64": "yes",
             },
-            json={"prompt": optimized[:2000]},
             timeout=60,
         )
         if resp.status_code == 200:
             data = resp.json()
-            b64 = data.get("result", {}).get("image")
-            if b64:
-                img_bytes = base64.b64decode(b64)
-                out = Path(f"/tmp/vikturi_img_{int(time.time())}.png")
-                out.write_bytes(img_bytes)
-                return (
-                    f"✅ Imagen generada con **Cloudflare Workers AI (FLUX)**\n\n"
-                    f"🖼️ IMAGE:{out}\n\n"
-                    f"📝 **Prompt:** {optimized}"
-                )
-        print(f"[_try_cloudflare] status={resp.status_code} body={resp.text[:200]!r}")
+            if data.get("status") in ("success", "processing"):
+                output = data.get("output") or []
+                if output:
+                    first = output[0]
+                    img_bytes = (
+                        _req.get(first, timeout=30).content
+                        if first.startswith("http")
+                        else base64.b64decode(first)
+                    )
+                    out = Path(f"/tmp/vikturi_img_{int(time.time())}.png")
+                    out.write_bytes(img_bytes)
+                    return (
+                        f"✅ Imagen generada con **ModelsLab (FLUX)**\n\n"
+                        f"🖼️ IMAGE:{out}\n\n"
+                        f"📝 **Prompt:** {optimized}"
+                    )
+        print(f"[_try_modelslab] status={resp.status_code} body={resp.text[:200]!r}")
     except Exception as e:
-        print(f"[_try_cloudflare] failed: {type(e).__name__}: {e}")
+        print(f"[_try_modelslab] failed: {type(e).__name__}: {e}")
     return None
 
 
@@ -367,16 +361,14 @@ def _try_craiyon(description: str) -> str | None:
 
 
 def _generate_image(description: str) -> str:
-    """Try HF → Pollinations → Craiyon → error message.
-
-    Cloudflare Workers AI was tried as the first tier (see _try_cloudflare) but is
-    unreachable from this deployment: every attempt fails with an identical SSL EOF
-    error during the TLS handshake itself, even when capped at TLS 1.2, which points
-    to a network-level block between HF Spaces and Cloudflare's edge rather than a
-    credentials or code issue. Skipping the call outright avoids the added latency
-    of a guaranteed-to-fail connection attempt on every image request.
-    """
+    """Try ModelsLab → HF → Pollinations → Craiyon → error message."""
     optimized = _optimize_prompt(description)
+
+    modelslab_key = os.getenv("MODELSLAB_API_KEY", "")
+    if modelslab_key:
+        result = _try_modelslab(modelslab_key, optimized)
+        if result:
+            return result
 
     hf_token = os.getenv("HF_TOKEN", "")
     if hf_token:
