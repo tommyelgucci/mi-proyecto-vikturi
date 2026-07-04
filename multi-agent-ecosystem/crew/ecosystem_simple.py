@@ -23,6 +23,8 @@ _IMAGE_KW = ("genera", "generate", "crea una imagen", "hazme una imagen",
 
 _VIDEO_KW = ("video", "anima esta imagen", "animame", "animar")
 
+_EDIT_KW = ("edita", "editar", "modifica", "modificar")
+
 _CODE_KW = ("código", "code", "función", "function", "clase", "class",
             "script", "pep8", "debugear", "debug", "error en", "refactor",
             "fastapi", "django", "flask", "sql", "api", "def ", "return",
@@ -324,6 +326,73 @@ def _generate_video(description: str) -> str:
             return result
     return (
         "⚠️ **Generación de video no disponible en este momento.**\n\n"
+        "Intenta de nuevo en unos segundos."
+    )
+
+
+def _try_nvidia_edit(api_key: str, image_data_uri: str, prompt: str) -> str | None:
+    """Try NVIDIA NIM FLUX.1-Kontext-dev (image editing) — same free NVIDIA account/key."""
+    import time
+    import requests as _req
+    try:
+        resp = _req.post(
+            "https://ai.api.nvidia.com/v1/genai/black-forest-labs/flux.1-kontext-dev",
+            headers={
+                "Authorization": f"Bearer {api_key}",
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+            },
+            json={
+                "prompt": prompt[:2000],
+                "image": image_data_uri,
+                "aspect_ratio": "match_input_image",
+                "steps": 30,
+                "cfg_scale": 3.5,
+                "seed": 0,
+            },
+            timeout=60,
+        )
+        if resp.status_code == 200:
+            data = resp.json()
+            artifacts = data.get("artifacts") or []
+            b64 = (
+                artifacts[0].get("base64") if artifacts else
+                data.get("image") or
+                (data.get("images") or [None])[0] or
+                ((data.get("data") or [{}])[0].get("b64_json"))
+            )
+            if b64:
+                img_bytes = base64.b64decode(b64)
+                out = Path(f"/tmp/vikturi_img_{int(time.time())}.png")
+                out.write_bytes(img_bytes)
+                return (
+                    f"✅ Imagen editada con **NVIDIA NIM (FLUX.1-Kontext-dev)**\n\n"
+                    f"🖼️ IMAGE:{out}\n\n"
+                    f"📝 **Prompt:** {prompt}"
+                )
+        print(f"[_try_nvidia_edit] status={resp.status_code} body={resp.text[:200]!r}")
+    except Exception as e:
+        print(f"[_try_nvidia_edit] failed: {type(e).__name__}: {e}")
+    return None
+
+
+def _generate_edit_image(image_path: str, prompt: str) -> str:
+    """Edit an uploaded image via NVIDIA FLUX.1-Kontext-dev — no fallback service yet."""
+    nvidia_key = os.getenv("NVIDIA_API_KEY", "")
+    if nvidia_key:
+        path = Path(image_path)
+        media_map = {
+            ".jpg": "image/jpeg", ".jpeg": "image/jpeg",
+            ".png": "image/png", ".webp": "image/webp",
+        }
+        media_type = media_map.get(path.suffix.lower(), "image/jpeg")
+        img_b64 = base64.b64encode(path.read_bytes()).decode()
+        data_uri = f"data:{media_type};base64,{img_b64}"
+        result = _try_nvidia_edit(nvidia_key, data_uri, prompt)
+        if result:
+            return result
+    return (
+        "⚠️ **Edición de imagen no disponible en este momento.**\n\n"
         "Intenta de nuevo en unos segundos."
     )
 
@@ -782,8 +851,13 @@ def run_simple(
         save_interaction(user_request, result)
         return result
 
-    # ── Image upload → DrewAI vision analysis ─────────────────────────
+    # ── Image upload → edit (Kontext-dev) or DrewAI vision analysis ───
     if image_path and Path(image_path).exists():
+        if any(kw in user_request.lower() for kw in _EDIT_KW):
+            edit_result = _generate_edit_image(image_path, user_request)
+            result = f"🎨 **DrewAI** · Edición de imagen\n\n{edit_result}"
+            save_interaction(user_request, result)
+            return result
         system = (_PROMPTS / "drewai_prompt.md").read_text(encoding="utf-8")
         messages = _build_conv_messages(chat_history)
         messages.append({"role": "user", "content": _vision_content(image_path, user_request)})
