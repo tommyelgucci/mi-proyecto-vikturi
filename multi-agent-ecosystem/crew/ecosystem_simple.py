@@ -231,46 +231,41 @@ def _optimize_prompt(description: str) -> str:
     return description.rstrip(".") + suffix
 
 
-def _try_modelslab(api_key: str, optimized: str) -> str | None:
-    """Try ModelsLab (FLUX) — free tier, no credit card, 100 calls/day."""
+def _try_nvidia(api_key: str, optimized: str) -> str | None:
+    """Try NVIDIA NIM (FLUX) — free tier, no credit card, 1000 signup credits."""
     import time
     import requests as _req
     try:
         resp = _req.post(
-            "https://modelslab.com/api/v6/images/text2img",
+            "https://integrate.api.nvidia.com/v1/images/generations",
+            headers={
+                "Authorization": f"Bearer {api_key}",
+                "Content-Type": "application/json",
+            },
             json={
-                "key": api_key,
-                "model_id": "flux",
+                "model": "black-forest-labs/flux.2-klein-4b",
                 "prompt": optimized[:2000],
-                "width": "512",
-                "height": "512",
-                "samples": "1",
-                "safety_checker": "no",
-                "base64": "yes",
+                "n": 1,
+                "response_format": "b64_json",
             },
             timeout=60,
         )
         if resp.status_code == 200:
-            data = resp.json()
-            if data.get("status") in ("success", "processing"):
-                output = data.get("output") or []
-                if output:
-                    first = output[0]
-                    img_bytes = (
-                        _req.get(first, timeout=30).content
-                        if first.startswith("http")
-                        else base64.b64decode(first)
-                    )
+            items = resp.json().get("data") or []
+            if items:
+                b64 = items[0].get("b64_json")
+                if b64:
+                    img_bytes = base64.b64decode(b64)
                     out = Path(f"/tmp/vikturi_img_{int(time.time())}.png")
                     out.write_bytes(img_bytes)
                     return (
-                        f"✅ Imagen generada con **ModelsLab (FLUX)**\n\n"
+                        f"✅ Imagen generada con **NVIDIA NIM (FLUX)**\n\n"
                         f"🖼️ IMAGE:{out}\n\n"
                         f"📝 **Prompt:** {optimized}"
                     )
-        print(f"[_try_modelslab] status={resp.status_code} body={resp.text[:200]!r}")
+        print(f"[_try_nvidia] status={resp.status_code} body={resp.text[:200]!r}")
     except Exception as e:
-        print(f"[_try_modelslab] failed: {type(e).__name__}: {e}")
+        print(f"[_try_nvidia] failed: {type(e).__name__}: {e}")
     return None
 
 
@@ -361,12 +356,12 @@ def _try_craiyon(description: str) -> str | None:
 
 
 def _generate_image(description: str) -> str:
-    """Try ModelsLab → HF → Pollinations → Craiyon → error message."""
+    """Try NVIDIA NIM → HF → Pollinations → Craiyon → error message."""
     optimized = _optimize_prompt(description)
 
-    modelslab_key = os.getenv("MODELSLAB_API_KEY", "")
-    if modelslab_key:
-        result = _try_modelslab(modelslab_key, optimized)
+    nvidia_key = os.getenv("NVIDIA_API_KEY", "")
+    if nvidia_key:
+        result = _try_nvidia(nvidia_key, optimized)
         if result:
             return result
 
