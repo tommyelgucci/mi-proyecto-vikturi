@@ -239,7 +239,12 @@ def _try_cloudflare(account_id: str, api_token: str, optimized: str) -> str | No
         resp = _req.post(
             f"https://api.cloudflare.com/client/v4/accounts/{account_id}"
             "/ai/run/@cf/black-forest-labs/flux-1-schnell",
-            headers={"Authorization": f"Bearer {api_token}"},
+            headers={
+                "Authorization": f"Bearer {api_token}",
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                "User-Agent": "Mozilla/5.0 (compatible; VikturiAI/1.0)",
+            },
             json={"prompt": optimized[:2000]},
             timeout=60,
         )
