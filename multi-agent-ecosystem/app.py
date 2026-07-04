@@ -118,10 +118,11 @@ def _convert_document(file_bytes: bytes, suffix: str, original_name: str) -> tup
 
 
 def _render_message(content: str) -> None:
-    """Renders a message, handling image/file markers:
+    """Renders a message, handling image/video/file markers:
     - 🖼️ IMAGE:<path>  → local file via st.image() (HF/Pollinations downloaded locally)
     - POLLINATIONS_IMG:<url> → fetched server-side and rendered as bytes
     - 📄 FILE:<path> → generated/improved code file, offered as a download button
+    - 🎬 VIDEO:<path> → generated video (NVIDIA Cosmos3-Nano) via st.video()
     """
     # ── Generated code file (Dimelis) ─────────────────────────────────
     if "📄 FILE:" in content:
@@ -159,6 +160,21 @@ def _render_message(content: str) -> None:
             st.image(str(img_path), use_container_width=True)
         else:
             st.warning(f"Imagen no encontrada: `{img_path}`")
+        if remaining and remaining[0].strip():
+            st.markdown(remaining[0])
+        return
+
+    # ── Generated video (Cosmos3-Nano) ────────────────────────────────
+    if "🎬 VIDEO:" in content:
+        before, rest = content.split("🎬 VIDEO:", 1)
+        if before.strip():
+            st.markdown(before)
+        first_line, *remaining = rest.split("\n", 1)
+        video_path = Path(first_line.strip())
+        if video_path.exists():
+            st.video(str(video_path))
+        else:
+            st.warning(f"Video no encontrado: `{video_path}`")
         if remaining and remaining[0].strip():
             st.markdown(remaining[0])
         return

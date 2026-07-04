@@ -21,6 +21,8 @@ _PROMPTS = Path(__file__).parent.parent / "prompts"
 _IMAGE_KW = ("genera", "generate", "crea una imagen", "hazme una imagen",
              "dibuja", "draw", "diseña una imagen", "imagen de", "foto de")
 
+_VIDEO_KW = ("video", "anima esta imagen", "animame", "animar")
+
 _CODE_KW = ("código", "code", "función", "function", "clase", "class",
             "script", "pep8", "debugear", "debug", "error en", "refactor",
             "fastapi", "django", "flask", "sql", "api", "def ", "return",
@@ -276,6 +278,56 @@ def _try_nvidia(api_key: str, optimized: str) -> str | None:
     return None
 
 
+def _try_nvidia_video(api_key: str, prompt: str) -> str | None:
+    """Try NVIDIA NIM Cosmos3-Nano (text-to-video) — same free NVIDIA account/key."""
+    import time
+    import requests as _req
+    try:
+        resp = _req.post(
+            "https://ai.api.nvidia.com/v1/genai/nvidia/cosmos3-nano",
+            headers={
+                "Authorization": f"Bearer {api_key}",
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+            },
+            json={
+                "prompt": prompt[:2000],
+                "resolution": "720_16_9",
+                "num_output_frames": 121,
+                "seed": 0,
+            },
+            timeout=180,
+        )
+        if resp.status_code == 200:
+            b64 = resp.json().get("b64_video")
+            if b64:
+                video_bytes = base64.b64decode(b64)
+                out = Path(f"/tmp/vikturi_video_{int(time.time())}.mp4")
+                out.write_bytes(video_bytes)
+                return (
+                    f"✅ Video generado con **NVIDIA Cosmos3-Nano**\n\n"
+                    f"🎬 VIDEO:{out}\n\n"
+                    f"📝 **Prompt:** {prompt}"
+                )
+        print(f"[_try_nvidia_video] status={resp.status_code} body={resp.text[:200]!r}")
+    except Exception as e:
+        print(f"[_try_nvidia_video] failed: {type(e).__name__}: {e}")
+    return None
+
+
+def _generate_video(description: str) -> str:
+    """Generate a short video via NVIDIA Cosmos3-Nano — no fallback service yet."""
+    nvidia_key = os.getenv("NVIDIA_API_KEY", "")
+    if nvidia_key:
+        result = _try_nvidia_video(nvidia_key, description)
+        if result:
+            return result
+    return (
+        "⚠️ **Generación de video no disponible en este momento.**\n\n"
+        "Intenta de nuevo en unos segundos."
+    )
+
+
 def _try_hf(token: str, optimized: str) -> str | None:
     """Try HF InferenceClient, pinned to HF's own free inference provider.
 
@@ -411,6 +463,8 @@ def _route(request: str) -> tuple[str, str]:
         return "Gasp Tree", _read("gasptree_prompt.md")
     if any(_strip_accents(kw) in r for kw in _FITNESS_KW):
         return "Vigor AI", _read("vigor_prompt.md")
+    if any(_strip_accents(kw) in r for kw in _VIDEO_KW):
+        return "DrewAI", _read("drewai_prompt.md")
     if any(_strip_accents(kw) in r for kw in _IMAGE_KW):
         return "DrewAI", _read("drewai_prompt.md")
     if any(_strip_accents(kw) in r for kw in _CODE_KW):
@@ -756,6 +810,14 @@ def run_simple(
 
     # ── Normal routing ─────────────────────────────────────────────────
     agent_label, system = _route(user_request)
+
+    # Video generation — call generator directly, skip LLM
+    if agent_label == "DrewAI" and any(kw in user_request.lower() for kw in _VIDEO_KW):
+        video_result = _generate_video(user_request)
+        icon = _AGENT_ICONS["DrewAI"]
+        result = f"{icon} **DrewAI** · Agente visual\n\n{video_result}"
+        save_interaction(user_request, result)
+        return result
 
     # Image generation — call generator directly, skip LLM
     if agent_label == "DrewAI" and any(kw in user_request.lower() for kw in _IMAGE_KW):
