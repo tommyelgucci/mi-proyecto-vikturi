@@ -237,32 +237,39 @@ def _try_nvidia(api_key: str, optimized: str) -> str | None:
     import requests as _req
     try:
         resp = _req.post(
-            "https://integrate.api.nvidia.com/v1/images/generations",
+            "https://ai.api.nvidia.com/v1/genai/black-forest-labs/flux.2-klein-4b",
             headers={
                 "Authorization": f"Bearer {api_key}",
+                "Accept": "application/json",
                 "Content-Type": "application/json",
             },
             json={
-                "model": "black-forest-labs/flux.2-klein-4b",
                 "prompt": optimized[:2000],
-                "n": 1,
-                "response_format": "b64_json",
+                "width": 1024,
+                "height": 1024,
+                "seed": 0,
+                "steps": 4,
             },
             timeout=60,
         )
         if resp.status_code == 200:
-            items = resp.json().get("data") or []
-            if items:
-                b64 = items[0].get("b64_json")
-                if b64:
-                    img_bytes = base64.b64decode(b64)
-                    out = Path(f"/tmp/vikturi_img_{int(time.time())}.png")
-                    out.write_bytes(img_bytes)
-                    return (
-                        f"✅ Imagen generada con **NVIDIA NIM (FLUX)**\n\n"
-                        f"🖼️ IMAGE:{out}\n\n"
-                        f"📝 **Prompt:** {optimized}"
-                    )
+            data = resp.json()
+            artifacts = data.get("artifacts") or []
+            b64 = (
+                artifacts[0].get("base64") if artifacts else
+                data.get("image") or
+                (data.get("images") or [None])[0] or
+                ((data.get("data") or [{}])[0].get("b64_json"))
+            )
+            if b64:
+                img_bytes = base64.b64decode(b64)
+                out = Path(f"/tmp/vikturi_img_{int(time.time())}.png")
+                out.write_bytes(img_bytes)
+                return (
+                    f"✅ Imagen generada con **NVIDIA NIM (FLUX)**\n\n"
+                    f"🖼️ IMAGE:{out}\n\n"
+                    f"📝 **Prompt:** {optimized}"
+                )
         print(f"[_try_nvidia] status={resp.status_code} body={resp.text[:200]!r}")
     except Exception as e:
         print(f"[_try_nvidia] failed: {type(e).__name__}: {e}")
