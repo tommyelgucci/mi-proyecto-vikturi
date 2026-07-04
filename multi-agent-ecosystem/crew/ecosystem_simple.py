@@ -367,17 +367,16 @@ def _try_craiyon(description: str) -> str | None:
 
 
 def _generate_image(description: str) -> str:
-    """Try Cloudflare Workers AI → HF → Pollinations → Craiyon → error message."""
-    optimized = _optimize_prompt(description)
+    """Try HF → Pollinations → Craiyon → error message.
 
-    cf_account = os.getenv("CLOUDFLARE_ACCOUNT_ID", "")
-    cf_token = os.getenv("CLOUDFLARE_API_TOKEN", "")
-    print(f"[_generate_image] CLOUDFLARE set={bool(cf_account and cf_token)} "
-          f"HF_TOKEN set={bool(os.getenv('HF_TOKEN'))}")
-    if cf_account and cf_token:
-        result = _try_cloudflare(cf_account, cf_token, optimized)
-        if result:
-            return result
+    Cloudflare Workers AI was tried as the first tier (see _try_cloudflare) but is
+    unreachable from this deployment: every attempt fails with an identical SSL EOF
+    error during the TLS handshake itself, even when capped at TLS 1.2, which points
+    to a network-level block between HF Spaces and Cloudflare's edge rather than a
+    credentials or code issue. Skipping the call outright avoids the added latency
+    of a guaranteed-to-fail connection attempt on every image request.
+    """
+    optimized = _optimize_prompt(description)
 
     hf_token = os.getenv("HF_TOKEN", "")
     if hf_token:
