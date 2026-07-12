@@ -762,9 +762,13 @@ def _web_search(query: str, max_results: int = 5) -> str:
                         lines.append(f"{i}. **{r.get('title', '')}**")
                         lines.append(f"   {r.get('description', '')}")
                         lines.append(f"   Fuente: {r.get('url', '')}\n")
+                    print(f"[_web_search] Brave OK ({len(web_results)} results)")
                     return "\n".join(lines)
-        except Exception:
-            pass
+            print(f"[_web_search] Brave status={resp.status_code} body={resp.text[:200]!r}")
+        except Exception as e:
+            print(f"[_web_search] Brave failed: {type(e).__name__}: {e}")
+    else:
+        print("[_web_search] Brave skipped: no BRAVE_API_KEY")
 
     # ── 2) DuckDuckGo Instant Answer API (no key, encyclopedia/facts) ──────
     try:
@@ -792,9 +796,13 @@ def _web_search(query: str, max_results: int = 5) -> str:
                         if url:
                             lines.append(f"   Fuente: {url}\n")
             if lines:
+                print("[_web_search] DDG Instant Answer OK")
                 return "\n".join(["**Resultados de búsqueda web:**\n"] + lines)
-    except Exception:
-        pass
+            print("[_web_search] DDG Instant Answer: no abstract/related topics (common for news queries)")
+        else:
+            print(f"[_web_search] DDG Instant Answer status={resp.status_code}")
+    except Exception as e:
+        print(f"[_web_search] DDG Instant Answer failed: {type(e).__name__}: {e}")
 
     # ── 3) DDGS library fallback ────────────────────────────────────────────
     try:
@@ -807,9 +815,11 @@ def _web_search(query: str, max_results: int = 5) -> str:
                 lines.append(f"{i}. **{r.get('title', '')}**")
                 lines.append(f"   {r.get('body', '')}")
                 lines.append(f"   Fuente: {r.get('href', '')}\n")
+            print(f"[_web_search] DDGS library OK ({len(results)} results)")
             return "\n".join(lines)
-    except Exception:
-        pass
+        print("[_web_search] DDGS library: 0 results")
+    except Exception as e:
+        print(f"[_web_search] DDGS library failed: {type(e).__name__}: {e}")
 
     # ── 3) Wikipedia REST API (always free, no key) ─────────────────────────
     try:
@@ -831,10 +841,15 @@ def _web_search(query: str, max_results: int = 5) -> str:
                     lines.append(f"{i}. **{title}**")
                     lines.append(f"   {snippet}")
                     lines.append(f"   Fuente: {url}\n")
+                print(f"[_web_search] Wikipedia OK ({len(items)} results)")
                 return "\n".join(lines)
-    except Exception:
-        pass
+            print("[_web_search] Wikipedia: 0 results")
+        else:
+            print(f"[_web_search] Wikipedia status={search_resp.status_code}")
+    except Exception as e:
+        print(f"[_web_search] Wikipedia failed: {type(e).__name__}: {e}")
 
+    print("[_web_search] ALL TIERS FAILED — falling back to internal knowledge")
     return "**Búsqueda web:** no disponible en este momento. Respondo con mi conocimiento interno, sin datos en tiempo real."
 
 
