@@ -1,0 +1,10 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-swiss: #da291c;
+  --color-swiss-dark: #b02318;
+}
+
+html {
+  -webkit-tap-highlight-color: transparent;
+}

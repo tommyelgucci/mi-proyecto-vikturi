@@ -1,0 +1,656 @@
+[
+  {
+    "id": "q001",
+    "category": "both",
+    "topic": "vortritt",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": {
+      "de": "Sie nähern sich einer Verzweigung ohne Signale, Markierungen oder Lichtsignale. Wer hat Vortritt?",
+      "es": "Te acercas a una intersección sin señales, marcas ni semáforos. ¿Quién tiene prioridad?"
+    },
+    "options": [
+      { "id": "a", "text": { "de": "Das Fahrzeug, das von rechts kommt", "es": "El vehículo que viene por la derecha" }, "correct": true },
+      { "id": "b", "text": { "de": "Das schnellere Fahrzeug", "es": "El vehículo más rápido" }, "correct": false },
+      { "id": "c", "text": { "de": "Das Fahrzeug auf der breiteren Strasse", "es": "El vehículo de la calle más ancha" }, "correct": false }
+    ],
+    "explanation": {
+      "de": "Ohne besondere Regelung gilt der Rechtsvortritt (Art. 36 Abs. 2 SVG): Wer von rechts kommt, hat Vortritt.",
+      "es": "Sin regulación especial rige la prioridad de la derecha (art. 36 SVG): tiene prioridad quien viene por la derecha."
+    },
+    "image": null
+  },
+  {
+    "id": "q002",
+    "category": "both",
+    "topic": "vortritt",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": {
+      "de": "Eine Strassenbahn (Tram) nähert sich von links an einer Verzweigung ohne besondere Signalisation. Müssen Sie ihr den Vortritt gewähren?",
+      "es": "Un tranvía se acerca por la izquierda en una intersección sin señalización especial. ¿Debes cederle el paso?"
+    },
+    "options": [
+      { "id": "a", "text": { "de": "Ja, der Strassenbahn ist grundsätzlich der Vortritt zu gewähren", "es": "Sí, al tranvía se le cede el paso por principio" }, "correct": true },
+      { "id": "b", "text": { "de": "Nein, es gilt der Rechtsvortritt, das Tram muss warten", "es": "No, rige la prioridad de la derecha y el tranvía debe esperar" }, "correct": false },
+      { "id": "c", "text": { "de": "Nur wenn das Tram ein Warnsignal gibt", "es": "Solo si el tranvía hace una señal de aviso" }, "correct": false }
+    ],
+    "explanation": {
+      "de": "Trams haben grundsätzlich Vortritt, auch wenn sie von links kommen – ausser die Signalisation regelt es anders.",
+      "es": "Los tranvías tienen prioridad por principio, incluso viniendo por la izquierda, salvo que la señalización indique otra cosa."
+    },
+    "image": null
+  },
+  {
+    "id": "q003",
+    "category": "both",
+    "topic": "vortritt",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": {
+      "de": "Sie fahren aus einem Parkplatz auf die Strasse hinaus. Was gilt?",
+      "es": "Sales de un aparcamiento hacia la calle. ¿Qué regla se aplica?"
+    },
+    "options": [
+      { "id": "a", "text": { "de": "Ich muss allen Fahrzeugen und Fussgängern den Vortritt gewähren", "es": "Debo ceder el paso a todos los vehículos y peatones" }, "correct": true },
+      { "id": "b", "text": { "de": "Es gilt der normale Rechtsvortritt", "es": "Rige la prioridad de la derecha normal" }, "correct": false },
+      { "id": "c", "text": { "de": "Der Verkehr auf der Strasse muss mich einfahren lassen", "es": "El tráfico de la calle debe dejarme incorporarme" }, "correct": false }
+    ],
+    "explanation": {
+      "de": "Wer aus Parkplätzen, Garagen oder Grundstücken auf die Strasse fährt, hat keinen Vortritt und muss alle durchlassen.",
+      "es": "Quien sale de aparcamientos, garajes o fincas hacia la calle no tiene prioridad y debe dejar pasar a todos."
+    },
+    "image": null
+  },
+  {
+    "id": "q004",
+    "category": "both",
+    "topic": "vortritt",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": {
+      "de": "Ein Fussgänger wartet sichtbar am Fussgängerstreifen. Was ist richtig? (Mehrere Antworten möglich)",
+      "es": "Un peatón espera visiblemente junto al paso de peatones. ¿Qué es correcto? (Puede haber varias respuestas)"
+    },
+    "options": [
+      { "id": "a", "text": { "de": "Ich muss anhalten und ihm den Vortritt gewähren", "es": "Debo detenerme y cederle el paso" }, "correct": true },
+      { "id": "b", "text": { "de": "Ich verlangsame frühzeitig und bleibe bremsbereit", "es": "Reduzco la velocidad con antelación y estoy listo para frenar" }, "correct": true },
+      { "id": "c", "text": { "de": "Solange er noch auf dem Trottoir steht, darf ich durchfahren", "es": "Mientras siga en la acera, puedo pasar" }, "correct": false },
+      { "id": "d", "text": { "de": "Ich hupe, um ihn zu warnen", "es": "Toco el claxon para avisarle" }, "correct": false }
+    ],
+    "explanation": {
+      "de": "Am Fussgängerstreifen haben Fussgänger Vortritt, sobald sie erkennbar die Strasse überqueren wollen – nicht erst, wenn sie darauf stehen.",
+      "es": "En el paso de peatones, el peatón tiene prioridad desde que se ve que quiere cruzar, no solo cuando ya está sobre el paso."
+    },
+    "image": null
+  },
+  {
+    "id": "q005",
+    "category": "both",
+    "topic": "kreisverkehr",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": {
+      "de": "Wie blinken Sie im Kreisverkehr richtig?",
+      "es": "¿Cómo se usa el intermitente correctamente en la rotonda?"
+    },
+    "options": [
+      { "id": "a", "text": { "de": "Beim Einfahren nicht zwingend, beim Verlassen rechts blinken", "es": "Al entrar no es obligatorio; al salir, intermitente derecho" }, "correct": true },
+      { "id": "b", "text": { "de": "Beim Einfahren immer links blinken", "es": "Al entrar siempre intermitente izquierdo" }, "correct": false },
+      { "id": "c", "text": { "de": "Im Kreisverkehr wird nie geblinkt", "es": "En la rotonda nunca se usa el intermitente" }, "correct": false }
+    ],
+    "explanation": {
+      "de": "Beim Verlassen des Kreisels muss rechts geblinkt werden, damit Wartende einfahren können. Beim Einfahren ist Blinken nicht vorgeschrieben.",
+      "es": "Al salir de la rotonda hay que poner el intermitente derecho para que los que esperan puedan entrar. Al entrar no es obligatorio."
+    },
+    "image": null
+  },
+  {
+    "id": "q006",
+    "category": "both",
+    "topic": "kreisverkehr",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": {
+      "de": "Wer hat beim Kreisverkehr Vortritt?",
+      "es": "¿Quién tiene prioridad en la rotonda?"
+    },
+    "options": [
+      { "id": "a", "text": { "de": "Die Fahrzeuge, die sich bereits im Kreisel befinden (von links kommend)", "es": "Los vehículos que ya circulan dentro de la rotonda (vienen por la izquierda)" }, "correct": true },
+      { "id": "b", "text": { "de": "Die einfahrenden Fahrzeuge, weil Rechtsvortritt gilt", "es": "Los vehículos que entran, porque rige la prioridad de la derecha" }, "correct": false },
+      { "id": "c", "text": { "de": "Immer das grössere Fahrzeug", "es": "Siempre el vehículo más grande" }, "correct": false }
+    ],
+    "explanation": {
+      "de": "Vor dem Einfahren gilt: Vortritt für den Verkehr im Kreisel, der von links kommt. Der Rechtsvortritt ist hier aufgehoben.",
+      "es": "Antes de entrar: prioridad para el tráfico dentro de la rotonda, que viene por la izquierda. Aquí no se aplica la prioridad de la derecha."
+    },
+    "image": null
+  },
+  {
+    "id": "q007",
+    "category": "both",
+    "topic": "kreisverkehr",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": {
+      "de": "Worauf achten Sie bei Radfahrern im Kreisverkehr? (Mehrere Antworten möglich)",
+      "es": "¿A qué debes prestar atención con los ciclistas en la rotonda? (Puede haber varias respuestas)"
+    },
+    "options": [
+      { "id": "a", "text": { "de": "Radfahrer dürfen im Kreisel in der Mitte der Fahrbahn fahren", "es": "Los ciclistas pueden circular por el centro del carril en la rotonda" }, "correct": true },
+      { "id": "b", "text": { "de": "Ich überhole Radfahrer im Kreisel nicht", "es": "No adelanto a ciclistas dentro de la rotonda" }, "correct": true },
+      { "id": "c", "text": { "de": "Radfahrer müssen ganz rechts fahren, ich darf knapp vorbeifahren", "es": "Los ciclistas deben ir pegados a la derecha y puedo pasar rozando" }, "correct": false }
+    ],
+    "explanation": {
+      "de": "Radfahrer dürfen im Kreisel die Fahrbahnmitte benützen, um nicht geschnitten zu werden. Überholen im Kreisel ist gefährlich und zu unterlassen.",
+      "es": "Los ciclistas pueden usar el centro del carril en la rotonda para que no les corten la trayectoria. Adelantarlos dentro es peligroso y debe evitarse."
+    },
+    "image": null
+  },
+  {
+    "id": "q008",
+    "category": "both",
+    "topic": "signale",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": {
+      "de": "Was verlangt das Signal «Stop» von Ihnen?",
+      "es": "¿Qué te exige la señal de «Stop»?"
+    },
+    "options": [
+      { "id": "a", "text": { "de": "Vollständig anhalten (bei der Haltelinie) und den Vortritt gewähren – auch wenn niemand kommt", "es": "Detenerse por completo (en la línea de detención) y ceder el paso, aunque no venga nadie" }, "correct": true },
+      { "id": "b", "text": { "de": "Nur abbremsen und bei freier Sicht durchfahren", "es": "Solo frenar y pasar si hay buena visibilidad" }, "correct": false },
+      { "id": "c", "text": { "de": "Anhalten nur bei Gegenverkehr", "es": "Detenerse solo si hay tráfico en sentido contrario" }, "correct": false }
+    ],
+    "explanation": {
+      "de": "Beim Stop-Signal muss immer vollständig angehalten werden, in der Regel an der Haltelinie – unabhängig vom Verkehr.",
+      "es": "Con la señal de Stop hay que detenerse siempre por completo, normalmente en la línea de detención, haya o no tráfico."
+    },
+    "image": null
+  },
+  {
+    "id": "q009",
+    "category": "both",
+    "topic": "signale",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": {
+      "de": "Was bedeutet das auf der Spitze stehende Dreieck («Kein Vortritt»)?",
+      "es": "¿Qué significa el triángulo invertido («Ceda el paso»)?"
+    },
+    "options": [
+      { "id": "a", "text": { "de": "Ich muss dem Verkehr auf der Strasse, in die ich einfahre, den Vortritt gewähren; anhalten nur wenn nötig", "es": "Debo ceder el paso al tráfico de la vía a la que me incorporo; detenerme solo si es necesario" }, "correct": true },
+      { "id": "b", "text": { "de": "Ich muss immer vollständig anhalten", "es": "Debo detenerme siempre por completo" }, "correct": false },
+      { "id": "c", "text": { "de": "Ich habe Vortritt gegenüber allen Fahrzeugen", "es": "Tengo prioridad sobre todos los vehículos" }, "correct": false }
+    ],
+    "explanation": {
+      "de": "«Kein Vortritt» verlangt, den Vortritt zu gewähren. Ein vollständiger Halt ist nur nötig, wenn es der Verkehr erfordert – das ist der Unterschied zum Stop.",
+      "es": "El «Ceda el paso» obliga a ceder la prioridad. Solo hay que detenerse por completo si el tráfico lo exige; esa es la diferencia con el Stop."
+    },
+    "image": null
+  },
+  {
+    "id": "q010",
+    "category": "both",
+    "topic": "signale",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": {
+      "de": "Was bedeutet in der Regel ein rundes Signal mit rotem Rand?",
+      "es": "¿Qué significa normalmente una señal redonda con borde rojo?"
+    },
+    "options": [
+      { "id": "a", "text": { "de": "Es verbietet oder beschränkt etwas (Verbotssignal)", "es": "Prohíbe o restringe algo (señal de prohibición)" }, "correct": true },
+      { "id": "b", "text": { "de": "Es warnt vor einer Gefahr", "es": "Advierte de un peligro" }, "correct": false },
+      { "id": "c", "text": { "de": "Es gibt nur eine Empfehlung ab", "es": "Solo da una recomendación" }, "correct": false }
+    ],
+    "explanation": {
+      "de": "Runde Signale mit rotem Rand sind Verbotssignale. Gefahrensignale sind dreieckig mit rotem Rand, blaue Signale zeigen meist Gebote oder Hinweise.",
+      "es": "Las señales redondas con borde rojo son de prohibición. Las de peligro son triangulares con borde rojo; las azules suelen indicar obligación o información."
+    },
+    "image": null
+  },
+  {
+    "id": "q011",
+    "category": "both",
+    "topic": "geschwindigkeit",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": {
+      "de": "Welche allgemeine Höchstgeschwindigkeit gilt innerorts?",
+      "es": "¿Cuál es la velocidad máxima general dentro de poblado?"
+    },
+    "options": [
+      { "id": "a", "text": { "de": "50 km/h", "es": "50 km/h" }, "correct": true },
+      { "id": "b", "text": { "de": "60 km/h", "es": "60 km/h" }, "correct": false },
+      { "id": "c", "text": { "de": "30 km/h", "es": "30 km/h" }, "correct": false }
+    ],
+    "explanation": {
+      "de": "Innerorts gilt generell 50 km/h. 30er-Zonen sind speziell signalisiert.",
+      "es": "Dentro de poblado rige en general 50 km/h. Las zonas 30 están señalizadas de forma especial."
+    },
+    "image": null
+  },
+  {
+    "id": "q012",
+    "category": "both",
+    "topic": "geschwindigkeit",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": {
+      "de": "Welche allgemeine Höchstgeschwindigkeit gilt auf Autobahnen?",
+      "es": "¿Cuál es la velocidad máxima general en autopistas?"
+    },
+    "options": [
+      { "id": "a", "text": { "de": "120 km/h", "es": "120 km/h" }, "correct": true },
+      { "id": "b", "text": { "de": "100 km/h", "es": "100 km/h" }, "correct": false },
+      { "id": "c", "text": { "de": "140 km/h", "es": "140 km/h" }, "correct": false }
+    ],
+    "explanation": {
+      "de": "Auf Autobahnen gilt generell 120 km/h, auf Autostrassen 100 km/h, ausserorts 80 km/h – sofern nichts anderes signalisiert ist.",
+      "es": "En autopistas rige en general 120 km/h; en semiautopistas (Autostrasse) 100 km/h y fuera de poblado 80 km/h, salvo señalización distinta."
+    },
+    "image": null
+  },
+  {
+    "id": "q013",
+    "category": "both",
+    "topic": "geschwindigkeit",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": {
+      "de": "Wovon hängt die angemessene Geschwindigkeit ab? (Mehrere Antworten möglich)",
+      "es": "¿De qué depende la velocidad adecuada? (Puede haber varias respuestas)"
+    },
+    "options": [
+      { "id": "a", "text": { "de": "Von den Sichtverhältnissen", "es": "De las condiciones de visibilidad" }, "correct": true },
+      { "id": "b", "text": { "de": "Von Strassen- und Witterungsverhältnissen", "es": "Del estado de la carretera y del tiempo" }, "correct": true },
+      { "id": "c", "text": { "de": "Vom Verkehrsaufkommen", "es": "De la densidad del tráfico" }, "correct": true },
+      { "id": "d", "text": { "de": "Nur von der signalisierten Höchstgeschwindigkeit", "es": "Solo del límite de velocidad señalizado" }, "correct": false }
+    ],
+    "explanation": {
+      "de": "Die Geschwindigkeit ist stets den Umständen anzupassen: Sicht, Strasse, Witterung und Verkehr. Die signalisierte Höchstgeschwindigkeit ist nur die Obergrenze.",
+      "es": "La velocidad debe adaptarse siempre a las circunstancias: visibilidad, carretera, clima y tráfico. El límite señalizado es solo el máximo permitido."
+    },
+    "image": null
+  },
+  {
+    "id": "q014",
+    "category": "both",
+    "topic": "abstand",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": {
+      "de": "Welchen Mindestabstand sollten Sie zum vorausfahrenden Fahrzeug einhalten?",
+      "es": "¿Qué distancia mínima debes mantener con el vehículo de delante?"
+    },
+    "options": [
+      { "id": "a", "text": { "de": "Mindestens 2 Sekunden", "es": "Al menos 2 segundos" }, "correct": true },
+      { "id": "b", "text": { "de": "1 Sekunde genügt immer", "es": "Con 1 segundo siempre basta" }, "correct": false },
+      { "id": "c", "text": { "de": "Eine Wagenlänge, unabhängig von der Geschwindigkeit", "es": "Un largo de coche, sin importar la velocidad" }, "correct": false }
+    ],
+    "explanation": {
+      "de": "Als Faustregel gilt mindestens 2 Sekunden Abstand; bei Nässe, schlechter Sicht oder hohem Tempo entsprechend mehr.",
+      "es": "Como regla general, mínimo 2 segundos de distancia; con lluvia, mala visibilidad o alta velocidad, más."
+    },
+    "image": null
+  },
+  {
+    "id": "q015",
+    "category": "both",
+    "topic": "abstand",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": {
+      "de": "Was bedeutet die Faustregel «halber Tacho»?",
+      "es": "¿Qué significa la regla del «medio velocímetro» (halber Tacho)?"
+    },
+    "options": [
+      { "id": "a", "text": { "de": "Der Abstand in Metern soll etwa der halben Geschwindigkeit in km/h entsprechen (z. B. 100 km/h → 50 m)", "es": "La distancia en metros debe ser aproximadamente la mitad de la velocidad en km/h (p. ej., 100 km/h → 50 m)" }, "correct": true },
+      { "id": "b", "text": { "de": "Man darf höchstens mit halber signalisierter Geschwindigkeit fahren", "es": "Solo se puede circular a la mitad de la velocidad señalizada" }, "correct": false },
+      { "id": "c", "text": { "de": "Der Tacho darf maximal zur Hälfte ausgelastet sein", "es": "El velocímetro solo puede llegar a la mitad de su escala" }, "correct": false }
+    ],
+    "explanation": {
+      "de": "«Halber Tacho» ist die Abstandsregel: bei 80 km/h ca. 40 m, bei 120 km/h ca. 60 m Abstand zum Vordermann.",
+      "es": "El «medio velocímetro» es una regla de distancia: a 80 km/h unos 40 m; a 120 km/h unos 60 m respecto al de delante."
+    },
+    "image": null
+  },
+  {
+    "id": "q016",
+    "category": "both",
+    "topic": "alkohol",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": {
+      "de": "Welcher Alkoholgrenzwert gilt für Neulenker während der Probezeit?",
+      "es": "¿Qué límite de alcohol se aplica a los conductores noveles durante el periodo de prueba?"
+    },
+    "options": [
+      { "id": "a", "text": { "de": "Praktisch null: 0,1 Promille (Alkoholverbot)", "es": "Prácticamente cero: 0,1 por mil (prohibición de alcohol)" }, "correct": true },
+      { "id": "b", "text": { "de": "0,5 Promille wie für alle", "es": "0,5 por mil, como para todos" }, "correct": false },
+      { "id": "c", "text": { "de": "0,8 Promille", "es": "0,8 por mil" }, "correct": false }
+    ],
+    "explanation": {
+      "de": "Für Neulenker (Probezeit), Fahrschüler und Berufschauffeure gilt faktisch ein Alkoholverbot (0,1 Promille Toleranzwert).",
+      "es": "Para noveles (periodo de prueba), alumnos de autoescuela y conductores profesionales rige de hecho una prohibición de alcohol (tolerancia de 0,1 por mil)."
+    },
+    "image": null
+  },
+  {
+    "id": "q017",
+    "category": "both",
+    "topic": "alkohol",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": {
+      "de": "Ab welchem Blutalkoholwert gilt man in der Schweiz als angetrunken?",
+      "es": "¿A partir de qué nivel de alcohol en sangre se considera en Suiza que se conduce bajo los efectos del alcohol?"
+    },
+    "options": [
+      { "id": "a", "text": { "de": "Ab 0,5 Promille", "es": "A partir de 0,5 por mil" }, "correct": true },
+      { "id": "b", "text": { "de": "Ab 0,8 Promille", "es": "A partir de 0,8 por mil" }, "correct": false },
+      { "id": "c", "text": { "de": "Ab 1,0 Promille", "es": "A partir de 1,0 por mil" }, "correct": false }
+    ],
+    "explanation": {
+      "de": "Die allgemeine Grenze liegt bei 0,5 Promille (bzw. 0,25 mg/l Atemluft). Schon darunter kann die Fahrfähigkeit beeinträchtigt sein.",
+      "es": "El límite general es 0,5 por mil (o 0,25 mg/l en aire espirado). Incluso por debajo, la capacidad de conducir puede estar afectada."
+    },
+    "image": null
+  },
+  {
+    "id": "q018",
+    "category": "both",
+    "topic": "alkohol",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": {
+      "de": "Sie müssen ein neues Medikament einnehmen. Was ist richtig? (Mehrere Antworten möglich)",
+      "es": "Tienes que tomar un medicamento nuevo. ¿Qué es correcto? (Puede haber varias respuestas)"
+    },
+    "options": [
+      { "id": "a", "text": { "de": "Ich lese die Packungsbeilage bezüglich Fahrtüchtigkeit", "es": "Leo el prospecto en lo relativo a la capacidad para conducir" }, "correct": true },
+      { "id": "b", "text": { "de": "Im Zweifel frage ich Arzt oder Apotheker", "es": "En caso de duda, pregunto al médico o farmacéutico" }, "correct": true },
+      { "id": "c", "text": { "de": "Medikamente beeinflussen das Fahren nie", "es": "Los medicamentos nunca afectan a la conducción" }, "correct": false }
+    ],
+    "explanation": {
+      "de": "Viele Medikamente (z. B. Schlaf- oder Schmerzmittel) beeinträchtigen die Fahrfähigkeit – Beipackzettel lesen und im Zweifel Fachperson fragen.",
+      "es": "Muchos medicamentos (p. ej., somníferos o analgésicos) afectan a la conducción: lee el prospecto y consulta a un profesional en caso de duda."
+    },
+    "image": null
+  },
+  {
+    "id": "q019",
+    "category": "both",
+    "topic": "autobahn",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": {
+      "de": "Wie fahren Sie korrekt in die Autobahn ein? (Mehrere Antworten möglich)",
+      "es": "¿Cómo te incorporas correctamente a la autopista? (Puede haber varias respuestas)"
+    },
+    "options": [
+      { "id": "a", "text": { "de": "Auf dem Beschleunigungsstreifen auf die Geschwindigkeit des Verkehrs beschleunigen", "es": "Acelerar en el carril de aceleración hasta la velocidad del tráfico" }, "correct": true },
+      { "id": "b", "text": { "de": "Der Verkehr auf der Autobahn hat Vortritt", "es": "El tráfico de la autopista tiene prioridad" }, "correct": true },
+      { "id": "c", "text": { "de": "Am Ende des Streifens anhalten und auf eine Lücke warten", "es": "Detenerse al final del carril y esperar un hueco" }, "correct": false }
+    ],
+    "explanation": {
+      "de": "Der Einspurstreifen dient zum Beschleunigen und Einordnen in eine Lücke. Anhalten ist gefährlich und nur im Notfall zulässig.",
+      "es": "El carril de aceleración sirve para ganar velocidad e incorporarse en un hueco. Detenerse es peligroso y solo se permite en emergencia."
+    },
+    "image": null
+  },
+  {
+    "id": "q020",
+    "category": "both",
+    "topic": "autobahn",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": {
+      "de": "Wann dürfen Sie den Pannenstreifen benutzen?",
+      "es": "¿Cuándo puedes usar el arcén (carril de averías)?"
+    },
+    "options": [
+      { "id": "a", "text": { "de": "Nur bei einer Panne oder in Notfällen", "es": "Solo en caso de avería o emergencia" }, "correct": true },
+      { "id": "b", "text": { "de": "Zum Vorbeifahren bei Stau", "es": "Para adelantar cuando hay atasco" }, "correct": false },
+      { "id": "c", "text": { "de": "Um die nächste Ausfahrt schneller zu erreichen", "es": "Para llegar antes a la próxima salida" }, "correct": false }
+    ],
+    "explanation": {
+      "de": "Der Pannenstreifen ist für Notfälle reserviert. Ausnahme: Er darf nur benutzt werden, wo es speziell signalisiert ist.",
+      "es": "El arcén está reservado para emergencias. Solo puede usarse para circular donde esté expresamente señalizado."
+    },
+    "image": null
+  },
+  {
+    "id": "q021",
+    "category": "both",
+    "topic": "autobahn",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": {
+      "de": "Welche Fahrzeuge dürfen die Autobahn benutzen?",
+      "es": "¿Qué vehículos pueden circular por la autopista?"
+    },
+    "options": [
+      { "id": "a", "text": { "de": "Nur Motorfahrzeuge, die mindestens 80 km/h erreichen können und dürfen", "es": "Solo vehículos de motor que puedan y tengan permitido alcanzar al menos 80 km/h" }, "correct": true },
+      { "id": "b", "text": { "de": "Alle Fahrzeuge, auch Fahrräder", "es": "Todos los vehículos, incluidas las bicicletas" }, "correct": false },
+      { "id": "c", "text": { "de": "Alle Motorfahrzeuge ohne Mindestgeschwindigkeit", "es": "Todos los vehículos de motor, sin velocidad mínima" }, "correct": false }
+    ],
+    "explanation": {
+      "de": "Autobahnen und Autostrassen sind Motorfahrzeugen vorbehalten, die mindestens 80 km/h erreichen können und dürfen.",
+      "es": "Las autopistas y semiautopistas están reservadas a vehículos de motor que puedan y tengan permitido alcanzar al menos 80 km/h."
+    },
+    "image": null
+  },
+  {
+    "id": "q022",
+    "category": "both",
+    "topic": "autobahn",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": {
+      "de": "Was gilt auf der Autobahn grundsätzlich für die Spurwahl?",
+      "es": "¿Qué regla básica rige la elección de carril en la autopista?"
+    },
+    "options": [
+      { "id": "a", "text": { "de": "Rechts fahren, links überholen", "es": "Circular por la derecha, adelantar por la izquierda" }, "correct": true },
+      { "id": "b", "text": { "de": "Freie Spurwahl auf allen Streifen", "es": "Elección libre de carril en todos los carriles" }, "correct": false },
+      { "id": "c", "text": { "de": "Rechts überholen ist erlaubt", "es": "Está permitido adelantar por la derecha" }, "correct": false }
+    ],
+    "explanation": {
+      "de": "Es gilt das Rechtsfahrgebot. Überholt wird links; Rechtsüberholen (ausschwenken und wieder einschwenken) ist verboten. Bei parallelem Kolonnenverkehr ist Rechtsvorbeifahren erlaubt.",
+      "es": "Rige la obligación de circular por la derecha. Se adelanta por la izquierda; adelantar por la derecha está prohibido. En circulación en columnas paralelas sí se permite pasar por la derecha."
+    },
+    "image": null
+  },
+  {
+    "id": "q023",
+    "category": "both",
+    "topic": "parkieren",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": {
+      "de": "Sie parkieren an einem Werktag um 09:20 Uhr in der Blauen Zone. Was stellen Sie auf der Parkscheibe ein und wie lange dürfen Sie bleiben?",
+      "es": "Aparcas un día laborable a las 09:20 en la zona azul. ¿Qué pones en el disco de estacionamiento y hasta cuándo puedes quedarte?"
+    },
+    "options": [
+      { "id": "a", "text": { "de": "Pfeil auf 09:30 stellen; parkieren bis 10:30 erlaubt", "es": "Flecha en las 09:30; permitido aparcar hasta las 10:30" }, "correct": true },
+      { "id": "b", "text": { "de": "Pfeil auf 09:00 stellen; parkieren bis 10:00 erlaubt", "es": "Flecha en las 09:00; permitido aparcar hasta las 10:00" }, "correct": false },
+      { "id": "c", "text": { "de": "In der Blauen Zone braucht es keine Parkscheibe", "es": "En la zona azul no hace falta disco" }, "correct": false }
+    ],
+    "explanation": {
+      "de": "Die Parkscheibe wird auf den Strich gestellt, der der Ankunftszeit folgt (09:20 → 09:30). Parkieren ist bis eine Stunde danach erlaubt.",
+      "es": "El disco se pone en la marca de media hora siguiente a la llegada (09:20 → 09:30). Se puede aparcar hasta una hora después."
+    },
+    "image": null
+  },
+  {
+    "id": "q024",
+    "category": "both",
+    "topic": "parkieren",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": {
+      "de": "Wo ist das Parkieren verboten? (Mehrere Antworten möglich)",
+      "es": "¿Dónde está prohibido estacionar? (Puede haber varias respuestas)"
+    },
+    "options": [
+      { "id": "a", "text": { "de": "Näher als 5 m vor einem Fussgängerstreifen", "es": "A menos de 5 m antes de un paso de peatones" }, "correct": true },
+      { "id": "b", "text": { "de": "Auf Hauptstrassen ausserorts", "es": "En carreteras principales fuera de poblado" }, "correct": true },
+      { "id": "c", "text": { "de": "In einem markierten Parkfeld mit Parkuhr", "es": "En una plaza marcada con parquímetro" }, "correct": false }
+    ],
+    "explanation": {
+      "de": "Parkieren ist u. a. verboten näher als 5 m vor Fussgängerstreifen und auf Hauptstrassen ausserorts. In markierten Feldern ist es erlaubt (Gebühr/Zeit beachten).",
+      "es": "Está prohibido estacionar, entre otros, a menos de 5 m antes de un paso de peatones y en carreteras principales fuera de poblado. En plazas marcadas sí se permite (respetando tarifa/tiempo)."
+    },
+    "image": null
+  },
+  {
+    "id": "q025",
+    "category": "both",
+    "topic": "parkieren",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": {
+      "de": "Was bedeutet ein gelbes Kreuz auf der Fahrbahn am Strassenrand?",
+      "es": "¿Qué significa una cruz amarilla pintada en la calzada junto al borde?"
+    },
+    "options": [
+      { "id": "a", "text": { "de": "Hier ist das Parkieren verboten", "es": "Aquí está prohibido estacionar" }, "correct": true },
+      { "id": "b", "text": { "de": "Hier darf gratis parkiert werden", "es": "Aquí se puede aparcar gratis" }, "correct": false },
+      { "id": "c", "text": { "de": "Reserviert für Fussgänger", "es": "Reservado para peatones" }, "correct": false }
+    ],
+    "explanation": {
+      "de": "Gelbe Kreuze und gelbe unterbrochene Linien am Fahrbahnrand bedeuten Parkverbot.",
+      "es": "Las cruces amarillas y las líneas amarillas discontinuas junto al borde significan prohibición de estacionar."
+    },
+    "image": null
+  },
+  {
+    "id": "q026",
+    "category": "both",
+    "topic": "umwelt",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": {
+      "de": "Wie fahren Sie umweltschonend und sparsam? (Mehrere Antworten möglich)",
+      "es": "¿Cómo conduces de forma ecológica y económica? (Puede haber varias respuestas)"
+    },
+    "options": [
+      { "id": "a", "text": { "de": "Früh in den höchstmöglichen Gang schalten", "es": "Cambiar pronto a la marcha más alta posible" }, "correct": true },
+      { "id": "b", "text": { "de": "Vorausschauend fahren, unnötiges Bremsen und Beschleunigen vermeiden", "es": "Conducir con anticipación, evitando frenadas y aceleraciones innecesarias" }, "correct": true },
+      { "id": "c", "text": { "de": "Reifendruck regelmässig kontrollieren", "es": "Controlar regularmente la presión de los neumáticos" }, "correct": true },
+      { "id": "d", "text": { "de": "Den Motor im Stand warmlaufen lassen", "es": "Dejar calentar el motor en parado" }, "correct": false }
+    ],
+    "explanation": {
+      "de": "Eco-Drive: tief drehen, vorausschauend fahren, korrekter Reifendruck. Warmlaufenlassen im Stand ist verboten und schadet Umwelt und Motor.",
+      "es": "Eco-Drive: bajas revoluciones, conducción anticipada y presión correcta de neumáticos. Calentar el motor en parado está prohibido y daña el medio ambiente y el motor."
+    },
+    "image": null
+  },
+  {
+    "id": "q027",
+    "category": "both",
+    "topic": "umwelt",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": {
+      "de": "Sie warten vor einem geschlossenen Bahnübergang. Was ist richtig?",
+      "es": "Esperas ante un paso a nivel cerrado. ¿Qué es lo correcto?"
+    },
+    "options": [
+      { "id": "a", "text": { "de": "Den Motor abstellen", "es": "Apagar el motor" }, "correct": true },
+      { "id": "b", "text": { "de": "Den Motor laufen lassen, um sofort losfahren zu können", "es": "Dejar el motor en marcha para salir enseguida" }, "correct": false },
+      { "id": "c", "text": { "de": "Zwischengas geben, damit der Motor nicht abstirbt", "es": "Acelerar en vacío para que el motor no se cale" }, "correct": false }
+    ],
+    "explanation": {
+      "de": "Bei längerem Warten (Bahnübergang, lange Rotphase) soll der Motor abgestellt werden – das schont Umwelt und Portemonnaie.",
+      "es": "En esperas largas (paso a nivel, semáforos largos) hay que apagar el motor: protege el medio ambiente y tu bolsillo."
+    },
+    "image": null
+  },
+  {
+    "id": "q028",
+    "category": "A",
+    "topic": "motorrad",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": {
+      "de": "Welche Schutzausrüstung ist beim Motorradfahren vorgeschrieben bzw. dringend empfohlen? (Mehrere Antworten möglich)",
+      "es": "¿Qué equipamiento de protección es obligatorio o muy recomendable en moto? (Puede haber varias respuestas)"
+    },
+    "options": [
+      { "id": "a", "text": { "de": "Ein geprüfter Helm ist obligatorisch – auch für Mitfahrende", "es": "Un casco homologado es obligatorio, también para el acompañante" }, "correct": true },
+      { "id": "b", "text": { "de": "Schutzkleidung, Handschuhe und feste Schuhe werden dringend empfohlen", "es": "Ropa de protección, guantes y calzado firme son muy recomendables" }, "correct": true },
+      { "id": "c", "text": { "de": "Im Sommer genügen T-Shirt und Sandalen", "es": "En verano basta con camiseta y sandalias" }, "correct": false }
+    ],
+    "explanation": {
+      "de": "Der geprüfte Helm ist Pflicht für Fahrer und Mitfahrende. Schutzkleidung ist zwar nicht vorgeschrieben, aber lebenswichtig – die Haut hat keine Knautschzone.",
+      "es": "El casco homologado es obligatorio para conductor y acompañante. La ropa de protección no es obligatoria, pero es vital: la piel no tiene zona de deformación."
+    },
+    "image": null
+  },
+  {
+    "id": "q029",
+    "category": "A",
+    "topic": "motorrad",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": {
+      "de": "Wie führen Sie mit dem Motorrad eine Vollbremsung richtig aus?",
+      "es": "¿Cómo se hace correctamente una frenada de emergencia con la moto?"
+    },
+    "options": [
+      { "id": "a", "text": { "de": "Mit beiden Bremsen, vorne stärker als hinten, Motorrad aufrecht und Lenker gerade", "es": "Con ambos frenos, más fuerte delante que detrás, con la moto recta y el manillar derecho" }, "correct": true },
+      { "id": "b", "text": { "de": "Nur mit der Hinterradbremse, um einen Sturz zu vermeiden", "es": "Solo con el freno trasero para evitar una caída" }, "correct": false },
+      { "id": "c", "text": { "de": "Nur mit der Vorderradbremse bei eingeschlagenem Lenker", "es": "Solo con el freno delantero y el manillar girado" }, "correct": false }
+    ],
+    "explanation": {
+      "de": "Bei der Vollbremsung wirken beide Bremsen, die Vorderradbremse übernimmt den grössten Teil der Bremsleistung. Aufrecht und geradeaus bremsen.",
+      "es": "En la frenada de emergencia se usan ambos frenos; el delantero aporta la mayor parte de la frenada. Frenar con la moto recta y en línea."
+    },
+    "image": null
+  },
+  {
+    "id": "q030",
+    "category": "A",
+    "topic": "motorrad",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": {
+      "de": "Worauf achten Sie mit dem Motorrad bei Regen besonders? (Mehrere Antworten möglich)",
+      "es": "¿A qué prestas especial atención en moto cuando llueve? (Puede haber varias respuestas)"
+    },
+    "options": [
+      { "id": "a", "text": { "de": "Markierungen, Schachtdeckel und Tramschienen können sehr rutschig sein", "es": "Las marcas viales, tapas de alcantarilla y raíles del tranvía pueden ser muy resbaladizos" }, "correct": true },
+      { "id": "b", "text": { "de": "Der Bremsweg wird länger – Abstand vergrössern", "es": "La distancia de frenado aumenta: amplía la distancia de seguridad" }, "correct": true },
+      { "id": "c", "text": { "de": "Regen hat keinen Einfluss auf die Reifenhaftung", "es": "La lluvia no afecta a la adherencia de los neumáticos" }, "correct": false }
+    ],
+    "explanation": {
+      "de": "Bei Nässe sinkt die Haftung stark, besonders auf Markierungen, Metall und Schienen. Sanft bremsen, Schräglage reduzieren, Abstand vergrössern.",
+      "es": "Con lluvia la adherencia baja mucho, sobre todo en marcas viales, metal y raíles. Frena con suavidad, reduce la inclinación y aumenta la distancia."
+    },
+    "image": null
+  },
+  {
+    "id": "q031",
+    "category": "A",
+    "topic": "motorrad",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": {
+      "de": "Wie positionieren Sie sich mit dem Motorrad im Verkehr? (Mehrere Antworten möglich)",
+      "es": "¿Cómo te posicionas con la moto en el tráfico? (Puede haber varias respuestas)"
+    },
+    "options": [
+      { "id": "a", "text": { "de": "So, dass ich gut sichtbar bin und nicht im toten Winkel anderer fahre", "es": "De modo que sea bien visible y no circule en el ángulo muerto de otros" }, "correct": true },
+      { "id": "b", "text": { "de": "Vor jedem Spurwechsel: Blick über die Schulter (Sicherheitsblick)", "es": "Antes de cada cambio de carril: mirada por encima del hombro (Sicherheitsblick)" }, "correct": true },
+      { "id": "c", "text": { "de": "Immer ganz rechts am Fahrbahnrand, damit Autos vorbeikönnen", "es": "Siempre pegado al borde derecho para que los coches puedan pasar" }, "correct": false }
+    ],
+    "explanation": {
+      "de": "Motorradfahrer werden leicht übersehen: sichtbar positionieren (meist Mitte der Fahrspur), tote Winkel meiden und vor Richtungsänderungen den Sicherheitsblick machen.",
+      "es": "A los motoristas se les pasa por alto fácilmente: posiciónate visible (normalmente en el centro del carril), evita los ángulos muertos y haz la mirada de seguridad antes de cada cambio de dirección."
+    },
+    "image": null
+  }
+]

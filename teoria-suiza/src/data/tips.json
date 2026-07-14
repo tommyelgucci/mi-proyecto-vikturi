@@ -1,0 +1,159 @@
+[
+  {
+    "id": "b_laengseinparken",
+    "category": "B",
+    "icon": "🅿️",
+    "title": { "de": "Längseinparken (Parallelparkieren)", "es": "Aparcar en paralelo (Längseinparken)" },
+    "tips": [
+      { "de": "Frühzeitig blinken und neben dem vorderen Fahrzeug parallel anhalten, ca. 50 cm Abstand.", "es": "Pon el intermitente con antelación y detente en paralelo junto al coche delantero, a unos 50 cm." },
+      { "de": "Langsam rückwärts, voll einschlagen, wenn dein Heck auf Höhe des Hecks des Nachbarautos ist.", "es": "Marcha atrás despacio; gira a tope cuando tu parte trasera esté a la altura de la trasera del coche vecino." },
+      { "de": "Bei ca. 45° gegenlenken und in die Lücke gleiten; vorne und hinten Platz lassen.", "es": "A unos 45°, contravuelve y deslízate en el hueco; deja espacio delante y detrás." },
+      { "de": "Während des ganzen Manövers rundum beobachten – der Experte achtet auf deine Blicke, nicht nur aufs Resultat.", "es": "Observa alrededor durante toda la maniobra: el examinador se fija en tus miradas, no solo en el resultado." },
+      { "de": "Korrigieren ist erlaubt! Lieber ruhig nachkorrigieren als hektisch werden.", "es": "¡Corregir está permitido! Mejor una corrección tranquila que ponerse nervioso." }
+    ]
+  },
+  {
+    "id": "b_rueckwaertsfahren",
+    "category": "B",
+    "icon": "↩️",
+    "title": { "de": "Rückwärtsfahren (längere Strecke)", "es": "Marcha atrás en tramo largo" },
+    "tips": [
+      { "de": "Körper drehen und durch die Heckscheibe schauen – nicht nur Spiegel benutzen.", "es": "Gira el cuerpo y mira por la luneta trasera, no solo por los espejos." },
+      { "de": "Schritttempo halten, die Kupplung schleifen lassen (bei Schaltwagen).", "es": "Mantén paso de peatón, jugando con el embrague (en coche manual)." },
+      { "de": "Parallel und nah am rechten Rand bleiben; kleine Lenkkorrekturen genügen.", "es": "Mantente paralelo y cerca del borde derecho; bastan pequeñas correcciones de volante." },
+      { "de": "Für Fussgänger und Fahrzeuge sofort anhalten – Rückwärtsfahrende haben nie Vortritt.", "es": "Detente de inmediato ante peatones y vehículos: marcha atrás nunca tienes prioridad." }
+    ]
+  },
+  {
+    "id": "b_rechtsvortritt",
+    "category": "B",
+    "icon": "➡️",
+    "title": { "de": "Rechtsvortritt", "es": "Prioridad de la derecha" },
+    "tips": [
+      { "de": "In Quartieren jede Verzweigung scannen: keine Signale = Rechtsvortritt.", "es": "En los barrios, escanea cada cruce: sin señales = prioridad de la derecha." },
+      { "de": "Bremsbereit anfahren und den Fuss vom Gas nehmen, auch wenn du Vortritt hast.", "es": "Acércate listo para frenar y suelta el acelerador, incluso si tienes prioridad." },
+      { "de": "Deutliche Kopfbewegung nach rechts und links – der Experte muss sehen, dass du schaust.", "es": "Movimiento de cabeza claro a derecha e izquierda: el examinador debe ver que miras." },
+      { "de": "Ein übersehener Rechtsvortritt ist ein klassischer Durchfallgrund – lieber einmal zu viel verlangsamen.", "es": "Una prioridad de la derecha no respetada es motivo clásico de suspenso: mejor reducir de más." }
+    ]
+  },
+  {
+    "id": "b_kreisverkehr",
+    "category": "B",
+    "icon": "🔄",
+    "title": { "de": "Kreisverkehr", "es": "Rotondas" },
+    "tips": [
+      { "de": "Vor dem Einfahren nach links schauen und dem Verkehr im Kreisel den Vortritt lassen – auch Velos!", "es": "Antes de entrar, mira a la izquierda y cede el paso al tráfico de la rotonda, ¡también a las bicis!" },
+      { "de": "Beim Einfahren nicht blinken; beim Verlassen rechts blinken (auf Höhe der Ausfahrt davor).", "es": "Al entrar no pongas intermitente; al salir, intermitente derecho (a la altura de la salida anterior)." },
+      { "de": "Velos im Kreisel nie überholen – sie dürfen in der Fahrbahnmitte fahren.", "es": "Nunca adelantes a una bici dentro de la rotonda: puede circular por el centro del carril." },
+      { "de": "Tempo anpassen: flüssig, aber langsam genug, um reagieren zu können.", "es": "Ajusta la velocidad: fluido, pero lo bastante despacio para poder reaccionar." }
+    ]
+  },
+  {
+    "id": "b_sicherheitsblick",
+    "category": "B",
+    "icon": "👀",
+    "title": { "de": "Sicherheitsblick (toter Winkel)", "es": "Mirada de seguridad (ángulo muerto)" },
+    "tips": [
+      { "de": "Blick über die Schulter vor: Anfahren, Spurwechsel, Abbiegen, Kreiselausfahrt, Ein-/Ausparkieren.", "es": "Mirada por encima del hombro antes de: arrancar, cambiar de carril, girar, salir de la rotonda y aparcar/salir." },
+      { "de": "Beim Rechtsabbiegen immer den Blick nach rechts hinten – Velos und E-Trottis kommen schnell.", "es": "Al girar a la derecha, mira siempre atrás a la derecha: bicis y patinetes llegan rápido." },
+      { "de": "Reihenfolge: Innenspiegel → Aussenspiegel → Sicherheitsblick → blinken → Manöver.", "es": "Orden: retrovisor interior → exterior → mirada de seguridad → intermitente → maniobra." },
+      { "de": "Mach den Blick deutlich sichtbar – ein «gedachter» Sicherheitsblick zählt für den Experten nicht.", "es": "Haz la mirada bien visible: una mirada «mental» no cuenta para el examinador." }
+    ]
+  },
+  {
+    "id": "b_autobahn",
+    "category": "B",
+    "icon": "🛣️",
+    "title": { "de": "Autobahnfahren", "es": "Conducción en autopista" },
+    "tips": [
+      { "de": "Auf dem Beschleunigungsstreifen zügig auf Verkehrstempo beschleunigen – zögerliches Einfahren ist ein häufiger Fehler.", "es": "En el carril de aceleración, acelera con decisión hasta la velocidad del tráfico: incorporarse dubitativo es un error frecuente." },
+      { "de": "Spiegel – blinken – Sicherheitsblick vor jedem Spurwechsel.", "es": "Espejo – intermitente – mirada de seguridad antes de cada cambio de carril." },
+      { "de": "Mindestens 2 Sekunden Abstand («halber Tacho»), rechts fahren, links überholen.", "es": "Mínimo 2 segundos de distancia («medio velocímetro»), circula por la derecha y adelanta por la izquierda." },
+      { "de": "Bei stockendem Verkehr Rettungsgasse bilden: linke Spur ganz links, übrige Spuren ganz rechts.", "es": "Con tráfico detenido, forma el pasillo de emergencia: carril izquierdo a la izquierda, el resto a la derecha." }
+    ]
+  },
+  {
+    "id": "b_pruefungstag",
+    "category": "B",
+    "icon": "📋",
+    "title": { "de": "Am Prüfungstag (Auto)", "es": "El día del examen (coche)" },
+    "tips": [
+      { "de": "Vor der Abfahrt: Sitz, Spiegel, Lenkrad und Gurt einstellen – gehört zur Prüfung.", "es": "Antes de salir: ajusta asiento, espejos, volante y cinturón; forma parte del examen." },
+      { "de": "Anweisungen nicht verstanden? Ruhig nachfragen – das ist erlaubt und wirkt souverän.", "es": "¿No entendiste una indicación? Pregunta con calma: está permitido y transmite seguridad." },
+      { "de": "Nach einem Fehler: ruhig weiterfahren. Ein Fehler heisst nicht automatisch durchgefallen.", "es": "Tras un error: sigue conduciendo tranquilo. Un error no significa suspenso automático." },
+      { "de": "Fahre «kommentiert» im Kopf: das hält dich fokussiert und verhindert Blackouts.", "es": "Conduce «comentando» mentalmente lo que haces: te mantiene concentrado y evita quedarte en blanco." }
+    ]
+  },
+  {
+    "id": "a_spurgasse",
+    "category": "A",
+    "icon": "🛤️",
+    "title": { "de": "Spurgasse (Langsamfahren)", "es": "Spurgasse (circuito lento)" },
+    "tips": [
+      { "de": "Kupplung am Schleifpunkt halten und mit der Hinterradbremse das Tempo dosieren.", "es": "Mantén el embrague en el punto de fricción y dosifica la velocidad con el freno trasero." },
+      { "de": "Blick weit nach vorne – nie aufs Vorderrad schauen, sonst kippst du.", "es": "Mira lejos hacia delante, nunca a la rueda delantera, o perderás el equilibrio." },
+      { "de": "Knie an den Tank, Oberkörper locker, Balance über die Fussrasten.", "es": "Rodillas contra el depósito, torso relajado, equilibrio sobre las estriberas." },
+      { "de": "Zuhause üben: so langsam wie möglich geradeaus fahren, ohne die Füsse abzusetzen.", "es": "Practica: circula recto lo más despacio posible sin poner los pies en el suelo." }
+    ]
+  },
+  {
+    "id": "a_slalom",
+    "category": "A",
+    "icon": "〰️",
+    "title": { "de": "Slalom", "es": "Slalom" },
+    "tips": [
+      { "de": "Gleichmässiges Tempo halten – konstanter Zug am Gas, Tempo mit der Hinterradbremse regulieren.", "es": "Mantén un ritmo uniforme: gas constante y regula la velocidad con el freno trasero." },
+      { "de": "Blick immer zum übernächsten Tor, nicht zur nächsten Pylone.", "es": "Mira siempre a la puerta siguiente a la próxima, no al cono más cercano." },
+      { "de": "Mit dem Oberkörper locker bleiben; das Motorrad unter dir arbeiten lassen.", "es": "Torso relajado; deja que la moto trabaje debajo de ti." },
+      { "de": "Fällt eine Pylone: ruhig bleiben und sauber weiterfahren – Nervosität kostet mehr Punkte.", "es": "Si cae un cono: mantén la calma y sigue limpio; los nervios cuestan más puntos." }
+    ]
+  },
+  {
+    "id": "a_vollbremsung",
+    "category": "A",
+    "icon": "🛑",
+    "title": { "de": "Vollbremsung", "es": "Frenada de emergencia" },
+    "tips": [
+      { "de": "Beide Bremsen einsetzen: vorne kräftig und progressiv, hinten dosiert.", "es": "Usa ambos frenos: delante fuerte y progresivo, detrás dosificado." },
+      { "de": "Motorrad aufrecht, Lenker gerade, Blick nach vorne – nicht auf den Boden.", "es": "Moto recta, manillar derecho, mirada al frente, no al suelo." },
+      { "de": "Arme locker lassen und mit den Knien am Tank abstützen.", "es": "Brazos sueltos y apóyate con las rodillas en el depósito." },
+      { "de": "Auf trockenem, sicherem Gelände üben, bis der Ablauf automatisch sitzt.", "es": "Practica en terreno seco y seguro hasta que la secuencia salga automática." }
+    ]
+  },
+  {
+    "id": "a_achterfahren",
+    "category": "A",
+    "icon": "8️⃣",
+    "title": { "de": "Achterfahren", "es": "El ocho (Achterfahren)" },
+    "tips": [
+      { "de": "Kopf drehen! Schau dorthin, wo du hinfahren willst – die Linie folgt dem Blick.", "es": "¡Gira la cabeza! Mira adonde quieres ir: la trayectoria sigue a la mirada." },
+      { "de": "Konstantes Gas mit schleifender Kupplung, Tempo über die Hinterradbremse.", "es": "Gas constante con embrague en fricción; controla el ritmo con el freno trasero." },
+      { "de": "Bei langsamer Fahrt: Motorrad kippen lassen, Körper bleibt aufrecht (Drücken).", "es": "A baja velocidad: inclina la moto y mantén el cuerpo vertical." },
+      { "de": "Grosse, runde Bögen fahren – enger werden kannst du immer noch.", "es": "Traza curvas amplias y redondas; ya podrás cerrarlas más adelante." }
+    ]
+  },
+  {
+    "id": "a_ausruestung",
+    "category": "A",
+    "icon": "🪖",
+    "title": { "de": "Ausrüstung & Sitzposition", "es": "Equipamiento y posición" },
+    "tips": [
+      { "de": "Geprüfter Helm ist Pflicht; komplette Schutzkleidung mit Protektoren, Handschuhe und feste Schuhe tragen.", "es": "Casco homologado obligatorio; lleva ropa de protección completa con protectores, guantes y calzado firme." },
+      { "de": "Vor der Prüfung Maschine checken: Reifen, Bremsen, Lichter, Blinker, Spiegel.", "es": "Antes del examen revisa la moto: neumáticos, frenos, luces, intermitentes y espejos." },
+      { "de": "Lockere, aufrechte Sitzposition: Ellbogen leicht gebeugt, Blick hoch, zwei Finger an der Bremse bereit.", "es": "Posición relajada y erguida: codos algo flexionados, mirada alta y dos dedos listos sobre el freno." },
+      { "de": "Helle oder reflektierende Kleidung erhöht deine Sichtbarkeit massiv.", "es": "La ropa clara o reflectante aumenta muchísimo tu visibilidad." }
+    ]
+  },
+  {
+    "id": "a_pruefungstag",
+    "category": "A",
+    "icon": "📋",
+    "title": { "de": "Am Prüfungstag (Motorrad)", "es": "El día del examen (moto)" },
+    "tips": [
+      { "de": "Die Manöverprüfung kommt zuerst: Ablauf der Übungen vorher auswendig kennen.", "es": "La prueba de maniobras va primero: memoriza antes el orden de los ejercicios." },
+      { "de": "Vor jedem Manöver kurz durchatmen und die Linie im Kopf visualisieren.", "es": "Antes de cada maniobra, respira hondo y visualiza la trayectoria." },
+      { "de": "Auf der Strasse gilt: sichtbar fahren, Sicherheitsblick deutlich zeigen, Abstand halten.", "es": "En carretera: hazte visible, muestra claramente la mirada de seguridad y mantén distancia." },
+      { "de": "Der Experte fährt hinter dir und gibt Anweisungen per Funk – ruhig bleiben und normal fahren.", "es": "El examinador va detrás y da instrucciones por radio: mantén la calma y conduce con normalidad." }
+    ]
+  }
+]
