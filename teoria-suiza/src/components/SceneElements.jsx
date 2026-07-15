@@ -100,6 +100,46 @@ export function SceneElement({ el }) {
         </g>
       )
     }
+    case 'cone':
+      return (
+        <g transform={`translate(${el.x} ${el.y})`}>
+          <circle r={6} fill="#e8590c" />
+          <circle r={3.6} fill="#ff8a3d" />
+          <circle r={1.6} fill="#ffd9b8" />
+        </g>
+      )
+    case 'circleOutline':
+      return (
+        <circle
+          cx={el.x}
+          cy={el.y}
+          r={el.r}
+          fill="none"
+          stroke="#e9edf0"
+          strokeWidth={2}
+          strokeDasharray="8 7"
+          opacity={0.65}
+        />
+      )
+    case 'obstacle':
+      return (
+        <g>
+          <rect
+            x={el.x - el.w / 2}
+            y={el.y - el.h / 2}
+            width={el.w}
+            height={el.h}
+            rx={4}
+            fill="#343a41"
+            stroke="#ffd23f"
+            strokeWidth={2}
+            strokeDasharray="6 5"
+          />
+          <text x={el.x} y={el.y + 4.5} textAnchor="middle" fontSize={13} fontWeight="800" fill="#ffd23f">
+            !
+          </text>
+        </g>
+      )
     case 'check':
       return (
         <g transform={`translate(${el.x} ${el.y})`}>

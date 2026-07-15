@@ -130,6 +130,67 @@ function curbRulesScene() {
   }
 }
 
+// --- Escenas de la Manöverprüfung de moto (pista de prácticas) ---
+
+function spurgasseScene() {
+  const cones = []
+  for (let y = 160; y <= 440; y += 40) {
+    cones.push({ type: 'cone', x: 162, y })
+    cones.push({ type: 'cone', x: 198, y })
+  }
+  return {
+    elements: [{ type: 'road', x: 0, y: 0, w: CANVAS.w, h: CANVAS.h }, ...cones],
+  }
+}
+
+function slalomScene() {
+  return {
+    elements: [
+      { type: 'road', x: 0, y: 0, w: CANVAS.w, h: CANVAS.h },
+      { type: 'cone', x: 180, y: 100 },
+      { type: 'cone', x: 180, y: 180 },
+      { type: 'cone', x: 180, y: 260 },
+      { type: 'cone', x: 180, y: 340 },
+      { type: 'cone', x: 180, y: 420 },
+    ],
+  }
+}
+
+function achterScene() {
+  return {
+    elements: [
+      { type: 'road', x: 0, y: 0, w: CANVAS.w, h: CANVAS.h },
+      { type: 'circleOutline', x: 180, y: 175, r: 85 },
+      { type: 'circleOutline', x: 180, y: 345, r: 85 },
+      { type: 'cone', x: 180, y: 175 },
+      { type: 'cone', x: 180, y: 345 },
+    ],
+  }
+}
+
+function motoBremsScene() {
+  return {
+    elements: [
+      { type: 'road', x: 0, y: 0, w: CANVAS.w, h: CANVAS.h },
+      { type: 'cone', x: 130, y: 320 },
+      { type: 'cone', x: 230, y: 320 },
+      { type: 'label', x: 244, y: 324, text: 'Bremspunkt', size: 9 },
+      { type: 'stopLine', x: 120, y: 148, w: 120, h: 7 },
+    ],
+  }
+}
+
+function ausweichenScene() {
+  return {
+    elements: [
+      { type: 'road', x: 0, y: 0, w: CANVAS.w, h: CANVAS.h },
+      { type: 'cone', x: 140, y: 410 },
+      { type: 'cone', x: 220, y: 410 },
+      { type: 'obstacle', x: 185, y: 255, w: 60, h: 38 },
+    ],
+  }
+}
+
 export const MANEUVERS = [
   {
     id: 'seitwaerts_rueckwaerts',
@@ -731,6 +792,261 @@ export const MANEUVERS = [
             ],
           },
         ],
+      },
+    ],
+  },
+  {
+    id: 'moto_spurgasse',
+    category: 'A',
+    vehicle: 'moto',
+    icon: '🛤️',
+    title: { de: 'Spurgasse (Langsamfahren)', es: 'Spurgasse (circuito lento)' },
+    scene: spurgasseScene(),
+    steps: [
+      {
+        caption: {
+          de: 'Schritt 1: Langsam anfahren – Kupplung am Schleifpunkt, Füsse auf die Rasten.',
+          es: 'Paso 1: Arranca despacio: embrague en el punto de fricción y pies a las estriberas.',
+        },
+        duration: 1800,
+        keyframes: [
+          { t: 0, x: 180, y: 515, angle: 0 },
+          { t: 1, x: 180, y: 450, angle: 0 },
+        ],
+      },
+      {
+        caption: {
+          de: 'Schritt 2: Im Schritttempo durch die Gasse – Blick weit nach vorne, Tempo mit der Hinterradbremse dosieren.',
+          es: 'Paso 2: Cruza el pasillo a paso de peatón: mirada lejos, dosifica con el freno trasero.',
+        },
+        duration: 5000,
+        keyframes: [
+          { t: 0, x: 180, y: 450, angle: 0 },
+          { t: 0.3, x: 181.5, y: 370, angle: 1.5 },
+          { t: 0.55, x: 178.5, y: 300, angle: -1.5 },
+          { t: 0.8, x: 181, y: 230, angle: 1 },
+          { t: 1, x: 180, y: 160, angle: 0 },
+        ],
+      },
+      {
+        caption: {
+          de: 'Schritt 3: Am Ende sauber herausfahren – nicht die Füsse absetzen!',
+          es: 'Paso 3: Sal limpio al final. ¡Sin poner los pies en el suelo!',
+        },
+        duration: 1500,
+        keyframes: [
+          { t: 0, x: 180, y: 160, angle: 0 },
+          { t: 1, x: 180, y: 80, angle: 0 },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'moto_slalom',
+    category: 'A',
+    vehicle: 'moto',
+    icon: '〰️',
+    title: { de: 'Slalom', es: 'Slalom' },
+    scene: slalomScene(),
+    steps: [
+      {
+        caption: {
+          de: 'Schritt 1: Mit gleichmässigem Tempo einfahren und die erste Pylone aussen passieren.',
+          es: 'Paso 1: Entra con ritmo constante y pasa el primer cono por fuera.',
+        },
+        duration: 2000,
+        keyframes: [
+          { t: 0, x: 180, y: 515, angle: 0 },
+          { t: 0.5, x: 152, y: 460, angle: -12 },
+          { t: 1, x: 148, y: 420, angle: 0 },
+        ],
+        steer: -12,
+      },
+      {
+        caption: {
+          de: 'Schritt 2: Blick immer zur übernächsten Pylone – der Oberkörper bleibt locker.',
+          es: 'Paso 2: Mira siempre al cono siguiente al próximo; el torso, relajado.',
+        },
+        duration: 3600,
+        keyframes: [
+          { t: 0, x: 148, y: 420, angle: 0 },
+          { t: 0.125, x: 180, y: 380, angle: 28 },
+          { t: 0.25, x: 212, y: 340, angle: 0 },
+          { t: 0.375, x: 180, y: 300, angle: -28 },
+          { t: 0.5, x: 148, y: 260, angle: 0 },
+          { t: 0.625, x: 180, y: 220, angle: 28 },
+          { t: 0.75, x: 212, y: 180, angle: 0 },
+          { t: 0.875, x: 180, y: 140, angle: -28 },
+          { t: 1, x: 148, y: 100, angle: 0 },
+        ],
+      },
+      {
+        caption: {
+          de: 'Schritt 3: Nach der letzten Pylone gerade ausfahren.',
+          es: 'Paso 3: Tras el último cono, sal recto y estable.',
+        },
+        duration: 1500,
+        keyframes: [
+          { t: 0, x: 148, y: 100, angle: 0 },
+          { t: 0.6, x: 162, y: 60, angle: 10 },
+          { t: 1, x: 170, y: 30, angle: 0 },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'moto_achterfahren',
+    category: 'A',
+    vehicle: 'moto',
+    icon: '8️⃣',
+    title: { de: 'Achterfahren', es: 'El ocho (Achterfahren)' },
+    scene: achterScene(),
+    steps: [
+      {
+        caption: {
+          de: 'Schritt 1: Erste Schlaufe links – Kopf drehen und in die Kurve schauen, konstantes Gas.',
+          es: 'Paso 1: Primer bucle a la izquierda: gira la cabeza y mira al interior de la curva, gas constante.',
+        },
+        duration: 4200,
+        keyframes: [
+          { t: 0, x: 180, y: 260, angle: 90 },
+          { t: 0.125, x: 240, y: 235, angle: 45 },
+          { t: 0.25, x: 265, y: 175, angle: 0 },
+          { t: 0.375, x: 240, y: 115, angle: -45 },
+          { t: 0.5, x: 180, y: 90, angle: -90 },
+          { t: 0.625, x: 120, y: 115, angle: -135 },
+          { t: 0.75, x: 95, y: 175, angle: -180 },
+          { t: 0.875, x: 120, y: 235, angle: -225 },
+          { t: 1, x: 180, y: 260, angle: -270 },
+        ],
+        steer: -18,
+      },
+      {
+        caption: {
+          de: 'Schritt 2: Weich auf die rechte Schlaufe wechseln – Tempo über die Hinterradbremse regeln.',
+          es: 'Paso 2: Cambia con suavidad al bucle derecho; regula el ritmo con el freno trasero.',
+        },
+        duration: 4200,
+        keyframes: [
+          { t: 0, x: 180, y: 260, angle: 90 },
+          { t: 0.125, x: 240, y: 285, angle: 135 },
+          { t: 0.25, x: 265, y: 345, angle: 180 },
+          { t: 0.375, x: 240, y: 405, angle: 225 },
+          { t: 0.5, x: 180, y: 430, angle: 270 },
+          { t: 0.625, x: 120, y: 405, angle: 315 },
+          { t: 0.75, x: 95, y: 345, angle: 360 },
+          { t: 0.875, x: 120, y: 285, angle: 405 },
+          { t: 1, x: 180, y: 260, angle: 450 },
+        ],
+        steer: 18,
+      },
+      {
+        caption: {
+          de: 'Schritt 3: Die Acht sauber schliessen und gerade ausfahren.',
+          es: 'Paso 3: Cierra el ocho limpio y sal recto.',
+        },
+        duration: 1800,
+        keyframes: [
+          { t: 0, x: 180, y: 260, angle: 90 },
+          { t: 0.4, x: 226, y: 244, angle: 50 },
+          { t: 0.75, x: 250, y: 208, angle: 15 },
+          { t: 1, x: 252, y: 165, angle: 0 },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'moto_vollbremsung',
+    category: 'A',
+    vehicle: 'moto',
+    icon: '🛑',
+    title: { de: 'Vollbremsung', es: 'Frenada de emergencia' },
+    scene: motoBremsScene(),
+    steps: [
+      {
+        caption: {
+          de: 'Schritt 1: Zügig und aufrecht auf den Bremspunkt zufahren.',
+          es: 'Paso 1: Acelera con decisión y llega recto y erguido al punto de frenado.',
+        },
+        duration: 1800,
+        keyframes: [
+          { t: 0, x: 180, y: 520, angle: 0 },
+          { t: 1, x: 180, y: 330, angle: 0 },
+        ],
+      },
+      {
+        caption: {
+          de: 'Schritt 2: Beide Bremsen – vorne kräftig und progressiv, hinten dosiert. Lenker gerade!',
+          es: 'Paso 2: Ambos frenos: delante fuerte y progresivo, detrás dosificado. ¡Manillar recto!',
+        },
+        duration: 1300,
+        keyframes: [
+          { t: 0, x: 180, y: 330, angle: 0 },
+          { t: 0.6, x: 180, y: 225, angle: 0 },
+          { t: 1, x: 180, y: 192, angle: 0 },
+        ],
+        braking: true,
+      },
+      {
+        caption: {
+          de: 'Schritt 3: Kontrolliert vor der Linie stehen – erst am Schluss einen Fuss absetzen.',
+          es: 'Paso 3: Detente controlado antes de la línea; pon el pie al suelo solo al final.',
+        },
+        duration: 1500,
+        keyframes: [
+          { t: 0, x: 180, y: 192, angle: 0 },
+          { t: 1, x: 180, y: 192, angle: 0 },
+        ],
+        braking: true,
+      },
+    ],
+  },
+  {
+    id: 'moto_ausweichen',
+    category: 'A',
+    vehicle: 'moto',
+    icon: '↪️',
+    title: { de: 'Ausweichen', es: 'Esquivar un obstáculo' },
+    scene: ausweichenScene(),
+    steps: [
+      {
+        caption: {
+          de: 'Schritt 1: Mit stabilem Tempo geradeaus auf das Hindernis zufahren.',
+          es: 'Paso 1: Acércate recto al obstáculo con velocidad estable.',
+        },
+        duration: 1700,
+        keyframes: [
+          { t: 0, x: 180, y: 520, angle: 0 },
+          { t: 1, x: 180, y: 410, angle: 0 },
+        ],
+      },
+      {
+        caption: {
+          de: 'Schritt 2: Mit zwei kurzen Lenkimpulsen ausweichen – schau in die Lücke, nie auf das Hindernis!',
+          es: 'Paso 2: Esquiva con dos golpes suaves de manillar. ¡Mira al hueco, nunca al obstáculo!',
+        },
+        duration: 1900,
+        keyframes: [
+          { t: 0, x: 180, y: 410, angle: 0 },
+          { t: 0.35, x: 160, y: 365, angle: -20 },
+          { t: 0.7, x: 140, y: 320, angle: -8 },
+          { t: 1, x: 136, y: 265, angle: 0 },
+        ],
+        steer: -15,
+      },
+      {
+        caption: {
+          de: 'Schritt 3: Am Hindernis vorbei – zurück auf die Linie und stabilisieren.',
+          es: 'Paso 3: Pasado el obstáculo, vuelve a tu línea y estabiliza la moto.',
+        },
+        duration: 1900,
+        keyframes: [
+          { t: 0, x: 136, y: 265, angle: 0 },
+          { t: 0.35, x: 148, y: 205, angle: 18 },
+          { t: 0.7, x: 172, y: 160, angle: 8 },
+          { t: 1, x: 178, y: 110, angle: 0 },
+        ],
+        steer: 15,
       },
     ],
   },

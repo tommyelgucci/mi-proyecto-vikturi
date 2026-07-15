@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { useLang, t } from '../i18n'
 import { CANVAS } from '../data/maneuvers'
 import CarSprite from './CarSprite'
+import MotoSprite from './MotoSprite'
 import { SceneElement, SceneDefs } from './SceneElements'
 
 function easeInOutQuad(p) {
@@ -207,17 +208,28 @@ export default function ManeuverPlayer({ maneuver, onBack }) {
             )
           })}
 
-          <CarSprite
-            x={egoPose.x}
-            y={egoPose.y}
-            angle={egoPose.angle}
-            color="#ffffff"
-            blinker={step.blinker}
-            reverseLights={!!step.reverse}
-            braking={!!step.braking}
-            showWheels
-            steer={step.wheel === 'left' ? -30 : step.wheel === 'right' ? 30 : 0}
-          />
+          {maneuver.vehicle === 'moto' ? (
+            <MotoSprite
+              x={egoPose.x}
+              y={egoPose.y}
+              angle={egoPose.angle}
+              color="#ffffff"
+              braking={!!step.braking}
+              steer={step.steer ?? 0}
+            />
+          ) : (
+            <CarSprite
+              x={egoPose.x}
+              y={egoPose.y}
+              angle={egoPose.angle}
+              color="#ffffff"
+              blinker={step.blinker}
+              reverseLights={!!step.reverse}
+              braking={!!step.braking}
+              showWheels
+              steer={step.steer ?? (step.wheel === 'left' ? -30 : step.wheel === 'right' ? 30 : 0)}
+            />
+          )}
 
           {step.gapBadge && (
             <SceneElement
