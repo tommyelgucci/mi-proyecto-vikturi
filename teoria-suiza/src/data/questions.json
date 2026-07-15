@@ -1815,5 +1815,117 @@
     ],
     "explanation": { "de": "Windstösse versetzen das Motorrad: mit Tempo runter bleibt Zeit und Raum zum Korrigieren – Reserve zum Rand halten.", "es": "Las rachas desplazan la moto: con menos velocidad tienes tiempo y espacio para corregir; deja margen con el borde." },
     "image": null
+  },
+  {
+    "id": "q109",
+    "category": "both",
+    "topic": "einspuren",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Du willst an der nächsten Kreuzung LINKS abbiegen. Der Fahrstreifen hat nur diesen einen Abbiegepfeil (links). Ist das Auto richtig eingespurt?", "es": "Quieres girar a la IZQUIERDA en el próximo cruce. El carril solo tiene esta flecha de giro (izquierda). ¿Está el coche bien einspureado?" },
+    "options": [
+      { "id": "a", "text": { "de": "Richtig", "es": "Verdadero" }, "correct": true },
+      { "id": "b", "text": { "de": "Falsch", "es": "Falso" }, "correct": false }
+    ],
+    "explanation": { "de": "Richtig. Bei einem Fahrstreifen mit ausschliesslichem Linksabbiegepfeil musst du dich ganz links am Fahrbahnrand einspuren und rechtzeitig den linken Blinker setzen.", "es": "Verdadero. Con un carril de giro exclusivo a la izquierda, debes einspurearte pegado al borde izquierdo del carril y activar el intermitente izquierdo con tiempo." },
+    "image": { "type": "scene", "id": "einspuren_left_only_correct" }
+  },
+  {
+    "id": "q110",
+    "category": "both",
+    "topic": "einspuren",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Auch hier willst du LINKS abbiegen und der Fahrstreifen erlaubt nur Linksabbiegen. Das Auto steht in der Mitte des Streifens (nicht am linken Rand), Blinker links ist gesetzt. Korrekt eingespurt?", "es": "También aquí quieres girar a la IZQUIERDA y el carril solo permite girar a la izquierda. El coche está en el CENTRO del carril (no pegado al borde izquierdo), con el intermitente izquierdo puesto. ¿Está bien einspureado?" },
+    "options": [
+      { "id": "a", "text": { "de": "Richtig", "es": "Verdadero" }, "correct": false },
+      { "id": "b", "text": { "de": "Falsch", "es": "Falso" }, "correct": true }
+    ],
+    "explanation": { "de": "Falsch. Auch wenn es der einzige Fahrstreifen ist und nur Linksabbiegen erlaubt, musst du dich ganz an den linken Rand einspuren – nicht in der Mitte bleiben. Die Regel «grundsätzlich links einspuren» gilt für deine Position im Streifen, unabhängig davon, ob es weitere Fahrstreifen gibt.", "es": "Falso. Aunque sea el único carril y solo permita girar a la izquierda, debes einspurearte pegado por completo al borde izquierdo, no quedarte en el centro. La regla «en principio, situarse a la izquierda» se aplica a tu posición dentro del carril, tengas o no otros carriles al lado." },
+    "image": { "type": "scene", "id": "einspuren_left_only_wrong_center" }
+  },
+  {
+    "id": "q111",
+    "category": "both",
+    "topic": "einspuren",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Der Fahrstreifen erlaubt Geradeausfahren ODER Linksabbiegen. Du willst GERADEAUS weiterfahren. Das Auto ist links eingespurt, ohne Blinker. Korrekt?", "es": "El carril permite seguir RECTO o girar a la izquierda. Quieres seguir RECTO. El coche está einspureado a la izquierda, sin intermitente. ¿Es correcto?" },
+    "options": [
+      { "id": "a", "text": { "de": "Richtig", "es": "Verdadero" }, "correct": true },
+      { "id": "b", "text": { "de": "Falsch", "es": "Falso" }, "correct": false }
+    ],
+    "explanation": { "de": "Richtig. Auch beim Geradeausfahren spurst du grundsätzlich links ein. Da du die Richtung nicht änderst, bleibt der Blinker aus.", "es": "Verdadero. Incluso para seguir recto te sitúas por regla general a la izquierda del carril. Como no cambias de dirección, el intermitente se queda apagado." },
+    "image": { "type": "scene", "id": "einspuren_straight_left_correct" }
+  },
+  {
+    "id": "q112",
+    "category": "both",
+    "topic": "einspuren",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Gleicher Streifen (Geradeaus ODER Links), du willst GERADEAUS weiterfahren. Das Auto ist zwar links eingespurt, hat aber den linken Blinker aktiviert. Korrekt?", "es": "Mismo carril (recto o izquierda), quieres seguir RECTO. El coche está bien situado a la izquierda, pero lleva el intermitente izquierdo encendido. ¿Es correcto?" },
+    "options": [
+      { "id": "a", "text": { "de": "Richtig", "es": "Verdadero" }, "correct": false },
+      { "id": "b", "text": { "de": "Falsch", "es": "Falso" }, "correct": true }
+    ],
+    "explanation": { "de": "Falsch. Die Position stimmt, aber der Blinker gehört beim Geradeausfahren ausgeschaltet. Ein gesetzter Blinker signalisiert den anderen ein Abbiegen, das gar nicht stattfindet – das verwirrt und kann gefährlich sein.", "es": "Falso. La posición es correcta, pero el intermitente debe estar apagado al seguir recto. Llevarlo puesto anuncia a los demás un giro que no vas a hacer, lo cual confunde y puede ser peligroso." },
+    "image": { "type": "scene", "id": "einspuren_straight_left_wrong_blinker" }
+  },
+  {
+    "id": "q113",
+    "category": "both",
+    "topic": "einspuren",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Der Streifen ist durch eine gelbe Unterbrechungslinie unterteilt: links Geradeausfahren, rechts (auf der gelben Linie) Rechtsabbiegen. Du willst RECHTS abbiegen. Das Auto steht rechts, auf/neben der gelben Linie, Blinker rechts gesetzt. Korrekt?", "es": "El carril está dividido por una línea amarilla discontinua: a la izquierda se sigue recto, a la derecha (sobre la línea amarilla) se gira a la derecha. Quieres girar a la DERECHA. El coche está a la derecha, sobre/junto a la línea amarilla, con el intermitente derecho. ¿Es correcto?" },
+    "options": [
+      { "id": "a", "text": { "de": "Richtig", "es": "Verdadero" }, "correct": true },
+      { "id": "b", "text": { "de": "Falsch", "es": "Falso" }, "correct": false }
+    ],
+    "explanation": { "de": "Richtig. Für das Rechtsabbiegen spurst du rechts ein, direkt neben bzw. auf der gelben Unterbrechungslinie, mit Blinker rechts.", "es": "Verdadero. Para girar a la derecha te sitúas a la derecha, justo junto o sobre la línea amarilla discontinua, con el intermitente derecho activado." },
+    "image": { "type": "scene", "id": "einspuren_straight_right_dashed_correct" }
+  },
+  {
+    "id": "q114",
+    "category": "both",
+    "topic": "einspuren",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Bei dieser Ampel ist der rechte Fahrstreifenteil durch eine gelbe Unterbrechungslinie als Rechtsabbiege-/Busbereich markiert; links geht es geradeaus weiter. Du willst GERADEAUS weiterfahren. Das Auto steht aber rechts, im markierten Bereich, ohne Blinker. Korrekt?", "es": "En este semáforo, la parte derecha del carril está marcada con una línea amarilla discontinua como zona de giro a la derecha/bus; a la izquierda se sigue recto. Quieres seguir RECTO. Pero el coche está a la derecha, dentro de esa zona marcada, sin intermitente. ¿Es correcto?" },
+    "options": [
+      { "id": "a", "text": { "de": "Richtig", "es": "Verdadero" }, "correct": false },
+      { "id": "b", "text": { "de": "Falsch", "es": "Falso" }, "correct": true }
+    ],
+    "explanation": { "de": "Falsch. Der rechte, gelb abgegrenzte Bereich ist nur für Rechtsabbieger (bzw. Busse) reserviert. Für Geradeausfahren gehörst du links in den Hauptstreifen, ohne Blinker.", "es": "Falso. La zona derecha delimitada en amarillo está reservada para quien gira a la derecha (o para buses). Para seguir recto debes quedarte a la izquierda, en el carril principal, sin intermitente." },
+    "image": { "type": "scene", "id": "einspuren_bus_lane_signal_wrong" }
+  },
+  {
+    "id": "q115",
+    "category": "both",
+    "topic": "einspuren",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Dieser Fahrstreifen hat nur einen Abbiegepfeil nach rechts (Rechtsabbiegen ist obligatorisch). Das Auto steht rechts eingespurt mit Blinker rechts. Korrekt?", "es": "Este carril tiene solo una flecha de giro a la derecha (girar a la derecha es obligatorio). El coche está einspureado a la derecha con el intermitente derecho. ¿Es correcto?" },
+    "options": [
+      { "id": "a", "text": { "de": "Richtig", "es": "Verdadero" }, "correct": true },
+      { "id": "b", "text": { "de": "Falsch", "es": "Falso" }, "correct": false }
+    ],
+    "explanation": { "de": "Richtig. Bei ausschliesslichem Rechtsabbiegepfeil spurst du rechts ein und setzt den rechten Blinker.", "es": "Verdadero. Con una flecha de giro exclusiva a la derecha, te sitúas a la derecha y activas el intermitente derecho." },
+    "image": { "type": "scene", "id": "einspuren_right_only_correct" }
+  },
+  {
+    "id": "q116",
+    "category": "both",
+    "topic": "einspuren",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Dieser Fahrstreifen erlaubt Links-, Geradeaus- und Rechtsabbiegen (dreifache Pfeile). Du willst LINKS abbiegen. Das Auto steht aber ganz rechts mit Blinker rechts. Korrekt?", "es": "Este carril permite girar a la izquierda, seguir recto o girar a la derecha (flecha triple). Quieres girar a la IZQUIERDA. Pero el coche está pegado a la derecha con el intermitente derecho. ¿Es correcto?" },
+    "options": [
+      { "id": "a", "text": { "de": "Richtig", "es": "Verdadero" }, "correct": false },
+      { "id": "b", "text": { "de": "Falsch", "es": "Falso" }, "correct": true }
+    ],
+    "explanation": { "de": "Falsch. Für Linksabbiegen gehörst du an den linken Rand des Streifens mit Blinker links – nicht rechts. Die gezeigte Position und der Blinker passen zum Rechtsabbiegen, nicht zu deinem Vorhaben.", "es": "Falso. Para girar a la izquierda debes situarte en el borde izquierdo del carril con el intermitente izquierdo, no a la derecha. La posición y el intermitente mostrados corresponden a girar a la derecha, no a tu intención." },
+    "image": { "type": "scene", "id": "einspuren_triple_wrong_left_intent" }
   }
 ]

@@ -20,7 +20,65 @@ const CROSS = [
   { type: 'curbLine', x1: 225, y1: 225, x2: 360, y2: 225 },
 ]
 
+// Carril único de Einspuren: calzada vertical x115–245, coche mirando al norte.
+// Posiciones horizontales típicas: izquierda x=133, centro x=180, derecha x=227.
+const LANE = [
+  { type: 'grass', x: 0, y: 0, w: 115, h: 360 },
+  { type: 'grass', x: 245, y: 0, w: 115, h: 360 },
+  { type: 'road', x: 115, y: 0, w: 130, h: 360 },
+  { type: 'curbLine', x1: 115, y1: 0, x2: 115, y2: 360 },
+  { type: 'curbLine', x1: 245, y1: 0, x2: 245, y2: 360 },
+]
+// Igual, pero con una línea amarilla discontinua que delimita un espacio a la
+// derecha (x210–245) reservado para girar a la derecha (o buses/bicis).
+const LANE_DASHED = [...LANE, { type: 'yellowZone', x1: 210, y1: 0, x2: 210, y2: 360 }]
+
 export const DIAGRAMS = {
+  // q109: carril con flecha exclusiva izquierda, coche bien pegado a la izquierda.
+  einspuren_left_only_correct: {
+    elements: [...LANE, { type: 'laneArrow', x: 180, y: 150, kind: 'left' }],
+    cars: [{ x: 133, y: 250, angle: 0, color: '#ffffff', blinker: 'left' }],
+  },
+  // q110: mismo carril, coche mal centrado (no pegado al borde izquierdo).
+  einspuren_left_only_wrong_center: {
+    elements: [...LANE, { type: 'laneArrow', x: 180, y: 150, kind: 'left' }],
+    cars: [{ x: 180, y: 250, angle: 0, color: '#ffffff', blinker: 'left' }],
+  },
+  // q111: carril mixto recto/izquierda, coche a la izquierda sin blinker (va recto).
+  einspuren_straight_left_correct: {
+    elements: [...LANE, { type: 'laneArrow', x: 180, y: 150, kind: 'straightLeft' }],
+    cars: [{ x: 133, y: 250, angle: 0, color: '#ffffff', blinker: null }],
+  },
+  // q112: mismo carril, coche a la izquierda pero con blinker izquierdo (va recto: mal).
+  einspuren_straight_left_wrong_blinker: {
+    elements: [...LANE, { type: 'laneArrow', x: 180, y: 150, kind: 'straightLeft' }],
+    cars: [{ x: 133, y: 250, angle: 0, color: '#ffffff', blinker: 'left' }],
+  },
+  // q113: carril con línea amarilla discontinua, coche a la derecha con blinker derecho (gira a la derecha: bien).
+  einspuren_straight_right_dashed_correct: {
+    elements: [...LANE_DASHED, { type: 'laneArrow', x: 180, y: 150, kind: 'straightRight' }],
+    cars: [{ x: 227, y: 250, angle: 0, color: '#ffffff', blinker: 'right' }],
+  },
+  // q114: semáforo + carril delimitado, coche a la derecha sin blinker (quiere ir recto: mal).
+  einspuren_bus_lane_signal_wrong: {
+    elements: [
+      ...LANE_DASHED,
+      { type: 'laneArrow', x: 180, y: 150, kind: 'straightRight' },
+      { type: 'trafficLight', x: 295, y: 30 },
+    ],
+    cars: [{ x: 227, y: 250, angle: 0, color: '#ffffff', blinker: null }],
+  },
+  // q115: carril exclusivo derecha, coche pegado a la derecha con blinker derecho.
+  einspuren_right_only_correct: {
+    elements: [...LANE, { type: 'laneArrow', x: 180, y: 150, kind: 'right' }],
+    cars: [{ x: 227, y: 250, angle: 0, color: '#ffffff', blinker: 'right' }],
+  },
+  // q116: carril triple (izq/recto/der), coche a la derecha con blinker derecho pero quiere ir a la IZQUIERDA (mal).
+  einspuren_triple_wrong_left_intent: {
+    elements: [...LANE, { type: 'laneArrow', x: 180, y: 150, kind: 'trident' }],
+    cars: [{ x: 227, y: 250, angle: 0, color: '#ffffff', blinker: 'right' }],
+  },
+
   // Cruce sin señales, 2 coches: B viene por la derecha de A → B primero.
   rechtsvortritt_2: {
     elements: CROSS,

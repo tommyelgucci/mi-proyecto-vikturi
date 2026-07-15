@@ -1,5 +1,6 @@
 export const TOPICS = [
   { id: 'vortritt', label: { de: 'Vortritt', es: 'Prioridad' } },
+  { id: 'einspuren', label: { de: 'Einspuren', es: 'Einspuren (posición de carril)' } },
   { id: 'kreisverkehr', label: { de: 'Kreisverkehr', es: 'Rotondas' } },
   { id: 'signale', label: { de: 'Signale', es: 'Señales' } },
   { id: 'geschwindigkeit', label: { de: 'Geschwindigkeit', es: 'Velocidad' } },

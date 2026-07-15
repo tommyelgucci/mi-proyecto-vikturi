@@ -1,6 +1,46 @@
 import CarSprite from './CarSprite'
 import { ROAD, GRASS, CURB } from '../data/maneuvers'
 
+function ArrowHead({ x, y, angle }) {
+  return (
+    <polygon
+      points="0,-9 -6.5,4.5 6.5,4.5"
+      fill="#e9edf0"
+      transform={`translate(${x} ${y}) rotate(${angle})`}
+    />
+  )
+}
+
+function ArrowBranch({ from, to, angle }) {
+  return (
+    <g>
+      <line x1={from[0]} y1={from[1]} x2={to[0]} y2={to[1]} stroke="#e9edf0" strokeWidth={5} strokeLinecap="round" />
+      <ArrowHead x={to[0]} y={to[1]} angle={angle} />
+    </g>
+  )
+}
+
+/** Flecha vial pintada en el carril (kind: straight/left/right/straightLeft/straightRight/trident). */
+function LaneArrow({ x, y, kind }) {
+  const trunk = <line x1={0} y1={34} x2={0} y2={kind === 'left' || kind === 'right' ? 6 : 10} stroke="#e9edf0" strokeWidth={5} strokeLinecap="round" />
+  const branches = []
+  if (kind === 'straight' || kind === 'straightLeft' || kind === 'straightRight' || kind === 'trident') {
+    branches.push(<ArrowBranch key="s" from={[0, 10]} to={[0, -12]} angle={0} />)
+  }
+  if (kind === 'left' || kind === 'straightLeft' || kind === 'trident') {
+    branches.push(<ArrowBranch key="l" from={kind === 'left' ? [0, 6] : [0, 10]} to={[-17, -12]} angle={-42} />)
+  }
+  if (kind === 'right' || kind === 'straightRight' || kind === 'trident') {
+    branches.push(<ArrowBranch key="r" from={kind === 'right' ? [0, 6] : [0, 10]} to={[17, -12]} angle={42} />)
+  }
+  return (
+    <g transform={`translate(${x} ${y})`}>
+      {trunk}
+      {branches}
+    </g>
+  )
+}
+
 function Dashes({ x1, y1, x2, y2, color = '#fff', width = 2 }) {
   return (
     <line
@@ -173,6 +213,17 @@ export function SceneElement({ el }) {
         <g transform={`translate(${el.x} ${el.y})`}>
           <circle r={11} fill="#1fa25c" />
           <path d="M -5 0 L -1.5 4.5 L 5.5 -4.5" stroke="#fff" strokeWidth={2.4} fill="none" strokeLinecap="round" strokeLinejoin="round" />
+        </g>
+      )
+    case 'laneArrow':
+      return <LaneArrow x={el.x} y={el.y} kind={el.kind} />
+    case 'trafficLight':
+      return (
+        <g transform={`translate(${el.x} ${el.y})`}>
+          <rect x={-8} y={-2} width={16} height={44} rx={3} fill="#33383e" stroke="rgba(0,0,0,0.25)" strokeWidth={1} />
+          <circle cx={0} cy={7} r={5.2} fill="#d21f1f" />
+          <circle cx={0} cy={19} r={5.2} fill="#ffb300" />
+          <circle cx={0} cy={31} r={5.2} fill="#1fa25c" />
         </g>
       )
     case 'cross':
