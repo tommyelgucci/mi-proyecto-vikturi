@@ -118,6 +118,17 @@ export const STRINGS = {
   quizMsgGreat: { de: 'Stark! Du bist bereit für den Kurs. 💪', es: '¡Muy bien! Estás a punto para el curso. 💪' },
   quizMsgOk: { de: 'Gut! Wiederhole die Lernkarten noch einmal.', es: '¡Bien! Repasa las flashcards una vez más.' },
   quizMsgLow: { de: 'Lies die Themen nochmals in Ruhe durch.', es: 'Vuelve a leer el temario con calma.' },
+  menuSigns: { de: 'Verkehrssignale', es: 'Señales de tráfico' },
+  menuSignsSub: { de: 'Lernen, Karten & Quiz', es: 'Aprender, tarjetas y quiz' },
+  signsIntro: {
+    de: 'Die wichtigsten Schweizer Verkehrssignale nach Kategorie. Vereinfachte Darstellungen zum Lernen.',
+    es: 'Las señales suizas más importantes, por categoría. Dibujos simplificados para estudiar.',
+  },
+  signsExplore: { de: 'Signale entdecken', es: 'Explorar señales' },
+  signsExploreSub: { de: 'Nach Kategorie, mit Bedeutung', es: 'Por categoría, con su significado' },
+  signsCardsSub: { de: 'Signal vorne, Bedeutung hinten', es: 'Señal delante, significado detrás' },
+  signsQuizSub: { de: 'Welches Signal ist das?', es: '¿Qué señal es esta?' },
+  whatSign: { de: 'Was bedeutet dieses Signal?', es: '¿Qué significa esta señal?' },
 }
 
 export function t(key, lang, vars) {

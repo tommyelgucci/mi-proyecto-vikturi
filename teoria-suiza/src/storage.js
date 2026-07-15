@@ -69,4 +69,17 @@ export const storage = {
   resetFirstAidKnown() {
     write('firstaidKnown', [])
   },
+
+  // Señales: ids de señales marcadas como sabidas en las flashcards
+  getSignsKnown: () => read('signsKnown', []),
+  addSignsKnown(signId) {
+    const known = read('signsKnown', [])
+    if (!known.includes(signId)) {
+      known.push(signId)
+      write('signsKnown', known)
+    }
+  },
+  resetSignsKnown() {
+    write('signsKnown', [])
+  },
 }

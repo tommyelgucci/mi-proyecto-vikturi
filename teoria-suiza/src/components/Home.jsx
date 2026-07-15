@@ -100,6 +100,12 @@ export default function Home({ category, setCategory, navigate }) {
         />
         <MenuButton onClick={() => navigate('tips')} emoji="🎯" label={t('menuTips', lang)} sub={t('menuTipsSub', lang)} />
         <MenuButton
+          onClick={() => navigate('signs')}
+          emoji="🚸"
+          label={t('menuSigns', lang)}
+          sub={t('menuSignsSub', lang)}
+        />
+        <MenuButton
           onClick={() => navigate('firstaid')}
           emoji="⛑️"
           label={t('menuFirstAid', lang)}
