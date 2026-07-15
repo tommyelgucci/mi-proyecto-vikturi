@@ -479,44 +479,71 @@ export const MANEUVERS = [
     id: 'laengere_strecke_rueckwaerts',
     category: 'B',
     icon: '🔙',
-    title: { de: 'Längere Strecke rückwärts', es: 'Tramo largo marcha atrás' },
-    scene: straightRoadScene(),
+    title: {
+      de: 'Längere Strecke rückwärts (nach Linksabbiegen)',
+      es: 'Tramo largo marcha atrás (tras girar a la izquierda)',
+    },
+    // Continúa justo donde termina "Links abbiegen mit Einspuren": el coche
+    // acaba de girar a la izquierda hacia la calle lateral (x70,y292,-90).
+    // La maniobra real no es una línea recta: se retrocede en curva desde la
+    // calle lateral de vuelta a la calzada principal (con cambio de carril)
+    // y solo entonces sigue un tramo largo recto marcha atrás.
+    scene: junctionScene(),
     steps: [
       {
         caption: {
-          de: 'Schritt 1: Dreh dich um und schau durch die Heckscheibe – nicht nur in die Spiegel.',
-          es: 'Paso 1: Gira el cuerpo y mira por la luneta trasera, no solo por los espejos.',
+          de: 'Schritt 1: Sofort nach der Kurve den Rückwärtsgang einlegen, umdrehen und durch die Heckscheibe schauen.',
+          es: 'Paso 1: Justo después de la curva, mete la marcha atrás, gira el cuerpo y mira por la luneta trasera.',
         },
         duration: 1400,
         keyframes: [
-          { t: 0, x: 262, y: 120, angle: 0 },
-          { t: 1, x: 262, y: 120, angle: 0 },
+          { t: 0, x: 70, y: 292, angle: -90 },
+          { t: 1, x: 70, y: 292, angle: -90 },
         ],
         wheel: 'straight',
         reverse: true,
       },
       {
         caption: {
-          de: 'Schritt 2: Langsam und geradeaus rückwärts, nah am rechten Rand entlang.',
-          es: 'Paso 2: Retrocede despacio y recto, pegado al borde derecho.',
+          de: 'Schritt 2: Rückwärts aus der Seitenstrasse heraus und in engem Bogen zurück auf die Hauptstrasse lenken.',
+          es: 'Paso 2: Retrocede saliendo de la calle lateral y gira en curva cerrada de vuelta hacia la calzada principal.',
         },
         duration: 2600,
         keyframes: [
-          { t: 0, x: 262, y: 120, angle: 0 },
-          { t: 1, x: 262, y: 320, angle: 0 },
+          { t: 0, x: 70, y: 292, angle: -90 },
+          { t: 0.35, x: 120, y: 282, angle: -118 },
+          { t: 0.7, x: 168, y: 248, angle: -155 },
+          { t: 1, x: 191, y: 212, angle: -180 },
+        ],
+        wheel: 'right',
+        reverse: true,
+        guides: [
+          { x1: 96, y1: 272, x2: 168, y2: 218 },
+          { x1: 88, y1: 302, x2: 148, y2: 268 },
+        ],
+      },
+      {
+        caption: {
+          de: 'Schritt 3: Lenkrad geradestellen – jetzt bist du mit einem Spurwechsel korrekt auf der Hauptstrasse.',
+          es: 'Paso 3: Endereza el volante: con ese cambio de carril ya estás bien colocado en la calzada principal.',
+        },
+        duration: 1200,
+        keyframes: [
+          { t: 0, x: 191, y: 212, angle: -180 },
+          { t: 1, x: 187, y: 198, angle: -180 },
         ],
         wheel: 'straight',
         reverse: true,
       },
       {
         caption: {
-          de: 'Schritt 3: Auf halbem Weg anhalten und nochmals umschauen.',
-          es: 'Paso 3: Detente a medio camino y vuelve a mirar hacia atrás.',
+          de: 'Schritt 4: Auf halbem Weg anhalten und nochmals umschauen.',
+          es: 'Paso 4: Detente a medio camino y vuelve a mirar hacia atrás.',
         },
         duration: 1200,
         keyframes: [
-          { t: 0, x: 262, y: 320, angle: 0 },
-          { t: 1, x: 262, y: 320, angle: 0 },
+          { t: 0, x: 187, y: 198, angle: -180 },
+          { t: 1, x: 187, y: 198, angle: -180 },
         ],
         wheel: 'straight',
         reverse: true,
@@ -524,13 +551,13 @@ export const MANEUVERS = [
       },
       {
         caption: {
-          de: 'Schritt 4: Weiter geradeaus rückwärts bis zum Ende der Strecke.',
-          es: 'Paso 4: Continúa recto marcha atrás hasta el final del tramo.',
+          de: 'Schritt 5: Weiter geradeaus rückwärts bis zum Ende der langen Strecke.',
+          es: 'Paso 5: Continúa recto marcha atrás hasta el final del tramo largo.',
         },
-        duration: 2200,
+        duration: 2400,
         keyframes: [
-          { t: 0, x: 262, y: 320, angle: 0 },
-          { t: 1, x: 262, y: 470, angle: 0 },
+          { t: 0, x: 187, y: 198, angle: -180 },
+          { t: 1, x: 187, y: 60, angle: -180 },
         ],
         wheel: 'straight',
         reverse: true,
