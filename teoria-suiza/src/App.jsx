@@ -7,6 +7,7 @@ import Study from './components/Study'
 import Exam from './components/Exam'
 import Review from './components/Review'
 import Tips from './components/Tips'
+import Maneuvers from './components/Maneuvers'
 
 export default function App() {
   const [lang, setLangState] = useState(storage.getLang)
@@ -28,6 +29,7 @@ export default function App() {
     exam: t('menuExam', lang),
     review: t('menuReview', lang),
     tips: t('menuTips', lang),
+    maneuvers: t('menuManeuvers', lang),
   }
 
   return (
@@ -43,6 +45,7 @@ export default function App() {
         {view === 'exam' && <Exam category={category} onExit={() => setView('home')} />}
         {view === 'review' && <Review />}
         {view === 'tips' && <Tips category={category} />}
+        {view === 'maneuvers' && <Maneuvers category={category} />}
       </div>
     </LangContext.Provider>
   )

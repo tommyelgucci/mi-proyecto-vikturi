@@ -1,6 +1,7 @@
 import { useLang, t } from '../i18n'
 import { storage } from '../storage'
 import { questionsForCategory } from '../utils'
+import { maneuversForCategory } from '../data/maneuvers'
 
 function CategoryButton({ active, onClick, emoji, label, sub }) {
   return (
@@ -48,6 +49,7 @@ export default function Home({ category, setCategory, navigate }) {
   }).length
   const history = storage.getExamHistory()
   const lastExam = history[history.length - 1]
+  const maneuverCount = maneuversForCategory(category).length
 
   return (
     <div className="mx-auto max-w-xl space-y-5 px-4 py-5">
@@ -82,6 +84,13 @@ export default function Home({ category, setCategory, navigate }) {
       <div className="space-y-3">
         <MenuButton onClick={() => navigate('study')} emoji="📖" label={t('menuStudy', lang)} sub={t('menuStudySub', lang)} />
         <MenuButton onClick={() => navigate('exam')} emoji="⏱️" label={t('menuExam', lang)} sub={t('menuExamSub', lang)} />
+        <MenuButton
+          onClick={() => navigate('maneuvers')}
+          emoji="🚘"
+          label={t('menuManeuvers', lang)}
+          sub={t('menuManeuversSub', lang)}
+          badge={maneuverCount}
+        />
         <MenuButton
           onClick={() => navigate('review')}
           emoji="🔁"

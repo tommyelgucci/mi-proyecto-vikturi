@@ -80,6 +80,20 @@ export const STRINGS = {
   timeLeft: { de: 'Restzeit', es: 'Tiempo restante' },
   answered: { de: 'beantwortet', es: 'respondidas' },
   categoryQuestions: { de: 'Fragen im Katalog', es: 'preguntas en el banco' },
+  menuManeuvers: { de: 'Animierte Manöver', es: 'Maniobras animadas' },
+  menuManeuversSub: { de: 'Schritt für Schritt erklärt', es: 'Explicadas paso a paso' },
+  steps: { de: 'Schritte', es: 'pasos' },
+  step: { de: 'Schritt', es: 'Paso' },
+  backToList: { de: 'Zurück zur Liste', es: 'Volver a la lista' },
+  play: { de: 'Abspielen', es: 'Reproducir' },
+  pause: { de: 'Pause', es: 'Pausa' },
+  restart: { de: 'Neu starten', es: 'Reiniciar' },
+  prevStep: { de: 'Vorheriger Schritt', es: 'Paso anterior' },
+  nextStep: { de: 'Nächster Schritt', es: 'Paso siguiente' },
+  maneuversComingSoon: {
+    de: 'Animierte Manöver für diese Kategorie folgen bald.',
+    es: 'Las maniobras animadas para esta categoría llegarán pronto.',
+  },
 }
 
 export function t(key, lang, vars) {

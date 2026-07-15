@@ -155,5 +155,33 @@
       { "de": "Auf der Strasse gilt: sichtbar fahren, Sicherheitsblick deutlich zeigen, Abstand halten.", "es": "En carretera: hazte visible, muestra claramente la mirada de seguridad y mantén distancia." },
       { "de": "Der Experte fährt hinter dir und gibt Anweisungen per Funk – ruhig bleiben und normal fahren.", "es": "El examinador va detrás y da instrucciones por radio: mantén la calma y conduce con normalidad." }
     ]
+  },
+  {
+    "id": "wegweiser_farben",
+    "category": "both",
+    "icon": "🚦",
+    "title": { "de": "Wegweiser-Farben", "es": "Colores de los indicadores de dirección" },
+    "tips": [
+      { "de": "Grün: Wegweiser zur Autobahn.", "es": "Verde: indica el camino hacia la autopista (Autobahn)." },
+      { "de": "Blau: Wegweiser zu Hauptstrassen.", "es": "Azul: indica el camino hacia carreteras principales (Hauptstrasse)." },
+      { "de": "Weiss: Wegweiser zu Neben- oder Ortsstrassen.", "es": "Blanco: indica el camino hacia carreteras secundarias o locales." },
+      { "de": "Diese Farben helfen dir, dich auf Wegweisern schnell zu orientieren, ohne jedes Wort zu lesen.", "es": "Estos colores ayudan a orientarte rápido en los carteles, sin tener que leer cada palabra." }
+    ]
+  },
+  {
+    "id": "kommandos_experte",
+    "category": "both",
+    "icon": "🗣️",
+    "title": { "de": "Kommandos des Experten", "es": "Órdenes del examinador (glosario)" },
+    "tips": [
+      { "de": "«Einspuren»: dich rechtzeitig im richtigen Fahrstreifen positionieren, besonders vor dem Linksabbiegen.", "es": "«Einspuren»: colocarte con antelación en el carril correcto, sobre todo antes de girar a la izquierda." },
+      { "de": "«Vortritt gewähren»: den Vortritt abgeben und andere zuerst durchfahren lassen.", "es": "«Vortritt gewähren»: ceder el paso y dejar pasar primero a los demás." },
+      { "de": "«Vollstopp»: vollständig anhalten, z. B. beim Stopsignal.", "es": "«Vollstopp»: parada completa, por ejemplo en la señal de STOP." },
+      { "de": "«Abstand halten»: genügend Sicherheitsabstand zum Vordermann einhalten – nicht zu nah auffahren.", "es": "«Abstand halten»: mantener suficiente distancia de seguridad con el de delante, sin pegarte demasiado." },
+      { "de": "«Anhalten»: am Strassenrand halten – dort, wo es erlaubt ist (siehe Manöver «Anhalten am Strassenrand»).", "es": "«Anhalten»: detente en el borde de la calle, donde esté permitido (ver la maniobra «Parar en el borde»)." },
+      { "de": "«Wenden» / «Umkehren»: die Fahrtrichtung umkehren, meist mit einer 3-Punkte-Wende.", "es": "«Wenden» / «Umkehren»: cambiar de sentido de la marcha, normalmente con un giro en 3 tiempos." },
+      { "de": "«Vollbremsung»: eine Notbremsung ausführen – eine normale Übung, kein Grund zur Sorge.", "es": "«Vollbremsung»: hacer una frenada de emergencia. Es un ejercicio normal del examen, no motivo de preocupación." },
+      { "de": "«Rückwärtsfahren»: ein Stück rückwärtsfahren, oft nach einer Linksabbiegung.", "es": "«Rückwärtsfahren»: retroceder marcha atrás un tramo, a menudo después de girar a la izquierda." }
+    ]
   }
 ]

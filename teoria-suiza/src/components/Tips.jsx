@@ -5,7 +5,7 @@ import { useLang } from '../i18n'
 export default function Tips({ category }) {
   const { lang } = useLang()
   const [open, setOpen] = useState(null)
-  const sections = tips.filter((s) => s.category === category)
+  const sections = tips.filter((s) => s.category === category || s.category === 'both')
 
   return (
     <div className="mx-auto max-w-xl space-y-3 px-4 py-4">

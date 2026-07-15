@@ -10,7 +10,8 @@ App web bilingüe **alemán/español** para estudiar la teoría del examen de co
 - **Modo estudio**: preguntas una a una con feedback inmediato, explicación bilingüe y filtro por tema
 - **Modo examen**: simulación con preguntas aleatorias, temporizador, puntos de penalización y repaso de errores al final (umbral proporcional al tamaño del banco actual)
 - **Repaso de falladas**: las preguntas falladas se guardan en `localStorage` y se eliminan al responderlas bien
-- **Tips prácticos** por categoría: aparcar en paralelo, Rechtsvortritt, rotondas, Sicherheitsblick, autopista (B) · Spurgasse, slalom, Vollbremsung, el ocho, equipamiento (A)
+- **Maniobras animadas**: animaciones SVG limpias en vista cenital (estilo "vídeo explicativo") con coche animado, indicador de volante, intermitentes, marcha atrás y captions paso a paso, bilingües. 10 maniobras de categoría B: aparcar en paralelo, en perpendicular y de frente, girar a la izquierda con Einspuren, tramo largo marcha atrás, cambio de sentido en 3 tiempos, parada en el STOP, frenada de emergencia (Vollbremsung), dónde parar ("Anhalten") y la regla de los 2 segundos
+- **Tips prácticos** por categoría: aparcar en paralelo, Rechtsvortritt, rotondas, Sicherheitsblick, autopista (B) · Spurgasse, slalom, Vollbremsung, el ocho, equipamiento (A) · colores de indicadores de dirección y glosario de órdenes del examinador (ambas categorías)
 
 ## Stack
 
@@ -53,6 +54,16 @@ Se soportan preguntas con **varias respuestas correctas** (checkboxes, como en e
 ## Añadir preguntas
 
 Añade objetos a `src/data/questions.json` siguiendo el modelo. El modo examen escala automáticamente: usa hasta 50 preguntas y ajusta el umbral de aprobado y el tiempo de forma proporcional al tamaño del banco.
+
+## Añadir maniobras animadas
+
+Las maniobras viven en `src/data/maneuvers.js` (JS, no JSON, para poder componer escenas con funciones). El motor de animación (`ManeuverPlayer.jsx`) y los sprites (`CarSprite.jsx`, `SceneElements.jsx`) son genéricos: una maniobra nueva es solo **datos**, no requiere tocar el motor.
+
+Cada maniobra tiene:
+- `scene.elements`: lista de elementos estáticos (`road`, `grass`, `curbLine`, `laneLine`, `yellowZone`, `driveway`, `crosswalk`, `stopSign`, `bayOutline`, `parkedCar`, `label`, `distanceTag`, `check`, `cross`) sobre un lienzo `360×560`.
+- `steps`: cada paso anima el coche protagonista entre `keyframes` `{ t, x, y, angle }` (`t` de 0 a 1, ángulo 0 = arriba, positivo = gira a la derecha). Props opcionales por paso: `wheel` (`'left' | 'right' | 'straight'`), `reverse`, `braking`, `blinker`, `guides` (líneas guía cian), `callout` (bocadillo, p. ej. la orden del experto), `extraCars` (vehículos secundarios con sus propios keyframes, p. ej. tráfico en sentido contrario), `gapBadge` (✔/✘ junto al coche).
+
+El reproductor respeta `prefers-reduced-motion`: sin autoplay, solo navegación por pasos mostrando la pose final de cada uno.
 
 ## Aviso
 
