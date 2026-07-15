@@ -215,6 +215,8 @@ export default function ManeuverPlayer({ maneuver, onBack }) {
             blinker={step.blinker}
             reverseLights={!!step.reverse}
             braking={!!step.braking}
+            showWheels
+            steer={step.wheel === 'left' ? -30 : step.wheel === 'right' ? 30 : 0}
           />
 
           {step.gapBadge && (

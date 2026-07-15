@@ -2,6 +2,7 @@
  * Coche visto desde arriba, estilo plano y limpio.
  * Dibujado centrado en (0,0), apuntando hacia ARRIBA (angle 0 = norte).
  * Dimensiones locales: 36 de ancho × 72 de largo.
+ * `steer`: giro de las ruedas delanteras en grados (negativo = izquierda).
  */
 export default function CarSprite({
   x = 0,
@@ -11,11 +12,28 @@ export default function CarSprite({
   blinker = null, // 'left' | 'right' | null
   reverseLights = false,
   braking = false,
+  steer = 0,
+  showWheels = false,
 }) {
+  const frontWheelStyle = {
+    transform: `rotate(${steer}deg)`,
+    transformBox: 'fill-box',
+    transformOrigin: 'center',
+    transition: 'transform 0.45s ease',
+  }
   return (
     <g transform={`translate(${x} ${y}) rotate(${angle})`}>
       {/* sombra */}
       <rect x={-18} y={-36} width={36} height={72} rx={11} fill="rgba(0,0,0,0.25)" transform="translate(1.5 1.5)" />
+      {/* ruedas: sobresalen un poco del cuerpo; las delanteras giran con el volante */}
+      {showWheels && (
+        <>
+          <rect x={-22.5} y={-27} width={6.5} height={14} rx={2.5} fill="#1c2024" style={frontWheelStyle} />
+          <rect x={16} y={-27} width={6.5} height={14} rx={2.5} fill="#1c2024" style={frontWheelStyle} />
+          <rect x={-22.5} y={14} width={6.5} height={14} rx={2.5} fill="#1c2024" />
+          <rect x={16} y={14} width={6.5} height={14} rx={2.5} fill="#1c2024" />
+        </>
+      )}
       {/* retrovisores */}
       <rect x={-21.5} y={-16} width={5} height={3.5} rx={1.5} fill={color} stroke="rgba(0,0,0,0.15)" strokeWidth={0.5} />
       <rect x={16.5} y={-16} width={5} height={3.5} rx={1.5} fill={color} stroke="rgba(0,0,0,0.15)" strokeWidth={0.5} />
