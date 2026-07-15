@@ -9,7 +9,7 @@ export default function CarSprite({
   y = 0,
   angle = 0,
   color = '#ffffff',
-  blinker = null, // 'left' | 'right' | null
+  blinker = null, // 'left' | 'right' | 'both' (luces de emergencia) | null
   reverseLights = false,
   braking = false,
   steer = 0,
@@ -67,14 +67,14 @@ export default function CarSprite({
           <rect x={1.5} y={32.5} width={4.5} height={3} rx={1} fill="#fff" filter="url(#glow)" />
         </>
       )}
-      {/* intermitentes (las 2 esquinas del lado activo) */}
-      {blinker === 'left' && (
+      {/* intermitentes: las 2 esquinas del lado activo, o las 4 en emergencia ('both') */}
+      {(blinker === 'left' || blinker === 'both') && (
         <>
           <circle cx={-15.5} cy={-33} r={3.2} fill="#ffb300" className="blink" />
           <circle cx={-15.5} cy={33} r={3.2} fill="#ffb300" className="blink" />
         </>
       )}
-      {blinker === 'right' && (
+      {(blinker === 'right' || blinker === 'both') && (
         <>
           <circle cx={15.5} cy={-33} r={3.2} fill="#ffb300" className="blink" />
           <circle cx={15.5} cy={33} r={3.2} fill="#ffb300" className="blink" />
