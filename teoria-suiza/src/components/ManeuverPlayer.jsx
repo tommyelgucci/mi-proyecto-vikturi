@@ -87,13 +87,15 @@ export default function ManeuverPlayer({ maneuver, onBack }) {
     [],
   )
 
+  const hasVariants = !!maneuver.variants
+  const [variantIndex, setVariantIndex] = useState(0)
   const [stepIndex, setStepIndex] = useState(0)
   const [progress, setProgress] = useState(reducedMotion ? 1 : 0)
   const [playing, setPlaying] = useState(false)
   const rafRef = useRef(null)
   const startRef = useRef(null)
 
-  const steps = maneuver.steps
+  const steps = hasVariants ? maneuver.variants[variantIndex].steps : maneuver.steps
   const step = steps[stepIndex]
   const isLastStep = stepIndex === steps.length - 1
 
@@ -158,6 +160,15 @@ export default function ManeuverPlayer({ maneuver, onBack }) {
     setProgress(reducedMotion ? 1 : 0)
   }
 
+  function selectVariant(i) {
+    if (i === variantIndex) return
+    setVariantIndex(i)
+    setPlaying(false)
+    startRef.current = null
+    setStepIndex(0)
+    setProgress(reducedMotion ? 1 : 0)
+  }
+
   const egoPose = sampleKeyframes(step.keyframes, progress)
 
   return (
@@ -165,6 +176,24 @@ export default function ManeuverPlayer({ maneuver, onBack }) {
       <button onClick={onBack} className="text-sm font-semibold text-swiss">
         ‹ {t('backToList', lang)}
       </button>
+
+      {hasVariants && (
+        <div className="flex gap-2">
+          {maneuver.variants.map((v, i) => (
+            <button
+              key={v.id}
+              onClick={() => selectVariant(i)}
+              className={`flex-1 rounded-xl px-3 py-2 text-sm font-semibold transition-colors ${
+                i === variantIndex
+                  ? 'bg-swiss text-white'
+                  : 'bg-white text-gray-600 ring-1 ring-gray-300 hover:bg-gray-50'
+              }`}
+            >
+              {v.label[lang]}
+            </button>
+          ))}
+        </div>
+      )}
 
       <div className="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-gray-200">
         <svg viewBox={`0 0 ${CANVAS.w} ${CANVAS.h}`} className="block w-full" style={{ maxHeight: '62vh' }}>

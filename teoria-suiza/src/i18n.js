@@ -83,6 +83,7 @@ export const STRINGS = {
   menuManeuvers: { de: 'Animierte Manöver', es: 'Maniobras animadas' },
   menuManeuversSub: { de: 'Schritt für Schritt erklärt', es: 'Explicadas paso a paso' },
   steps: { de: 'Schritte', es: 'pasos' },
+  techniques: { de: 'Techniken', es: 'técnicas' },
   step: { de: 'Schritt', es: 'Paso' },
   backToList: { de: 'Zurück zur Liste', es: 'Volver a la lista' },
   play: { de: 'Abspielen', es: 'Reproducir' },

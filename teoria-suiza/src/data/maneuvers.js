@@ -80,6 +80,25 @@ function narrowStreetScene() {
   }
 }
 
+function wendeplatzScene() {
+  // Wendeplatz en forma de "hongo": una zona ancha de maniobra (el bulbo) al
+  // final de una calle angosta, para dar la vuelta con espacio de sobra.
+  return {
+    elements: [
+      { type: 'grass', x: 0, y: 0, w: 40, h: CANVAS.h },
+      { type: 'grass', x: 320, y: 0, w: 40, h: CANVAS.h },
+      { type: 'grass', x: 40, y: 240, w: 80, h: 320 },
+      { type: 'grass', x: 240, y: 240, w: 80, h: 320 },
+      { type: 'road', x: 40, y: 0, w: 280, h: 240 },
+      { type: 'road', x: 120, y: 240, w: 120, h: 320 },
+      { type: 'curbLine', x1: 40, y1: 0, x2: 40, y2: 240 },
+      { type: 'curbLine', x1: 320, y1: 0, x2: 320, y2: 240 },
+      { type: 'curbLine', x1: 120, y1: 240, x2: 120, y2: CANVAS.h },
+      { type: 'curbLine', x1: 240, y1: 240, x2: 240, y2: CANVAS.h },
+    ],
+  }
+}
+
 function straightRoadScene() {
   return {
     elements: [
@@ -635,6 +654,133 @@ export const MANEUVERS = [
           { t: 1, x: 140, y: 375, angle: -180 },
         ],
         wheel: 'left',
+      },
+    ],
+  },
+  {
+    id: 'wendeplatz_kehrtwende',
+    category: 'B',
+    icon: '🔄',
+    title: { de: 'Wenden auf dem Wendeplatz', es: 'Cambiar de sentido en el Wendeplatz' },
+    // Cuando la calle termina en un Wendeplatz (zona ancha de maniobra), hay
+    // espacio de sobra para dar la vuelta: con un solo arco amplio hacia
+    // adelante (sin marcha atrás) si cabe, o con una 3-Punkte-Wende dentro
+    // del propio Wendeplatz si el espacio es más justo.
+    scene: wendeplatzScene(),
+    variants: [
+      {
+        id: 'bogen',
+        label: { de: 'Weiter Bogen', es: 'Arco amplio' },
+        steps: [
+          {
+            caption: {
+              de: 'Schritt 1: In den Wendeplatz einfahren – Tempo reduzieren, Blick auf die ganze Fläche.',
+              es: 'Paso 1: Entra en el Wendeplatz, reduce la velocidad y mira toda la zona disponible.',
+            },
+            duration: 1600,
+            keyframes: [
+              { t: 0, x: 180, y: 520, angle: 0 },
+              { t: 1, x: 180, y: 260, angle: 0 },
+            ],
+            wheel: 'straight',
+          },
+          {
+            caption: {
+              de: 'Schritt 2: Wenn genug Platz da ist: in einem einzigen weiten Bogen vorwärts wenden, ohne rückwärtszufahren.',
+              es: 'Paso 2: Si hay espacio suficiente, da la vuelta en un solo arco amplio hacia adelante, sin necesidad de marcha atrás.',
+            },
+            duration: 3200,
+            keyframes: [
+              { t: 0, x: 180, y: 260, angle: 0 },
+              { t: 0.3, x: 110, y: 205, angle: -55 },
+              { t: 0.55, x: 70, y: 120, angle: -115 },
+              { t: 0.8, x: 105, y: 55, angle: -160 },
+              { t: 1, x: 180, y: 45, angle: -180 },
+            ],
+            wheel: 'left',
+          },
+          {
+            caption: {
+              de: 'Schritt 3: Geradestellen und in die Gegenrichtung aus dem Wendeplatz herausfahren.',
+              es: 'Paso 3: Endereza el volante y sal del Wendeplatz en sentido contrario.',
+            },
+            duration: 1800,
+            keyframes: [
+              { t: 0, x: 180, y: 45, angle: -180 },
+              { t: 1, x: 180, y: 520, angle: -180 },
+            ],
+            wheel: 'straight',
+          },
+        ],
+      },
+      {
+        id: 'dreipunkt',
+        label: { de: '3-Punkte-Wende', es: '3 puntos' },
+        steps: [
+          {
+            caption: {
+              de: 'Schritt 1: In den Wendeplatz einfahren, bis zur Mitte der Fläche.',
+              es: 'Paso 1: Entra en el Wendeplatz hasta el centro de la zona.',
+            },
+            duration: 1600,
+            keyframes: [
+              { t: 0, x: 180, y: 520, angle: 0 },
+              { t: 1, x: 180, y: 255, angle: 0 },
+            ],
+            wheel: 'straight',
+          },
+          {
+            caption: {
+              de: 'Schritt 2: Reicht der Platz nicht für einen Bogen: Lenkrad ganz nach links und vorwärts bis nahe an den Rand.',
+              es: 'Paso 2: Si no alcanza el espacio para el arco: volante a fondo a la izquierda y avanza hasta cerca del borde.',
+            },
+            duration: 2200,
+            keyframes: [
+              { t: 0, x: 180, y: 255, angle: 0 },
+              { t: 0.5, x: 138, y: 210, angle: -38 },
+              { t: 1, x: 100, y: 175, angle: -75 },
+            ],
+            wheel: 'left',
+          },
+          {
+            caption: {
+              de: 'Schritt 3: Lenkrad ganz nach rechts und rückwärts – das Heck schwenkt zur anderen Seite.',
+              es: 'Paso 3: Volante a fondo a la derecha y marcha atrás: la trasera gira hacia el otro lado.',
+            },
+            duration: 2400,
+            keyframes: [
+              { t: 0, x: 100, y: 175, angle: -75 },
+              { t: 0.5, x: 168, y: 155, angle: -120 },
+              { t: 1, x: 235, y: 175, angle: -165 },
+            ],
+            wheel: 'right',
+            reverse: true,
+          },
+          {
+            caption: {
+              de: 'Schritt 4: Wieder nach links einlenken und vorwärts, bis du zur Ausfahrt zeigst.',
+              es: 'Paso 4: Gira otra vez a la izquierda y avanza hasta quedar orientado hacia la salida.',
+            },
+            duration: 2000,
+            keyframes: [
+              { t: 0, x: 235, y: 175, angle: -165 },
+              { t: 1, x: 180, y: 255, angle: -180 },
+            ],
+            wheel: 'left',
+          },
+          {
+            caption: {
+              de: 'Schritt 5: Geradestellen und in die Gegenrichtung aus dem Wendeplatz herausfahren.',
+              es: 'Paso 5: Endereza el volante y sal del Wendeplatz en sentido contrario.',
+            },
+            duration: 1800,
+            keyframes: [
+              { t: 0, x: 180, y: 255, angle: -180 },
+              { t: 1, x: 180, y: 520, angle: -180 },
+            ],
+            wheel: 'straight',
+          },
+        ],
       },
     ],
   },
