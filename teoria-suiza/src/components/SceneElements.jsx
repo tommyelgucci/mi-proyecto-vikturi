@@ -100,6 +100,34 @@ export function SceneElement({ el }) {
         </g>
       )
     }
+    case 'ring':
+      // corona circular de calzada (rotondas)
+      return (
+        <g>
+          <circle cx={el.x} cy={el.y} r={(el.rOuter + el.rInner) / 2} fill="none" stroke={ROAD} strokeWidth={el.rOuter - el.rInner} />
+          <circle cx={el.x} cy={el.y} r={el.rInner} fill={GRASS} stroke={CURB} strokeWidth={2.5} />
+          <circle cx={el.x} cy={el.y} r={el.rOuter} fill="none" stroke={CURB} strokeWidth={2.5} />
+        </g>
+      )
+    case 'tram':
+      return (
+        <g transform={`translate(${el.x} ${el.y}) rotate(${el.angle || 0})`}>
+          <rect x={-16} y={-52} width={32} height={104} rx={8} fill={el.color || '#2f6db3'} stroke="rgba(0,0,0,0.25)" strokeWidth={1.5} />
+          <rect x={-11} y={-44} width={22} height={12} rx={3} fill="#33454f" />
+          <rect x={-11} y={-26} width={22} height={14} rx={3} fill="#33454f" />
+          <rect x={-11} y={-6} width={22} height={14} rx={3} fill="#33454f" />
+          <rect x={-11} y={14} width={22} height={14} rx={3} fill="#33454f" />
+          <rect x={-11} y={34} width={22} height={12} rx={3} fill="#33454f" />
+          <line x1={-14} y1={0} x2={14} y2={0} stroke="rgba(0,0,0,0.25)" strokeWidth={1.5} />
+        </g>
+      )
+    case 'rail':
+      return (
+        <g stroke="#c7ccd1" strokeWidth={2}>
+          <line x1={el.x1} y1={el.y1 - 6} x2={el.x2} y2={el.y2 - 6} />
+          <line x1={el.x1} y1={el.y1 + 6} x2={el.x2} y2={el.y2 + 6} />
+        </g>
+      )
     case 'cone':
       return (
         <g transform={`translate(${el.x} ${el.y})`}>

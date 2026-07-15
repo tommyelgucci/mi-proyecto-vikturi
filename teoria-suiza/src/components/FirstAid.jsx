@@ -63,44 +63,45 @@ function Topics() {
 function Flashcards() {
   const { lang } = useLang()
   const [deck, setDeck] = useState(() => {
-    const known = new Set(storage.getFirstAidKnown())
-    return shuffle(FIRSTAID_CARDS.filter((c) => !known.has(c.id)))
+    const dueIds = new Set(storage.srsDueIds('firstaid', FIRSTAID_CARDS.map((c) => c.id)))
+    return shuffle(FIRSTAID_CARDS.filter((c) => dueIds.has(c.id)))
   })
   const [flipped, setFlipped] = useState(false)
-  const knownCount = FIRSTAID_CARDS.length - deck.length
+  const { inReview } = storage.srsCounts('firstaid', FIRSTAID_CARDS.map((c) => c.id))
 
   const card = deck[0]
 
   function markKnown() {
-    storage.addFirstAidKnown(card.id)
+    storage.srsPromote('firstaid', card.id)
     setDeck((d) => d.slice(1))
     setFlipped(false)
   }
 
   function repeatLater() {
+    storage.srsDemote('firstaid', card.id)
     setDeck((d) => [...d.slice(1), d[0]])
     setFlipped(false)
   }
 
-  function restart() {
-    storage.resetFirstAidKnown()
-    setDeck(shuffle([...FIRSTAID_CARDS]))
-    setFlipped(false)
-  }
-
   if (!card) {
+    const nextDue = storage.srsNextDue('firstaid')
     return (
       <div className="rounded-2xl bg-white p-8 text-center shadow-sm ring-1 ring-gray-200">
         <p className="text-4xl">🎉</p>
-        <p className="mt-3 text-lg font-semibold text-gray-900">{t('cardsAllDone', lang)}</p>
-        <p className="mt-1 text-sm text-gray-500">
-          {FIRSTAID_CARDS.length}/{FIRSTAID_CARDS.length} {t('cardsLearned', lang)}
-        </p>
+        <p className="mt-3 text-lg font-semibold text-gray-900">{t('allCaughtUp', lang)}</p>
+        {nextDue && (
+          <p className="mt-1 text-sm text-gray-500">
+            {t('nextReview', lang)}: {new Date(nextDue).toLocaleDateString(lang === 'de' ? 'de-CH' : 'es-ES')}
+          </p>
+        )}
         <button
-          onClick={restart}
+          onClick={() => {
+            setDeck(shuffle([...FIRSTAID_CARDS]))
+            setFlipped(false)
+          }}
           className="mt-4 rounded-xl bg-swiss px-5 py-2.5 font-semibold text-white hover:bg-swiss-dark"
         >
-          {t('cardsRestart', lang)}
+          {t('practiceAnyway', lang)}
         </button>
       </div>
     )
@@ -110,10 +111,10 @@ function Flashcards() {
     <div className="space-y-4">
       <div className="flex items-center justify-between text-sm text-gray-500">
         <span>
-          {t('card', lang)} · {deck.length} ↻
+          🃏 {deck.length} {t('dueToday', lang)}
         </span>
         <span>
-          ✓ {knownCount}/{FIRSTAID_CARDS.length} {t('cardsLearned', lang)}
+          ✓ {inReview}/{FIRSTAID_CARDS.length} {t('cardsLearned', lang)}
         </span>
       </div>
 
@@ -197,6 +198,7 @@ function Quiz() {
 
   function check() {
     if (isAnswerCorrect(question, selected)) setScore((s) => s + 1)
+    storage.touchStudyDay()
     setRevealed(true)
   }
 
@@ -248,7 +250,7 @@ function Quiz() {
 export default function FirstAid() {
   const { lang } = useLang()
   const [view, setView] = useState('hub') // hub | topics | cards | quiz
-  const unknownCards = FIRSTAID_CARDS.length - storage.getFirstAidKnown().length
+  const unknownCards = storage.srsDueIds('firstaid', FIRSTAID_CARDS.map((c) => c.id)).length
 
   if (view !== 'hub') {
     return (

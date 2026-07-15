@@ -652,5 +652,1168 @@
       "es": "A los motoristas se les pasa por alto fácilmente: posiciónate visible (normalmente en el centro del carril), evita los ángulos muertos y haz la mirada de seguridad antes de cada cambio de dirección."
     },
     "image": null
+  },
+  {
+    "id": "q032",
+    "category": "both",
+    "topic": "vortritt",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": { "de": "Verzweigung ohne Signale: In welcher Reihenfolge fahren die Fahrzeuge?", "es": "Cruce sin señales: ¿en qué orden pasan los vehículos?" },
+    "options": [
+      { "id": "a", "text": { "de": "B vor A", "es": "B antes que A" }, "correct": true },
+      { "id": "b", "text": { "de": "A vor B", "es": "A antes que B" }, "correct": false },
+      { "id": "c", "text": { "de": "Wer zuerst ankommt, fährt zuerst", "es": "El que llegue primero" }, "correct": false }
+    ],
+    "explanation": { "de": "Rechtsvortritt: B kommt für A von rechts, also fährt B zuerst.", "es": "Prioridad de la derecha: B viene por la derecha de A, así que pasa primero B." },
+    "image": { "type": "scene", "id": "rechtsvortritt_2" }
+  },
+  {
+    "id": "q033",
+    "category": "both",
+    "topic": "vortritt",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": { "de": "Verzweigung ohne Signale mit drei Fahrzeugen: Wer fährt zuerst, wer zuletzt?", "es": "Cruce sin señales con tres vehículos: ¿quién pasa primero y quién al final?" },
+    "options": [
+      { "id": "a", "text": { "de": "Zuerst C, dann B, zuletzt A", "es": "Primero C, luego B y al final A" }, "correct": true },
+      { "id": "b", "text": { "de": "Zuerst A, dann B, zuletzt C", "es": "Primero A, luego B y al final C" }, "correct": false },
+      { "id": "c", "text": { "de": "Zuerst B, dann C, zuletzt A", "es": "Primero B, luego C y al final A" }, "correct": false }
+    ],
+    "explanation": { "de": "C hat rechts niemanden → fährt zuerst. B muss nur noch C durchlassen, A wartet auf B (rechts).", "es": "C no tiene a nadie por su derecha → pasa primero. B solo espera a C, y A espera a B (que viene por su derecha)." },
+    "image": { "type": "scene", "id": "rechtsvortritt_3" }
+  },
+  {
+    "id": "q034",
+    "category": "both",
+    "topic": "vortritt",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": { "de": "Ein Tram nähert sich von links. Wer hat Vortritt?", "es": "Un tranvía se acerca por la izquierda. ¿Quién tiene prioridad?" },
+    "options": [
+      { "id": "a", "text": { "de": "Das Tram (B) – Trams haben grundsätzlich Vortritt", "es": "El tranvía (B): los tranvías tienen prioridad por principio" }, "correct": true },
+      { "id": "b", "text": { "de": "Das Auto (A), weil Rechtsvortritt gilt", "es": "El coche (A), porque rige la prioridad de la derecha" }, "correct": false },
+      { "id": "c", "text": { "de": "Wer schneller ist", "es": "El más rápido" }, "correct": false }
+    ],
+    "explanation": { "de": "Die Strassenbahn hat auch von links kommend Vortritt (ausser Signalisation regelt es anders).", "es": "El tranvía tiene prioridad aunque venga por la izquierda (salvo señalización en contra)." },
+    "image": { "type": "scene", "id": "tram_links" }
+  },
+  {
+    "id": "q035",
+    "category": "both",
+    "topic": "kreisverkehr",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": { "de": "A will in den Kreisel einfahren, B ist bereits im Kreisel. Wer fährt zuerst?", "es": "A quiere entrar en la rotonda y B ya circula dentro. ¿Quién pasa primero?" },
+    "options": [
+      { "id": "a", "text": { "de": "B – der Verkehr im Kreisel hat Vortritt", "es": "B: el tráfico dentro de la rotonda tiene prioridad" }, "correct": true },
+      { "id": "b", "text": { "de": "A – er kommt von rechts", "es": "A, porque viene por la derecha" }, "correct": false },
+      { "id": "c", "text": { "de": "Beide gleichzeitig", "es": "Los dos a la vez" }, "correct": false }
+    ],
+    "explanation": { "de": "Vor dem Kreisel gilt: Vortritt für Fahrzeuge im Kreisel (von links). Der Rechtsvortritt ist aufgehoben.", "es": "Ante la rotonda, la prioridad es de quien circula dentro (viene por la izquierda); no rige la prioridad de la derecha." },
+    "image": { "type": "scene", "id": "kreisel" }
+  },
+  {
+    "id": "q036",
+    "category": "both",
+    "topic": "kreisverkehr",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Was muss A beim Verlassen des Kreisels tun?", "es": "¿Qué debe hacer A al salir de la rotonda?" },
+    "options": [
+      { "id": "a", "text": { "de": "Rechts blinken und auf Fussgänger/Velos achten", "es": "Poner el intermitente derecho y atender a peatones y bicis" }, "correct": true },
+      { "id": "b", "text": { "de": "Links blinken", "es": "Poner el intermitente izquierdo" }, "correct": false },
+      { "id": "c", "text": { "de": "Nichts – im Kreisel wird nie geblinkt", "es": "Nada: en la rotonda nunca se usa intermitente" }, "correct": false }
+    ],
+    "explanation": { "de": "Beim Verlassen rechts blinken, damit Wartende einfahren können.", "es": "Al salir se señaliza a la derecha para que los que esperan puedan entrar." },
+    "image": { "type": "scene", "id": "kreisel" }
+  },
+  {
+    "id": "q037",
+    "category": "both",
+    "topic": "vortritt",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": { "de": "A will links abbiegen, B kommt entgegen und fährt geradeaus. Wer fährt zuerst?", "es": "A quiere girar a la izquierda y B viene de frente en línea recta. ¿Quién pasa primero?" },
+    "options": [
+      { "id": "a", "text": { "de": "B – der Gegenverkehr, der geradeaus fährt, hat Vortritt", "es": "B: el tráfico de frente que sigue recto tiene prioridad" }, "correct": true },
+      { "id": "b", "text": { "de": "A – Abbieger haben immer Vortritt", "es": "A: el que gira siempre tiene prioridad" }, "correct": false },
+      { "id": "c", "text": { "de": "Wer zuerst blinkt", "es": "El primero que ponga el intermitente" }, "correct": false }
+    ],
+    "explanation": { "de": "Linksabbieger müssen den entgegenkommenden Geradeausverkehr durchlassen.", "es": "Quien gira a la izquierda debe dejar pasar antes al tráfico que viene de frente." },
+    "image": { "type": "scene", "id": "linksabbiegen" }
+  },
+  {
+    "id": "q038",
+    "category": "both",
+    "topic": "vortritt",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": { "de": "A fährt aus einem Parkplatz auf die Strasse, B fährt auf der Strasse. Wer hat Vortritt?", "es": "A sale de un aparcamiento a la calle y B circula por la calle. ¿Quién tiene prioridad?" },
+    "options": [
+      { "id": "a", "text": { "de": "B – wer aus Parkplatz oder Einfahrt kommt, muss allen den Vortritt lassen", "es": "B: quien sale de un aparcamiento o entrada debe ceder el paso a todos" }, "correct": true },
+      { "id": "b", "text": { "de": "A – er kommt von rechts", "es": "A, porque viene por la derecha" }, "correct": false },
+      { "id": "c", "text": { "de": "Der grössere Wagen", "es": "El vehículo más grande" }, "correct": false }
+    ],
+    "explanation": { "de": "Beim Einfahren aus Parkplätzen, Garagen oder Feldwegen gilt kein Rechtsvortritt: alle durchlassen.", "es": "Al incorporarse desde aparcamientos, garajes o caminos no rige la prioridad de la derecha: se cede a todos." },
+    "image": { "type": "scene", "id": "ausfahrt" }
+  },
+  {
+    "id": "q039",
+    "category": "both",
+    "topic": "vortritt",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Wann darf A in dieser Situation abbiegen?", "es": "En esta situación, ¿cuándo puede girar A?" },
+    "options": [
+      { "id": "a", "text": { "de": "Sobald B durchgefahren ist und der Weg frei ist", "es": "En cuanto B haya pasado y el camino quede libre" }, "correct": true },
+      { "id": "b", "text": { "de": "Sofort, wenn er schneller beschleunigt als B", "es": "Ya mismo, si acelera más rápido que B" }, "correct": false },
+      { "id": "c", "text": { "de": "Gar nicht – links abbiegen ist hier verboten", "es": "Nunca: girar a la izquierda está prohibido aquí" }, "correct": false }
+    ],
+    "explanation": { "de": "Abbiegen erst, wenn es ohne Behinderung des Gegenverkehrs möglich ist.", "es": "Se gira solo cuando puede hacerse sin estorbar al tráfico de frente." },
+    "image": { "type": "scene", "id": "linksabbiegen" }
+  },
+  {
+    "id": "q040",
+    "category": "both",
+    "topic": "vortritt",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Wer muss in dieser Situation warten?", "es": "¿Quién debe esperar en esta situación?" },
+    "options": [
+      { "id": "a", "text": { "de": "A – B kommt von rechts", "es": "A, porque B viene por su derecha" }, "correct": true },
+      { "id": "b", "text": { "de": "B – A kommt von rechts", "es": "B, porque A viene por su derecha" }, "correct": false },
+      { "id": "c", "text": { "de": "Niemand, wenn beide bremsen", "es": "Nadie, si ambos frenan" }, "correct": false }
+    ],
+    "explanation": { "de": "A muss dem von rechts kommenden B den Vortritt gewähren.", "es": "A debe ceder el paso a B, que llega por su derecha." },
+    "image": { "type": "scene", "id": "rechtsvortritt_2" }
+  },
+  {
+    "id": "q041",
+    "category": "both",
+    "topic": "signale",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": { "de": "Was verlangt dieses Signal?", "es": "¿Qué exige esta señal?" },
+    "options": [
+      { "id": "a", "text": { "de": "Vollständig anhalten und Vortritt gewähren", "es": "Detención completa y ceder el paso" }, "correct": true },
+      { "id": "b", "text": { "de": "Nur verlangsamen", "es": "Solo reducir la velocidad" }, "correct": false },
+      { "id": "c", "text": { "de": "Anhalten nur bei Verkehr", "es": "Parar solo si hay tráfico" }, "correct": false }
+    ],
+    "explanation": { "de": "Stop bedeutet immer: ganz anhalten, auch wenn niemand kommt.", "es": "STOP significa siempre parada total, venga o no venga alguien." },
+    "image": { "type": "sign", "id": "v_stop" }
+  },
+  {
+    "id": "q042",
+    "category": "both",
+    "topic": "signale",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": { "de": "Was bedeutet dieses Signal?", "es": "¿Qué significa esta señal?" },
+    "options": [
+      { "id": "a", "text": { "de": "Kein Vortritt: dem Querverkehr Vortritt gewähren", "es": "Ceda el paso al tráfico de la vía a la que llegas" }, "correct": true },
+      { "id": "b", "text": { "de": "Immer vollständig anhalten", "es": "Detenerse siempre por completo" }, "correct": false },
+      { "id": "c", "text": { "de": "Ich habe Vortritt", "es": "Tengo prioridad" }, "correct": false }
+    ],
+    "explanation": { "de": "«Kein Vortritt»: Vortritt gewähren, anhalten nur wenn nötig.", "es": "«Ceda el paso»: cede la prioridad; detente solo si hace falta." },
+    "image": { "type": "sign", "id": "v_keinvortritt" }
+  },
+  {
+    "id": "q043",
+    "category": "both",
+    "topic": "signale",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Du fährst auf einer Strasse mit diesem Signal. Was gilt?", "es": "Circulas por una vía con esta señal. ¿Qué significa?" },
+    "options": [
+      { "id": "a", "text": { "de": "Ich bin auf der Hauptstrasse und habe Vortritt", "es": "Voy por la carretera principal y tengo prioridad" }, "correct": true },
+      { "id": "b", "text": { "de": "Ich muss allen den Vortritt gewähren", "es": "Debo ceder el paso a todos" }, "correct": false },
+      { "id": "c", "text": { "de": "Parkieren ist erlaubt", "es": "Está permitido aparcar" }, "correct": false }
+    ],
+    "explanation": { "de": "Die gelbe Raute markiert die Hauptstrasse: Einmündende müssen warten.", "es": "El rombo amarillo marca la vía principal: los que se incorporan deben esperar." },
+    "image": { "type": "sign", "id": "v_hauptstrasse" }
+  },
+  {
+    "id": "q044",
+    "category": "both",
+    "topic": "signale",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": { "de": "Was bedeutet dieses Signal?", "es": "¿Qué significa esta señal?" },
+    "options": [
+      { "id": "a", "text": { "de": "Ende der Hauptstrasse – ab jetzt gilt Rechtsvortritt", "es": "Fin de la vía principal: a partir de ahora rige la prioridad de la derecha" }, "correct": true },
+      { "id": "b", "text": { "de": "Hauptstrasse gesperrt", "es": "Vía principal cortada" }, "correct": false },
+      { "id": "c", "text": { "de": "Vorfahrt nur für Lastwagen", "es": "Prioridad solo para camiones" }, "correct": false }
+    ],
+    "explanation": { "de": "Die durchgestrichene Raute hebt den Vortritt der Hauptstrasse auf.", "es": "El rombo tachado anula la prioridad de la vía principal." },
+    "image": { "type": "sign", "id": "v_ende_hauptstrasse" }
+  },
+  {
+    "id": "q045",
+    "category": "both",
+    "topic": "signale",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": { "de": "Was bedeutet dieses Signal?", "es": "¿Qué significa esta señal?" },
+    "options": [
+      { "id": "a", "text": { "de": "Einfahrt verboten – Einbahnstrasse von der anderen Seite", "es": "Dirección prohibida: es un sentido único desde el otro lado" }, "correct": true },
+      { "id": "b", "text": { "de": "Fahrverbot in beide Richtungen", "es": "Prohibido circular en ambos sentidos" }, "correct": false },
+      { "id": "c", "text": { "de": "Halten verboten", "es": "Prohibido detenerse" }, "correct": false }
+    ],
+    "explanation": { "de": "Hier darfst du nicht einfahren; der Verkehr kommt dir entgegen.", "es": "No puedes entrar: el tráfico circula hacia ti." },
+    "image": { "type": "sign", "id": "p_einfahrt" }
+  },
+  {
+    "id": "q046",
+    "category": "both",
+    "topic": "signale",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": { "de": "Was bedeutet dieses Signal?", "es": "¿Qué significa esta señal?" },
+    "options": [
+      { "id": "a", "text": { "de": "Allgemeines Fahrverbot in beiden Richtungen; ein Velo darf geschoben werden", "es": "Prohibición general de circular en ambos sentidos; la bici se puede llevar empujando" }, "correct": true },
+      { "id": "b", "text": { "de": "Nur Einfahrt verboten", "es": "Solo prohibida la entrada en un sentido" }, "correct": false },
+      { "id": "c", "text": { "de": "Ende aller Verbote", "es": "Fin de todas las prohibiciones" }, "correct": false }
+    ],
+    "explanation": { "de": "Der weisse Kreis mit rotem Rand verbietet das Fahren in beide Richtungen.", "es": "El círculo blanco con borde rojo prohíbe circular en ambos sentidos." },
+    "image": { "type": "sign", "id": "p_fahrverbot" }
+  },
+  {
+    "id": "q047",
+    "category": "both",
+    "topic": "signale",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": { "de": "Was bedeutet dieses Signal?", "es": "¿Qué significa esta señal?" },
+    "options": [
+      { "id": "a", "text": { "de": "Halten verboten – nicht einmal freiwilliges Anhalten ist erlaubt", "es": "Prohibido detenerse: ni siquiera una parada voluntaria" }, "correct": true },
+      { "id": "b", "text": { "de": "Parkieren verboten, kurzes Halten erlaubt", "es": "Prohibido estacionar, pero se puede parar un momento" }, "correct": false },
+      { "id": "c", "text": { "de": "Parkplatz für Bewohner", "es": "Aparcamiento para residentes" }, "correct": false }
+    ],
+    "explanation": { "de": "Zwei rote Diagonalen = Halteverbot. Eine Diagonale wäre nur Parkverbot.", "es": "Dos diagonales rojas = prohibido detenerse. Una sola diagonal sería solo prohibido estacionar." },
+    "image": { "type": "sign", "id": "p_halten" }
+  },
+  {
+    "id": "q048",
+    "category": "both",
+    "topic": "signale",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": { "de": "Was gilt bei diesem Signal?", "es": "¿Qué implica esta señal?" },
+    "options": [
+      { "id": "a", "text": { "de": "Überholen von Motorwagen ist verboten", "es": "Prohibido adelantar a vehículos de motor" }, "correct": true },
+      { "id": "b", "text": { "de": "Nur Lastwagen dürfen überholen", "es": "Solo los camiones pueden adelantar" }, "correct": false },
+      { "id": "c", "text": { "de": "Zweispuriges Fahren verboten", "es": "Prohibido circular en dos columnas" }, "correct": false }
+    ],
+    "explanation": { "de": "Das Signal verbietet das Überholen; es gilt bis zur Aufhebung.", "es": "La señal prohíbe adelantar y rige hasta que otra señal la anule." },
+    "image": { "type": "sign", "id": "p_ueberholen" }
+  },
+  {
+    "id": "q049",
+    "category": "both",
+    "topic": "signale",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Was bedeutet dieses graue Signal?", "es": "¿Qué significa esta señal gris?" },
+    "options": [
+      { "id": "a", "text": { "de": "Ende der signalisierten Höchstgeschwindigkeit – es gelten die allgemeinen Limiten", "es": "Fin del límite señalizado: vuelven los límites generales" }, "correct": true },
+      { "id": "b", "text": { "de": "Neue Höchstgeschwindigkeit 60", "es": "Nuevo límite de 60" }, "correct": false },
+      { "id": "c", "text": { "de": "Mindestgeschwindigkeit 60", "es": "Velocidad mínima de 60" }, "correct": false }
+    ],
+    "explanation": { "de": "Graue Signale mit Schrägstrichen heben eine Beschränkung auf.", "es": "Las señales grises con rayas anulan una restricción." },
+    "image": { "type": "sign", "id": "p_ende60" }
+  },
+  {
+    "id": "q050",
+    "category": "both",
+    "topic": "signale",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Was zeigt dieses Signal an?", "es": "¿Qué indica esta señal?" },
+    "options": [
+      { "id": "a", "text": { "de": "Kreisverkehr: links herumfahren, Vortritt hat der Verkehr im Kreisel", "es": "Rotonda: se circula en sentido antihorario y tiene prioridad quien está dentro" }, "correct": true },
+      { "id": "b", "text": { "de": "Wendeplatz", "es": "Zona para cambiar de sentido" }, "correct": false },
+      { "id": "c", "text": { "de": "Autobahnkreuz", "es": "Nudo de autopistas" }, "correct": false }
+    ],
+    "explanation": { "de": "Das blaue Kreiselsignal steht vor jedem Kreisverkehrsplatz.", "es": "La señal azul de rotonda precede a toda rotonda." },
+    "image": { "type": "sign", "id": "b_kreisel" }
+  },
+  {
+    "id": "q051",
+    "category": "both",
+    "topic": "signale",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": { "de": "Welche Regeln gelten ab diesem Signal? (Mehrere Antworten möglich)", "es": "¿Qué reglas rigen a partir de esta señal? (Varias respuestas posibles)" },
+    "options": [
+      { "id": "a", "text": { "de": "Nur Motorfahrzeuge, die mind. 80 km/h können, dürfen fahren", "es": "Solo pueden circular vehículos capaces de ir a 80 km/h" }, "correct": true },
+      { "id": "b", "text": { "de": "Generelle Höchstgeschwindigkeit 120 km/h", "es": "Límite general de 120 km/h" }, "correct": true },
+      { "id": "c", "text": { "de": "Wenden und Rückwärtsfahren sind verboten", "es": "Prohibido cambiar de sentido y dar marcha atrás" }, "correct": true },
+      { "id": "d", "text": { "de": "Fussgänger dürfen die Fahrbahn benützen", "es": "Los peatones pueden usar la calzada" }, "correct": false }
+    ],
+    "explanation": { "de": "Autobahn: nur schnelle Motorfahrzeuge, 120 km/h generell, nie wenden oder rückwärtsfahren.", "es": "Autopista: solo vehículos rápidos, 120 km/h general y nunca cambiar de sentido ni retroceder." },
+    "image": { "type": "sign", "id": "h_autobahn" }
+  },
+  {
+    "id": "q052",
+    "category": "both",
+    "topic": "signale",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Was bedeutet dieses Signal?", "es": "¿Qué significa esta señal?" },
+    "options": [
+      { "id": "a", "text": { "de": "Einbahnstrasse: Verkehr nur in Pfeilrichtung", "es": "Sentido único: solo se circula en el sentido de la flecha" }, "correct": true },
+      { "id": "b", "text": { "de": "Geradeausfahren verboten", "es": "Prohibido seguir de frente" }, "correct": false },
+      { "id": "c", "text": { "de": "Vorgeschriebene Mindestgeschwindigkeit", "es": "Velocidad mínima obligatoria" }, "correct": false }
+    ],
+    "explanation": { "de": "In der Einbahnstrasse gibt es keinen Gegenverkehr – aber Achtung auf Velos mit Ausnahmebewilligung.", "es": "En sentido único no hay tráfico de frente, pero ojo: a veces las bicis tienen permitido el contrasentido." },
+    "image": { "type": "sign", "id": "h_einbahn" }
+  },
+  {
+    "id": "q053",
+    "category": "both",
+    "topic": "signale",
+    "type": "multiple_choice",
+    "points": 1,
+    "question": { "de": "Was zeigt dieses Signal an?", "es": "¿Qué indica esta señal?" },
+    "options": [
+      { "id": "a", "text": { "de": "Sackgasse – keine Durchfahrt", "es": "Calle sin salida" }, "correct": true },
+      { "id": "b", "text": { "de": "Bahnübergang", "es": "Paso a nivel" }, "correct": false },
+      { "id": "c", "text": { "de": "Strasse gesperrt wegen Baustelle", "es": "Calle cortada por obras" }, "correct": false }
+    ],
+    "explanation": { "de": "Die Strasse endet; nützlich zu wissen, bevor man einfährt.", "es": "La calle termina; conviene saberlo antes de entrar." },
+    "image": { "type": "sign", "id": "h_sackgasse" }
+  },
+  {
+    "id": "q054",
+    "category": "both",
+    "topic": "signale",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": { "de": "Was gilt in dieser Zone? (Mehrere Antworten möglich)", "es": "¿Qué rige en esta zona? (Varias respuestas posibles)" },
+    "options": [
+      { "id": "a", "text": { "de": "Höchstgeschwindigkeit 30 km/h in der ganzen Zone", "es": "Máximo 30 km/h en toda la zona" }, "correct": true },
+      { "id": "b", "text": { "de": "In der Regel gilt Rechtsvortritt", "es": "Normalmente rige la prioridad de la derecha" }, "correct": true },
+      { "id": "c", "text": { "de": "Fussgänger haben immer Vortritt auf der Fahrbahn", "es": "Los peatones siempre tienen prioridad en la calzada" }, "correct": false }
+    ],
+    "explanation": { "de": "Tempo-30-Zone: 30 km/h und meist Rechtsvortritt. Fussgängervortritt auf der Fahrbahn gilt in der Begegnungszone (20), nicht hier.", "es": "Zona 30: 30 km/h y normalmente prioridad de la derecha. La prioridad peatonal total es de la zona de encuentro (20), no de esta." },
+    "image": { "type": "sign", "id": "h_zone30" }
+  },
+  {
+    "id": "q055",
+    "category": "both",
+    "topic": "signale",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Wie verhältst du dich bei diesem Signal richtig?", "es": "¿Cómo actúas correctamente ante esta señal?" },
+    "options": [
+      { "id": "a", "text": { "de": "Tempo reduzieren, besonders bei Dämmerung und Nacht bremsbereit sein", "es": "Reducir la velocidad y, sobre todo al amanecer/anochecer, ir listo para frenar" }, "correct": true },
+      { "id": "b", "text": { "de": "Hupen, um die Tiere zu vertreiben", "es": "Tocar el claxon para espantar a los animales" }, "correct": false },
+      { "id": "c", "text": { "de": "Fernlicht dauerhaft einschalten", "es": "Llevar las largas siempre encendidas" }, "correct": false }
+    ],
+    "explanation": { "de": "Wildwechsel: Tempo anpassen. Taucht ein Tier auf: bremsen, Lenkrad festhalten, nicht ausweichen.", "es": "Paso de animales: adapta la velocidad. Si aparece uno: frena, sujeta el volante y no des un volantazo." },
+    "image": { "type": "sign", "id": "g_wild" }
+  },
+  {
+    "id": "q056",
+    "category": "both",
+    "topic": "beleuchtung",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Wann müssen Motorfahrzeuge mit Licht fahren?", "es": "¿Cuándo deben circular con luz los vehículos de motor?" },
+    "options": [
+      { "id": "a", "text": { "de": "Immer, auch am Tag (Tagfahrlicht oder Abblendlicht)", "es": "Siempre, también de día (luz diurna o de cruce)" }, "correct": true },
+      { "id": "b", "text": { "de": "Nur nachts", "es": "Solo de noche" }, "correct": false },
+      { "id": "c", "text": { "de": "Nur bei Regen", "es": "Solo con lluvia" }, "correct": false }
+    ],
+    "explanation": { "de": "In der Schweiz gilt die Lichtpflicht rund um die Uhr: tagsüber Tagfahrlicht oder Abblendlicht.", "es": "En Suiza la luz es obligatoria a todas horas: de día, luz diurna o de cruce." },
+    "image": null
+  },
+  {
+    "id": "q057",
+    "category": "both",
+    "topic": "beleuchtung",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Wann musst du das Fernlicht abblenden? (Mehrere Antworten möglich)", "es": "¿Cuándo debes quitar las luces largas? (Varias respuestas posibles)" },
+    "options": [
+      { "id": "a", "text": { "de": "Bei Gegenverkehr", "es": "Cuando viene tráfico de frente" }, "correct": true },
+      { "id": "b", "text": { "de": "Wenn ich hinter einem Fahrzeug herfahre", "es": "Cuando circulo detrás de otro vehículo" }, "correct": true },
+      { "id": "c", "text": { "de": "In gut beleuchteten Ortschaften", "es": "En zonas urbanas bien iluminadas" }, "correct": true },
+      { "id": "d", "text": { "de": "Nie – Fernlicht ist immer erlaubt", "es": "Nunca: las largas siempre están permitidas" }, "correct": false }
+    ],
+    "explanation": { "de": "Fernlicht blendet: abblenden bei Gegenverkehr, beim Nachfahren und innerorts mit guter Beleuchtung.", "es": "Las largas deslumbran: quítalas ante tráfico de frente, siguiendo a otro coche y en ciudad iluminada." },
+    "image": null
+  },
+  {
+    "id": "q058",
+    "category": "both",
+    "topic": "beleuchtung",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Wann darfst du die Nebelschlussleuchte einschalten?", "es": "¿Cuándo puedes encender la luz antiniebla trasera?" },
+    "options": [
+      { "id": "a", "text": { "de": "Nur bei Sichtweite unter ca. 50 m", "es": "Solo con visibilidad inferior a unos 50 m" }, "correct": true },
+      { "id": "b", "text": { "de": "Immer bei Regen", "es": "Siempre que llueva" }, "correct": false },
+      { "id": "c", "text": { "de": "Immer nachts", "es": "Siempre de noche" }, "correct": false }
+    ],
+    "explanation": { "de": "Die Nebelschlussleuchte blendet stark – nur bei sehr schlechter Sicht (Nebel, Schneetreiben) verwenden.", "es": "La antiniebla trasera deslumbra mucho: solo con visibilidad muy mala (niebla, nevada intensa)." },
+    "image": null
+  },
+  {
+    "id": "q059",
+    "category": "both",
+    "topic": "beleuchtung",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Wann ist der Warnblinker richtig eingesetzt? (Mehrere Antworten möglich)", "es": "¿Cuándo se usan bien las luces de emergencia? (Varias respuestas posibles)" },
+    "options": [
+      { "id": "a", "text": { "de": "Bei einer Panne oder einem Unfall", "es": "En una avería o un accidente" }, "correct": true },
+      { "id": "b", "text": { "de": "Als Warnung vor einem Stauende auf der Autobahn", "es": "Para avisar de una retención en la autopista" }, "correct": true },
+      { "id": "c", "text": { "de": "Zum kurzen Parkieren im Halteverbot", "es": "Para aparcar \"un momentito\" donde está prohibido" }, "correct": false }
+    ],
+    "explanation": { "de": "Der Warnblinker warnt vor Gefahr – er macht verbotenes Halten nicht legal.", "es": "Las luces de emergencia avisan de un peligro; no legalizan una parada prohibida." },
+    "image": null
+  },
+  {
+    "id": "q060",
+    "category": "both",
+    "topic": "geschwindigkeit",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Welche allgemeine Höchstgeschwindigkeit gilt ausserorts?", "es": "¿Cuál es el límite general fuera de poblado?" },
+    "options": [
+      { "id": "a", "text": { "de": "80 km/h", "es": "80 km/h" }, "correct": true },
+      { "id": "b", "text": { "de": "100 km/h", "es": "100 km/h" }, "correct": false },
+      { "id": "c", "text": { "de": "90 km/h", "es": "90 km/h" }, "correct": false }
+    ],
+    "explanation": { "de": "Ausserorts gelten generell 80 km/h.", "es": "Fuera de poblado el límite general es 80 km/h." },
+    "image": null
+  },
+  {
+    "id": "q061",
+    "category": "both",
+    "topic": "geschwindigkeit",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Welche allgemeine Höchstgeschwindigkeit gilt auf Autostrassen?", "es": "¿Cuál es el límite general en semiautopistas (Autostrasse)?" },
+    "options": [
+      { "id": "a", "text": { "de": "100 km/h", "es": "100 km/h" }, "correct": true },
+      { "id": "b", "text": { "de": "120 km/h", "es": "120 km/h" }, "correct": false },
+      { "id": "c", "text": { "de": "80 km/h", "es": "80 km/h" }, "correct": false }
+    ],
+    "explanation": { "de": "Autostrasse: generell 100 km/h (Autobahn 120, ausserorts 80, innerorts 50).", "es": "Semiautopista: 100 km/h en general (autopista 120, fuera de poblado 80, en ciudad 50)." },
+    "image": null
+  },
+  {
+    "id": "q062",
+    "category": "both",
+    "topic": "abstand",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Woraus setzt sich der Anhalteweg zusammen?", "es": "¿De qué se compone la distancia de detención?" },
+    "options": [
+      { "id": "a", "text": { "de": "Reaktionsweg + Bremsweg", "es": "Distancia de reacción + distancia de frenado" }, "correct": true },
+      { "id": "b", "text": { "de": "Nur aus dem Bremsweg", "es": "Solo de la distancia de frenado" }, "correct": false },
+      { "id": "c", "text": { "de": "Bremsweg minus Reaktionsweg", "es": "Frenado menos reacción" }, "correct": false }
+    ],
+    "explanation": { "de": "Bis du reagierst, rollt das Auto weiter (ca. 1 Sekunde ≈ 15 m bei 50 km/h) – erst dann beginnt der Bremsweg.", "es": "Hasta que reaccionas, el coche sigue avanzando (≈1 segundo ≈ 15 m a 50 km/h); solo después empieza el frenado." },
+    "image": null
+  },
+  {
+    "id": "q063",
+    "category": "both",
+    "topic": "abstand",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Du verdoppelst deine Geschwindigkeit. Was passiert mit dem Bremsweg?", "es": "Si doblas la velocidad, ¿qué pasa con la distancia de frenado?" },
+    "options": [
+      { "id": "a", "text": { "de": "Er wird etwa viermal so lang", "es": "Se multiplica aproximadamente por cuatro" }, "correct": true },
+      { "id": "b", "text": { "de": "Er verdoppelt sich", "es": "Se duplica" }, "correct": false },
+      { "id": "c", "text": { "de": "Er bleibt gleich, wenn die Bremsen gut sind", "es": "No cambia si los frenos son buenos" }, "correct": false }
+    ],
+    "explanation": { "de": "Der Bremsweg wächst im Quadrat zur Geschwindigkeit: doppeltes Tempo = vierfacher Bremsweg.", "es": "El frenado crece con el cuadrado de la velocidad: el doble de velocidad = cuatro veces más frenado." },
+    "image": null
+  },
+  {
+    "id": "q064",
+    "category": "both",
+    "topic": "geschwindigkeit",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": { "de": "Starker Regen, das Lenkrad wird plötzlich \"leicht\" (Aquaplaning). Was tust du?", "es": "Lluvia fuerte y de repente el volante se siente \"flojo\" (aquaplaning). ¿Qué haces?" },
+    "options": [
+      { "id": "a", "text": { "de": "Gas wegnehmen, Lenkrad ruhig halten, nicht brüsk bremsen", "es": "Soltar el acelerador, sujetar el volante con calma y no frenar bruscamente" }, "correct": true },
+      { "id": "b", "text": { "de": "Stark bremsen", "es": "Frenar a fondo" }, "correct": false },
+      { "id": "c", "text": { "de": "Schneller fahren, um durchs Wasser zu kommen", "es": "Acelerar para \"salir\" del agua" }, "correct": false }
+    ],
+    "explanation": { "de": "Beim Aquaplaning schwimmen die Reifen auf: sanft verzögern und warten, bis der Grip zurückkommt.", "es": "En aquaplaning los neumáticos flotan: desacelera con suavidad y espera a recuperar el agarre." },
+    "image": null
+  },
+  {
+    "id": "q065",
+    "category": "both",
+    "topic": "geschwindigkeit",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Dein Auto ist eingeschneit. Was musst du vor der Abfahrt tun?", "es": "Tu coche amaneció nevado. ¿Qué debes hacer antes de salir?" },
+    "options": [
+      { "id": "a", "text": { "de": "Alle Scheiben, Lichter, Spiegel UND das Dach vollständig vom Schnee befreien", "es": "Quitar la nieve de todos los cristales, luces, espejos Y del techo" }, "correct": true },
+      { "id": "b", "text": { "de": "Nur ein Guckloch auf der Fahrerseite freikratzen", "es": "Raspar solo un hueco en el lado del conductor" }, "correct": false },
+      { "id": "c", "text": { "de": "Losfahren – der Fahrtwind erledigt den Rest", "es": "Salir ya: el viento se encarga del resto" }, "correct": false }
+    ],
+    "explanation": { "de": "Fahren mit Gucklock oder Schneedach ist gefährlich und strafbar: herabfallender Schnee gefährdet andere.", "es": "Conducir con \"mirilla\" o nieve en el techo es peligroso y sancionable: la nieve que cae pone en riesgo a otros." },
+    "image": null
+  },
+  {
+    "id": "q066",
+    "category": "both",
+    "topic": "abstand",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Wie fährst du bei Schnee und Eis? (Mehrere Antworten möglich)", "es": "¿Cómo se conduce con nieve y hielo? (Varias respuestas posibles)" },
+    "options": [
+      { "id": "a", "text": { "de": "Abstand deutlich vergrössern", "es": "Aumentar mucho la distancia de seguridad" }, "correct": true },
+      { "id": "b", "text": { "de": "Sanft beschleunigen, bremsen und lenken", "es": "Acelerar, frenar y girar con suavidad" }, "correct": true },
+      { "id": "c", "text": { "de": "Wie immer fahren – das Auto hat ja ABS", "es": "Conducir como siempre: para eso está el ABS" }, "correct": false }
+    ],
+    "explanation": { "de": "Auf Schnee/Eis kann der Bremsweg zehnmal länger sein – ABS ändert die Physik nicht.", "es": "Sobre nieve o hielo la frenada puede ser diez veces más larga; el ABS no cambia la física." },
+    "image": null
+  },
+  {
+    "id": "q067",
+    "category": "both",
+    "topic": "fussgaenger",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": { "de": "Ein Schulbus hält am Strassenrand, Kinder steigen aus. Wie fährst du vorbei?", "es": "Un bus escolar está parado y bajan niños. ¿Cómo pasas?" },
+    "options": [
+      { "id": "a", "text": { "de": "Sehr langsam, mit grossem Abstand und bremsbereit", "es": "Muy despacio, con mucho espacio y listo para frenar" }, "correct": true },
+      { "id": "b", "text": { "de": "Normal weiterfahren, die Kinder müssen warten", "es": "A velocidad normal: los niños deben esperar" }, "correct": false },
+      { "id": "c", "text": { "de": "Hupen und zügig vorbeifahren", "es": "Tocar el claxon y pasar rápido" }, "correct": false }
+    ],
+    "explanation": { "de": "Kinder sind unberechenbar und können plötzlich auf die Strasse rennen – Schritttempo und Bremsbereitschaft.", "es": "Los niños son impredecibles y pueden cruzar de golpe: paso lento y pie sobre el freno." },
+    "image": null
+  },
+  {
+    "id": "q068",
+    "category": "both",
+    "topic": "fussgaenger",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Eine ältere Person steht unsicher am Fahrbahnrand. Was tust du?", "es": "Una persona mayor espera insegura al borde de la calzada. ¿Qué haces?" },
+    "options": [
+      { "id": "a", "text": { "de": "Tempo reduzieren, Blickkontakt suchen und bremsbereit sein", "es": "Reducir, buscar contacto visual y estar listo para frenar" }, "correct": true },
+      { "id": "b", "text": { "de": "Vorbeifahren – sie steht ja noch auf dem Trottoir", "es": "Pasar: aún está en la acera" }, "correct": false },
+      { "id": "c", "text": { "de": "Lichthupe geben, damit sie schneller geht", "es": "Dar ráfagas para que se apure" }, "correct": false }
+    ],
+    "explanation": { "de": "Bei Kindern, älteren und beeinträchtigten Menschen gilt erhöhte Vorsichtspflicht.", "es": "Con niños, mayores y personas con movilidad reducida rige un deber de precaución reforzado." },
+    "image": null
+  },
+  {
+    "id": "q069",
+    "category": "both",
+    "topic": "fussgaenger",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Was gilt in einer Begegnungszone?", "es": "¿Qué rige en una zona de encuentro (Begegnungszone)?" },
+    "options": [
+      { "id": "a", "text": { "de": "Höchstens 20 km/h und Fussgänger haben Vortritt auf der ganzen Fläche", "es": "Máximo 20 km/h y los peatones tienen prioridad en toda la superficie" }, "correct": true },
+      { "id": "b", "text": { "de": "30 km/h und Fussgänger nur am Streifen", "es": "30 km/h y los peatones solo en el paso" }, "correct": false },
+      { "id": "c", "text": { "de": "Fahrverbot für alle Fahrzeuge", "es": "Prohibido el paso de vehículos" }, "correct": false }
+    ],
+    "explanation": { "de": "Begegnungszone: 20 km/h, Fussgängervortritt überall; Parkieren nur auf markierten Feldern.", "es": "Zona de encuentro: 20 km/h, prioridad peatonal en todas partes y aparcar solo en plazas marcadas." },
+    "image": null
+  },
+  {
+    "id": "q070",
+    "category": "both",
+    "topic": "fahrzeug",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": { "de": "Wie müssen Kinder im Auto gesichert sein?", "es": "¿Cómo deben viajar los niños en el coche?" },
+    "options": [
+      { "id": "a", "text": { "de": "Bis 12 Jahre und unter 150 cm in einer geeigneten Kinderrückhaltevorrichtung", "es": "Hasta los 12 años y por debajo de 150 cm, en silla o elevador homologado" }, "correct": true },
+      { "id": "b", "text": { "de": "Ab 6 Jahren genügt der normale Gurt", "es": "Desde los 6 años basta el cinturón normal" }, "correct": false },
+      { "id": "c", "text": { "de": "Auf dem Schoss eines Erwachsenen ist erlaubt", "es": "En el regazo de un adulto está permitido" }, "correct": false }
+    ],
+    "explanation": { "de": "Kinder unter 12 Jahren und unter 150 cm brauchen einen geeigneten Kindersitz oder Sitzerhöher.", "es": "Los menores de 12 años que midan menos de 150 cm necesitan silla o elevador adecuados." },
+    "image": null
+  },
+  {
+    "id": "q071",
+    "category": "both",
+    "topic": "vortritt",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Innerorts will ein Linienbus von der Haltestelle wegfahren und blinkt. Was gilt?", "es": "En ciudad, un bus de línea señaliza que quiere salir de la parada. ¿Qué debes hacer?" },
+    "options": [
+      { "id": "a", "text": { "de": "Ihm das Wegfahren ermöglichen – wenn nötig abbremsen", "es": "Facilitarle la salida, frenando si es necesario" }, "correct": true },
+      { "id": "b", "text": { "de": "Schnell vorbeifahren, bevor er losfährt", "es": "Pasar rápido antes de que arranque" }, "correct": false },
+      { "id": "c", "text": { "de": "Hupen und Vortritt verlangen", "es": "Pitar y exigir tu prioridad" }, "correct": false }
+    ],
+    "explanation": { "de": "Innerorts musst du Bussen das Wegfahren von Haltestellen ermöglichen.", "es": "En zona urbana es obligatorio dejar salir a los buses de línea de sus paradas." },
+    "image": null
+  },
+  {
+    "id": "q072",
+    "category": "both",
+    "topic": "vortritt",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": { "de": "Ein Tram hält ohne Schutzinsel, Fahrgäste steigen aus. Was tust du?", "es": "Un tranvía para sin isleta y bajan pasajeros. ¿Qué haces?" },
+    "options": [
+      { "id": "a", "text": { "de": "Anhalten und warten, bis alle das Trottoir erreicht haben", "es": "Detenerte y esperar a que todos lleguen a la acera" }, "correct": true },
+      { "id": "b", "text": { "de": "Langsam zwischen Tram und Trottoir durchfahren", "es": "Pasar despacio entre el tranvía y la acera" }, "correct": false },
+      { "id": "c", "text": { "de": "Links am Tram vorbeifahren", "es": "Adelantar al tranvía por la izquierda" }, "correct": false }
+    ],
+    "explanation": { "de": "Ohne Schutzinsel gilt: hinter dem Tram anhalten, bis die Fahrgäste in Sicherheit sind.", "es": "Sin isleta hay que parar detrás del tranvía hasta que los pasajeros estén a salvo." },
+    "image": null
+  },
+  {
+    "id": "q073",
+    "category": "both",
+    "topic": "vortritt",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": { "de": "Ein Fahrzeug mit Blaulicht und Wechselklang nähert sich. Was tust du? (Mehrere Antworten möglich)", "es": "Se acerca un vehículo con luz azul y sirena. ¿Qué haces? (Varias respuestas posibles)" },
+    "options": [
+      { "id": "a", "text": { "de": "Sofort Platz machen und nötigenfalls anhalten", "es": "Apartarte de inmediato y detenerte si hace falta" }, "correct": true },
+      { "id": "b", "text": { "de": "Ruhig und vorhersehbar ausweichen, ohne andere zu gefährden", "es": "Apartarte de forma tranquila y previsible, sin poner a otros en peligro" }, "correct": true },
+      { "id": "c", "text": { "de": "Stark beschleunigen, um vorne wegzukommen", "es": "Acelerar a fondo para \"escapar\" por delante" }, "correct": false }
+    ],
+    "explanation": { "de": "Blaulicht + Horn = sofort Vortritt gewähren. Kontrolliert ausweichen, nie panisch reagieren.", "es": "Luz azul + sirena = ceder el paso de inmediato, apartándote con control y sin maniobras de pánico." },
+    "image": null
+  },
+  {
+    "id": "q074",
+    "category": "both",
+    "topic": "autobahn",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": { "de": "Stockender Verkehr auf der Autobahn: Wie bildest du die Rettungsgasse?", "es": "Tráfico detenido en la autopista: ¿cómo se forma el pasillo de emergencia?" },
+    "options": [
+      { "id": "a", "text": { "de": "Linke Spur ganz nach links, alle übrigen Spuren ganz nach rechts", "es": "El carril izquierdo se pega a la izquierda y todos los demás a la derecha" }, "correct": true },
+      { "id": "b", "text": { "de": "Alle fahren auf den Pannenstreifen", "es": "Todos se meten en el arcén" }, "correct": false },
+      { "id": "c", "text": { "de": "Erst wenn die Polizei kommt", "es": "Solo cuando llegue la policía" }, "correct": false }
+    ],
+    "explanation": { "de": "Die Gasse entsteht zwischen der linken und den übrigen Spuren – schon beim Stocken, nicht erst bei Sirenen.", "es": "El pasillo se abre entre el carril izquierdo y el resto, ya al detenerse el tráfico, sin esperar sirenas." },
+    "image": null
+  },
+  {
+    "id": "q075",
+    "category": "both",
+    "topic": "vortritt",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Schmale Bergstrasse: Kreuzen ist nicht möglich. Wer muss zurücksetzen?", "es": "Carretera de montaña estrecha: no es posible cruzarse. ¿Quién retrocede?" },
+    "options": [
+      { "id": "a", "text": { "de": "Grundsätzlich das abwärtsfahrende Fahrzeug", "es": "En principio, el vehículo que baja" }, "correct": true },
+      { "id": "b", "text": { "de": "Das aufwärtsfahrende Fahrzeug", "es": "El vehículo que sube" }, "correct": false },
+      { "id": "c", "text": { "de": "Das kleinere Fahrzeug", "es": "El vehículo más pequeño" }, "correct": false }
+    ],
+    "explanation": { "de": "Auf Bergstrassen hat das aufwärtsfahrende Fahrzeug den Vortritt – anfahren am Berg ist schwieriger.", "es": "En montaña tiene preferencia quien sube: arrancar cuesta arriba es más difícil." },
+    "image": null
+  },
+  {
+    "id": "q076",
+    "category": "both",
+    "topic": "ueberholen",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": { "de": "Wo ist Überholen verboten? (Mehrere Antworten möglich)", "es": "¿Dónde está prohibido adelantar? (Varias respuestas posibles)" },
+    "options": [
+      { "id": "a", "text": { "de": "Vor und in unübersichtlichen Kurven", "es": "Antes y dentro de curvas sin visibilidad" }, "correct": true },
+      { "id": "b", "text": { "de": "Vor Bahnübergängen und Kuppen", "es": "Antes de pasos a nivel y cambios de rasante" }, "correct": true },
+      { "id": "c", "text": { "de": "Vor und auf Fussgängerstreifen", "es": "Antes y sobre pasos de peatones" }, "correct": true },
+      { "id": "d", "text": { "de": "Auf gerader Strecke mit guter Sicht", "es": "En recta con buena visibilidad" }, "correct": false }
+    ],
+    "explanation": { "de": "Überholt wird nur, wo die Strecke übersichtlich und frei ist – nie bei Kurven, Kuppen, Übergängen oder Streifen.", "es": "Solo se adelanta donde hay visibilidad y espacio: nunca en curvas, rasantes, pasos a nivel o de peatones." },
+    "image": null
+  },
+  {
+    "id": "q077",
+    "category": "both",
+    "topic": "ueberholen",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Du wirst überholt. Wie verhältst du dich?", "es": "Te están adelantando. ¿Cómo actúas?" },
+    "options": [
+      { "id": "a", "text": { "de": "Geschwindigkeit halten oder leicht reduzieren – nie beschleunigen", "es": "Mantener la velocidad o reducirla un poco; nunca acelerar" }, "correct": true },
+      { "id": "b", "text": { "de": "Beschleunigen, damit es schneller vorbei ist", "es": "Acelerar para que acabe antes" }, "correct": false },
+      { "id": "c", "text": { "de": "Ganz nach links fahren", "es": "Pegarte a la izquierda" }, "correct": false }
+    ],
+    "explanation": { "de": "Wer überholt wird, darf nicht beschleunigen – das verlängert die gefährliche Phase.", "es": "El adelantado no debe acelerar: alarga la fase peligrosa de la maniobra." },
+    "image": null
+  },
+  {
+    "id": "q078",
+    "category": "both",
+    "topic": "ueberholen",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": { "de": "Du überholst ein Velo. Worauf achtest du?", "es": "Vas a adelantar a una bici. ¿Qué debes tener en cuenta?" },
+    "options": [
+      { "id": "a", "text": { "de": "Genügend seitlichen Abstand halten (Richtwert ca. 1,5 m)", "es": "Dejar suficiente espacio lateral (referencia: ~1,5 m)" }, "correct": true },
+      { "id": "b", "text": { "de": "Knapp vorbeifahren, um den Gegenverkehr nicht zu stören", "es": "Pasar rozando para no molestar al tráfico de frente" }, "correct": false },
+      { "id": "c", "text": { "de": "Hupen ist obligatorisch", "es": "Es obligatorio tocar el claxon" }, "correct": false }
+    ],
+    "explanation": { "de": "Velos können schwanken (Wind, Schlaglöcher): grosszügiger Seitenabstand ist Pflicht.", "es": "Las bicis pueden oscilar (viento, baches): el margen lateral amplio es obligatorio." },
+    "image": null
+  },
+  {
+    "id": "q079",
+    "category": "both",
+    "topic": "ueberholen",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": { "de": "Du willst rechts abbiegen, neben dir verläuft ein Radstreifen. Was gilt?", "es": "Quieres girar a la derecha y hay un carril bici a tu lado. ¿Qué debes hacer?" },
+    "options": [
+      { "id": "a", "text": { "de": "Geradeausfahrende Velos zuerst durchlassen – Sicherheitsblick nach rechts hinten", "es": "Dejar pasar primero a las bicis que siguen recto, con mirada al ángulo muerto derecho" }, "correct": true },
+      { "id": "b", "text": { "de": "Schnell vor dem Velo abbiegen", "es": "Girar rápido antes de que llegue la bici" }, "correct": false },
+      { "id": "c", "text": { "de": "Velos müssen den Autos Vortritt geben", "es": "Las bicis deben ceder el paso a los coches" }, "correct": false }
+    ],
+    "explanation": { "de": "Rechtsabbiegen über einen Radstreifen: geradeaus fahrende Velos haben Vortritt – klassische Unfallquelle.", "es": "Al girar cruzando un carril bici, las bicis que siguen recto tienen prioridad: es una causa clásica de accidente." },
+    "image": null
+  },
+  {
+    "id": "q080",
+    "category": "both",
+    "topic": "autobahn",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Wie verhältst du dich im Tunnel richtig? (Mehrere Antworten möglich)", "es": "¿Cómo se circula correctamente por un túnel? (Varias respuestas posibles)" },
+    "options": [
+      { "id": "a", "text": { "de": "Abblendlicht einschalten", "es": "Encender la luz de cruce" }, "correct": true },
+      { "id": "b", "text": { "de": "Grösseren Abstand halten", "es": "Aumentar la distancia de seguridad" }, "correct": true },
+      { "id": "c", "text": { "de": "Nie wenden oder rückwärtsfahren", "es": "No cambiar nunca de sentido ni retroceder" }, "correct": true },
+      { "id": "d", "text": { "de": "Sonnenbrille aufsetzen", "es": "Ponerse gafas de sol" }, "correct": false }
+    ],
+    "explanation": { "de": "Im Tunnel: Licht, Abstand, Spur halten. Bei Panne: Warnblinker, Pannenbucht, Motor abstellen.", "es": "En el túnel: luces, distancia y mantener el carril. En avería: warning, apartadero y motor apagado." },
+    "image": null
+  },
+  {
+    "id": "q081",
+    "category": "both",
+    "topic": "pannen",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": { "de": "Panne auf der Autobahn. Was ist richtig? (Mehrere Antworten möglich)", "es": "Avería en la autopista. ¿Qué es correcto? (Varias respuestas posibles)" },
+    "options": [
+      { "id": "a", "text": { "de": "Warnblinker ein, auf den Pannenstreifen fahren, Weste anziehen", "es": "Luces de emergencia, ir al arcén y ponerte el chaleco" }, "correct": true },
+      { "id": "b", "text": { "de": "Pannendreieck mindestens 100 m entfernt aufstellen", "es": "Colocar el triángulo a mínimo 100 m" }, "correct": true },
+      { "id": "c", "text": { "de": "Hinter der Leitplanke warten", "es": "Esperar detrás del guardarraíl" }, "correct": true },
+      { "id": "d", "text": { "de": "Im Auto sitzen bleiben und telefonieren", "es": "Quedarte dentro del coche llamando por teléfono" }, "correct": false }
+    ],
+    "explanation": { "de": "Auf dem Pannenstreifen ist das Auto eine Gefahrenzone: sichern, aussteigen (rechts) und hinter die Leitplanke.", "es": "En el arcén el coche es zona de peligro: señaliza, sal (por la derecha) y espera detrás del guardarraíl." },
+    "image": null
+  },
+  {
+    "id": "q082",
+    "category": "both",
+    "topic": "pannen",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": { "de": "Du kommst als Erster zu einem Unfall mit Verletzten. Reihenfolge? (Mehrere Antworten möglich)", "es": "Llegas primero a un accidente con heridos. ¿Qué haces? (Varias respuestas posibles)" },
+    "options": [
+      { "id": "a", "text": { "de": "Unfallstelle sichern (Warnblinker, Weste, Dreieck)", "es": "Asegurar el lugar (luces, chaleco, triángulo)" }, "correct": true },
+      { "id": "b", "text": { "de": "Verletzte beurteilen und 144 alarmieren", "es": "Evaluar a los heridos y llamar al 144" }, "correct": true },
+      { "id": "c", "text": { "de": "Verletzte nur bei akuter Gefahr bewegen", "es": "Mover a los heridos solo si hay peligro inmediato" }, "correct": true },
+      { "id": "d", "text": { "de": "Zuerst Fotos machen", "es": "Primero hacer fotos" }, "correct": false }
+    ],
+    "explanation": { "de": "Sichern → Beurteilen (GABI) → Alarmieren → Betreuen. Genau das lernst du im Nothelferkurs.", "es": "Asegurar → evaluar (GABI) → avisar → atender. Exactamente lo que se aprende en el Nothelferkurs." },
+    "image": null
+  },
+  {
+    "id": "q083",
+    "category": "both",
+    "topic": "pannen",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Unfall nur mit Blechschaden. Was gilt?", "es": "Accidente solo con daños materiales. ¿Qué se hace?" },
+    "options": [
+      { "id": "a", "text": { "de": "Fahrbahn möglichst rasch freimachen und Personalien/Versicherung austauschen", "es": "Despejar la calzada cuanto antes e intercambiar datos y seguro" }, "correct": true },
+      { "id": "b", "text": { "de": "Alles stehen lassen, bis die Polizei kommt – immer", "es": "Dejarlo todo como está hasta que venga la policía, siempre" }, "correct": false },
+      { "id": "c", "text": { "de": "Einfach weiterfahren", "es": "Seguir la marcha sin más" }, "correct": false }
+    ],
+    "explanation": { "de": "Bei reinem Sachschaden: Spuren markieren/fotografieren, Strasse räumen, Daten austauschen. Polizei nur bei Uneinigkeit oder auf Wunsch.", "es": "Solo daños materiales: marca/fotografía la posición, despeja la vía e intercambia datos. Policía solo si no hay acuerdo o alguien la pide." },
+    "image": null
+  },
+  {
+    "id": "q084",
+    "category": "both",
+    "topic": "pannen",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "In welchem Abstand stellst du das Pannendreieck auf einer normalen Strasse auf?", "es": "¿A qué distancia se coloca el triángulo en una carretera normal?" },
+    "options": [
+      { "id": "a", "text": { "de": "Mindestens 50 m", "es": "A mínimo 50 m" }, "correct": true },
+      { "id": "b", "text": { "de": "Mindestens 10 m", "es": "A mínimo 10 m" }, "correct": false },
+      { "id": "c", "text": { "de": "Mindestens 200 m", "es": "A mínimo 200 m" }, "correct": false }
+    ],
+    "explanation": { "de": "50 m auf normalen Strassen, 100 m auf schnellen Strassen (Autobahn/Autostrasse).", "es": "50 m en carreteras normales; 100 m en vías rápidas (autopista/semiautopista)." },
+    "image": null
+  },
+  {
+    "id": "q085",
+    "category": "both",
+    "topic": "alkohol",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": { "de": "Darfst du während der Fahrt das Handy benützen?", "es": "¿Puedes usar el móvil mientras conduces?" },
+    "options": [
+      { "id": "a", "text": { "de": "Nur über eine Freisprechanlage, wenn die Aufmerksamkeit gewährleistet bleibt", "es": "Solo con manos libres y si no pierdes la atención" }, "correct": true },
+      { "id": "b", "text": { "de": "Ja, kurze Nachrichten sind erlaubt", "es": "Sí, los mensajes cortos están permitidos" }, "correct": false },
+      { "id": "c", "text": { "de": "Ja, an roten Ampeln", "es": "Sí, en los semáforos en rojo" }, "correct": false }
+    ],
+    "explanation": { "de": "Telefonieren ohne Freisprechanlage ist verboten; Schreiben am Steuer ist grobe Verkehrsregelverletzung.", "es": "Llamar sin manos libres está prohibido; escribir al volante es una infracción grave." },
+    "image": null
+  },
+  {
+    "id": "q086",
+    "category": "both",
+    "topic": "alkohol",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Du wirst beim Fahren müde. Was hilft wirklich?", "es": "Te entra sueño conduciendo. ¿Qué ayuda de verdad?" },
+    "options": [
+      { "id": "a", "text": { "de": "Anhalten und Pause machen – Kurzschlaf und/oder Kaffee", "es": "Parar y descansar: siesta corta y/o café" }, "correct": true },
+      { "id": "b", "text": { "de": "Fenster öffnen und Musik lauter stellen", "es": "Abrir la ventanilla y subir la música" }, "correct": false },
+      { "id": "c", "text": { "de": "Schneller fahren, um früher anzukommen", "es": "Ir más rápido para llegar antes" }, "correct": false }
+    ],
+    "explanation": { "de": "Gegen Müdigkeit hilft nur Schlaf. Frische Luft und Musik wirken höchstens wenige Minuten.", "es": "Contra el sueño solo funciona dormir; el aire y la música apenas ayudan unos minutos." },
+    "image": null
+  },
+  {
+    "id": "q087",
+    "category": "both",
+    "topic": "alkohol",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Wie beugst du Müdigkeit auf langen Fahrten vor?", "es": "¿Cómo previenes la fatiga en viajes largos?" },
+    "options": [
+      { "id": "a", "text": { "de": "Ausgeruht starten und ca. alle 2 Stunden eine Pause machen", "es": "Salir descansado y hacer una pausa cada 2 horas aproximadamente" }, "correct": true },
+      { "id": "b", "text": { "de": "Durchfahren, um es hinter sich zu bringen", "es": "Conducir del tirón para acabar antes" }, "correct": false },
+      { "id": "c", "text": { "de": "Energy-Drinks ersetzen die Pausen", "es": "Las bebidas energéticas sustituyen las pausas" }, "correct": false }
+    ],
+    "explanation": { "de": "Sekundenschlaf kündigt sich an (brennende Augen, Gedankenabschweifen) – Pausen sind die einzige Prävention.", "es": "El microsueño avisa (ojos ardiendo, mente dispersa); las pausas son la única prevención real." },
+    "image": null
+  },
+  {
+    "id": "q088",
+    "category": "both",
+    "topic": "alkohol",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Alkohol zusammen mit Medikamenten – was gilt?", "es": "Alcohol combinado con medicamentos: ¿qué ocurre?" },
+    "options": [
+      { "id": "a", "text": { "de": "Die Wirkungen können sich gegenseitig verstärken – besonders gefährlich", "es": "Sus efectos pueden potenciarse entre sí: especialmente peligroso" }, "correct": true },
+      { "id": "b", "text": { "de": "Medikamente neutralisieren den Alkohol", "es": "Los medicamentos neutralizan el alcohol" }, "correct": false },
+      { "id": "c", "text": { "de": "Kein Problem bei rezeptfreien Mitteln", "es": "No hay problema si son sin receta" }, "correct": false }
+    ],
+    "explanation": { "de": "Kombinationen wirken unberechenbar und oft stärker als die Summe – im Zweifel nicht fahren.", "es": "Las combinaciones son imprevisibles y a menudo más fuertes que la suma: ante la duda, no conduzcas." },
+    "image": null
+  },
+  {
+    "id": "q089",
+    "category": "both",
+    "topic": "signale",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Die Ampel schaltet auf Gelb, du bist noch vor der Haltelinie. Was tust du?", "es": "El semáforo se pone en ámbar y aún no has llegado a la línea. ¿Qué haces?" },
+    "options": [
+      { "id": "a", "text": { "de": "Anhalten, wenn es noch sicher möglich ist", "es": "Detenerte, si todavía es posible con seguridad" }, "correct": true },
+      { "id": "b", "text": { "de": "Immer Vollgas, um noch durchzukommen", "es": "Acelerar a fondo para pasar" }, "correct": false },
+      { "id": "c", "text": { "de": "Gelb ist wie Grün", "es": "El ámbar equivale al verde" }, "correct": false }
+    ],
+    "explanation": { "de": "Gelb heisst anhalten, ausser du kannst nicht mehr sicher stoppen.", "es": "Ámbar significa detenerse, salvo que ya no puedas parar con seguridad." },
+    "image": null
+  },
+  {
+    "id": "q090",
+    "category": "both",
+    "topic": "signale",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Ein Polizist regelt den Verkehr, die Ampel zeigt Rot, er winkt dich durch. Was gilt?", "es": "Un policía dirige el tráfico; el semáforo está en rojo pero él te da paso. ¿Qué haces?" },
+    "options": [
+      { "id": "a", "text": { "de": "Den Zeichen des Polizisten folgen – sie gehen allem vor", "es": "Obedecer al policía: sus indicaciones están por encima de todo" }, "correct": true },
+      { "id": "b", "text": { "de": "Bei Rot stehen bleiben", "es": "Quedarme parado por el rojo" }, "correct": false },
+      { "id": "c", "text": { "de": "Selbst entscheiden, was sicherer ist", "es": "Decidir yo lo que parezca más seguro" }, "correct": false }
+    ],
+    "explanation": { "de": "Rangordnung: Polizei > Lichtsignale > Signale > Markierungen > allgemeine Regeln.", "es": "Jerarquía: policía > semáforos > señales > marcas viales > normas generales." },
+    "image": null
+  },
+  {
+    "id": "q091",
+    "category": "both",
+    "topic": "signale",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Die Ampel an einer Kreuzung ist ausgefallen, keine Signale vorhanden. Was gilt?", "es": "El semáforo de un cruce está averiado y no hay señales. ¿Qué rige?" },
+    "options": [
+      { "id": "a", "text": { "de": "Der Rechtsvortritt", "es": "La prioridad de la derecha" }, "correct": true },
+      { "id": "b", "text": { "de": "Der Schnellere fährt zuerst", "es": "Pasa primero el más rápido" }, "correct": false },
+      { "id": "c", "text": { "de": "Die breitere Strasse hat Vortritt", "es": "Tiene prioridad la calle más ancha" }, "correct": false }
+    ],
+    "explanation": { "de": "Ohne Polizei, Lichtsignal oder Signal gilt die Grundregel: Rechtsvortritt.", "es": "Sin policía, semáforo ni señales rige la norma básica: prioridad de la derecha." },
+    "image": null
+  },
+  {
+    "id": "q092",
+    "category": "both",
+    "topic": "parkieren",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Was bedeutet eine ununterbrochene gelbe Linie am Fahrbahnrand?", "es": "¿Qué significa una línea amarilla continua junto al borde de la calzada?" },
+    "options": [
+      { "id": "a", "text": { "de": "Halten verboten", "es": "Prohibido detenerse" }, "correct": true },
+      { "id": "b", "text": { "de": "Parkieren gratis erlaubt", "es": "Aparcamiento gratuito" }, "correct": false },
+      { "id": "c", "text": { "de": "Reserviert für Taxis", "es": "Reservado para taxis" }, "correct": false }
+    ],
+    "explanation": { "de": "Gelbe ununterbrochene Linie = Halteverbot; gelbes Kreuz/unterbrochene Linie = Parkverbot.", "es": "Línea amarilla continua = prohibido detenerse; cruz amarilla o línea discontinua = prohibido estacionar." },
+    "image": null
+  },
+  {
+    "id": "q093",
+    "category": "both",
+    "topic": "signale",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Was gilt bei einer doppelten weissen Sicherheitslinie?", "es": "¿Qué implica una doble línea blanca continua (línea de seguridad)?" },
+    "options": [
+      { "id": "a", "text": { "de": "Sie darf weder überfahren noch überquert werden", "es": "No se puede pisar ni cruzar" }, "correct": true },
+      { "id": "b", "text": { "de": "Überholen ist erlaubt, wenn frei", "es": "Se puede adelantar si está libre" }, "correct": false },
+      { "id": "c", "text": { "de": "Nur Lastwagen dürfen sie überqueren", "es": "Solo los camiones pueden cruzarla" }, "correct": false }
+    ],
+    "explanation": { "de": "Sicherheitslinien trennen den Verkehr dort, wo Überqueren gefährlich wäre – absolut tabu.", "es": "Las líneas de seguridad separan el tráfico donde cruzarlas sería peligroso: intocables." },
+    "image": null
+  },
+  {
+    "id": "q094",
+    "category": "both",
+    "topic": "signale",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Auf deinem Fahrstreifen ist ein Abbiegepfeil markiert. Was gilt?", "es": "En tu carril hay pintada una flecha de giro. ¿Qué significa?" },
+    "options": [
+      { "id": "a", "text": { "de": "Ich muss in Pfeilrichtung weiterfahren", "es": "Debo seguir en la dirección de la flecha" }, "correct": true },
+      { "id": "b", "text": { "de": "Die Pfeile sind nur Empfehlungen", "es": "Las flechas son solo recomendaciones" }, "correct": false },
+      { "id": "c", "text": { "de": "Ich darf in jede Richtung fahren", "es": "Puedo ir en cualquier dirección" }, "correct": false }
+    ],
+    "explanation": { "de": "Einspurpfeile sind verbindlich: rechtzeitig den richtigen Streifen wählen (einspuren!).", "es": "Las flechas de carril son obligatorias: colócate a tiempo en el carril correcto (¡einspuren!)." },
+    "image": null
+  },
+  {
+    "id": "q095",
+    "category": "both",
+    "topic": "parkieren",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Du parkierst an einem steilen Hang. Was ist richtig? (Mehrere Antworten möglich)", "es": "Aparcas en una cuesta pronunciada. ¿Qué es correcto? (Varias respuestas posibles)" },
+    "options": [
+      { "id": "a", "text": { "de": "Handbremse anziehen und einen Gang einlegen (bzw. P)", "es": "Poner el freno de mano y dejar una marcha engranada (o P)" }, "correct": true },
+      { "id": "b", "text": { "de": "Die Räder zum Randstein einschlagen", "es": "Girar las ruedas hacia el bordillo" }, "correct": true },
+      { "id": "c", "text": { "de": "Nur die Handbremse genügt immer", "es": "Con el freno de mano basta siempre" }, "correct": false }
+    ],
+    "explanation": { "de": "Dreifache Sicherung am Hang: Handbremse, Gang und eingeschlagene Räder.", "es": "Triple seguro en pendiente: freno de mano, marcha y ruedas giradas." },
+    "image": null
+  },
+  {
+    "id": "q096",
+    "category": "both",
+    "topic": "parkieren",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Worauf achtest du, bevor du die Autotür öffnest?", "es": "¿Qué compruebas antes de abrir la puerta del coche?" },
+    "options": [
+      { "id": "a", "text": { "de": "Spiegel und Schulterblick: Velos, Motorräder und Autos von hinten", "es": "Espejo y mirada por encima del hombro: bicis, motos y coches que vienen por detrás" }, "correct": true },
+      { "id": "b", "text": { "de": "Nichts – wer vorbeifährt, muss aufpassen", "es": "Nada: que se fijen los que pasan" }, "correct": false },
+      { "id": "c", "text": { "de": "Nur ob es regnet", "es": "Solo si está lloviendo" }, "correct": false }
+    ],
+    "explanation": { "de": "\"Dooring\" verletzt jedes Jahr viele Velofahrer. Tipp: Tür mit der entfernten Hand öffnen – so drehst du dich automatisch.", "es": "El \"dooring\" lesiona a muchos ciclistas cada año. Truco: abre con la mano contraria y girarás el cuerpo automáticamente." },
+    "image": null
+  },
+  {
+    "id": "q097",
+    "category": "both",
+    "topic": "umwelt",
+    "type": "multiple_choice",
+    "points": 1,
+    "question": { "de": "Du wartest länger vor einer geschlossenen Barriere. Was gilt für den Motor?", "es": "Esperas un buen rato ante una barrera cerrada. ¿Qué haces con el motor?" },
+    "options": [
+      { "id": "a", "text": { "de": "Abstellen – unnötiges Laufenlassen ist verboten", "es": "Apagarlo: dejarlo en marcha sin necesidad está prohibido" }, "correct": true },
+      { "id": "b", "text": { "de": "Laufen lassen, das schont den Anlasser", "es": "Dejarlo encendido para no gastar el motor de arranque" }, "correct": false },
+      { "id": "c", "text": { "de": "Im Winter immer laufen lassen", "es": "En invierno, dejarlo siempre encendido" }, "correct": false }
+    ],
+    "explanation": { "de": "Unnötiges Laufenlassen des Motors ist untersagt – Umwelt und Portemonnaie danken.", "es": "Dejar el motor en marcha sin necesidad está prohibido; el medio ambiente y tu bolsillo lo agradecen." },
+    "image": null
+  },
+  {
+    "id": "q098",
+    "category": "both",
+    "topic": "umwelt",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Was bewirkt zu tiefer Reifendruck? (Mehrere Antworten möglich)", "es": "¿Qué provoca una presión de neumáticos demasiado baja? (Varias respuestas posibles)" },
+    "options": [
+      { "id": "a", "text": { "de": "Höherer Verbrauch", "es": "Mayor consumo" }, "correct": true },
+      { "id": "b", "text": { "de": "Schlechteres Fahrverhalten und mehr Verschleiss", "es": "Peor comportamiento y más desgaste" }, "correct": true },
+      { "id": "c", "text": { "de": "Besserer Grip bei jedem Wetter", "es": "Mejor agarre en cualquier clima" }, "correct": false }
+    ],
+    "explanation": { "de": "Reifendruck monatlich prüfen (kalt) – zu wenig Druck kostet Sicherheit, Geld und Reifen.", "es": "Revisa la presión cada mes (en frío): la presión baja cuesta seguridad, dinero y neumáticos." },
+    "image": null
+  },
+  {
+    "id": "q099",
+    "category": "both",
+    "topic": "autobahn",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": { "de": "Du hast deine Autobahnausfahrt verpasst. Was tust du?", "es": "Te has pasado tu salida de la autopista. ¿Qué haces?" },
+    "options": [
+      { "id": "a", "text": { "de": "Bis zur nächsten Ausfahrt weiterfahren", "es": "Seguir hasta la próxima salida" }, "correct": true },
+      { "id": "b", "text": { "de": "Auf dem Pannenstreifen zurücksetzen", "es": "Dar marcha atrás por el arcén" }, "correct": false },
+      { "id": "c", "text": { "de": "Wenden, wenn nichts kommt", "es": "Cambiar de sentido si no viene nadie" }, "correct": false }
+    ],
+    "explanation": { "de": "Rückwärtsfahren und Wenden auf der Autobahn sind lebensgefährlich und streng verboten.", "es": "Retroceder o cambiar de sentido en la autopista es letal y está terminantemente prohibido." },
+    "image": null
+  },
+  {
+    "id": "q100",
+    "category": "both",
+    "topic": "fahrzeug",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Welche Dokumente musst du beim Fahren dabeihaben?", "es": "¿Qué documentos debes llevar al conducir?" },
+    "options": [
+      { "id": "a", "text": { "de": "Führerausweis und Fahrzeugausweis", "es": "Permiso de conducir y permiso de circulación del vehículo" }, "correct": true },
+      { "id": "b", "text": { "de": "Nur den Pass", "es": "Solo el pasaporte" }, "correct": false },
+      { "id": "c", "text": { "de": "Gar nichts, alles ist digital", "es": "Nada, todo es digital" }, "correct": false }
+    ],
+    "explanation": { "de": "Führerausweis und Fahrzeugausweis gehören auf jede Fahrt mit.", "es": "El permiso de conducir y el de circulación deben ir contigo en cada trayecto." },
+    "image": null
+  },
+  {
+    "id": "q101",
+    "category": "both",
+    "topic": "fahrzeug",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": { "de": "Mit dem Lernfahrausweis Kat. B: Wer muss dich begleiten?", "es": "Con el permiso de aprendizaje cat. B, ¿quién debe acompañarte?" },
+    "options": [
+      { "id": "a", "text": { "de": "Eine Person ab 23 Jahren, die den Ausweis B seit mindestens 3 Jahren (definitiv) hat", "es": "Una persona de 23 años o más, con el permiso B definitivo desde hace al menos 3 años" }, "correct": true },
+      { "id": "b", "text": { "de": "Irgendjemand mit Führerausweis", "es": "Cualquiera que tenga permiso" }, "correct": false },
+      { "id": "c", "text": { "de": "Niemand, tagsüber darf ich allein fahren", "es": "Nadie: de día puedo ir solo" }, "correct": false }
+    ],
+    "explanation": { "de": "Lernfahrten Kat. B nur mit Begleitperson: mind. 23 Jahre alt und 3 Jahre im Besitz des definitiven Ausweises B. Das L muss sichtbar sein.", "es": "Las prácticas de cat. B requieren acompañante de al menos 23 años con permiso B definitivo desde hace 3 años, y la placa L visible." },
+    "image": null
+  },
+  {
+    "id": "q102",
+    "category": "both",
+    "topic": "fahrzeug",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Was gilt für die Sicherheitsgurten?", "es": "¿Qué se aplica respecto al cinturón de seguridad?" },
+    "options": [
+      { "id": "a", "text": { "de": "Alle Insassen müssen angegurtet sein – vorne und hinten", "es": "Todos los ocupantes deben ir con cinturón, delante y detrás" }, "correct": true },
+      { "id": "b", "text": { "de": "Nur der Fahrer", "es": "Solo el conductor" }, "correct": false },
+      { "id": "c", "text": { "de": "Hinten ist der Gurt freiwillig", "es": "Detrás es voluntario" }, "correct": false }
+    ],
+    "explanation": { "de": "Gurtpflicht für alle Plätze. Der Fahrer ist verantwortlich, dass Kinder korrekt gesichert sind.", "es": "El cinturón es obligatorio en todas las plazas; el conductor responde de que los menores vayan bien sujetos." },
+    "image": null
+  },
+  {
+    "id": "q103",
+    "category": "both",
+    "topic": "fahrzeug",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Deine Ladung ragt hinten über das Fahrzeug hinaus. Was gilt? (Mehrere Antworten möglich)", "es": "La carga sobresale por detrás del vehículo. ¿Qué debes cumplir? (Varias respuestas posibles)" },
+    "options": [
+      { "id": "a", "text": { "de": "Die Ladung muss gut gesichert sein", "es": "La carga debe ir bien sujeta" }, "correct": true },
+      { "id": "b", "text": { "de": "Lichter und Kontrollschild dürfen nicht verdeckt sein", "es": "No puede tapar luces ni matrícula" }, "correct": true },
+      { "id": "c", "text": { "de": "Überhängende Ladung ist zu kennzeichnen", "es": "El saliente debe señalizarse" }, "correct": true },
+      { "id": "d", "text": { "de": "Bis 5 m Überhang ist alles erlaubt", "es": "Hasta 5 m de saliente todo vale" }, "correct": false }
+    ],
+    "explanation": { "de": "Ladung: sichern, nichts verdecken, Überhang signalisieren – sonst gefährdest du andere und riskierst Bussen.", "es": "Carga: sujeta, sin tapar nada y con el saliente señalizado; si no, pones en peligro a otros y te multan." },
+    "image": null
+  },
+  {
+    "id": "q104",
+    "category": "A",
+    "topic": "motorrad",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": { "de": "Du stehst mit dem Motorrad neben einem Lastwagen, der rechts abbiegen will. Warum ist das gefährlich?", "es": "Estás con la moto al lado de un camión que va a girar a la derecha. ¿Por qué es peligroso?" },
+    "options": [
+      { "id": "a", "text": { "de": "Ich bin in seinem toten Winkel und kann beim Abbiegen überrollt werden", "es": "Estoy en su ángulo muerto y puede arrollarme al girar" }, "correct": true },
+      { "id": "b", "text": { "de": "Es ist nicht gefährlich, ich bin schneller", "es": "No es peligroso: soy más rápido" }, "correct": false },
+      { "id": "c", "text": { "de": "Nur bei Regen gefährlich", "es": "Solo es peligroso si llueve" }, "correct": false }
+    ],
+    "explanation": { "de": "Nie rechts neben einem Lastwagen warten: hinter ihm bleiben oder klar vor ihm stehen, wo der Fahrer dich sieht.", "es": "Nunca esperes a la derecha de un camión: quédate detrás o claramente delante, donde el conductor te vea." },
+    "image": null
+  },
+  {
+    "id": "q105",
+    "category": "A",
+    "topic": "motorrad",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Du nimmst einen Mitfahrer auf dem Motorrad mit. Was gilt? (Mehrere Antworten möglich)", "es": "Llevas pasajero en la moto. ¿Qué debe cumplirse? (Varias respuestas posibles)" },
+    "options": [
+      { "id": "a", "text": { "de": "Auch der Mitfahrer trägt einen geprüften Helm", "es": "El pasajero también lleva casco homologado" }, "correct": true },
+      { "id": "b", "text": { "de": "Er benützt die Fussrasten und hält sich fest", "es": "Usa las estriberas y va bien agarrado" }, "correct": true },
+      { "id": "c", "text": { "de": "Er lehnt sich in Kurven mit dem Fahrer mit", "es": "En las curvas se inclina con el conductor" }, "correct": true },
+      { "id": "d", "text": { "de": "Er lehnt sich in Kurven immer nach aussen", "es": "En las curvas se inclina siempre hacia fuera" }, "correct": false }
+    ],
+    "explanation": { "de": "Mitfahrer: Helm, Rasten, festhalten, mitlehnen – Gegenlehnen macht das Motorrad instabil.", "es": "Pasajero: casco, estriberas, agarrarse e inclinarse con el piloto; inclinarse al revés desestabiliza la moto." },
+    "image": null
+  },
+  {
+    "id": "q106",
+    "category": "A",
+    "topic": "motorrad",
+    "type": "multiple_choice",
+    "points": 3,
+    "question": { "de": "Du musst mit dem Motorrad in einer Kurve stark bremsen. Was ist richtig?", "es": "Tienes que frenar fuerte con la moto en plena curva. ¿Qué es lo correcto?" },
+    "options": [
+      { "id": "a", "text": { "de": "Motorrad möglichst aufrichten und dann kräftig bremsen", "es": "Enderezar la moto lo posible y entonces frenar fuerte" }, "correct": true },
+      { "id": "b", "text": { "de": "In voller Schräglage die Vorderbremse voll ziehen", "es": "Apretar a fondo el freno delantero en plena inclinación" }, "correct": false },
+      { "id": "c", "text": { "de": "Nur kuppeln und rollen lassen", "es": "Solo soltar el embrague y dejar rodar" }, "correct": false }
+    ],
+    "explanation": { "de": "In Schräglage ist der Grip begrenzt: aufrichten, bremsen, nötigenfalls neu einlenken.", "es": "Inclinado, el agarre es limitado: endereza, frena y vuelve a trazar si hace falta." },
+    "image": null
+  },
+  {
+    "id": "q107",
+    "category": "A",
+    "topic": "motorrad",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Ihr fahrt in einer Motorradgruppe. Wie fährt man richtig?", "es": "Salís en grupo con las motos. ¿Cómo se rueda correctamente?" },
+    "options": [
+      { "id": "a", "text": { "de": "Versetzt fahren und genügend Abstand halten", "es": "En formación escalonada (zigzag) y con distancia suficiente" }, "correct": true },
+      { "id": "b", "text": { "de": "Nebeneinander auf einer Spur", "es": "En paralelo dentro del mismo carril" }, "correct": false },
+      { "id": "c", "text": { "de": "Möglichst dicht hintereinander", "es": "Lo más pegados posible" }, "correct": false }
+    ],
+    "explanation": { "de": "Versetzt fahren gibt jedem Ausweichraum und bessere Sicht; die Route kennt jeder selbst.", "es": "La formación escalonada da espacio de escape y visibilidad a todos; cada uno debe conocer la ruta." },
+    "image": null
+  },
+  {
+    "id": "q108",
+    "category": "A",
+    "topic": "motorrad",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Starker Seitenwind auf einer Brücke – was tust du auf dem Motorrad?", "es": "Viento lateral fuerte en un puente: ¿qué haces con la moto?" },
+    "options": [
+      { "id": "a", "text": { "de": "Tempo reduzieren, locker aber sicher greifen und mit Windstössen rechnen", "es": "Reducir velocidad, sujetar firme pero relajado y esperar rachas" }, "correct": true },
+      { "id": "b", "text": { "de": "Schneller fahren, um die Brücke rasch zu passieren", "es": "Acelerar para cruzar el puente cuanto antes" }, "correct": false },
+      { "id": "c", "text": { "de": "Ganz an den Fahrbahnrand ausweichen", "es": "Pegarte al borde de la calzada" }, "correct": false }
+    ],
+    "explanation": { "de": "Windstösse versetzen das Motorrad: mit Tempo runter bleibt Zeit und Raum zum Korrigieren – Reserve zum Rand halten.", "es": "Las rachas desplazan la moto: con menos velocidad tienes tiempo y espacio para corregir; deja margen con el borde." },
+    "image": null
   }
 ]

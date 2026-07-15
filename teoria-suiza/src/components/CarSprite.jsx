@@ -14,6 +14,7 @@ export default function CarSprite({
   braking = false,
   steer = 0,
   showWheels = false,
+  label = null,
 }) {
   const frontWheelStyle = {
     transform: `rotate(${steer}deg)`,
@@ -78,6 +79,15 @@ export default function CarSprite({
           <circle cx={15.5} cy={-33} r={3.2} fill="#ffb300" className="blink" />
           <circle cx={15.5} cy={33} r={3.2} fill="#ffb300" className="blink" />
         </>
+      )}
+      {/* letra identificadora (para diagramas de prioridad); contrarrota para quedar siempre derecha */}
+      {label && (
+        <g transform={`rotate(${-angle}) translate(0 4)`}>
+          <circle r={11} fill="#fff" stroke="rgba(0,0,0,0.35)" strokeWidth={1.5} />
+          <text y={5} textAnchor="middle" fontSize={14} fontWeight="800" fill="#1c2024" fontFamily="system-ui, sans-serif">
+            {label}
+          </text>
+        </g>
       )}
     </g>
   )

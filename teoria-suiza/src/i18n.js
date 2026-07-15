@@ -129,6 +129,24 @@ export const STRINGS = {
   signsCardsSub: { de: 'Signal vorne, Bedeutung hinten', es: 'Señal delante, significado detrás' },
   signsQuizSub: { de: 'Welches Signal ist das?', es: '¿Qué señal es esta?' },
   whatSign: { de: 'Was bedeutet dieses Signal?', es: '¿Qué significa esta señal?' },
+  dueToday: { de: 'für heute', es: 'para hoy' },
+  allCaughtUp: { de: 'Alles gelernt für heute! 🎉', es: '¡Al día por hoy! 🎉' },
+  nextReview: { de: 'Nächste Wiederholung', es: 'Próximo repaso' },
+  practiceAnyway: { de: 'Trotzdem üben', es: 'Practicar igualmente' },
+  menuStats: { de: 'Statistik', es: 'Estadísticas' },
+  menuStatsSub: { de: 'Fortschritt, Serie & schwache Themen', es: 'Progreso, racha y temas flojos' },
+  streakDays: { de: 'Tage-Serie', es: 'días de racha' },
+  daysStudied: { de: 'Lerntage', es: 'días estudiados' },
+  answeredTotal: { de: 'Antworten', es: 'respuestas' },
+  byTopic: { de: 'Trefferquote nach Thema', es: 'Aciertos por tema' },
+  byTopicHint: { de: 'Sortiert: Schwächstes zuerst', es: 'Ordenado: lo más flojo primero' },
+  examHistoryTitle: { de: 'Prüfungsverlauf', es: 'Historial de exámenes' },
+  cardsProgress: { de: 'Lernkarten in Wiederholung', es: 'Flashcards en repaso' },
+  noStatsYet: {
+    de: 'Noch keine Daten – beantworte zuerst ein paar Fragen im Lernmodus.',
+    es: 'Aún no hay datos: responde antes algunas preguntas en el modo estudio.',
+  },
+  mastered: { de: 'gefestigt', es: 'dominadas' },
 }
 
 export function t(key, lang, vars) {

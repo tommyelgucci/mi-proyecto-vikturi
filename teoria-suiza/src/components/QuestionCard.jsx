@@ -1,6 +1,29 @@
 import { useLang, t } from '../i18n'
 import { topicLabel } from '../data/topics'
 import { hasMultipleCorrect } from '../utils'
+import { SIGNS } from '../data/signs'
+import SignSprite from './SignSprite'
+import SceneDiagram from './SceneDiagram'
+
+function QuestionImage({ image }) {
+  if (!image) return null
+  if (image.type === 'sign') {
+    const sign = SIGNS.find((s) => s.id === image.id)
+    return sign ? (
+      <div className="my-3 flex justify-center">
+        <SignSprite draw={sign.draw} size={110} />
+      </div>
+    ) : null
+  }
+  if (image.type === 'scene') {
+    return (
+      <div className="my-3">
+        <SceneDiagram id={image.id} />
+      </div>
+    )
+  }
+  return null
+}
 
 /**
  * Tarjeta de pregunta compartida por los modos estudio, examen y repaso.
@@ -27,6 +50,7 @@ export default function QuestionCard({ question, selected, onToggle, revealed, s
       )}
 
       <p className="text-base font-semibold leading-snug text-gray-900">{question.question[lang]}</p>
+      <QuestionImage image={question.image} />
       {multi && !revealed && <p className="mt-1 text-xs text-gray-500">☑︎ {t('multiHint', lang)}</p>}
 
       <div className="mt-4 space-y-2">

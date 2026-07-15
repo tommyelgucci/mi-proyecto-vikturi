@@ -50,6 +50,7 @@ export default function Home({ category, setCategory, navigate }) {
   const history = storage.getExamHistory()
   const lastExam = history[history.length - 1]
   const maneuverCount = maneuversForCategory(category).length
+  const streak = storage.getStreak()
 
   return (
     <div className="mx-auto max-w-xl space-y-5 px-4 py-5">
@@ -110,6 +111,13 @@ export default function Home({ category, setCategory, navigate }) {
           emoji="⛑️"
           label={t('menuFirstAid', lang)}
           sub={t('menuFirstAidSub', lang)}
+        />
+        <MenuButton
+          onClick={() => navigate('stats')}
+          emoji="📊"
+          label={t('menuStats', lang)}
+          sub={t('menuStatsSub', lang)}
+          badge={streak > 0 ? streak : null}
         />
       </div>
 
