@@ -1997,5 +1997,75 @@
     ],
     "explanation": { "de": "Richtig. Dieses Signal (1.30, Verzweigung mit Rechtsvortritt) bestätigt ausdrücklich, dass an dieser Kreuzung der Rechtsvortritt gilt – das Auto von rechts hat Vortritt.", "es": "Verdadero. Esta señal (1.30, cruce con prioridad de derecha) confirma explícitamente que en ese cruce rige la prioridad por la derecha: el coche que viene por la derecha tiene el paso." },
     "image": { "type": "sign", "id": "v_rechtsvortritt" }
+  },
+  {
+    "id": "q122",
+    "category": "both",
+    "topic": "kreisverkehr",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Du willst beim Kreisel die 1. Ausfahrt nehmen (das entspricht einem normalen Rechtsabbiegen). Das Auto hat schon vor der Einfahrt den rechten Blinker gesetzt und fährt am rechten Rand der Zufahrt. Korrekt?", "es": "Quieres tomar la 1ª salida del Kreisel (equivale a un giro a la derecha normal). El coche ya activó el intermitente derecho antes de entrar y circula pegado al borde derecho de la vía de acceso. ¿Es correcto?" },
+    "options": [
+      { "id": "a", "text": { "de": "Richtig", "es": "Verdadero" }, "correct": true },
+      { "id": "b", "text": { "de": "Falsch", "es": "Falso" }, "correct": false }
+    ],
+    "explanation": { "de": "Richtig. Die 1. Ausfahrt verhält sich wie ein gewöhnliches Rechtsabbiegen: rechtzeitig blinken, rechts einspuren – und vorher den toten Winkel wegen Velos kontrollieren.", "es": "Verdadero. La 1ª salida se comporta como un giro a la derecha normal: intermitente con tiempo, posición a la derecha, y antes comprobar el ángulo muerto por si hay ciclistas (Velo)." },
+    "image": { "type": "scene", "id": "kreisel_1ausfahrt_correct" }
+  },
+  {
+    "id": "q123",
+    "category": "both",
+    "topic": "kreisverkehr",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Gleiche Situation: 1. Ausfahrt gewünscht. Das Auto fährt aber ohne jeglichen Blinker in den Kreisel ein. Korrekt?", "es": "Misma situación: quieres la 1ª salida. Pero el coche entra al Kreisel sin ningún intermitente puesto. ¿Es correcto?" },
+    "options": [
+      { "id": "a", "text": { "de": "Richtig", "es": "Verdadero" }, "correct": false },
+      { "id": "b", "text": { "de": "Falsch", "es": "Falso" }, "correct": true }
+    ],
+    "explanation": { "de": "Falsch. Für die 1. Ausfahrt muss der rechte Blinker schon VOR der Einfahrt gesetzt sein, genau wie bei einem normalen Rechtsabbiegen.", "es": "Falso. Para la 1ª salida el intermitente derecho debe estar puesto ANTES de entrar, igual que en un giro a la derecha normal." },
+    "image": { "type": "scene", "id": "kreisel_1ausfahrt_no_blinker" }
+  },
+  {
+    "id": "q124",
+    "category": "both",
+    "topic": "kreisverkehr",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Du willst die 2. (oder eine spätere) Ausfahrt nehmen. Das Auto fährt ohne Blinker mittig in den Kreisel ein. Korrekt?", "es": "Quieres tomar la 2ª salida (o una posterior). El coche entra al Kreisel de forma centrada y sin intermitente. ¿Es correcto?" },
+    "options": [
+      { "id": "a", "text": { "de": "Richtig", "es": "Verdadero" }, "correct": true },
+      { "id": "b", "text": { "de": "Falsch", "es": "Falso" }, "correct": false }
+    ],
+    "explanation": { "de": "Richtig. Bei der Einfahrt für die 2. oder eine weitere Ausfahrt wird NICHT geblinkt; du fährst mittig in den Kreisel ein und blinkst erst kurz vor deiner Ausfahrt rechts.", "es": "Verdadero. Al entrar para la 2ª salida o una posterior NO se pone intermitente; entras de forma centrada y activas el intermitente derecho solo poco antes de tu salida." },
+    "image": { "type": "scene", "id": "kreisel_2ausfahrt_correct" }
+  },
+  {
+    "id": "q125",
+    "category": "both",
+    "topic": "kreisverkehr",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Gleiche Situation (2. oder spätere Ausfahrt). Das Auto fährt aber mit gesetztem LINKEN Blinker in den Kreisel ein. Korrekt?", "es": "Misma situación (2ª salida o posterior). Pero el coche entra al Kreisel con el intermitente IZQUIERDO puesto. ¿Es correcto?" },
+    "options": [
+      { "id": "a", "text": { "de": "Richtig", "es": "Verdadero" }, "correct": false },
+      { "id": "b", "text": { "de": "Falsch", "es": "Falso" }, "correct": true }
+    ],
+    "explanation": { "de": "Falsch. Beim Einfahren in einen Kreisel wird NIE der linke Blinker gesetzt – egal welche Ausfahrt du nimmst. Der linke Blinker ist beim Kreisel schlicht nicht vorgesehen.", "es": "Falso. Al entrar en un Kreisel NUNCA se pone el intermitente izquierdo, sea cual sea la salida que tomes. Ese intermitente simplemente no se usa al entrar en una rotonda." },
+    "image": { "type": "scene", "id": "kreisel_2ausfahrt_wrong_blinker" }
+  },
+  {
+    "id": "q126",
+    "category": "both",
+    "topic": "kreisverkehr",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Zweispuriger Kreisel: Das Auto will die 3. Ausfahrt nehmen, bleibt aber während der ganzen Fahrt im äusseren Fahrstreifen. Korrekt?", "es": "Kreisel de doble carril: el coche quiere tomar la 3ª salida, pero se mantiene todo el trayecto en el carril EXTERIOR. ¿Es correcto?" },
+    "options": [
+      { "id": "a", "text": { "de": "Richtig", "es": "Verdadero" }, "correct": false },
+      { "id": "b", "text": { "de": "Falsch", "es": "Falso" }, "correct": true }
+    ],
+    "explanation": { "de": "Falsch. Ab der 3. Ausfahrt sollte man frühzeitig im INNEREN Fahrstreifen fahren und erst kurz vor der gewünschten Ausfahrt mit Blinker rechts und Schulterblick auf den äusseren Streifen wechseln. Das ist eine Fahrempfehlung, keine gesetzliche Pflicht – wird aber in der Prüfung erwartet.", "es": "Falso. A partir de la 3ª salida conviene circular con antelación por el carril INTERIOR y cambiar al exterior recién poco antes de la salida deseada, con intermitente derecho y mirada por encima del hombro. Es una recomendación de conducción, no una ley estricta, pero se espera en el examen." },
+    "image": { "type": "scene", "id": "kreisel_doppelspurig_wrong" }
   }
 ]

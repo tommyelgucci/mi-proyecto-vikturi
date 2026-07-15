@@ -183,6 +183,72 @@ export const DIAGRAMS = {
       { path: 'M 128 242 Q 160 275 205 268' },
     ],
   },
+  // Kreisel de un solo carril: coche entrando desde el sur, sin otro vehículo
+  // (preguntas sobre comportamiento propio: posición + blinker).
+  kreisel_1ausfahrt_correct: {
+    elements: [
+      { type: 'grass', x: 0, y: 0, w: 360, h: 360 },
+      { type: 'road', x: 152, y: 0, w: 76, h: 90 },
+      { type: 'road', x: 152, y: 270, w: 76, h: 90 },
+      { type: 'road', x: 0, y: 152, w: 90, h: 76 },
+      { type: 'road', x: 270, y: 152, w: 90, h: 76 },
+      { type: 'ring', x: 180, y: 180, rOuter: 100, rInner: 42 },
+    ],
+    cars: [{ x: 210, y: 330, angle: 0, color: '#ffffff', blinker: 'right' }],
+    arrows: [{ path: 'M 210 300 L 210 250 Q 210 180 270 180' }],
+  },
+  kreisel_1ausfahrt_no_blinker: {
+    elements: [
+      { type: 'grass', x: 0, y: 0, w: 360, h: 360 },
+      { type: 'road', x: 152, y: 0, w: 76, h: 90 },
+      { type: 'road', x: 152, y: 270, w: 76, h: 90 },
+      { type: 'road', x: 0, y: 152, w: 90, h: 76 },
+      { type: 'road', x: 270, y: 152, w: 90, h: 76 },
+      { type: 'ring', x: 180, y: 180, rOuter: 100, rInner: 42 },
+    ],
+    cars: [{ x: 210, y: 330, angle: 0, color: '#ffffff', blinker: null }],
+    arrows: [{ path: 'M 210 300 L 210 250 Q 210 180 270 180' }],
+  },
+  kreisel_2ausfahrt_correct: {
+    elements: [
+      { type: 'grass', x: 0, y: 0, w: 360, h: 360 },
+      { type: 'road', x: 152, y: 0, w: 76, h: 90 },
+      { type: 'road', x: 152, y: 270, w: 76, h: 90 },
+      { type: 'road', x: 0, y: 152, w: 90, h: 76 },
+      { type: 'road', x: 270, y: 152, w: 90, h: 76 },
+      { type: 'ring', x: 180, y: 180, rOuter: 100, rInner: 42 },
+    ],
+    cars: [{ x: 190, y: 330, angle: 0, color: '#ffffff', blinker: null }],
+    arrows: [{ path: 'M 190 300 Q 190 180 152 100' }],
+  },
+  kreisel_2ausfahrt_wrong_blinker: {
+    elements: [
+      { type: 'grass', x: 0, y: 0, w: 360, h: 360 },
+      { type: 'road', x: 152, y: 0, w: 76, h: 90 },
+      { type: 'road', x: 152, y: 270, w: 76, h: 90 },
+      { type: 'road', x: 0, y: 152, w: 90, h: 76 },
+      { type: 'road', x: 270, y: 152, w: 90, h: 76 },
+      { type: 'ring', x: 180, y: 180, rOuter: 100, rInner: 42 },
+    ],
+    cars: [{ x: 190, y: 330, angle: 0, color: '#ffffff', blinker: 'left' }],
+    arrows: [{ path: 'M 190 300 Q 190 180 152 100' }],
+  },
+  // Kreisel de doble carril: círculo divisorio discontinuo entre los dos
+  // anillos; coche en el carril EXTERIOR queriendo la 3ª salida (mal: debería
+  // ir por el interior y pasarse al exterior recién antes de salir).
+  kreisel_doppelspurig_wrong: {
+    elements: [
+      { type: 'grass', x: 0, y: 0, w: 360, h: 360 },
+      { type: 'road', x: 152, y: 0, w: 76, h: 90 },
+      { type: 'road', x: 152, y: 270, w: 76, h: 90 },
+      { type: 'road', x: 0, y: 152, w: 90, h: 76 },
+      { type: 'road', x: 270, y: 152, w: 90, h: 76 },
+      { type: 'ring', x: 180, y: 180, rOuter: 100, rInner: 42 },
+      { type: 'circleOutline', x: 180, y: 180, r: 71 },
+    ],
+    cars: [{ x: 180, y: 95, angle: -90, color: '#ffffff', blinker: null }],
+    arrows: [{ path: 'M 180 95 Q 100 95 60 180' }],
+  },
   // Giro a la izquierda: A gira, B viene de frente recto → B primero.
   linksabbiegen: {
     elements: CROSS,
