@@ -8,6 +8,7 @@ import Exam from './components/Exam'
 import Review from './components/Review'
 import Tips from './components/Tips'
 import Maneuvers from './components/Maneuvers'
+import FirstAid from './components/FirstAid'
 
 export default function App() {
   const [lang, setLangState] = useState(storage.getLang)
@@ -30,6 +31,7 @@ export default function App() {
     review: t('menuReview', lang),
     tips: t('menuTips', lang),
     maneuvers: t('menuManeuvers', lang),
+    firstaid: t('menuFirstAid', lang),
   }
 
   return (
@@ -37,7 +39,7 @@ export default function App() {
       <div className="min-h-screen bg-gray-100 pb-8">
         <Header
           title={titles[view]}
-          category={view !== 'home' ? category : null}
+          category={view !== 'home' && view !== 'firstaid' ? category : null}
           onBack={view !== 'home' ? () => setView('home') : null}
         />
         {view === 'home' && <Home category={category} setCategory={setCategory} navigate={setView} />}
@@ -46,6 +48,7 @@ export default function App() {
         {view === 'review' && <Review />}
         {view === 'tips' && <Tips category={category} />}
         {view === 'maneuvers' && <Maneuvers category={category} />}
+        {view === 'firstaid' && <FirstAid />}
       </div>
     </LangContext.Provider>
   )

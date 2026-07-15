@@ -56,4 +56,17 @@ export const storage = {
     history.push(result)
     write('examHistory', history.slice(-20))
   },
+
+  // Nothelfer: ids de flashcards marcadas como sabidas
+  getFirstAidKnown: () => read('firstaidKnown', []),
+  addFirstAidKnown(cardId) {
+    const known = read('firstaidKnown', [])
+    if (!known.includes(cardId)) {
+      known.push(cardId)
+      write('firstaidKnown', known)
+    }
+  },
+  resetFirstAidKnown() {
+    write('firstaidKnown', [])
+  },
 }

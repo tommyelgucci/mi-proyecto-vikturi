@@ -99,6 +99,12 @@ export default function Home({ category, setCategory, navigate }) {
           badge={failedCount}
         />
         <MenuButton onClick={() => navigate('tips')} emoji="🎯" label={t('menuTips', lang)} sub={t('menuTipsSub', lang)} />
+        <MenuButton
+          onClick={() => navigate('firstaid')}
+          emoji="⛑️"
+          label={t('menuFirstAid', lang)}
+          sub={t('menuFirstAidSub', lang)}
+        />
       </div>
 
       {lastExam && (

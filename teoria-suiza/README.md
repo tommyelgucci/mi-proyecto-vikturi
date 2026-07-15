@@ -12,6 +12,7 @@ App web bilingüe **alemán/español** para estudiar la teoría del examen de co
 - **Repaso de falladas**: las preguntas falladas se guardan en `localStorage` y se eliminan al responderlas bien
 - **Maniobras animadas**: animaciones SVG limpias en vista cenital (estilo "vídeo explicativo") con coche animado, indicador de volante, intermitentes, marcha atrás y captions paso a paso, bilingües. 10 maniobras de categoría B: aparcar en paralelo, en perpendicular y de frente, girar a la izquierda con Einspuren, tramo largo marcha atrás, cambio de sentido en 3 tiempos, parada en el STOP, frenada de emergencia (Vollbremsung), dónde parar ("Anhalten") y la regla de los 2 segundos
 - **Tips prácticos** por categoría: aparcar en paralelo, Rechtsvortritt, rotondas, Sicherheitsblick, autopista (B) · Spurgasse, slalom, Vollbremsung, el ocho, equipamiento (A) · colores de indicadores de dirección y glosario de órdenes del examinador (ambas categorías)
+- **Primeros auxilios (Nothelfer)**: módulo de repaso del Nothelferkurs obligatorio (temario en `src/data/firstaid.js`): 8 temas de lectura (números de emergencia, asegurar el accidente, GABI, posición lateral, RCP 30:2 y DEA, hemorragias/shock, infarto/ictus/quemaduras, obligaciones legales), 26 flashcards con progreso persistente y quiz de 10 preguntas con feedback. No sustituye el curso oficial presencial.
 
 ## Stack
 
