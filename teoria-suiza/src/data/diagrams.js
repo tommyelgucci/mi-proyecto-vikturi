@@ -105,6 +105,50 @@ export const DIAGRAMS = {
       { path: 'M 158 108 L 158 270' },
     ],
   },
+  // Trampa A: B viene de una calle a la derecha ópticamente angosta, pero sin
+  // adoquines ni señales → sigue rigiendo el Rechtsvortritt normal.
+  rechtsvortritt_narrow_no_mark: {
+    elements: [
+      ...CROSS,
+      { type: 'grass', x: 225, y: 135, w: 135, h: 30 },
+      { type: 'grass', x: 225, y: 195, w: 135, h: 30 },
+      { type: 'curbLine', x1: 225, y1: 165, x2: 360, y2: 165 },
+      { type: 'curbLine', x1: 225, y1: 195, x2: 360, y2: 195 },
+    ],
+    cars: [
+      { label: 'A', color: '#ffffff', x: 202, y: 300, angle: 0 },
+      { label: 'B', color: '#c0392b', x: 295, y: 180, angle: -90 },
+    ],
+    arrows: [
+      { path: 'M 202 252 L 202 90' },
+      { path: 'M 258 180 L 100 180' },
+    ],
+  },
+  // Trampa B: la calle de B parece normal, pero una doble fila de adoquines en
+  // la boca indica una Trottoirüberfahrt → B pierde la prioridad.
+  rechtsvortritt_cobble: {
+    elements: [...CROSS, { type: 'trottoirMark', x1: 225, y1: 135, x2: 225, y2: 225, kind: 'cobble' }],
+    cars: [
+      { label: 'A', color: '#ffffff', x: 202, y: 300, angle: 0 },
+      { label: 'B', color: '#c0392b', x: 305, y: 158, angle: -90 },
+    ],
+    arrows: [
+      { path: 'M 202 252 L 202 90' },
+      { path: 'M 258 158 L 100 158' },
+    ],
+  },
+  // Igual, pero con una rampa de asfalto (Belagskissen) en vez de adoquines.
+  rechtsvortritt_ramp: {
+    elements: [...CROSS, { type: 'trottoirMark', x1: 225, y1: 135, x2: 225, y2: 225, kind: 'ramp' }],
+    cars: [
+      { label: 'A', color: '#ffffff', x: 202, y: 300, angle: 0 },
+      { label: 'B', color: '#c0392b', x: 305, y: 158, angle: -90 },
+    ],
+    arrows: [
+      { path: 'M 202 252 L 202 90' },
+      { path: 'M 258 158 L 100 158' },
+    ],
+  },
   // Tram desde la izquierda de A: el tram tiene prioridad igualmente.
   tram_links: {
     elements: [

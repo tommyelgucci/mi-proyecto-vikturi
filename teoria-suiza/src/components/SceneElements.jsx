@@ -215,6 +215,34 @@ export function SceneElement({ el }) {
           <path d="M -5 0 L -1.5 4.5 L 5.5 -4.5" stroke="#fff" strokeWidth={2.4} fill="none" strokeLinecap="round" strokeLinejoin="round" />
         </g>
       )
+    case 'trottoirMark': {
+      // Banda que marca una Trottoirüberfahrt en la boca de una calle secundaria:
+      // el vehículo que sale por ahí pierde la prioridad aunque venga por la derecha.
+      const len = el.y2 - el.y1
+      if (el.kind === 'ramp') {
+        return (
+          <rect
+            x={el.x1 - 7}
+            y={el.y1}
+            width={14}
+            height={len}
+            rx={7}
+            fill="#9aa0a6"
+            stroke="rgba(0,0,0,0.2)"
+            strokeWidth={1}
+          />
+        )
+      }
+      // 'cobble': doble fila de adoquines (cuadraditos en dos columnas).
+      const rows = Math.max(1, Math.round(len / 10))
+      const stones = []
+      for (let i = 0; i < rows; i++) {
+        const y = el.y1 + i * (len / rows)
+        stones.push(<rect key={`l${i}`} x={el.x1 - 7} y={y} width={6} height={len / rows - 2} fill="#b7ab95" stroke="#8a7f6b" strokeWidth={0.6} />)
+        stones.push(<rect key={`r${i}`} x={el.x1 + 1} y={y} width={6} height={len / rows - 2} fill="#b7ab95" stroke="#8a7f6b" strokeWidth={0.6} />)
+      }
+      return <g>{stones}</g>
+    }
     case 'laneArrow':
       return <LaneArrow x={el.x} y={el.y} kind={el.kind} />
     case 'trafficLight':

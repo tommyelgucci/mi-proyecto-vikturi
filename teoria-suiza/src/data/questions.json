@@ -1927,5 +1927,75 @@
     ],
     "explanation": { "de": "Falsch. Für Linksabbiegen gehörst du an den linken Rand des Streifens mit Blinker links – nicht rechts. Die gezeigte Position und der Blinker passen zum Rechtsabbiegen, nicht zu deinem Vorhaben.", "es": "Falso. Para girar a la izquierda debes situarte en el borde izquierdo del carril con el intermitente izquierdo, no a la derecha. La posición y el intermitente mostrados corresponden a girar a la derecha, no a tu intención." },
     "image": { "type": "scene", "id": "einspuren_triple_wrong_left_intent" }
+  },
+  {
+    "id": "q117",
+    "category": "both",
+    "topic": "vortritt",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Von rechts kommt ein Auto aus einer Strasse, die deutlich schmäler wirkt als deine. Es gibt keine Signale und keine Pflastersteine an der Einmündung. Musst du ihm den Vortritt lassen?", "es": "Por la derecha viene un coche desde una calle que se ve claramente más angosta que la tuya. No hay señales ni adoquines en la bocacalle. ¿Debes cederle el paso?" },
+    "options": [
+      { "id": "a", "text": { "de": "Richtig", "es": "Verdadero" }, "correct": true },
+      { "id": "b", "text": { "de": "Falsch", "es": "Falso" }, "correct": false }
+    ],
+    "explanation": { "de": "Richtig. Ohne Signale und ohne Abgrenzung durch Pflastersteine gilt der Rechtsvortritt uneingeschränkt – auch wenn die Strasse optisch schmäler oder unbedeutender wirkt.", "es": "Verdadero. Sin señales y sin una doble fila de adoquines que delimite la bocacalle, la prioridad por la derecha se aplica sin restricciones, aunque la calle parezca más angosta o secundaria." },
+    "image": { "type": "scene", "id": "rechtsvortritt_narrow_no_mark" }
+  },
+  {
+    "id": "q118",
+    "category": "both",
+    "topic": "vortritt",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Von rechts kommt ein Auto aus einer Strasse, die genauso breit wirkt wie deine. An der Einmündung verläuft aber eine doppelte Reihe Pflastersteine, die das Trottoir optisch fortsetzt. Musst du ihm den Vortritt lassen?", "es": "Por la derecha viene un coche desde una calle que parece igual de ancha que la tuya. Pero en la bocacalle hay una doble fila de adoquines que continúa la acera. ¿Debes cederle el paso?" },
+    "options": [
+      { "id": "a", "text": { "de": "Richtig", "es": "Verdadero" }, "correct": false },
+      { "id": "b", "text": { "de": "Falsch", "es": "Falso" }, "correct": true }
+    ],
+    "explanation": { "de": "Falsch – du musst ihm NICHT den Vortritt lassen. Die doppelte Pflastersteinreihe zeigt eine Trottoirüberfahrt an: Das Trottoir wird optisch fortgesetzt, also überquert das Auto beim Ausfahren das Trottoir und verliert dadurch den Vortritt, unabhängig davon, dass es von rechts kommt.", "es": "Falso: NO debes cederle el paso. La doble fila de adoquines señala un Trottoirüberfahrt (cruce de acera): la acera continúa visualmente, así que ese coche la cruza al salir y pierde la prioridad, aunque venga por la derecha." },
+    "image": { "type": "scene", "id": "rechtsvortritt_cobble" }
+  },
+  {
+    "id": "q119",
+    "category": "both",
+    "topic": "vortritt",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Von rechts kommt ein Auto aus einer Einfahrt. An der Einmündung ist eine kleine Asphaltrampe (Belagskissen) sichtbar, die die Höhe des Trottoirs markiert. Musst du ihm den Vortritt lassen?", "es": "Por la derecha viene un coche desde una entrada. En la bocacalle se ve una pequeña rampa de asfalto (Belagskissen) que marca la altura de la acera. ¿Debes cederle el paso?" },
+    "options": [
+      { "id": "a", "text": { "de": "Richtig", "es": "Verdadero" }, "correct": false },
+      { "id": "b", "text": { "de": "Falsch", "es": "Falso" }, "correct": true }
+    ],
+    "explanation": { "de": "Falsch. Die Rampe zeigt, dass hier das Trottoir überfahren wird (Trottoirüberfahrt) – der Vortritt entfällt für das ausfahrende Fahrzeug, unabhängig von der Fahrtrichtung.", "es": "Falso. La rampa indica que ahí se cruza la acera (Trottoirüberfahrt): el vehículo que sale pierde la prioridad, sin importar de qué lado venga." },
+    "image": { "type": "scene", "id": "rechtsvortritt_ramp" }
+  },
+  {
+    "id": "q120",
+    "category": "both",
+    "topic": "vortritt",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "A verlässt einen Parkplatz und will auf die Strasse einbiegen, auf der B fährt. Hat A Vortritt, wenn keine Signale vorhanden sind?", "es": "A sale de un estacionamiento y quiere incorporarse a la calle por la que circula B. ¿Tiene A prioridad si no hay señales?" },
+    "options": [
+      { "id": "a", "text": { "de": "Richtig", "es": "Verdadero" }, "correct": false },
+      { "id": "b", "text": { "de": "Falsch", "es": "Falso" }, "correct": true }
+    ],
+    "explanation": { "de": "Falsch. Ausfahrten aus Parkplätzen, Hofeinfahrten, Tankstellen oder Feldwegen gelten immer als Ausfahrt ohne Vortritt – das ausfahrende Fahrzeug muss allen auf der Strasse den Vortritt gewähren, nie umgekehrt.", "es": "Falso. Las salidas de estacionamientos, patios, gasolineras o caminos de campo (Feldwege) nunca tienen prioridad: el vehículo que sale debe ceder el paso a todos los que circulan por la calle." },
+    "image": { "type": "scene", "id": "ausfahrt" }
+  },
+  {
+    "id": "q121",
+    "category": "both",
+    "topic": "vortritt",
+    "type": "multiple_choice",
+    "points": 2,
+    "question": { "de": "Du siehst dieses Signal vor einer Verzweigung. Ein Auto nähert sich von rechts. Hat es Vortritt?", "es": "Ves esta señal antes de un cruce. Un coche se acerca por la derecha. ¿Tiene prioridad?" },
+    "options": [
+      { "id": "a", "text": { "de": "Richtig", "es": "Verdadero" }, "correct": true },
+      { "id": "b", "text": { "de": "Falsch", "es": "Falso" }, "correct": false }
+    ],
+    "explanation": { "de": "Richtig. Dieses Signal (1.30, Verzweigung mit Rechtsvortritt) bestätigt ausdrücklich, dass an dieser Kreuzung der Rechtsvortritt gilt – das Auto von rechts hat Vortritt.", "es": "Verdadero. Esta señal (1.30, cruce con prioridad de derecha) confirma explícitamente que en ese cruce rige la prioridad por la derecha: el coche que viene por la derecha tiene el paso." },
+    "image": { "type": "sign", "id": "v_rechtsvortritt" }
   }
 ]
