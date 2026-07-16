@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { useLang, t } from '../i18n'
+import { useLang, t, tr, dateLocale } from '../i18n'
 import { storage } from '../storage'
 import { shuffle, isAnswerCorrect, canSpeak, speakDe } from '../utils'
 import { FIRSTAID_TOPICS, FIRSTAID_CARDS, FIRSTAID_QUESTIONS } from '../data/firstaid'
@@ -40,7 +40,7 @@ function Topics() {
               className="flex w-full items-center gap-3 p-4 text-left"
             >
               <span className="text-2xl">{topic.icon}</span>
-              <span className="flex-1 font-semibold text-gray-900 dark:text-gray-100">{topic.title[lang]}</span>
+              <span className="flex-1 font-semibold text-gray-900 dark:text-gray-100">{tr(topic.title, lang)}</span>
               <span className={`text-gray-400 transition-transform ${isOpen ? 'rotate-90' : ''}`}>›</span>
             </button>
             {isOpen && (
@@ -48,7 +48,7 @@ function Topics() {
                 {topic.bullets.map((b, i) => (
                   <li key={i} className="flex gap-2 text-sm leading-relaxed text-gray-700 dark:text-gray-300">
                     <span className="text-swiss">•</span>
-                    <span>{b[lang]}</span>
+                    <span>{tr(b, lang)}</span>
                   </li>
                 ))}
               </ul>
@@ -91,7 +91,7 @@ function Flashcards() {
         <p className="mt-3 text-lg font-semibold text-gray-900 dark:text-gray-100">{t('allCaughtUp', lang)}</p>
         {nextDue && (
           <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
-            {t('nextReview', lang)}: {new Date(nextDue).toLocaleDateString(lang === 'de' ? 'de-CH' : 'es-ES')}
+            {t('nextReview', lang)}: {new Date(nextDue).toLocaleDateString(dateLocale(lang))}
           </p>
         )}
         <button
@@ -137,7 +137,7 @@ function Flashcards() {
           {flipped ? '🚑' : '❓'}
         </span>
         <span className={`text-lg leading-snug ${flipped ? 'font-bold text-swiss-dark dark:text-red-300' : 'font-semibold text-gray-900 dark:text-gray-100'}`}>
-          {flipped ? card.back[lang] : card.front[lang]}
+          {flipped ? tr(card.back, lang) : tr(card.front, lang)}
         </span>
         <span className="mt-4 text-xs text-gray-400">👆 {t('tapToFlip', lang)}</span>
       </button>

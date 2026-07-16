@@ -222,13 +222,16 @@ export const MANEUVERS = [
     id: 'seitwaerts_rueckwaerts',
     category: 'B',
     icon: '🅿️',
-    title: { de: 'Seitwärts rückwärts (Längseinparken)', es: 'Aparcar en paralelo marcha atrás' },
+    title: { de: 'Seitwärts rückwärts (Längseinparken)', es: 'Aparcar en paralelo marcha atrás', fr: 'Stationnement en parallèle en marche arrière', it: 'Parcheggio in parallelo in retromarcia', en: 'Reverse parallel parking' },
     scene: parallelBaysScene(),
     steps: [
       {
         caption: {
           de: 'Schritt 1: Blinker setzen und parallel neben dem vorderen Auto anhalten, ca. 50 cm Abstand.',
           es: 'Paso 1: Pon el intermitente y detente en paralelo junto al coche de delante, a unos 50 cm.',
+          fr: 'Étape 1 : Mets le clignotant et arrête-toi parallèlement à la voiture avant, à env. 50 cm.',
+          it: 'Passo 1: Metti la freccia e fermati parallelo all’auto davanti, a circa 50 cm.',
+          en: 'Step 1: Indicate and stop parallel to the front car, about 50 cm away.',
         },
         duration: 2000,
         keyframes: [
@@ -242,6 +245,9 @@ export const MANEUVERS = [
         caption: {
           de: 'Schritt 2: Gerade rückwärts, bis dein Hinterrad auf Höhe des Hecks des vorderen Autos ist.',
           es: 'Paso 2: Recto marcha atrás hasta que tu rueda trasera esté a la altura de la parte trasera del coche de delante.',
+          fr: 'Étape 2 : Recule tout droit jusqu’à ce que ta roue arrière soit à la hauteur de l’arrière de la voiture avant.',
+          it: 'Passo 2: Retromarcia dritta finché la tua ruota posteriore è all’altezza della coda dell’auto davanti.',
+          en: 'Step 2: Reverse straight until your rear wheel is level with the rear of the front car.',
         },
         duration: 1300,
         keyframes: [
@@ -257,6 +263,9 @@ export const MANEUVERS = [
         caption: {
           de: 'Schritt 3: Lenkrad ganz nach rechts und rückwärts, bis das Auto in ca. 45° zur Lücke steht.',
           es: 'Paso 3: Volante a fondo a la derecha y marcha atrás hasta quedar a unos 45° respecto al hueco.',
+          fr: 'Étape 3 : Volant à fond à droite et recule jusqu’à ce que la voiture soit à env. 45° par rapport à la place.',
+          it: 'Passo 3: Volante tutto a destra e retromarcia finché l’auto è a circa 45° rispetto al posto.',
+          en: 'Step 3: Steering wheel fully right and reverse until the car is at about 45° to the space.',
         },
         duration: 2200,
         keyframes: [
@@ -276,6 +285,9 @@ export const MANEUVERS = [
         caption: {
           de: 'Schritt 4: Sobald dein rechter Spiegel auf Höhe des Hecks des vorderen Autos ist: ganz nach links gegenlenken und weiter rückwärts.',
           es: 'Paso 4: Cuando tu retrovisor derecho quede a la altura de la trasera del coche de delante: contravolante a fondo a la izquierda y sigue atrás.',
+          fr: 'Étape 4 : Dès que ton rétroviseur droit est à la hauteur de l’arrière de la voiture avant : contre-braque à fond à gauche et continue à reculer.',
+          it: 'Passo 4: Appena il tuo specchietto destro è all’altezza della coda dell’auto davanti: controsterza tutto a sinistra e continua in retromarcia.',
+          en: 'Step 4: As soon as your right mirror is level with the rear of the front car: counter-steer fully left and keep reversing.',
         },
         duration: 2200,
         keyframes: [
@@ -291,6 +303,9 @@ export const MANEUVERS = [
         caption: {
           de: 'Schritt 5: Räder geradestellen und mittig ausrichten – ca. 10–20 cm vom Randstein.',
           es: 'Paso 5: Endereza las ruedas y céntrate en el hueco, a unos 10–20 cm del bordillo.',
+          fr: 'Étape 5 : Redresse les roues et centre-toi – à env. 10–20 cm de la bordure.',
+          it: 'Passo 5: Raddrizza le ruote e centrati – a circa 10–20 cm dal cordolo.',
+          en: 'Step 5: Straighten the wheels and centre the car – about 10–20 cm from the kerb.',
         },
         duration: 1300,
         keyframes: [
@@ -305,13 +320,16 @@ export const MANEUVERS = [
     id: 'rechtwinklig_rueckwaerts',
     category: 'B',
     icon: '📐',
-    title: { de: 'Rechtwinklig rückwärts parkieren', es: 'Aparcar marcha atrás en perpendicular' },
+    title: { de: 'Rechtwinklig rückwärts parkieren', es: 'Aparcar marcha atrás en perpendicular', fr: 'Stationnement en marche arrière à angle droit', it: 'Parcheggio in retromarcia ad angolo retto', en: 'Reverse parking at right angles' },
     scene: perpendicularBaysScene(),
     steps: [
       {
         caption: {
           de: 'Schritt 1: Blinker setzen und knapp an der Lücke vorbeifahren, bis dein Heck die Lücke passiert hat.',
           es: 'Paso 1: Pon el intermitente y pasa por delante del hueco hasta que tu parte trasera lo haya rebasado.',
+          fr: 'Étape 1 : Mets le clignotant et dépasse la place de peu, jusqu’à ce que ton arrière l’ait passée.',
+          it: 'Passo 1: Metti la freccia e supera di poco il posto, finché la tua coda l’ha oltrepassato.',
+          en: 'Step 1: Indicate and drive just past the space until your rear has passed it.',
         },
         duration: 2000,
         keyframes: [
@@ -325,6 +343,9 @@ export const MANEUVERS = [
         caption: {
           de: 'Schritt 2: Lenkrad ganz nach rechts und langsam rückwärts – das Heck schwenkt in die Lücke.',
           es: 'Paso 2: Volante a fondo a la derecha y despacio marcha atrás: la trasera entra girando en el hueco.',
+          fr: 'Étape 2 : Volant à fond à droite et recule lentement – l’arrière pivote dans la place.',
+          it: 'Passo 2: Volante tutto a destra e retromarcia lenta – la coda ruota nel posto.',
+          en: 'Step 2: Steering fully right and reverse slowly – the rear swings into the space.',
         },
         duration: 2400,
         keyframes: [
@@ -345,6 +366,9 @@ export const MANEUVERS = [
         caption: {
           de: 'Schritt 3: Räder geradestellen und gerade bis in die Lücke zurückfahren.',
           es: 'Paso 3: Endereza las ruedas y retrocede recto hasta el fondo de la plaza.',
+          fr: 'Étape 3 : Redresse les roues et recule tout droit jusque dans la place.',
+          it: 'Passo 3: Raddrizza le ruote e retrocedi dritto fin dentro il posto.',
+          en: 'Step 3: Straighten the wheels and reverse straight into the space.',
         },
         duration: 1500,
         keyframes: [
@@ -358,6 +382,9 @@ export const MANEUVERS = [
         caption: {
           de: 'Schritt 4: Fertig – Front zeigt zur Fahrbahn, so fährst du später sicher wieder aus.',
           es: 'Paso 4: Listo: el morro queda hacia el carril, así luego sales con visibilidad y seguridad.',
+          fr: 'Étape 4 : Terminé – l’avant regarde la chaussée, tu ressortiras plus tard en toute sécurité.',
+          it: 'Passo 4: Fatto – il muso guarda la carreggiata, così dopo esci in sicurezza.',
+          en: 'Step 4: Done – the front faces the road, so you can drive out safely later.',
         },
         duration: 1300,
         keyframes: [
@@ -372,13 +399,16 @@ export const MANEUVERS = [
     id: 'vorwaerts_parkieren',
     category: 'B',
     icon: '⬆️',
-    title: { de: 'Vorwärts parkieren', es: 'Aparcar de frente' },
+    title: { de: 'Vorwärts parkieren', es: 'Aparcar de frente', fr: 'Stationnement en marche avant', it: 'Parcheggio in avanti', en: 'Forward parking' },
     scene: perpendicularBaysScene(),
     steps: [
       {
         caption: {
           de: 'Schritt 1: Blinker setzen und dich der Lücke nähern – etwas Abstand zur Parkreihe lassen.',
           es: 'Paso 1: Pon el intermitente y acércate al hueco, dejando algo de espacio con la fila de plazas.',
+          fr: 'Étape 1 : Mets le clignotant et approche-toi de la place – garde un peu de distance avec la rangée.',
+          it: 'Passo 1: Metti la freccia e avvicinati al posto – lascia un po’ di distanza dalla fila.',
+          en: 'Step 1: Indicate and approach the space – keep some distance from the parking row.',
         },
         duration: 1700,
         keyframes: [
@@ -392,6 +422,9 @@ export const MANEUVERS = [
         caption: {
           de: 'Schritt 2: Zügig nach rechts einlenken und vorwärts in die Lücke fahren.',
           es: 'Paso 2: Gira con decisión a la derecha y entra de frente en la plaza.',
+          fr: 'Étape 2 : Braque franchement à droite et entre en marche avant dans la place.',
+          it: 'Passo 2: Sterza deciso a destra ed entra in avanti nel posto.',
+          en: 'Step 2: Steer briskly right and drive forward into the space.',
         },
         duration: 2200,
         keyframes: [
@@ -407,6 +440,9 @@ export const MANEUVERS = [
         caption: {
           de: 'Schritt 3: Räder geradestellen und bis ans Ende der Lücke vorfahren.',
           es: 'Paso 3: Endereza las ruedas y avanza hasta el fondo de la plaza.',
+          fr: 'Étape 3 : Redresse les roues et avance jusqu’au bout de la place.',
+          it: 'Passo 3: Raddrizza le ruote e avanza fino in fondo al posto.',
+          en: 'Step 3: Straighten the wheels and pull forward to the end of the space.',
         },
         duration: 1400,
         keyframes: [
@@ -421,13 +457,16 @@ export const MANEUVERS = [
     id: 'links_abbiegen_einspuren',
     category: 'B',
     icon: '⬅️',
-    title: { de: 'Links abbiegen mit Einspuren', es: 'Girar a la izquierda y colocarse en el carril' },
+    title: { de: 'Links abbiegen mit Einspuren', es: 'Girar a la izquierda y colocarse en el carril', fr: 'Tourner à gauche avec présélection', it: 'Svolta a sinistra con preselezione', en: 'Turning left with lane positioning' },
     scene: junctionScene(),
     steps: [
       {
         caption: {
           de: 'Schritt 1: Spiegel – Blinker links – Sicherheitsblick, bevor du dich vorbereitest.',
           es: 'Paso 1: Espejo, intermitente izquierdo y mirada de seguridad antes de prepararte.',
+          fr: 'Étape 1 : Rétro – clignotant gauche – contrôle épaule, avant de te préparer.',
+          it: 'Passo 1: Specchietto – freccia a sinistra – controllo spalla, prima di prepararti.',
+          en: 'Step 1: Mirror – left indicator – shoulder check, before you get ready.',
         },
         duration: 1600,
         keyframes: [
@@ -441,6 +480,9 @@ export const MANEUVERS = [
         caption: {
           de: 'Schritt 2: Einspuren – rücke nahe an die Mittellinie, um rechts vorbeizulassen.',
           es: 'Paso 2: Einspuren: colócate junto a la línea central para dejar pasar por la derecha.',
+          fr: 'Étape 2 : Présélection – rapproche-toi de la ligne médiane pour laisser passer à droite.',
+          it: 'Passo 2: Preselezione – avvicinati alla linea di mezzeria per lasciar passare a destra.',
+          en: 'Step 2: Move into position – close to the centre line, letting traffic pass on the right.',
         },
         duration: 1800,
         keyframes: [
@@ -454,6 +496,9 @@ export const MANEUVERS = [
         caption: {
           de: 'Schritt 3: Vortritt gewähren – den Gegenverkehr zuerst durchfahren lassen.',
           es: 'Paso 3: Cede el paso: deja pasar primero al tráfico que viene de frente.',
+          fr: 'Étape 3 : Céder la priorité – laisser d’abord passer le trafic en sens inverse.',
+          it: 'Passo 3: Dare la precedenza – lascia passare prima il traffico in senso inverso.',
+          en: 'Step 3: Give way – let oncoming traffic through first.',
         },
         duration: 2000,
         keyframes: [
@@ -476,6 +521,9 @@ export const MANEUVERS = [
         caption: {
           de: 'Schritt 4: Jetzt abbiegen – zügig und mit weitem Bogen in die Seitenstrasse einfahren.',
           es: 'Paso 4: Ahora sí: gira con un arco amplio hacia la calle lateral.',
+          fr: 'Étape 4 : Tourne maintenant – entre dans la rue latérale d’un arc large et fluide.',
+          it: 'Passo 4: Ora svolta – entra nella strada laterale con un arco ampio e deciso.',
+          en: 'Step 4: Now turn – enter the side street briskly with a wide arc.',
         },
         duration: 2200,
         keyframes: [
@@ -491,6 +539,9 @@ export const MANEUVERS = [
         caption: {
           de: 'Schritt 5: Den Bogen sauber beenden, geradestellen und mit normalem Tempo weiterfahren.',
           es: 'Paso 5: Termina el arco con suavidad, endereza el volante y sigue circulando con normalidad.',
+          fr: 'Étape 5 : Termine proprement l’arc, redresse et continue à vitesse normale.',
+          it: 'Passo 5: Concludi bene l’arco, raddrizza e prosegui a velocità normale.',
+          en: 'Step 5: Finish the arc cleanly, straighten up and continue at normal speed.',
         },
         duration: 1400,
         keyframes: [
@@ -508,6 +559,9 @@ export const MANEUVERS = [
     title: {
       de: 'Längere Strecke rückwärts (mit Spurwechsel)',
       es: 'Tramo largo marcha atrás (con cambio de carril)',
+      fr: 'Longue marche arrière (avec changement de voie)',
+      it: 'Retromarcia su tratto lungo (con cambio di corsia)',
+      en: 'Reversing a longer distance (with lane change)',
     },
     // Maniobra según el examen (ZH/TG), "über 20 m mit Spurwechsel":
     // subiendo por la calle principal (carril derecho), con la calle libre y
@@ -521,6 +575,9 @@ export const MANEUVERS = [
         caption: {
           de: 'Schritt 1: Der Experte sagt die Übung an. Spiegel, Blinker links – und nur weiterfahren, wenn die Strasse frei ist (kein Verkehr in Sicht).',
           es: 'Paso 1: El experto anuncia la maniobra. Espejo, intermitente izquierdo — y solo continúa si la calle está despejada (sin coches a la vista).',
+          fr: 'Étape 1 : L’expert annonce l’exercice. Rétro, clignotant gauche – et ne continue que si la route est libre (aucun trafic en vue).',
+          it: 'Passo 1: L’esperto annuncia l’esercizio. Specchietto, freccia a sinistra – e prosegui solo se la strada è libera (nessun traffico in vista).',
+          en: 'Step 1: The examiner announces the exercise. Mirror, left indicator – and only continue if the road is clear (no traffic in sight).',
         },
         duration: 1600,
         keyframes: [
@@ -534,6 +591,9 @@ export const MANEUVERS = [
         caption: {
           de: 'Schritt 2: Spurwechsel auf die GEGENFAHRBAHN und links anhalten – nur auf Anweisung des Experten und bei freier Strasse.',
           es: 'Paso 2: Cruza al carril IZQUIERDO (sentido contrario) y párate allí. Esto solo se hace por orden del experto y con la calle libre.',
+          fr: 'Étape 2 : Changement de voie sur la VOIE OPPOSÉE et arrêt à gauche – seulement sur instruction de l’expert et route libre.',
+          it: 'Passo 2: Cambio di corsia sulla CORSIA OPPOSTA e fermata a sinistra – solo su indicazione dell’esperto e con strada libera.',
+          en: 'Step 2: Change onto the OPPOSITE lane and stop on the left – only on the examiner’s instruction and with a clear road.',
         },
         duration: 2400,
         keyframes: [
@@ -549,6 +609,9 @@ export const MANEUVERS = [
         caption: {
           de: 'Schritt 3: Rückwärtsgang einlegen, Oberkörper drehen und durch die Heckscheibe schauen.',
           es: 'Paso 3: Mete la marcha atrás, gira el cuerpo y mira por la luneta trasera.',
+          fr: 'Étape 3 : Enclenche la marche arrière, tourne le buste et regarde par la lunette arrière.',
+          it: 'Passo 3: Inserisci la retromarcia, gira il busto e guarda dal lunotto posteriore.',
+          en: 'Step 3: Engage reverse, turn your upper body and look through the rear window.',
         },
         duration: 1400,
         keyframes: [
@@ -562,6 +625,9 @@ export const MANEUVERS = [
         caption: {
           de: 'Schritt 4: Gerade rückwärts dem linken Fahrbahnrand entlang – langsam und mit Blick nach hinten.',
           es: 'Paso 4: Retrocede recto siguiendo el borde izquierdo, despacio y mirando hacia atrás.',
+          fr: 'Étape 4 : Recule tout droit le long du bord gauche – lentement, le regard vers l’arrière.',
+          it: 'Passo 4: Retrocedi dritto lungo il bordo sinistro – lentamente, guardando indietro.',
+          en: 'Step 4: Reverse straight along the left edge – slowly, looking backwards.',
         },
         duration: 2200,
         keyframes: [
@@ -575,6 +641,9 @@ export const MANEUVERS = [
         caption: {
           de: 'Schritt 5: Lenkrad nach links – das Heck schwenkt rückwärts um die Ecke in die Seitenstrasse.',
           es: 'Paso 5: Volante a la izquierda: la trasera dobla la esquina marcha atrás entrando en la calle secundaria.',
+          fr: 'Étape 5 : Volant à gauche – l’arrière pivote en reculant au coin, dans la rue latérale.',
+          it: 'Passo 5: Volante a sinistra – la coda gira in retromarcia oltre l’angolo nella strada laterale.',
+          en: 'Step 5: Steering left – the rear swings backwards around the corner into the side street.',
         },
         duration: 2600,
         keyframes: [
@@ -594,6 +663,9 @@ export const MANEUVERS = [
         caption: {
           de: 'Schritt 6: Geradestellen und im linken Fahrstreifen der Seitenstrasse anhalten – die Front zeigt zur Hauptstrasse.',
           es: 'Paso 6: Endereza y detente en el carril izquierdo de la calle secundaria, con el morro hacia la calle principal.',
+          fr: 'Étape 6 : Redresse et arrête-toi dans la voie de gauche de la rue latérale – l’avant regarde la route principale.',
+          it: 'Passo 6: Raddrizza e fermati nella corsia sinistra della strada laterale – il muso guarda la strada principale.',
+          en: 'Step 6: Straighten up and stop in the left lane of the side street – the front faces the main road.',
         },
         duration: 1600,
         keyframes: [
@@ -622,6 +694,9 @@ export const MANEUVERS = [
     title: {
       de: 'Umkehren / Wenden über eine Seitenstrasse',
       es: 'Cambio de sentido usando una calle secundaria',
+      fr: 'Demi-tour par une rue latérale',
+      it: 'Inversione tramite una strada laterale',
+      en: 'Turning around via a side street',
     },
     // Wenden en carretera: se busca una esquina (calle secundaria a la derecha),
     // se para 2–3 m pasada la boca, se retrocede con intermitente derecho hasta
@@ -634,6 +709,9 @@ export const MANEUVERS = [
         caption: {
           de: 'Schritt 1: Du sollst wenden und siehst rechts eine Seitenstrasse, die dabei hilft. Warnblinker zum Anhalten, falls nötig – stopp ca. 2–3 m nach der Ecke.',
           es: 'Paso 1: Debes hacer el Wenden y ves a la derecha una calle secundaria que te sirve. Luces de emergencia para detenerte si hace falta: para unos 2–3 m pasada la esquina.',
+          fr: 'Étape 1 : Tu dois faire demi-tour et vois à droite une rue latérale qui t’aide. Feux de détresse pour t’arrêter si nécessaire – stop env. 2–3 m après le coin.',
+          it: 'Passo 1: Devi invertire e vedi a destra una strada laterale che ti aiuta. Luci di emergenza per fermarti se serve – stop circa 2–3 m dopo l’angolo.',
+          en: 'Step 1: You need to turn around and see a side street on the right that helps. Hazard lights to stop if needed – stop about 2–3 m past the corner.',
         },
         duration: 2200,
         keyframes: [
@@ -648,6 +726,9 @@ export const MANEUVERS = [
         caption: {
           de: 'Schritt 2: Blinker rechts, Rückwärtsgang und durch die Heckscheibe schauen – rückwärts in die Seitenstrasse, bis das ganze Auto drin ist.',
           es: 'Paso 2: Intermitente derecho, marcha atrás y mirada por la luneta: retrocede hasta que el coche quede COMPLETO dentro de la calle secundaria.',
+          fr: 'Étape 2 : Clignotant droit, marche arrière et regard par la lunette – recule dans la rue latérale jusqu’à ce que toute la voiture y soit.',
+          it: 'Passo 2: Freccia a destra, retromarcia e sguardo dal lunotto – retrocedi nella strada laterale finché tutta l’auto è dentro.',
+          en: 'Step 2: Right indicator, reverse gear, look through the rear window – reverse into the side street until the whole car is in.',
         },
         duration: 2600,
         keyframes: [
@@ -668,6 +749,9 @@ export const MANEUVERS = [
         caption: {
           de: 'Schritt 3: Anhalten, Blinker links stellen und den Verkehr auf der Hauptstrasse prüfen.',
           es: 'Paso 3: Detente, cambia al intermitente izquierdo y comprueba el tráfico de la avenida principal.',
+          fr: 'Étape 3 : Arrête-toi, mets le clignotant à gauche et contrôle le trafic sur la route principale.',
+          it: 'Passo 3: Fermati, metti la freccia a sinistra e controlla il traffico sulla strada principale.',
+          en: 'Step 3: Stop, indicate left and check the traffic on the main road.',
         },
         duration: 1400,
         keyframes: [
@@ -682,6 +766,9 @@ export const MANEUVERS = [
         caption: {
           de: 'Schritt 4: Links abbiegen und auf der Hauptstrasse zurückfahren, woher du gekommen bist.',
           es: 'Paso 4: Gira a la izquierda y regresa por la avenida principal por donde venías.',
+          fr: 'Étape 4 : Tourne à gauche et repars sur la route principale d’où tu es venu.',
+          it: 'Passo 4: Svolta a sinistra e torna sulla strada principale da dove sei venuto.',
+          en: 'Step 4: Turn left and drive back along the main road you came from.',
         },
         duration: 2600,
         keyframes: [
@@ -700,7 +787,7 @@ export const MANEUVERS = [
     id: 'wendeplatz_kehrtwende',
     category: 'B',
     icon: '🔄',
-    title: { de: 'Wenden auf dem Wendeplatz', es: 'Cambiar de sentido en el Wendeplatz' },
+    title: { de: 'Wenden auf dem Wendeplatz', es: 'Cambiar de sentido en el Wendeplatz', fr: 'Demi-tour sur l’aire de retournement', it: 'Inversione nella piazzola di manovra', en: 'Turning on the turning area' },
     // Cuando la calle termina en un Wendeplatz (zona ancha de maniobra), hay
     // espacio de sobra para dar la vuelta: con un solo arco amplio hacia
     // adelante (sin marcha atrás) si cabe, o con una 3-Punkte-Wende dentro
@@ -709,12 +796,15 @@ export const MANEUVERS = [
     variants: [
       {
         id: 'bogen',
-        label: { de: 'Weiter Bogen', es: 'Arco amplio' },
+        label: { de: 'Weiter Bogen', es: 'Arco amplio', fr: 'Grand arc', it: 'Arco ampio', en: 'Wide arc' },
         steps: [
           {
             caption: {
               de: 'Schritt 1: In den Wendeplatz einfahren und rechts halten – so öffnest du dir den maximalen Wenderadius.',
               es: 'Paso 1: Entra en el Wendeplatz pegado a la DERECHA: así abres el radio de giro al máximo.',
+              fr: 'Étape 1 : Entre dans l’aire et tiens ta droite – tu t’ouvres ainsi le rayon maximal.',
+              it: 'Passo 1: Entra nella piazzola e tieni la destra – così ti apri il raggio massimo.',
+              en: 'Step 1: Enter the turning area and keep right – this opens up the maximum turning radius.',
             },
             duration: 1600,
             keyframes: [
@@ -727,6 +817,9 @@ export const MANEUVERS = [
             caption: {
               de: 'Schritt 2: In einem einzigen weiten Bogen nach links wenden – die ganze Breite der Fläche ausnützen, ohne rückwärtszufahren.',
               es: 'Paso 2: Da la vuelta en un solo arco amplio a la izquierda, usando TODO el ancho de la zona, sin marcha atrás.',
+              fr: 'Étape 2 : Fais demi-tour en un seul grand arc vers la gauche – utilise toute la largeur, sans reculer.',
+              it: 'Passo 2: Inverti con un unico arco ampio a sinistra – sfrutta tutta la larghezza, senza retromarcia.',
+              en: 'Step 2: Turn in one single wide arc to the left – use the whole width without reversing.',
             },
             duration: 3600,
             keyframes: [
@@ -744,6 +837,9 @@ export const MANEUVERS = [
             caption: {
               de: 'Schritt 3: Auf der anderen Seite geradestellen und in die Gegenrichtung herausfahren.',
               es: 'Paso 3: Ya en el lado contrario, endereza y sal en sentido opuesto al que entraste.',
+              fr: 'Étape 3 : De l’autre côté, redresse et ressors en sens inverse.',
+              it: 'Passo 3: Dall’altro lato raddrizza ed esci in direzione opposta.',
+              en: 'Step 3: On the other side, straighten up and drive out in the opposite direction.',
             },
             duration: 2200,
             keyframes: [
@@ -758,12 +854,15 @@ export const MANEUVERS = [
       },
       {
         id: 'dreipunkt',
-        label: { de: '3-Punkte-Wende', es: '3 puntos' },
+        label: { de: '3-Punkte-Wende', es: '3 puntos', fr: 'Demi-tour en 3 temps', it: 'Inversione in 3 tempi', en: '3-point turn' },
         steps: [
           {
             caption: {
               de: 'Schritt 1: In den Wendeplatz einfahren und rechts halten – auch hier zuerst Platz schaffen.',
               es: 'Paso 1: Entra en el Wendeplatz pegado a la DERECHA: también aquí, primero gánate el espacio.',
+              fr: 'Étape 1 : Entre dans l’aire et tiens ta droite – ici aussi, fais-toi d’abord de la place.',
+              it: 'Passo 1: Entra nella piazzola e tieni la destra – anche qui prima fatti spazio.',
+              en: 'Step 1: Enter the area and keep right – here too, make room first.',
             },
             duration: 1600,
             keyframes: [
@@ -776,6 +875,9 @@ export const MANEUVERS = [
             caption: {
               de: 'Schritt 2: Reicht der Platz nicht für einen Bogen: Lenkrad ganz nach links und diagonal über die ganze Fläche bis in die hintere linke Ecke.',
               es: 'Paso 2: Si no alcanza para el arco: volante a fondo a la izquierda y cruza en diagonal TODO el Wendeplatz hasta la esquina del fondo a la izquierda.',
+              fr: 'Étape 2 : Si la place ne suffit pas pour un arc : volant à fond à gauche et traverse en diagonale jusqu’au coin arrière gauche.',
+              it: 'Passo 2: Se lo spazio non basta per un arco: volante tutto a sinistra e in diagonale su tutta l’area fino all’angolo posteriore sinistro.',
+              en: 'Step 2: If there is not enough room for an arc: steering fully left and diagonally across the whole area to the rear left corner.',
             },
             duration: 2600,
             keyframes: [
@@ -790,6 +892,9 @@ export const MANEUVERS = [
             caption: {
               de: 'Schritt 3: Lenkrad ganz nach rechts und rückwärts dem hinteren Rand entlang zur anderen Ecke.',
               es: 'Paso 3: Volante a fondo a la derecha y marcha atrás a lo largo del fondo, hacia la otra esquina.',
+              fr: 'Étape 3 : Volant à fond à droite et recule le long du bord arrière vers l’autre coin.',
+              it: 'Passo 3: Volante tutto a destra e retromarcia lungo il bordo posteriore verso l’altro angolo.',
+              en: 'Step 3: Steering fully right and reverse along the rear edge to the other corner.',
             },
             duration: 2400,
             keyframes: [
@@ -804,6 +909,9 @@ export const MANEUVERS = [
             caption: {
               de: 'Schritt 4: Wieder nach links einlenken und vorwärts auf die linke Seite, Richtung Ausfahrt.',
               es: 'Paso 4: Gira otra vez a la izquierda y avanza hacia el lado izquierdo, orientado a la salida.',
+              fr: 'Étape 4 : Rebraque à gauche et avance vers le côté gauche, direction sortie.',
+              it: 'Passo 4: Sterza di nuovo a sinistra e avanza verso il lato sinistro, direzione uscita.',
+              en: 'Step 4: Steer left again and drive forward to the left side, towards the exit.',
             },
             duration: 2000,
             keyframes: [
@@ -817,6 +925,9 @@ export const MANEUVERS = [
             caption: {
               de: 'Schritt 5: Geradestellen und in die Gegenrichtung aus dem Wendeplatz herausfahren.',
               es: 'Paso 5: Endereza el volante y sal del Wendeplatz en sentido contrario.',
+              fr: 'Étape 5 : Redresse et sors de l’aire en sens inverse.',
+              it: 'Passo 5: Raddrizza ed esci dalla piazzola in direzione opposta.',
+              en: 'Step 5: Straighten up and drive out of the area in the opposite direction.',
             },
             duration: 1800,
             keyframes: [
@@ -833,13 +944,16 @@ export const MANEUVERS = [
     id: 'vollstopp_stop',
     category: 'B',
     icon: '🛑',
-    title: { de: 'Vollstopp beim Stopsignal', es: 'Parada completa en el STOP' },
+    title: { de: 'Vollstopp beim Stopsignal', es: 'Parada completa en el STOP', fr: 'Arrêt complet au signal stop', it: 'Fermata completa allo stop', en: 'Full stop at the stop sign' },
     scene: stopScene(),
     steps: [
       {
         caption: {
           de: 'Schritt 1: Fahre kontrolliert auf das Stopsignal zu.',
           es: 'Paso 1: Acércate con control hacia la señal de STOP.',
+          fr: 'Étape 1 : Approche-toi du signal stop de manière contrôlée.',
+          it: 'Passo 1: Avvicinati allo stop in modo controllato.',
+          en: 'Step 1: Approach the stop sign in a controlled way.',
         },
         duration: 2000,
         keyframes: [
@@ -852,6 +966,9 @@ export const MANEUVERS = [
         caption: {
           de: 'Schritt 2: Vollständig anhalten – genau an der Haltelinie.',
           es: 'Paso 2: Detente por completo, justo en la línea de parada.',
+          fr: 'Étape 2 : Arrêt complet – exactement à la ligne d’arrêt.',
+          it: 'Passo 2: Fermata completa – esattamente alla linea di arresto.',
+          en: 'Step 2: Come to a complete stop – exactly at the stop line.',
         },
         duration: 1100,
         keyframes: [
@@ -865,6 +982,9 @@ export const MANEUVERS = [
         caption: {
           de: 'Schritt 3: Stehen bleiben und nach beiden Seiten schauen – auch wenn niemand kommt.',
           es: 'Paso 3: Permanece detenido y mira a ambos lados, aunque no venga nadie.',
+          fr: 'Étape 3 : Reste à l’arrêt et regarde des deux côtés – même si personne ne vient.',
+          it: 'Passo 3: Resta fermo e guarda da entrambi i lati – anche se non arriva nessuno.',
+          en: 'Step 3: Stay stopped and look both ways – even if no one is coming.',
         },
         duration: 1800,
         keyframes: [
@@ -878,6 +998,9 @@ export const MANEUVERS = [
         caption: {
           de: 'Schritt 4: Ist die Kreuzung frei, weiterfahren.',
           es: 'Paso 4: Si el cruce está libre, continúa.',
+          fr: 'Étape 4 : Si le carrefour est libre, repars.',
+          it: 'Passo 4: Se l’incrocio è libero, riparti.',
+          en: 'Step 4: If the junction is clear, drive on.',
         },
         duration: 1600,
         keyframes: [
@@ -892,13 +1015,16 @@ export const MANEUVERS = [
     id: 'vollbremsung',
     category: 'B',
     icon: '🚨',
-    title: { de: 'Vollbremsung auf Kommando', es: 'Frenada de emergencia por orden del experto' },
+    title: { de: 'Vollbremsung auf Kommando', es: 'Frenada de emergencia por orden del experto', fr: 'Freinage d’urgence sur ordre', it: 'Frenata d’emergenza a comando', en: 'Emergency braking on command' },
     scene: straightRoadScene(),
     steps: [
       {
         caption: {
           de: 'Schritt 1: Der Experte kann jederzeit "Vollbremsung!" ansagen – das ist normal.',
           es: 'Paso 1: El experto puede pedir de repente "¡Vollbremsung!" (frenada de emergencia). Es normal.',
+          fr: 'Étape 1 : L’expert peut annoncer « Vollbremsung ! » à tout moment – c’est normal.',
+          it: 'Passo 1: L’esperto può annunciare «Vollbremsung!» in ogni momento – è normale.',
+          en: 'Step 1: The examiner can call "Vollbremsung!" (emergency stop) at any time – that is normal.',
         },
         duration: 1800,
         keyframes: [
@@ -906,12 +1032,15 @@ export const MANEUVERS = [
           { t: 1, x: 222, y: 330, angle: 0 },
         ],
         wheel: 'straight',
-        callout: { de: 'Vollbremsung!', es: '¡Frenada!' },
+        callout: { de: 'Vollbremsung!', es: '¡Frenada!', fr: 'Freinage d’urgence !', it: 'Frenata!', en: 'Emergency stop!' },
       },
       {
         caption: {
           de: 'Schritt 2: Beide Bremsen fest und geradeaus – nicht einlenken.',
           es: 'Paso 2: Frena con firmeza y en línea recta, sin girar el volante.',
+          fr: 'Étape 2 : Les deux freins à fond et tout droit – ne braque pas.',
+          it: 'Passo 2: Entrambi i freni a fondo e dritto – non sterzare.',
+          en: 'Step 2: Both brakes firmly and straight ahead – do not steer.',
         },
         duration: 1100,
         keyframes: [
@@ -926,6 +1055,9 @@ export const MANEUVERS = [
         caption: {
           de: 'Schritt 3: Das Fahrzeug steht kontrolliert und gerade still.',
           es: 'Paso 3: El coche queda detenido, controlado y en línea recta.',
+          fr: 'Étape 3 : Le véhicule s’immobilise droit et sous contrôle.',
+          it: 'Passo 3: Il veicolo si ferma dritto e sotto controllo.',
+          en: 'Step 3: The vehicle comes to a controlled, straight stop.',
         },
         duration: 1400,
         keyframes: [
@@ -941,13 +1073,16 @@ export const MANEUVERS = [
     id: 'anhalten_strassenrand',
     category: 'B',
     icon: '📍',
-    title: { de: '"Anhalten" am Strassenrand', es: 'Parar en el borde ("Anhalten")' },
+    title: { de: '"Anhalten" am Strassenrand', es: 'Parar en el borde ("Anhalten")', fr: '« Anhalten » au bord de la route', it: '«Anhalten» al bordo della strada', en: '"Anhalten" at the roadside' },
     scene: curbRulesScene(),
     steps: [
       {
         caption: {
           de: 'Schritt 1: Der Experte sagt "Anhalten" – suche einen erlaubten Ort. Nicht bei der Verzweigung und keine 5 m danach...',
           es: 'Paso 1: El experto dice "Anhalten" (detente). Busca un sitio permitido: no en el cruce ni a menos de 5 m de la esquina...',
+          fr: 'Étape 1 : L’expert dit « Anhalten » – cherche un endroit autorisé. Pas à l’intersection ni dans les 5 m qui suivent...',
+          it: 'Passo 1: L’esperto dice «Anhalten» – cerca un posto permesso. Non all’incrocio né nei 5 m successivi...',
+          en: 'Step 1: The examiner says "Anhalten" (stop) – find a permitted spot. Not at the junction and not within 5 m after it...',
         },
         duration: 2200,
         keyframes: [
@@ -960,6 +1095,9 @@ export const MANEUVERS = [
         caption: {
           de: 'Schritt 2: ...nicht auf einer gelben Linie und nicht vor einer Einfahrt.',
           es: 'Paso 2: ...ni sobre una línea amarilla, ni delante de una entrada de casa.',
+          fr: 'Étape 2 : ...pas sur une ligne jaune ni devant une entrée.',
+          it: 'Passo 2: ...non su una linea gialla e non davanti a un’entrata.',
+          en: 'Step 2: ...not on a yellow line and not in front of a driveway.',
         },
         duration: 2200,
         keyframes: [
@@ -972,6 +1110,9 @@ export const MANEUVERS = [
         caption: {
           de: 'Schritt 3: Freier Rand, keine gelbe Linie, weit genug von allem – blinken und hier anhalten!',
           es: 'Paso 3: Borde libre, sin línea amarilla y lejos de todo: intermitente ¡y aquí sí!',
+          fr: 'Étape 3 : Bord libre, pas de ligne jaune, assez loin de tout – clignote et arrête-toi ici !',
+          it: 'Passo 3: Bordo libero, nessuna linea gialla, abbastanza lontano da tutto – freccia e fermati qui!',
+          en: 'Step 3: Clear kerb, no yellow line, far enough from everything – indicate and stop here!',
         },
         duration: 1700,
         keyframes: [
@@ -989,13 +1130,16 @@ export const MANEUVERS = [
     id: 'abstand_2sekunden',
     category: 'B',
     icon: '📏',
-    title: { de: 'Abstand: die 2-Sekunden-Regel', es: 'Distancia: la regla de los 2 segundos' },
+    title: { de: 'Abstand: die 2-Sekunden-Regel', es: 'Distancia: la regla de los 2 segundos', fr: 'Distance : la règle des 2 secondes', it: 'Distanza: la regola dei 2 secondi', en: 'Distance: the 2-second rule' },
     scene: straightRoadScene(),
     steps: [
       {
         caption: {
           de: 'Zu nah: Wenn der Vordermann bremst, reicht deine Reaktionszeit nicht aus.',
           es: 'Demasiado cerca: si el de delante frena, no te da tiempo a reaccionar.',
+          fr: 'Trop près : si celui de devant freine, ton temps de réaction ne suffit pas.',
+          it: 'Troppo vicino: se chi ti precede frena, il tuo tempo di reazione non basta.',
+          en: 'Too close: if the car ahead brakes, your reaction time is not enough.',
         },
         duration: 2200,
         keyframes: [
@@ -1018,6 +1162,9 @@ export const MANEUVERS = [
         caption: {
           de: 'Richtig: mindestens 2 Sekunden Abstand – zähle "21, 22" ab einem festen Punkt.',
           es: 'Correcto: al menos 2 segundos de distancia — cuenta "21, 22" desde un punto fijo.',
+          fr: 'Correct : au moins 2 secondes de distance – compte « 21, 22 » à partir d’un point fixe.',
+          it: 'Giusto: almeno 2 secondi di distanza – conta «21, 22» da un punto fisso.',
+          en: 'Correct: at least 2 seconds’ distance – count "21, 22" from a fixed point.',
         },
         duration: 2200,
         keyframes: [
@@ -1043,13 +1190,16 @@ export const MANEUVERS = [
     category: 'A',
     vehicle: 'moto',
     icon: '🛤️',
-    title: { de: 'Spurgasse (Langsamfahren)', es: 'Spurgasse (circuito lento)' },
+    title: { de: 'Spurgasse (Langsamfahren)', es: 'Spurgasse (circuito lento)', fr: 'Couloir étroit (conduite lente)', it: 'Corridoio stretto (guida lenta)', en: 'Narrow lane (slow riding)' },
     scene: spurgasseScene(),
     steps: [
       {
         caption: {
           de: 'Schritt 1: Langsam anfahren – Kupplung am Schleifpunkt, Füsse auf die Rasten.',
           es: 'Paso 1: Arranca despacio: embrague en el punto de fricción y pies a las estriberas.',
+          fr: 'Étape 1 : Démarre lentement – embrayage au point de patinage, pieds sur les repose-pieds.',
+          it: 'Passo 1: Parti lentamente – frizione al punto di attrito, piedi sulle pedane.',
+          en: 'Step 1: Pull away slowly – clutch at the friction point, feet on the pegs.',
         },
         duration: 1800,
         keyframes: [
@@ -1061,6 +1211,9 @@ export const MANEUVERS = [
         caption: {
           de: 'Schritt 2: Im Schritttempo durch die Gasse – Blick weit nach vorne, Tempo mit der Hinterradbremse dosieren.',
           es: 'Paso 2: Cruza el pasillo a paso de peatón: mirada lejos, dosifica con el freno trasero.',
+          fr: 'Étape 2 : Au pas à travers le couloir – regard loin devant, vitesse dosée au frein arrière.',
+          it: 'Passo 2: A passo d’uomo nel corridoio – sguardo lontano davanti, velocità dosata col freno posteriore.',
+          en: 'Step 2: Walking pace through the lane – look far ahead, control speed with the rear brake.',
         },
         duration: 5000,
         keyframes: [
@@ -1075,6 +1228,9 @@ export const MANEUVERS = [
         caption: {
           de: 'Schritt 3: Am Ende sauber herausfahren – nicht die Füsse absetzen!',
           es: 'Paso 3: Sal limpio al final. ¡Sin poner los pies en el suelo!',
+          fr: 'Étape 3 : Sors proprement à la fin – ne pose pas les pieds !',
+          it: 'Passo 3: Esci pulito alla fine – non mettere i piedi a terra!',
+          en: 'Step 3: Ride out cleanly at the end – do not put your feet down!',
         },
         duration: 1500,
         keyframes: [
@@ -1089,13 +1245,16 @@ export const MANEUVERS = [
     category: 'A',
     vehicle: 'moto',
     icon: '〰️',
-    title: { de: 'Slalom', es: 'Slalom' },
+    title: { de: 'Slalom', es: 'Slalom', fr: 'Slalom', it: 'Slalom', en: 'Slalom' },
     scene: slalomScene(),
     steps: [
       {
         caption: {
           de: 'Schritt 1: Mit gleichmässigem Tempo einfahren und die erste Pylone aussen passieren.',
           es: 'Paso 1: Entra con ritmo constante y pasa el primer cono por fuera.',
+          fr: 'Étape 1 : Entre à vitesse régulière et passe le premier cône à l’extérieur.',
+          it: 'Passo 1: Entra a velocità uniforme e passa il primo cono all’esterno.',
+          en: 'Step 1: Enter at an even speed and pass the first cone on the outside.',
         },
         duration: 2000,
         keyframes: [
@@ -1109,6 +1268,9 @@ export const MANEUVERS = [
         caption: {
           de: 'Schritt 2: Blick immer zur übernächsten Pylone – der Oberkörper bleibt locker.',
           es: 'Paso 2: Mira siempre al cono siguiente al próximo; el torso, relajado.',
+          fr: 'Étape 2 : Regarde toujours deux cônes plus loin – le buste reste détendu.',
+          it: 'Passo 2: Guarda sempre due coni più avanti – il busto resta rilassato.',
+          en: 'Step 2: Always look two cones ahead – keep your upper body relaxed.',
         },
         duration: 3600,
         keyframes: [
@@ -1127,6 +1289,9 @@ export const MANEUVERS = [
         caption: {
           de: 'Schritt 3: Nach der letzten Pylone gerade ausfahren.',
           es: 'Paso 3: Tras el último cono, sal recto y estable.',
+          fr: 'Étape 3 : Après le dernier cône, sors tout droit.',
+          it: 'Passo 3: Dopo l’ultimo cono, esci dritto.',
+          en: 'Step 3: After the last cone, ride out straight.',
         },
         duration: 1500,
         keyframes: [
@@ -1142,13 +1307,16 @@ export const MANEUVERS = [
     category: 'A',
     vehicle: 'moto',
     icon: '8️⃣',
-    title: { de: 'Achterfahren', es: 'El ocho (Achterfahren)' },
+    title: { de: 'Achterfahren', es: 'El ocho (Achterfahren)', fr: 'Le huit', it: 'L’otto', en: 'Figure of eight' },
     scene: achterScene(),
     steps: [
       {
         caption: {
           de: 'Schritt 1: Erste Schlaufe links – Kopf drehen und in die Kurve schauen, konstantes Gas.',
           es: 'Paso 1: Primer bucle a la izquierda: gira la cabeza y mira al interior de la curva, gas constante.',
+          fr: 'Étape 1 : Première boucle à gauche – tourne la tête et regarde dans le virage, gaz constant.',
+          it: 'Passo 1: Primo anello a sinistra – gira la testa e guarda nella curva, gas costante.',
+          en: 'Step 1: First loop to the left – turn your head and look into the curve, constant throttle.',
         },
         duration: 4200,
         keyframes: [
@@ -1168,6 +1336,9 @@ export const MANEUVERS = [
         caption: {
           de: 'Schritt 2: Weich auf die rechte Schlaufe wechseln – Tempo über die Hinterradbremse regeln.',
           es: 'Paso 2: Cambia con suavidad al bucle derecho; regula el ritmo con el freno trasero.',
+          fr: 'Étape 2 : Passe en douceur sur la boucle droite – règle la vitesse au frein arrière.',
+          it: 'Passo 2: Passa dolcemente all’anello destro – regola la velocità col freno posteriore.',
+          en: 'Step 2: Change smoothly onto the right loop – regulate speed with the rear brake.',
         },
         duration: 4200,
         keyframes: [
@@ -1187,6 +1358,9 @@ export const MANEUVERS = [
         caption: {
           de: 'Schritt 3: Die Acht sauber schliessen und gerade ausfahren.',
           es: 'Paso 3: Cierra el ocho limpio y sal recto.',
+          fr: 'Étape 3 : Ferme proprement le huit et sors tout droit.',
+          it: 'Passo 3: Chiudi bene l’otto ed esci dritto.',
+          en: 'Step 3: Close the eight cleanly and ride out straight.',
         },
         duration: 1800,
         keyframes: [
@@ -1203,13 +1377,16 @@ export const MANEUVERS = [
     category: 'A',
     vehicle: 'moto',
     icon: '🛑',
-    title: { de: 'Vollbremsung', es: 'Frenada de emergencia' },
+    title: { de: 'Vollbremsung', es: 'Frenada de emergencia', fr: 'Freinage d’urgence', it: 'Frenata d’emergenza', en: 'Emergency braking' },
     scene: motoBremsScene(),
     steps: [
       {
         caption: {
           de: 'Schritt 1: Zügig und aufrecht auf den Bremspunkt zufahren.',
           es: 'Paso 1: Acelera con decisión y llega recto y erguido al punto de frenado.',
+          fr: 'Étape 1 : Approche du point de freinage à bonne allure et bien droit.',
+          it: 'Passo 1: Avvicinati al punto di frenata a buon ritmo e ben dritto.',
+          en: 'Step 1: Approach the braking point briskly and upright.',
         },
         duration: 1800,
         keyframes: [
@@ -1221,6 +1398,9 @@ export const MANEUVERS = [
         caption: {
           de: 'Schritt 2: Beide Bremsen – vorne kräftig und progressiv, hinten dosiert. Lenker gerade!',
           es: 'Paso 2: Ambos frenos: delante fuerte y progresivo, detrás dosificado. ¡Manillar recto!',
+          fr: 'Étape 2 : Les deux freins – devant fort et progressif, derrière dosé. Guidon droit !',
+          it: 'Passo 2: Entrambi i freni – davanti forte e progressivo, dietro dosato. Manubrio dritto!',
+          en: 'Step 2: Both brakes – front firm and progressive, rear measured. Handlebars straight!',
         },
         duration: 1300,
         keyframes: [
@@ -1234,6 +1414,9 @@ export const MANEUVERS = [
         caption: {
           de: 'Schritt 3: Kontrolliert vor der Linie stehen – erst am Schluss einen Fuss absetzen.',
           es: 'Paso 3: Detente controlado antes de la línea; pon el pie al suelo solo al final.',
+          fr: 'Étape 3 : Immobilise-toi sous contrôle avant la ligne – ne pose un pied qu’à la fin.',
+          it: 'Passo 3: Fermati sotto controllo prima della linea – metti giù un piede solo alla fine.',
+          en: 'Step 3: Stop under control before the line – only put a foot down at the very end.',
         },
         duration: 1500,
         keyframes: [
@@ -1249,13 +1432,16 @@ export const MANEUVERS = [
     category: 'A',
     vehicle: 'moto',
     icon: '↪️',
-    title: { de: 'Ausweichen', es: 'Esquivar un obstáculo' },
+    title: { de: 'Ausweichen', es: 'Esquivar un obstáculo', fr: 'Évitement', it: 'Evitamento', en: 'Swerving' },
     scene: ausweichenScene(),
     steps: [
       {
         caption: {
           de: 'Schritt 1: Mit stabilem Tempo geradeaus auf das Hindernis zufahren.',
           es: 'Paso 1: Acércate recto al obstáculo con velocidad estable.',
+          fr: 'Étape 1 : Avance tout droit vers l’obstacle à vitesse stable.',
+          it: 'Passo 1: Procedi dritto verso l’ostacolo a velocità stabile.',
+          en: 'Step 1: Ride straight towards the obstacle at a stable speed.',
         },
         duration: 1700,
         keyframes: [
@@ -1267,6 +1453,9 @@ export const MANEUVERS = [
         caption: {
           de: 'Schritt 2: Mit zwei kurzen Lenkimpulsen ausweichen – schau in die Lücke, nie auf das Hindernis!',
           es: 'Paso 2: Esquiva con dos golpes suaves de manillar. ¡Mira al hueco, nunca al obstáculo!',
+          fr: 'Étape 2 : Évite avec deux brèves impulsions au guidon – regarde le passage, jamais l’obstacle !',
+          it: 'Passo 2: Evita con due brevi impulsi al manubrio – guarda il varco, mai l’ostacolo!',
+          en: 'Step 2: Swerve with two short steering impulses – look at the gap, never at the obstacle!',
         },
         duration: 1900,
         keyframes: [
@@ -1281,6 +1470,9 @@ export const MANEUVERS = [
         caption: {
           de: 'Schritt 3: Am Hindernis vorbei – zurück auf die Linie und stabilisieren.',
           es: 'Paso 3: Pasado el obstáculo, vuelve a tu línea y estabiliza la moto.',
+          fr: 'Étape 3 : Une fois l’obstacle passé – reviens sur ta ligne et stabilise.',
+          it: 'Passo 3: Superato l’ostacolo – torna sulla linea e stabilizzati.',
+          en: 'Step 3: Past the obstacle – back onto your line and stabilise.',
         },
         duration: 1900,
         keyframes: [

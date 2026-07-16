@@ -1,4 +1,4 @@
-import { useLang, t } from '../i18n'
+import { useLang, t, LANGS } from '../i18n'
 
 export default function Header({ onBack, title, category, theme, onToggleTheme }) {
   const { lang, setLang } = useLang()
@@ -36,18 +36,22 @@ export default function Header({ onBack, title, category, theme, onToggleTheme }
             {theme === 'dark' ? '☀️' : '🌙'}
           </button>
         )}
-        <div className="flex overflow-hidden rounded-full border border-white/40 text-sm font-semibold">
-          {['de', 'es'].map((l) => (
-            <button
-              key={l}
-              onClick={() => setLang(l)}
-              className={`px-3 py-1 transition-colors ${
-                lang === l ? 'bg-white text-swiss' : 'text-white hover:bg-white/15'
-              }`}
-            >
-              {l.toUpperCase()}
-            </button>
-          ))}
+        <div className="relative">
+          <select
+            value={lang}
+            onChange={(e) => setLang(e.target.value)}
+            aria-label="Sprache / Idioma / Langue / Lingua / Language"
+            className="appearance-none rounded-full border border-white/40 bg-transparent py-1 pl-3 pr-7 text-sm font-semibold text-white outline-none hover:bg-white/15 focus:bg-white/15"
+          >
+            {LANGS.map((l) => (
+              <option key={l.id} value={l.id} className="text-gray-900">
+                {l.label} · {l.name}
+              </option>
+            ))}
+          </select>
+          <span aria-hidden className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-xs text-white/80">
+            ▾
+          </span>
         </div>
       </div>
     </header>

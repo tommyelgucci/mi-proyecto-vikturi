@@ -1,12 +1,14 @@
 # 🇨🇭 CH Fahren — Teoría Suiza (B + A)
 
-App web bilingüe **alemán/español** para estudiar la teoría del examen de conducir suizo y repasar consejos para el examen práctico. Cubre las categorías **B** (coche) y **A/A1** (moto).
+App web multilingüe (**alemán, español, francés, italiano e inglés**) para estudiar la teoría del examen de conducir suizo y repasar consejos para el examen práctico. Cubre las categorías **B** (coche) y **A/A1** (moto).
+
+> **Idiomas**: la interfaz, las señales, las maniobras, los tips y el módulo Nothelfer están traducidos a los 5 idiomas. El banco de preguntas está de momento en alemán/español; en FR/IT/EN las preguntas se muestran en alemán (fallback automático vía `tr()` en `src/i18n.js`) hasta que se traduzcan.
 
 > El examen teórico básico (*Basistheorieprüfung*) es idéntico para A, A1 y B: 50 preguntas, aprobado con máx. 15 puntos de penalización. Por eso el banco de preguntas es compartido y solo los tips prácticos difieren por categoría.
 
 ## Funcionalidades
 
-- **Pantalla inicial**: elegir Coche (B) o Moto (A) + selector de idioma DE/ES siempre visible
+- **Pantalla inicial**: elegir Coche (B) o Moto (A) + selector de idioma (DE/ES/FR/IT/EN) siempre visible
 - **Modo estudio**: preguntas una a una con feedback inmediato, explicación bilingüe y filtro por tema
 - **Modo examen**: simulación con preguntas aleatorias, temporizador, puntos de penalización y repaso de errores al final. Con el banco actual (108 preguntas) ya alcanza el formato real: 50 preguntas, máx. 15 puntos, 45 min; con un banco menor escala proporcionalmente
 - **Preguntas visuales**: parte del banco incluye una señal dibujada (`image: { type: "sign", id }`) o un diagrama de cruce/rotonda con vehículos etiquetados (`image: { type: "scene", id }`, ver `SceneDiagram.jsx` y `src/data/diagrams.js`) para preguntas de prioridad tipo "¿quién pasa primero?"

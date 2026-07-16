@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { useLang, t } from '../i18n'
+import { useLang, t, tr } from '../i18n'
 import { CANVAS } from '../data/maneuvers'
 import CarSprite from './CarSprite'
 import MotoSprite from './MotoSprite'
@@ -189,7 +189,7 @@ export default function ManeuverPlayer({ maneuver, onBack }) {
                   : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 ring-1 ring-gray-300 dark:ring-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700'
               }`}
             >
-              {v.label[lang]}
+              {tr(v.label, lang)}
             </button>
           ))}
         </div>
@@ -271,7 +271,7 @@ export default function ManeuverPlayer({ maneuver, onBack }) {
               <rect x={0} y={0} width={100} height={30} rx={8} fill="#1c2024" />
               <polygon points="10,30 20,30 8,40" fill="#1c2024" />
               <text x={50} y={20} textAnchor="middle" fontSize={12} fontWeight="700" fill="#ffd23f">
-                {step.callout[lang]}
+                {tr(step.callout, lang)}
               </text>
             </g>
           )}
@@ -284,7 +284,7 @@ export default function ManeuverPlayer({ maneuver, onBack }) {
         <p className="text-xs font-semibold uppercase tracking-wide text-swiss">
           {t('step', lang)} {stepIndex + 1} {t('of', lang)} {steps.length}
         </p>
-        <p className="mt-1 text-sm leading-relaxed text-gray-800 dark:text-gray-200">{step.caption[lang]}</p>
+        <p className="mt-1 text-sm leading-relaxed text-gray-800 dark:text-gray-200">{tr(step.caption, lang)}</p>
       </div>
 
       <div className="flex items-center justify-center gap-2">

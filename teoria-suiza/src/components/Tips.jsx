@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import tips from '../data/tips.json'
-import { useLang } from '../i18n'
+import { useLang, tr } from '../i18n'
 
 export default function Tips({ category }) {
   const { lang } = useLang()
@@ -18,7 +18,7 @@ export default function Tips({ category }) {
               className="flex w-full items-center gap-3 p-4 text-left"
             >
               <span className="text-2xl">{section.icon}</span>
-              <span className="flex-1 font-semibold text-gray-900 dark:text-gray-100">{section.title[lang]}</span>
+              <span className="flex-1 font-semibold text-gray-900 dark:text-gray-100">{tr(section.title, lang)}</span>
               <span className={`text-gray-400 transition-transform ${isOpen ? 'rotate-90' : ''}`}>›</span>
             </button>
             {isOpen && (
@@ -26,7 +26,7 @@ export default function Tips({ category }) {
                 {section.tips.map((tip, i) => (
                   <li key={i} className="flex gap-2 text-sm leading-relaxed text-gray-700 dark:text-gray-300">
                     <span className="text-swiss">•</span>
-                    <span>{tip[lang]}</span>
+                    <span>{tr(tip, lang)}</span>
                   </li>
                 ))}
               </ul>

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useLang, t } from '../i18n'
+import { useLang, t, tr } from '../i18n'
 import { maneuversForCategory } from '../data/maneuvers'
 import ManeuverPlayer from './ManeuverPlayer'
 
@@ -28,7 +28,7 @@ export default function Maneuvers({ category }) {
         >
           <span className="text-3xl">{m.icon}</span>
           <span className="min-w-0 flex-1">
-            <span className="block font-semibold text-gray-900 dark:text-gray-100">{m.title[lang]}</span>
+            <span className="block font-semibold text-gray-900 dark:text-gray-100">{tr(m.title, lang)}</span>
             <span className="block text-sm text-gray-500 dark:text-gray-400">
               {m.variants ? `${m.variants.length} ${t('techniques', lang)}` : `${m.steps.length} ${t('steps', lang)}`}
             </span>

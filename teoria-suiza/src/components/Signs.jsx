@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { useLang, t } from '../i18n'
+import { useLang, t, tr, dateLocale } from '../i18n'
 import { storage } from '../storage'
 import { shuffle, canSpeak, speakDe } from '../utils'
 import { SIGN_CATEGORIES, SIGNS } from '../data/signs'
@@ -46,7 +46,7 @@ function Explore() {
               category === c.id ? 'bg-swiss text-white' : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 ring-1 ring-gray-200 dark:ring-gray-700'
             }`}
           >
-            {c.label[lang]}
+            {tr(c.label, lang)}
           </button>
         ))}
       </div>
@@ -61,7 +61,7 @@ function Explore() {
             }`}
           >
             <SignSprite draw={sign.draw} size={72} />
-            <span className="text-center text-[10px] leading-tight text-gray-600 dark:text-gray-300">{sign.name[lang]}</span>
+            <span className="text-center text-[10px] leading-tight text-gray-600 dark:text-gray-300">{tr(sign.name, lang)}</span>
           </button>
         ))}
       </div>
@@ -80,7 +80,7 @@ function SignDetail({ sign }) {
       <SignSprite draw={sign.draw} size={80} />
       <div className="min-w-0 flex-1">
         <div className="flex items-start gap-2">
-          <p className="min-w-0 flex-1 font-bold text-gray-900 dark:text-gray-100">{sign.name[lang]}</p>
+          <p className="min-w-0 flex-1 font-bold text-gray-900 dark:text-gray-100">{tr(sign.name, lang)}</p>
           {canSpeak() && (
             <button
               onClick={() => speakDe(`${sign.name.de}. ${sign.meaning.de}`)}
@@ -92,7 +92,7 @@ function SignDetail({ sign }) {
           )}
         </div>
         <p className="mt-1 text-xs text-gray-400">{sign.name[lang === 'de' ? 'es' : 'de']}</p>
-        <p className="mt-2 text-sm leading-relaxed text-gray-700 dark:text-gray-300">{sign.meaning[lang]}</p>
+        <p className="mt-2 text-sm leading-relaxed text-gray-700 dark:text-gray-300">{tr(sign.meaning, lang)}</p>
       </div>
     </div>
   )
@@ -128,7 +128,7 @@ function Flashcards() {
         <p className="mt-3 text-lg font-semibold text-gray-900 dark:text-gray-100">{t('allCaughtUp', lang)}</p>
         {nextDue && (
           <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
-            {t('nextReview', lang)}: {new Date(nextDue).toLocaleDateString(lang === 'de' ? 'de-CH' : 'es-ES')}
+            {t('nextReview', lang)}: {new Date(nextDue).toLocaleDateString(dateLocale(lang))}
           </p>
         )}
         <button
@@ -172,8 +172,8 @@ function Flashcards() {
       >
         {flipped ? (
           <>
-            <span className="text-lg font-bold leading-snug text-swiss-dark dark:text-red-300">{sign.name[lang]}</span>
-            <span className="text-sm leading-relaxed text-gray-700 dark:text-gray-300">{sign.meaning[lang]}</span>
+            <span className="text-lg font-bold leading-snug text-swiss-dark dark:text-red-300">{tr(sign.name, lang)}</span>
+            <span className="text-sm leading-relaxed text-gray-700 dark:text-gray-300">{tr(sign.meaning, lang)}</span>
           </>
         ) : (
           <SignSprite draw={sign.draw} size={130} />
@@ -285,7 +285,7 @@ function Quiz() {
                 onClick={() => pick(opt.id)}
                 className={`w-full rounded-xl border p-3 text-left text-sm text-gray-800 dark:text-gray-200 transition-colors ${cls}`}
               >
-                {opt.name[lang]}
+                {tr(opt.name, lang)}
               </button>
             )
           })}
@@ -293,7 +293,7 @@ function Quiz() {
         {revealed && (
           <div className="mt-3 rounded-xl bg-blue-50 dark:bg-blue-900/30 p-3 text-sm text-blue-900 dark:text-blue-200">
             <p className="mb-1 font-semibold">💡 {t('explanation', lang)}</p>
-            <p>{current.sign.meaning[lang]}</p>
+            <p>{tr(current.sign.meaning, lang)}</p>
           </div>
         )}
       </div>

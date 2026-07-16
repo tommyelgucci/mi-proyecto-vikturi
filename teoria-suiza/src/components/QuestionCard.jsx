@@ -1,4 +1,4 @@
-import { useLang, t } from '../i18n'
+import { useLang, t, tr } from '../i18n'
 import { topicLabel } from '../data/topics'
 import { hasMultipleCorrect, canSpeak, speakDe } from '../utils'
 import { SIGNS } from '../data/signs'
@@ -51,7 +51,7 @@ export default function QuestionCard({ question, selected, onToggle, revealed, s
 
       <div className="flex items-start gap-2">
         <p className="min-w-0 flex-1 text-base font-semibold leading-snug text-gray-900 dark:text-gray-100">
-          {question.question[lang]}
+          {tr(question.question, lang)}
         </p>
         {canSpeak() && (
           <button
@@ -95,7 +95,7 @@ export default function QuestionCard({ question, selected, onToggle, revealed, s
               >
                 ✓
               </span>
-              <span className="text-gray-800 dark:text-gray-200">{opt.text[lang]}</span>
+              <span className="text-gray-800 dark:text-gray-200">{tr(opt.text, lang)}</span>
               {revealed && isSelected && !opt.correct && <span className="ml-auto shrink-0">❌</span>}
             </button>
           )
@@ -105,7 +105,7 @@ export default function QuestionCard({ question, selected, onToggle, revealed, s
       {revealed && (
         <div className="mt-4 rounded-xl bg-blue-50 p-3 text-sm text-blue-900 dark:bg-blue-900/30 dark:text-blue-200">
           <p className="mb-1 font-semibold">💡 {t('explanation', lang)}</p>
-          <p>{question.explanation[lang]}</p>
+          <p>{tr(question.explanation, lang)}</p>
         </div>
       )}
     </div>

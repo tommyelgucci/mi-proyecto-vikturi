@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { useLang, t } from '../i18n'
+import { useLang, t, tr, dateLocale } from '../i18n'
 import { storage } from '../storage'
 import questions from '../data/questions.json'
 import { TOPICS } from '../data/topics'
@@ -46,7 +46,7 @@ function TopicBars() {
       {rows.map(({ topic, pct, total }) => (
         <div key={topic.id}>
           <div className="mb-0.5 flex items-baseline justify-between text-xs">
-            <span className="font-medium text-gray-700 dark:text-gray-300">{topic.label[lang]}</span>
+            <span className="font-medium text-gray-700 dark:text-gray-300">{tr(topic.label, lang)}</span>
             <span className="text-gray-500 dark:text-gray-400">
               {pct}% · {total}
             </span>
@@ -185,7 +185,7 @@ export default function Stats() {
             {history.map((e, i) => (
               <li key={i} className="flex items-center justify-between text-sm">
                 <span className="text-gray-600 dark:text-gray-300">
-                  {new Date(e.date).toLocaleDateString(lang === 'de' ? 'de-CH' : 'es-ES')} ·{' '}
+                  {new Date(e.date).toLocaleDateString(dateLocale(lang))} ·{' '}
                   {e.category === 'B' ? '🚗' : '🏍️'}
                 </span>
                 <span className="font-medium text-gray-800 dark:text-gray-200">

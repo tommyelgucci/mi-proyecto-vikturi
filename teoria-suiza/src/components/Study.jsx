@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { useLang, t } from '../i18n'
+import { useLang, t, tr } from '../i18n'
 import { TOPICS } from '../data/topics'
 import { storage } from '../storage'
 import { questionsForCategory, shuffle, isAnswerCorrect } from '../utils'
@@ -71,10 +71,16 @@ export default function Study({ category }) {
               topic === tp.id ? 'bg-swiss text-white' : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 ring-1 ring-gray-200 dark:ring-gray-700'
             }`}
           >
-            {tp.label[lang]}
+            {tr(tp.label, lang)}
           </button>
         ))}
       </div>
+
+      {['fr', 'it', 'en'].includes(lang) && (
+        <p className="rounded-xl bg-amber-50 dark:bg-amber-900/25 px-3 py-2 text-xs text-amber-800 dark:text-amber-200 ring-1 ring-amber-200 dark:ring-amber-800">
+          🌐 {t('translationPendingNote', lang)}
+        </p>
+      )}
 
       {done ? (
         <div className="rounded-2xl bg-white dark:bg-gray-800 p-8 text-center shadow-sm ring-1 ring-gray-200 dark:ring-gray-700">

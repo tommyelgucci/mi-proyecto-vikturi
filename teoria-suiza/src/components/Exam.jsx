@@ -120,6 +120,11 @@ export default function Exam({ category, onExit }) {
             <li>• {t('examIntro2', lang, { n: config.size, p: config.maxPenalty })}</li>
             <li>• {t('examIntro3', lang, { t: Math.round(config.timeLimitSec / 60) })}</li>
           </ul>
+          {['fr', 'it', 'en'].includes(lang) && (
+            <p className="mt-3 rounded-xl bg-amber-50 dark:bg-amber-900/25 px-3 py-2 text-xs text-amber-800 dark:text-amber-200 ring-1 ring-amber-200 dark:ring-amber-800">
+              🌐 {t('translationPendingNote', lang)}
+            </p>
+          )}
           <p className="mt-3 text-[11px] leading-relaxed text-gray-400 dark:text-gray-500">{t('independenceShort', lang)}</p>
         </div>
         <button
