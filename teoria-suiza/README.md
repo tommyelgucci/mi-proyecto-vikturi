@@ -2,7 +2,7 @@
 
 App web multilingüe (**alemán, español, francés, italiano e inglés**) para estudiar la teoría del examen de conducir suizo y repasar consejos para el examen práctico. Cubre las categorías **B** (coche) y **A/A1** (moto).
 
-> **Idiomas**: la interfaz, las señales, las maniobras, los tips y el módulo Nothelfer están traducidos a los 5 idiomas. El banco de preguntas está de momento en alemán/español; en FR/IT/EN las preguntas se muestran en alemán (fallback automático vía `tr()` en `src/i18n.js`) hasta que se traduzcan.
+> **Idiomas**: toda la app —interfaz, banco de preguntas completo, señales, maniobras, tips y módulo Nothelfer— está disponible en los 5 idiomas. Si a algún contenido futuro le faltara una traducción, se muestra en alemán automáticamente (fallback vía `tr()` en `src/i18n.js`).
 
 > El examen teórico básico (*Basistheorieprüfung*) es idéntico para A, A1 y B: 50 preguntas, aprobado con máx. 15 puntos de penalización. Por eso el banco de preguntas es compartido y solo los tips prácticos difieren por categoría.
 

@@ -376,13 +376,6 @@ export const STRINGS = {
   },
   importDone: { de: 'Fortschritt wiederhergestellt.', es: 'Progreso restaurado.', fr: 'Progression restaurée.', it: 'Progressi ripristinati.', en: 'Progress restored.' },
   importError: { de: 'Ungültige Sicherungsdatei.', es: 'La copia de seguridad no es válida.', fr: 'Fichier de sauvegarde invalide.', it: 'Copia di sicurezza non valida.', en: 'Invalid backup file.' },
-  translationPendingNote: {
-    de: '',
-    es: '',
-    fr: 'Les questions sont encore en allemand/espagnol – la traduction arrive bientôt.',
-    it: 'Le domande sono ancora in tedesco/spagnolo: la traduzione arriverà presto.',
-    en: 'The questions are still in German/Spanish – translation coming soon.',
-  },
 }
 
 // Cadena de interfaz: idioma pedido → alemán → la propia clave.

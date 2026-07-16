@@ -76,12 +76,6 @@ export default function Study({ category }) {
         ))}
       </div>
 
-      {['fr', 'it', 'en'].includes(lang) && (
-        <p className="rounded-xl bg-amber-50 dark:bg-amber-900/25 px-3 py-2 text-xs text-amber-800 dark:text-amber-200 ring-1 ring-amber-200 dark:ring-amber-800">
-          🌐 {t('translationPendingNote', lang)}
-        </p>
-      )}
-
       {done ? (
         <div className="rounded-2xl bg-white dark:bg-gray-800 p-8 text-center shadow-sm ring-1 ring-gray-200 dark:ring-gray-700">
           <p className="text-lg font-semibold text-gray-900 dark:text-gray-100">{t('studyDone', lang)}</p>
