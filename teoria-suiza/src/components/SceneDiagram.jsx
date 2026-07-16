@@ -39,7 +39,7 @@ export default function SceneDiagram({ id }) {
             </g>
           </g>
         ) : (
-          <CarSprite key={c.label} x={c.x} y={c.y} angle={c.angle} color={c.color} label={c.label} />
+          <CarSprite key={c.label || `${c.x}-${c.y}`} x={c.x} y={c.y} angle={c.angle} color={c.color} label={c.label} blinker={c.blinker} />
         ),
       )}
     </svg>

@@ -68,14 +68,40 @@ function junctionScene() {
   }
 }
 
-function narrowStreetScene() {
+function junctionRightScene() {
+  // Espejo de junctionScene: la calle secundaria sale hacia la DERECHA (este).
   return {
     elements: [
-      { type: 'grass', x: 0, y: 0, w: 80, h: CANVAS.h },
-      { type: 'grass', x: 280, y: 0, w: 80, h: CANVAS.h },
-      { type: 'road', x: 80, y: 0, w: 200, h: CANVAS.h },
-      { type: 'curbLine', x1: 80, y1: 0, x2: 80, y2: CANVAS.h },
-      { type: 'curbLine', x1: 280, y1: 0, x2: 280, y2: CANVAS.h },
+      { type: 'grass', x: 220, y: 0, w: 140, h: 270 },
+      { type: 'grass', x: 220, y: 360, w: 140, h: 200 },
+      { type: 'grass', x: 0, y: 0, w: 60, h: CANVAS.h },
+      { type: 'road', x: 60, y: 0, w: 160, h: CANVAS.h },
+      { type: 'road', x: 220, y: 270, w: 140, h: 90 },
+      { type: 'laneLine', x1: 140, y1: 0, x2: 140, y2: 270, dashed: true },
+      { type: 'laneLine', x1: 140, y1: 360, x2: 140, y2: CANVAS.h, dashed: true },
+      { type: 'laneLine', x1: 220, y1: 315, x2: 360, y2: 315, dashed: true },
+      { type: 'curbLine', x1: 60, y1: 0, x2: 60, y2: CANVAS.h },
+      { type: 'curbLine', x1: 220, y1: 0, x2: 220, y2: 270 },
+      { type: 'curbLine', x1: 220, y1: 360, x2: 220, y2: CANVAS.h },
+    ],
+  }
+}
+
+function wendeplatzScene() {
+  // Wendeplatz en forma de "hongo": una zona ancha de maniobra (el bulbo) al
+  // final de una calle angosta, para dar la vuelta con espacio de sobra.
+  return {
+    elements: [
+      { type: 'grass', x: 0, y: 0, w: 40, h: CANVAS.h },
+      { type: 'grass', x: 320, y: 0, w: 40, h: CANVAS.h },
+      { type: 'grass', x: 40, y: 240, w: 80, h: 320 },
+      { type: 'grass', x: 240, y: 240, w: 80, h: 320 },
+      { type: 'road', x: 40, y: 0, w: 280, h: 240 },
+      { type: 'road', x: 120, y: 240, w: 120, h: 320 },
+      { type: 'curbLine', x1: 40, y1: 0, x2: 40, y2: 240 },
+      { type: 'curbLine', x1: 320, y1: 0, x2: 320, y2: 240 },
+      { type: 'curbLine', x1: 120, y1: 240, x2: 120, y2: CANVAS.h },
+      { type: 'curbLine', x1: 240, y1: 240, x2: 240, y2: CANVAS.h },
     ],
   }
 }
@@ -483,84 +509,109 @@ export const MANEUVERS = [
       de: 'Längere Strecke rückwärts (mit Spurwechsel)',
       es: 'Tramo largo marcha atrás (con cambio de carril)',
     },
-    // Lange Strecke Rückwärtsfahren über ca. 20 m mit Spurwechsel:
-    // 1-2) Vorwärts im rechten Streifen fahren.
-    // 3) Ist die Strecke frei (keine Autos in Sicht): auf den LINKEN Streifen
-    //    wechseln und dort anhalten.
-    // 4-5) Von dort rückwärts in engem Bogen in die Seitenstrasse hinein
-    //    zurücksetzen (nicht umgekehrt!) und die Strecke geradeaus beenden.
+    // Maniobra según el examen (ZH/TG), "über 20 m mit Spurwechsel":
+    // subiendo por la calle principal (carril derecho), con la calle libre y
+    // por orden del experto se cruza al carril IZQUIERDO (sentido contrario)
+    // y se detiene. Desde ahí se retrocede: recto por ese carril y luego
+    // doblando la esquina marcha atrás hasta quedar en el carril izquierdo
+    // (norte) de la calle secundaria, con el morro hacia la principal.
     scene: junctionScene(),
     steps: [
       {
         caption: {
-          de: 'Schritt 1: Du fährst auf der Hauptstrasse im rechten Streifen nach vorne.',
-          es: 'Paso 1: Circulas por la carretera principal en el carril derecho.',
+          de: 'Schritt 1: Der Experte sagt die Übung an. Spiegel, Blinker links – und nur weiterfahren, wenn die Strasse frei ist (kein Verkehr in Sicht).',
+          es: 'Paso 1: El experto anuncia la maniobra. Espejo, intermitente izquierdo — y solo continúa si la calle está despejada (sin coches a la vista).',
         },
-        duration: 1800,
+        duration: 1600,
         keyframes: [
-          { t: 0, x: 260, y: 500, angle: 0 },
-          { t: 1, x: 260, y: 380, angle: 0 },
+          { t: 0, x: 260, y: 505, angle: 0 },
+          { t: 1, x: 260, y: 435, angle: 0 },
         ],
         wheel: 'straight',
+        blinker: 'left',
       },
       {
         caption: {
-          de: 'Schritt 2: Ist die Strecke frei – keine Autos in Sicht –, wechselst du auf den linken Streifen und fährst weiter.',
-          es: 'Paso 2: Si la vía está despejada, sin coches a la vista, cambias al carril izquierdo y sigues adelante.',
+          de: 'Schritt 2: Spurwechsel auf die GEGENFAHRBAHN und links anhalten – nur auf Anweisung des Experten und bei freier Strasse.',
+          es: 'Paso 2: Cruza al carril IZQUIERDO (sentido contrario) y párate allí. Esto solo se hace por orden del experto y con la calle libre.',
         },
-        duration: 2200,
+        duration: 2400,
         keyframes: [
-          { t: 0, x: 260, y: 380, angle: 0 },
-          { t: 0.5, x: 205, y: 280, angle: -16 },
-          { t: 1, x: 180, y: 160, angle: 0 },
+          { t: 0, x: 260, y: 435, angle: 0 },
+          { t: 0.4, x: 232, y: 350, angle: -16 },
+          { t: 0.75, x: 192, y: 255, angle: -6 },
+          { t: 1, x: 180, y: 170, angle: 0 },
         ],
         wheel: 'left',
+        blinker: 'left',
       },
       {
         caption: {
-          de: 'Schritt 3: Anhalten, Rückwärtsgang einlegen und dich umdrehen, um durch die Heckscheibe zu schauen.',
-          es: 'Paso 3: Detente, mete la marcha atrás y gira el cuerpo para mirar por la luneta trasera.',
+          de: 'Schritt 3: Rückwärtsgang einlegen, Oberkörper drehen und durch die Heckscheibe schauen.',
+          es: 'Paso 3: Mete la marcha atrás, gira el cuerpo y mira por la luneta trasera.',
         },
         duration: 1400,
         keyframes: [
-          { t: 0, x: 180, y: 160, angle: 0 },
-          { t: 1, x: 180, y: 160, angle: 0 },
+          { t: 0, x: 180, y: 170, angle: 0 },
+          { t: 1, x: 180, y: 170, angle: 0 },
+        ],
+        wheel: 'straight',
+        reverse: true,
+      },
+      {
+        caption: {
+          de: 'Schritt 4: Gerade rückwärts dem linken Fahrbahnrand entlang – langsam und mit Blick nach hinten.',
+          es: 'Paso 4: Retrocede recto siguiendo el borde izquierdo, despacio y mirando hacia atrás.',
+        },
+        duration: 2200,
+        keyframes: [
+          { t: 0, x: 180, y: 170, angle: 0 },
+          { t: 1, x: 180, y: 255, angle: 0 },
+        ],
+        wheel: 'straight',
+        reverse: true,
+      },
+      {
+        caption: {
+          de: 'Schritt 5: Lenkrad nach links – das Heck schwenkt rückwärts um die Ecke in die Seitenstrasse.',
+          es: 'Paso 5: Volante a la izquierda: la trasera dobla la esquina marcha atrás entrando en la calle secundaria.',
+        },
+        duration: 2600,
+        keyframes: [
+          { t: 0, x: 180, y: 255, angle: 0 },
+          { t: 0.35, x: 158, y: 278, angle: 30 },
+          { t: 0.7, x: 118, y: 291, angle: 65 },
+          { t: 1, x: 88, y: 293, angle: 90 },
+        ],
+        wheel: 'left',
+        reverse: true,
+        guides: [
+          { x1: 136, y1: 280, x2: 30, y2: 280 },
+          { x1: 136, y1: 308, x2: 30, y2: 308 },
+        ],
+      },
+      {
+        caption: {
+          de: 'Schritt 6: Geradestellen und im linken Fahrstreifen der Seitenstrasse anhalten – die Front zeigt zur Hauptstrasse.',
+          es: 'Paso 6: Endereza y detente en el carril izquierdo de la calle secundaria, con el morro hacia la calle principal.',
+        },
+        duration: 1600,
+        keyframes: [
+          { t: 0, x: 88, y: 293, angle: 90 },
+          { t: 1, x: 76, y: 293, angle: 90 },
         ],
         wheel: 'straight',
         reverse: true,
         braking: true,
-      },
-      {
-        caption: {
-          de: 'Schritt 4: Rückwärts zurücksetzen – kurz vor der Seitenstrasse das Lenkrad einschlagen, damit das Heck hineinschwenkt.',
-          es: 'Paso 4: Retrocede; justo antes de la calle lateral, gira el volante para que la parte trasera entre girando.',
-        },
-        duration: 2600,
-        keyframes: [
-          { t: 0, x: 180, y: 160, angle: 0 },
-          { t: 0.4, x: 183, y: 240, angle: -8 },
-          { t: 0.75, x: 160, y: 300, angle: -55 },
-          { t: 1, x: 95, y: 318, angle: -90 },
+        extraCars: [
+          {
+            color: '#c0392b',
+            keyframes: [
+              { t: 0, x: 60, y: 338, angle: 90 },
+              { t: 1, x: 60, y: 338, angle: 90 },
+            ],
+          },
         ],
-        wheel: 'right',
-        reverse: true,
-        guides: [
-          { x1: 155, y1: 275, x2: 105, y2: 300 },
-          { x1: 145, y1: 245, x2: 95, y2: 275 },
-        ],
-      },
-      {
-        caption: {
-          de: 'Schritt 5: Lenkrad geradestellen und weiter geradeaus zurücksetzen, bis das Manöver beendet ist.',
-          es: 'Paso 5: Endereza el volante y sigue recto marcha atrás hasta terminar la maniobra.',
-        },
-        duration: 1600,
-        keyframes: [
-          { t: 0, x: 95, y: 318, angle: -90 },
-          { t: 1, x: 55, y: 314, angle: -90 },
-        ],
-        wheel: 'straight',
-        reverse: true,
       },
     ],
   },
@@ -568,48 +619,213 @@ export const MANEUVERS = [
     id: 'umkehren_wenden',
     category: 'B',
     icon: '🔁',
-    title: { de: 'Umkehren / Wenden (3-Punkte-Wende)', es: 'Cambio de sentido en 3 tiempos' },
-    scene: narrowStreetScene(),
+    title: {
+      de: 'Umkehren / Wenden über eine Seitenstrasse',
+      es: 'Cambio de sentido usando una calle secundaria',
+    },
+    // Wenden en carretera: se busca una esquina (calle secundaria a la derecha),
+    // se para 2–3 m pasada la boca, se retrocede con intermitente derecho hasta
+    // quedar por completo dentro de la secundaria y se sale girando a la
+    // izquierda para regresar por donde se venía. Son también «3 puntos»:
+    // avanzar-parar / retroceder / salir.
+    scene: junctionRightScene(),
     steps: [
       {
         caption: {
-          de: 'Schritt 1: Rückschau halten, dann das Lenkrad ganz nach links und langsam vorwärts bis kurz vor den Rand.',
-          es: 'Paso 1: Mira que no venga nadie, gira el volante a fondo a la izquierda y avanza despacio hasta cerca del borde.',
-        },
-        duration: 2000,
-        keyframes: [
-          { t: 0, x: 180, y: 300, angle: 0 },
-          { t: 0.5, x: 148, y: 262, angle: -35 },
-          { t: 1, x: 112, y: 240, angle: -70 },
-        ],
-        wheel: 'left',
-      },
-      {
-        caption: {
-          de: 'Schritt 2: Lenkrad ganz nach rechts und rückwärts – das Auto dreht sich weiter in die neue Richtung.',
-          es: 'Paso 2: Volante a fondo a la derecha y marcha atrás: el coche sigue rotando hacia el nuevo sentido.',
-        },
-        duration: 2400,
-        keyframes: [
-          { t: 0, x: 112, y: 240, angle: -70 },
-          { t: 0.5, x: 165, y: 250, angle: -108 },
-          { t: 1, x: 212, y: 240, angle: -140 },
-        ],
-        wheel: 'right',
-        reverse: true,
-      },
-      {
-        caption: {
-          de: 'Schritt 3: Wieder nach links einlenken und vorwärts die Wende beenden.',
-          es: 'Paso 3: Gira otra vez a la izquierda y avanza para terminar el cambio de sentido.',
+          de: 'Schritt 1: Du sollst wenden und siehst rechts eine Seitenstrasse, die dabei hilft. Warnblinker zum Anhalten, falls nötig – stopp ca. 2–3 m nach der Ecke.',
+          es: 'Paso 1: Debes hacer el Wenden y ves a la derecha una calle secundaria que te sirve. Luces de emergencia para detenerte si hace falta: para unos 2–3 m pasada la esquina.',
         },
         duration: 2200,
         keyframes: [
-          { t: 0, x: 212, y: 240, angle: -140 },
-          { t: 0.5, x: 178, y: 295, angle: -163 },
-          { t: 1, x: 140, y: 375, angle: -180 },
+          { t: 0, x: 180, y: 505, angle: 0 },
+          { t: 1, x: 180, y: 225, angle: 0 },
+        ],
+        wheel: 'straight',
+        blinker: 'both',
+        braking: true,
+      },
+      {
+        caption: {
+          de: 'Schritt 2: Blinker rechts, Rückwärtsgang und durch die Heckscheibe schauen – rückwärts in die Seitenstrasse, bis das ganze Auto drin ist.',
+          es: 'Paso 2: Intermitente derecho, marcha atrás y mirada por la luneta: retrocede hasta que el coche quede COMPLETO dentro de la calle secundaria.',
+        },
+        duration: 2600,
+        keyframes: [
+          { t: 0, x: 180, y: 225, angle: 0 },
+          { t: 0.35, x: 205, y: 258, angle: -35 },
+          { t: 0.7, x: 240, y: 285, angle: -70 },
+          { t: 1, x: 265, y: 292, angle: -90 },
+        ],
+        wheel: 'right',
+        reverse: true,
+        blinker: 'right',
+        guides: [
+          { x1: 226, y1: 280, x2: 320, y2: 280 },
+          { x1: 226, y1: 306, x2: 320, y2: 306 },
+        ],
+      },
+      {
+        caption: {
+          de: 'Schritt 3: Anhalten, Blinker links stellen und den Verkehr auf der Hauptstrasse prüfen.',
+          es: 'Paso 3: Detente, cambia al intermitente izquierdo y comprueba el tráfico de la avenida principal.',
+        },
+        duration: 1400,
+        keyframes: [
+          { t: 0, x: 265, y: 292, angle: -90 },
+          { t: 1, x: 265, y: 292, angle: -90 },
+        ],
+        wheel: 'straight',
+        blinker: 'left',
+        braking: true,
+      },
+      {
+        caption: {
+          de: 'Schritt 4: Links abbiegen und auf der Hauptstrasse zurückfahren, woher du gekommen bist.',
+          es: 'Paso 4: Gira a la izquierda y regresa por la avenida principal por donde venías.',
+        },
+        duration: 2600,
+        keyframes: [
+          { t: 0, x: 265, y: 292, angle: -90 },
+          { t: 0.35, x: 225, y: 305, angle: -115 },
+          { t: 0.6, x: 175, y: 340, angle: -155 },
+          { t: 0.8, x: 130, y: 390, angle: -175 },
+          { t: 1, x: 100, y: 435, angle: -180 },
         ],
         wheel: 'left',
+        blinker: 'left',
+      },
+    ],
+  },
+  {
+    id: 'wendeplatz_kehrtwende',
+    category: 'B',
+    icon: '🔄',
+    title: { de: 'Wenden auf dem Wendeplatz', es: 'Cambiar de sentido en el Wendeplatz' },
+    // Cuando la calle termina en un Wendeplatz (zona ancha de maniobra), hay
+    // espacio de sobra para dar la vuelta: con un solo arco amplio hacia
+    // adelante (sin marcha atrás) si cabe, o con una 3-Punkte-Wende dentro
+    // del propio Wendeplatz si el espacio es más justo.
+    scene: wendeplatzScene(),
+    variants: [
+      {
+        id: 'bogen',
+        label: { de: 'Weiter Bogen', es: 'Arco amplio' },
+        steps: [
+          {
+            caption: {
+              de: 'Schritt 1: In den Wendeplatz einfahren und rechts halten – so öffnest du dir den maximalen Wenderadius.',
+              es: 'Paso 1: Entra en el Wendeplatz pegado a la DERECHA: así abres el radio de giro al máximo.',
+            },
+            duration: 1600,
+            keyframes: [
+              { t: 0, x: 200, y: 520, angle: 0 },
+              { t: 1, x: 200, y: 310, angle: 0 },
+            ],
+            wheel: 'straight',
+          },
+          {
+            caption: {
+              de: 'Schritt 2: In einem einzigen weiten Bogen nach links wenden – die ganze Breite der Fläche ausnützen, ohne rückwärtszufahren.',
+              es: 'Paso 2: Da la vuelta en un solo arco amplio a la izquierda, usando TODO el ancho de la zona, sin marcha atrás.',
+            },
+            duration: 3600,
+            keyframes: [
+              { t: 0, x: 200, y: 310, angle: 0 },
+              { t: 0.15, x: 245, y: 235, angle: 10 },
+              { t: 0.35, x: 272, y: 160, angle: -25 },
+              { t: 0.55, x: 240, y: 70, angle: -90 },
+              { t: 0.75, x: 150, y: 55, angle: -150 },
+              { t: 0.9, x: 90, y: 120, angle: -175 },
+              { t: 1, x: 88, y: 185, angle: -180 },
+            ],
+            wheel: 'left',
+          },
+          {
+            caption: {
+              de: 'Schritt 3: Auf der anderen Seite geradestellen und in die Gegenrichtung herausfahren.',
+              es: 'Paso 3: Ya en el lado contrario, endereza y sal en sentido opuesto al que entraste.',
+            },
+            duration: 2200,
+            keyframes: [
+              { t: 0, x: 88, y: 185, angle: -180 },
+              { t: 0.35, x: 125, y: 270, angle: -174 },
+              { t: 0.65, x: 160, y: 350, angle: -180 },
+              { t: 1, x: 160, y: 520, angle: -180 },
+            ],
+            wheel: 'straight',
+          },
+        ],
+      },
+      {
+        id: 'dreipunkt',
+        label: { de: '3-Punkte-Wende', es: '3 puntos' },
+        steps: [
+          {
+            caption: {
+              de: 'Schritt 1: In den Wendeplatz einfahren und rechts halten – auch hier zuerst Platz schaffen.',
+              es: 'Paso 1: Entra en el Wendeplatz pegado a la DERECHA: también aquí, primero gánate el espacio.',
+            },
+            duration: 1600,
+            keyframes: [
+              { t: 0, x: 200, y: 520, angle: 0 },
+              { t: 1, x: 200, y: 300, angle: 0 },
+            ],
+            wheel: 'straight',
+          },
+          {
+            caption: {
+              de: 'Schritt 2: Reicht der Platz nicht für einen Bogen: Lenkrad ganz nach links und diagonal über die ganze Fläche bis in die hintere linke Ecke.',
+              es: 'Paso 2: Si no alcanza para el arco: volante a fondo a la izquierda y cruza en diagonal TODO el Wendeplatz hasta la esquina del fondo a la izquierda.',
+            },
+            duration: 2600,
+            keyframes: [
+              { t: 0, x: 200, y: 300, angle: 0 },
+              { t: 0.35, x: 160, y: 205, angle: -40 },
+              { t: 0.7, x: 110, y: 155, angle: -80 },
+              { t: 1, x: 85, y: 135, angle: -105 },
+            ],
+            wheel: 'left',
+          },
+          {
+            caption: {
+              de: 'Schritt 3: Lenkrad ganz nach rechts und rückwärts dem hinteren Rand entlang zur anderen Ecke.',
+              es: 'Paso 3: Volante a fondo a la derecha y marcha atrás a lo largo del fondo, hacia la otra esquina.',
+            },
+            duration: 2400,
+            keyframes: [
+              { t: 0, x: 85, y: 135, angle: -105 },
+              { t: 0.5, x: 145, y: 115, angle: -130 },
+              { t: 1, x: 205, y: 120, angle: -155 },
+            ],
+            wheel: 'right',
+            reverse: true,
+          },
+          {
+            caption: {
+              de: 'Schritt 4: Wieder nach links einlenken und vorwärts auf die linke Seite, Richtung Ausfahrt.',
+              es: 'Paso 4: Gira otra vez a la izquierda y avanza hacia el lado izquierdo, orientado a la salida.',
+            },
+            duration: 2000,
+            keyframes: [
+              { t: 0, x: 205, y: 120, angle: -155 },
+              { t: 0.5, x: 150, y: 200, angle: -175 },
+              { t: 1, x: 160, y: 290, angle: -180 },
+            ],
+            wheel: 'left',
+          },
+          {
+            caption: {
+              de: 'Schritt 5: Geradestellen und in die Gegenrichtung aus dem Wendeplatz herausfahren.',
+              es: 'Paso 5: Endereza el volante y sal del Wendeplatz en sentido contrario.',
+            },
+            duration: 1800,
+            keyframes: [
+              { t: 0, x: 160, y: 290, angle: -180 },
+              { t: 1, x: 160, y: 520, angle: -180 },
+            ],
+            wheel: 'straight',
+          },
+        ],
       },
     ],
   },

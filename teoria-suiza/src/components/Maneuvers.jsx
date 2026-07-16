@@ -30,7 +30,7 @@ export default function Maneuvers({ category }) {
           <span className="min-w-0 flex-1">
             <span className="block font-semibold text-gray-900">{m.title[lang]}</span>
             <span className="block text-sm text-gray-500">
-              {m.steps.length} {t('steps', lang)}
+              {m.variants ? `${m.variants.length} ${t('techniques', lang)}` : `${m.steps.length} ${t('steps', lang)}`}
             </span>
           </span>
           <span className="text-gray-300">›</span>
