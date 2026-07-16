@@ -463,8 +463,8 @@ export const MANEUVERS = [
       },
       {
         caption: {
-          de: 'Schritt 5: Sofort nach dem Abbiegen vorbereiten: Es folgt eine längere Strecke rückwärts.',
-          es: 'Paso 5: Justo después de girar, prepárate: viene un tramo largo marcha atrás.',
+          de: 'Schritt 5: Den Bogen sauber beenden, geradestellen und mit normalem Tempo weiterfahren.',
+          es: 'Paso 5: Termina el arco con suavidad, endereza el volante y sigue circulando con normalidad.',
         },
         duration: 1400,
         keyframes: [
@@ -480,70 +480,51 @@ export const MANEUVERS = [
     category: 'B',
     icon: '🔙',
     title: {
-      de: 'Längere Strecke rückwärts (nach Linksabbiegen)',
-      es: 'Tramo largo marcha atrás (tras girar a la izquierda)',
+      de: 'Längere Strecke rückwärts (mit Spurwechsel)',
+      es: 'Tramo largo marcha atrás (con cambio de carril)',
     },
-    // Continúa justo donde termina "Links abbiegen mit Einspuren": el coche
-    // acaba de girar a la izquierda hacia la calle lateral (x70,y292,-90).
-    // La maniobra real no es una línea recta: se retrocede en curva desde la
-    // calle lateral de vuelta a la calzada principal (con cambio de carril)
-    // y solo entonces sigue un tramo largo recto marcha atrás.
+    // Lange Strecke Rückwärtsfahren über ca. 20 m mit Spurwechsel:
+    // 1-2) Vorwärts im rechten Streifen fahren.
+    // 3) Ist die Strecke frei (keine Autos in Sicht): auf den LINKEN Streifen
+    //    wechseln und dort anhalten.
+    // 4-5) Von dort rückwärts in engem Bogen in die Seitenstrasse hinein
+    //    zurücksetzen (nicht umgekehrt!) und die Strecke geradeaus beenden.
     scene: junctionScene(),
     steps: [
       {
         caption: {
-          de: 'Schritt 1: Sofort nach der Kurve den Rückwärtsgang einlegen, umdrehen und durch die Heckscheibe schauen.',
-          es: 'Paso 1: Justo después de la curva, mete la marcha atrás, gira el cuerpo y mira por la luneta trasera.',
+          de: 'Schritt 1: Du fährst auf der Hauptstrasse im rechten Streifen nach vorne.',
+          es: 'Paso 1: Circulas por la carretera principal en el carril derecho.',
+        },
+        duration: 1800,
+        keyframes: [
+          { t: 0, x: 260, y: 500, angle: 0 },
+          { t: 1, x: 260, y: 380, angle: 0 },
+        ],
+        wheel: 'straight',
+      },
+      {
+        caption: {
+          de: 'Schritt 2: Ist die Strecke frei – keine Autos in Sicht –, wechselst du auf den linken Streifen und fährst weiter.',
+          es: 'Paso 2: Si la vía está despejada, sin coches a la vista, cambias al carril izquierdo y sigues adelante.',
+        },
+        duration: 2200,
+        keyframes: [
+          { t: 0, x: 260, y: 380, angle: 0 },
+          { t: 0.5, x: 205, y: 280, angle: -16 },
+          { t: 1, x: 180, y: 160, angle: 0 },
+        ],
+        wheel: 'left',
+      },
+      {
+        caption: {
+          de: 'Schritt 3: Anhalten, Rückwärtsgang einlegen und dich umdrehen, um durch die Heckscheibe zu schauen.',
+          es: 'Paso 3: Detente, mete la marcha atrás y gira el cuerpo para mirar por la luneta trasera.',
         },
         duration: 1400,
         keyframes: [
-          { t: 0, x: 70, y: 292, angle: -90 },
-          { t: 1, x: 70, y: 292, angle: -90 },
-        ],
-        wheel: 'straight',
-        reverse: true,
-      },
-      {
-        caption: {
-          de: 'Schritt 2: Rückwärts aus der Seitenstrasse heraus und in engem Bogen zurück auf die Hauptstrasse lenken.',
-          es: 'Paso 2: Retrocede saliendo de la calle lateral y gira en curva cerrada de vuelta hacia la calzada principal.',
-        },
-        duration: 2600,
-        keyframes: [
-          { t: 0, x: 70, y: 292, angle: -90 },
-          { t: 0.35, x: 120, y: 282, angle: -118 },
-          { t: 0.7, x: 168, y: 248, angle: -155 },
-          { t: 1, x: 191, y: 212, angle: -180 },
-        ],
-        wheel: 'right',
-        reverse: true,
-        guides: [
-          { x1: 96, y1: 272, x2: 168, y2: 218 },
-          { x1: 88, y1: 302, x2: 148, y2: 268 },
-        ],
-      },
-      {
-        caption: {
-          de: 'Schritt 3: Lenkrad geradestellen – jetzt bist du mit einem Spurwechsel korrekt auf der Hauptstrasse.',
-          es: 'Paso 3: Endereza el volante: con ese cambio de carril ya estás bien colocado en la calzada principal.',
-        },
-        duration: 1200,
-        keyframes: [
-          { t: 0, x: 191, y: 212, angle: -180 },
-          { t: 1, x: 187, y: 198, angle: -180 },
-        ],
-        wheel: 'straight',
-        reverse: true,
-      },
-      {
-        caption: {
-          de: 'Schritt 4: Auf halbem Weg anhalten und nochmals umschauen.',
-          es: 'Paso 4: Detente a medio camino y vuelve a mirar hacia atrás.',
-        },
-        duration: 1200,
-        keyframes: [
-          { t: 0, x: 187, y: 198, angle: -180 },
-          { t: 1, x: 187, y: 198, angle: -180 },
+          { t: 0, x: 180, y: 160, angle: 0 },
+          { t: 1, x: 180, y: 160, angle: 0 },
         ],
         wheel: 'straight',
         reverse: true,
@@ -551,13 +532,32 @@ export const MANEUVERS = [
       },
       {
         caption: {
-          de: 'Schritt 5: Weiter geradeaus rückwärts bis zum Ende der langen Strecke.',
-          es: 'Paso 5: Continúa recto marcha atrás hasta el final del tramo largo.',
+          de: 'Schritt 4: Rückwärts zurücksetzen – kurz vor der Seitenstrasse das Lenkrad einschlagen, damit das Heck hineinschwenkt.',
+          es: 'Paso 4: Retrocede; justo antes de la calle lateral, gira el volante para que la parte trasera entre girando.',
         },
-        duration: 2400,
+        duration: 2600,
         keyframes: [
-          { t: 0, x: 187, y: 198, angle: -180 },
-          { t: 1, x: 187, y: 60, angle: -180 },
+          { t: 0, x: 180, y: 160, angle: 0 },
+          { t: 0.4, x: 183, y: 240, angle: -8 },
+          { t: 0.75, x: 160, y: 300, angle: -55 },
+          { t: 1, x: 95, y: 318, angle: -90 },
+        ],
+        wheel: 'right',
+        reverse: true,
+        guides: [
+          { x1: 155, y1: 275, x2: 105, y2: 300 },
+          { x1: 145, y1: 245, x2: 95, y2: 275 },
+        ],
+      },
+      {
+        caption: {
+          de: 'Schritt 5: Lenkrad geradestellen und weiter geradeaus zurücksetzen, bis das Manöver beendet ist.',
+          es: 'Paso 5: Endereza el volante y sigue recto marcha atrás hasta terminar la maniobra.',
+        },
+        duration: 1600,
+        keyframes: [
+          { t: 0, x: 95, y: 318, angle: -90 },
+          { t: 1, x: 55, y: 314, angle: -90 },
         ],
         wheel: 'straight',
         reverse: true,
