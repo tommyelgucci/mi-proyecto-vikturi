@@ -158,6 +158,9 @@ export const storage = {
   },
 
   // failed: array de ids de preguntas falladas
+  getChecked: (module) => read(module + 'Checked', []),
+  setChecked: (module, ids) => write(module + 'Checked', ids),
+
   getFailed: () => read('failed', []),
   addFailed(questionId) {
     const failed = read('failed', [])

@@ -11,12 +11,22 @@ import Maneuvers from './components/Maneuvers'
 import FirstAid from './components/FirstAid'
 import Signs from './components/Signs'
 import Stats from './components/Stats'
+import Kontrollfahrt from './components/Kontrollfahrt'
+import Vku from './components/Vku'
+import Wab from './components/Wab'
 
 export default function App() {
   const [lang, setLangState] = useState(storage.getLang)
   const [category, setCategoryState] = useState(() => storage.getCategory() || 'B')
   const [view, setView] = useState('home')
+  const [studyTopic, setStudyTopic] = useState(null)
   const [theme, setThemeState] = useState(storage.getTheme)
+
+  // navegación con filtro de tema opcional (cross-links desde Kontrollfahrt)
+  const go = (nextView, topic = null) => {
+    setStudyTopic(topic)
+    setView(nextView)
+  }
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', theme === 'dark')
@@ -47,6 +57,9 @@ export default function App() {
     firstaid: t('menuFirstAid', lang),
     signs: t('menuSigns', lang),
     stats: t('menuStats', lang),
+    kontrollfahrt: t('menuKontrollfahrt', lang),
+    vku: t('menuVku', lang),
+    wab: t('menuWab', lang),
   }
 
   return (
@@ -54,13 +67,13 @@ export default function App() {
       <div className="min-h-screen bg-gray-100 pb-8 dark:bg-gray-950">
         <Header
           title={titles[view]}
-          category={view !== 'home' && view !== 'firstaid' && view !== 'signs' && view !== 'stats' ? category : null}
-          onBack={view !== 'home' ? () => setView('home') : null}
+          category={['home', 'firstaid', 'signs', 'stats', 'kontrollfahrt', 'vku', 'wab'].includes(view) ? null : category}
+          onBack={view !== 'home' ? () => go('home') : null}
           theme={theme}
           onToggleTheme={toggleTheme}
         />
-        {view === 'home' && <Home category={category} setCategory={setCategory} navigate={setView} />}
-        {view === 'study' && <Study category={category} />}
+        {view === 'home' && <Home category={category} setCategory={setCategory} navigate={go} />}
+        {view === 'study' && <Study key={studyTopic || 'all'} category={category} initialTopic={studyTopic} />}
         {view === 'exam' && <Exam category={category} onExit={() => setView('home')} />}
         {view === 'review' && <Review />}
         {view === 'tips' && <Tips category={category} />}
@@ -68,6 +81,9 @@ export default function App() {
         {view === 'firstaid' && <FirstAid />}
         {view === 'signs' && <Signs />}
         {view === 'stats' && <Stats />}
+        {view === 'kontrollfahrt' && <Kontrollfahrt navigate={go} />}
+        {view === 'vku' && <Vku />}
+        {view === 'wab' && <Wab />}
       </div>
     </LangContext.Provider>
   )

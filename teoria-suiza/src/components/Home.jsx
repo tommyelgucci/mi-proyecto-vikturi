@@ -112,6 +112,14 @@ export default function Home({ category, setCategory, navigate }) {
           label={t('menuFirstAid', lang)}
           sub={t('menuFirstAidSub', lang)}
         />
+        <MenuButton onClick={() => navigate('vku')} emoji="🧠" label={t('menuVku', lang)} sub={t('menuVkuSub', lang)} />
+        <MenuButton
+          onClick={() => navigate('kontrollfahrt')}
+          emoji="🛂"
+          label={t('menuKontrollfahrt', lang)}
+          sub={t('menuKontrollfahrtSub', lang)}
+        />
+        <MenuButton onClick={() => navigate('wab')} emoji="🎓" label={t('menuWab', lang)} sub={t('menuWabSub', lang)} />
         <MenuButton
           onClick={() => navigate('stats')}
           emoji="📊"

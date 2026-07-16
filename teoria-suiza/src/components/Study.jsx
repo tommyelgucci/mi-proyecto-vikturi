@@ -5,9 +5,9 @@ import { storage } from '../storage'
 import { questionsForCategory, shuffle, isAnswerCorrect } from '../utils'
 import QuestionCard from './QuestionCard'
 
-export default function Study({ category }) {
+export default function Study({ category, initialTopic }) {
   const { lang } = useLang()
-  const [topic, setTopic] = useState('all')
+  const [topic, setTopic] = useState(initialTopic || 'all')
   const [round, setRound] = useState(0) // fuerza rebarajar al reiniciar
   const [index, setIndex] = useState(0)
   const [selected, setSelected] = useState([])

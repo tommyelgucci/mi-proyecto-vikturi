@@ -21,6 +21,19 @@ App web multilingüe (**alemán, español, francés, italiano e inglés**) para 
 - **Estadísticas** (`Stats.jsx`): racha de días de estudio, aciertos por tema (ordenados de peor a mejor), historial de exámenes y progreso de flashcards de ambos módulos.
 - **App instalable (PWA)**: manifest + service worker propio (`public/sw.js`, cache-first con actualización en segundo plano) — "Añadir a pantalla de inicio" en el móvil da un icono propio y funcionamiento offline. Se sirve vía GitHub Pages (ver más abajo); el registro del service worker se omite automáticamente si la app se abre como archivo local (`file://`), así el HTML de un solo archivo sigue funcionando igual.
 
+## El camino completo a la licencia
+
+La app cubre todos los pasos obligatorios del proceso suizo, no solo el examen teórico:
+
+1. **Nothelfer** (curso de primeros auxilios, requisito del permiso de aprendizaje) → módulo de repaso con temario, flashcards SRS y quiz.
+2. **Examen teórico** → modo estudio, simulacro realista (50/15/45), señales, repaso de falladas.
+3. **VKU** (curso de sensibilización de 8 h, obligatorio antes del práctico) → módulo de pre-sensibilización con los 4 bloques oficiales (percepción del peligro, entorno, dinámica, táctica), flashcards y quiz con escenas "¿dónde está el peligro?". No sustituye el curso presencial.
+4. **Examen práctico** → maniobras animadas + tips por categoría.
+5. **Kontrollfahrt** (para quien canjea una licencia extranjera: un solo intento) → módulo con los errores que suspenden, checklist persistente y cross-links a maniobras y modo estudio.
+6. **Después de aprobar: licencia de prueba + WAB** → módulo informativo (3 años de prueba, curso WAB en los primeros 12 meses, Eco-Drive).
+
+Cada módulo incluye enlaces a la información oficial (ch.ch, oficinas cantonales) — sin reservas ni afiliaciones, en línea con el aviso de independencia.
+
 ## Stack
 
 - React + Vite + Tailwind CSS v4
