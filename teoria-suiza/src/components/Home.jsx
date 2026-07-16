@@ -8,12 +8,12 @@ function CategoryButton({ active, onClick, emoji, label, sub }) {
     <button
       onClick={onClick}
       className={`flex flex-1 flex-col items-center gap-1 rounded-2xl border-2 p-4 transition-colors ${
-        active ? 'border-swiss bg-red-50' : 'border-gray-200 bg-white hover:border-gray-300'
+        active ? 'border-swiss bg-red-50 dark:bg-red-900/30' : 'border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 hover:border-gray-300 dark:hover:border-gray-500'
       }`}
     >
       <span className="text-4xl">{emoji}</span>
-      <span className="font-bold text-gray-900">{label}</span>
-      <span className="text-xs text-gray-500">{sub}</span>
+      <span className="font-bold text-gray-900 dark:text-gray-100">{label}</span>
+      <span className="text-xs text-gray-500 dark:text-gray-400">{sub}</span>
     </button>
   )
 }
@@ -22,12 +22,12 @@ function MenuButton({ onClick, emoji, label, sub, badge }) {
   return (
     <button
       onClick={onClick}
-      className="flex w-full items-center gap-4 rounded-2xl bg-white p-4 text-left shadow-sm ring-1 ring-gray-200 transition-colors hover:bg-gray-50 active:bg-gray-100"
+      className="flex w-full items-center gap-4 rounded-2xl bg-white dark:bg-gray-800 p-4 text-left shadow-sm ring-1 ring-gray-200 dark:ring-gray-700 transition-colors hover:bg-gray-50 dark:hover:bg-gray-700 active:bg-gray-100 dark:active:bg-gray-600"
     >
       <span className="text-3xl">{emoji}</span>
       <span className="min-w-0 flex-1">
-        <span className="block font-semibold text-gray-900">{label}</span>
-        <span className="block text-sm text-gray-500">{sub}</span>
+        <span className="block font-semibold text-gray-900 dark:text-gray-100">{label}</span>
+        <span className="block text-sm text-gray-500 dark:text-gray-400">{sub}</span>
       </span>
       {badge != null && badge > 0 && (
         <span className="rounded-full bg-swiss px-2.5 py-0.5 text-sm font-bold text-white">{badge}</span>
@@ -54,7 +54,7 @@ export default function Home({ category, setCategory, navigate }) {
 
   return (
     <div className="mx-auto max-w-xl space-y-5 px-4 py-5">
-      <p className="text-center text-sm text-gray-600">{t('tagline', lang)}</p>
+      <p className="text-center text-sm text-gray-600 dark:text-gray-300">{t('tagline', lang)}</p>
 
       <div className="flex gap-3">
         <CategoryButton
@@ -73,7 +73,7 @@ export default function Home({ category, setCategory, navigate }) {
         />
       </div>
 
-      <div className="flex items-center justify-between rounded-xl bg-white px-4 py-2.5 text-xs text-gray-600 ring-1 ring-gray-200">
+      <div className="flex items-center justify-between rounded-xl bg-white dark:bg-gray-800 px-4 py-2.5 text-xs text-gray-600 dark:text-gray-300 ring-1 ring-gray-200 dark:ring-gray-700">
         <span>
           📚 {pool.length} {t('categoryQuestions', lang)}
         </span>
@@ -122,7 +122,7 @@ export default function Home({ category, setCategory, navigate }) {
       </div>
 
       {lastExam && (
-        <p className="text-center text-xs text-gray-500">
+        <p className="text-center text-xs text-gray-500 dark:text-gray-400">
           {t('lastExam', lang)}: {lastExam.passed ? '✅' : '❌'} {lastExam.penalty}/{lastExam.maxPenalty}{' '}
           {t('points', lang)}
         </p>

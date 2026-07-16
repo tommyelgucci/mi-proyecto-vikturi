@@ -186,7 +186,7 @@ export default function ManeuverPlayer({ maneuver, onBack }) {
               className={`flex-1 rounded-xl px-3 py-2 text-sm font-semibold transition-colors ${
                 i === variantIndex
                   ? 'bg-swiss text-white'
-                  : 'bg-white text-gray-600 ring-1 ring-gray-300 hover:bg-gray-50'
+                  : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 ring-1 ring-gray-300 dark:ring-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700'
               }`}
             >
               {v.label[lang]}
@@ -195,7 +195,7 @@ export default function ManeuverPlayer({ maneuver, onBack }) {
         </div>
       )}
 
-      <div className="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-gray-200">
+      <div className="overflow-hidden rounded-2xl bg-white dark:bg-gray-800 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700">
         <svg viewBox={`0 0 ${CANVAS.w} ${CANVAS.h}`} className="block w-full" style={{ maxHeight: '62vh' }}>
           <SceneDefs />
           <marker id="wheelArrow" markerWidth={7} markerHeight={7} refX={3.5} refY={3.5} orient="auto">
@@ -280,11 +280,11 @@ export default function ManeuverPlayer({ maneuver, onBack }) {
         </svg>
       </div>
 
-      <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-gray-200">
+      <div className="rounded-2xl bg-white dark:bg-gray-800 p-4 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700">
         <p className="text-xs font-semibold uppercase tracking-wide text-swiss">
           {t('step', lang)} {stepIndex + 1} {t('of', lang)} {steps.length}
         </p>
-        <p className="mt-1 text-sm leading-relaxed text-gray-800">{step.caption[lang]}</p>
+        <p className="mt-1 text-sm leading-relaxed text-gray-800 dark:text-gray-200">{step.caption[lang]}</p>
       </div>
 
       <div className="flex items-center justify-center gap-2">
@@ -292,7 +292,7 @@ export default function ManeuverPlayer({ maneuver, onBack }) {
           onClick={() => goToStep(Math.max(0, stepIndex - 1))}
           disabled={stepIndex === 0}
           aria-label={t('prevStep', lang)}
-          className="rounded-full bg-white px-3.5 py-2.5 text-lg ring-1 ring-gray-300 disabled:opacity-30"
+          className="rounded-full bg-white dark:bg-gray-800 px-3.5 py-2.5 text-lg ring-1 ring-gray-300 dark:ring-gray-600 disabled:opacity-30"
         >
           ‹
         </button>
@@ -309,7 +309,7 @@ export default function ManeuverPlayer({ maneuver, onBack }) {
         <button
           onClick={handleRestart}
           aria-label={t('restart', lang)}
-          className="rounded-full bg-white px-3.5 py-2.5 text-lg ring-1 ring-gray-300"
+          className="rounded-full bg-white dark:bg-gray-800 px-3.5 py-2.5 text-lg ring-1 ring-gray-300 dark:ring-gray-600"
         >
           ⟲
         </button>
@@ -318,7 +318,7 @@ export default function ManeuverPlayer({ maneuver, onBack }) {
           onClick={() => goToStep(Math.min(steps.length - 1, stepIndex + 1))}
           disabled={isLastStep}
           aria-label={t('nextStep', lang)}
-          className="rounded-full bg-white px-3.5 py-2.5 text-lg ring-1 ring-gray-300 disabled:opacity-30"
+          className="rounded-full bg-white dark:bg-gray-800 px-3.5 py-2.5 text-lg ring-1 ring-gray-300 dark:ring-gray-600 disabled:opacity-30"
         >
           ›
         </button>
@@ -331,7 +331,7 @@ export default function ManeuverPlayer({ maneuver, onBack }) {
             onClick={() => goToStep(i)}
             aria-label={`${t('step', lang)} ${i + 1}`}
             className={`h-2 rounded-full transition-all ${
-              i === stepIndex ? 'w-6 bg-swiss' : 'w-2 bg-gray-300'
+              i === stepIndex ? 'w-6 bg-swiss' : 'w-2 bg-gray-300 dark:bg-gray-600'
             }`}
           />
         ))}

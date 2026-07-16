@@ -372,6 +372,77 @@ export const SIGNS = [
     draw: { shape: 'squareBlue', pictogram: 'tunnel' },
   },
 
+  {
+    id: 'p_motorwagen',
+    category: 'verbot',
+    name: { de: 'Verbot für Motorwagen', es: 'Prohibido para automóviles' },
+    meaning: { de: 'Durchfahrt für mehrspurige Motorfahrzeuge verboten; Motorräder dürfen passieren.', es: 'Prohibido el paso a vehículos de motor de varias vías; las motos sí pueden pasar.' },
+    draw: { shape: 'circleRed', pictogram: 'car' },
+  },
+  {
+    id: 'p_fussgaenger',
+    category: 'verbot',
+    name: { de: 'Verbot für Fussgänger', es: 'Prohibido para peatones' },
+    meaning: { de: 'Fussgänger dürfen diesen Abschnitt nicht benützen (z. B. Autobahnzubringer, Tunnel).', es: 'Los peatones no pueden usar este tramo (p. ej., accesos de autopista, túneles).' },
+    draw: { shape: 'circleRed', pictogram: 'pedestrian' },
+  },
+  {
+    id: 'p_hoehe',
+    category: 'verbot',
+    name: { de: 'Höchsthöhe', es: 'Altura máxima' },
+    meaning: { de: 'Durchfahrt nur für Fahrzeuge bis zur angegebenen Höhe (z. B. vor Unterführungen).', es: 'Solo pueden pasar vehículos hasta la altura indicada (p. ej., antes de pasos inferiores).' },
+    draw: { shape: 'circleRed', text: '3,8 m', textSize: 24 },
+  },
+  {
+    id: 'p_breite',
+    category: 'verbot',
+    name: { de: 'Höchstbreite', es: 'Anchura máxima' },
+    meaning: { de: 'Durchfahrt nur für Fahrzeuge bis zur angegebenen Breite (enge Stellen, Tunnels).', es: 'Solo pueden pasar vehículos hasta la anchura indicada (pasos estrechos, túneles).' },
+    draw: { shape: 'circleRed', text: '2,3 m', textSize: 24 },
+  },
+  {
+    id: 'p_gewicht',
+    category: 'verbot',
+    name: { de: 'Höchstgewicht', es: 'Peso máximo' },
+    meaning: { de: 'Nur für Fahrzeuge bis zum angegebenen Betriebsgewicht (z. B. schwache Brücken).', es: 'Solo para vehículos hasta el peso indicado (p. ej., puentes con carga limitada).' },
+    draw: { shape: 'circleRed', text: '5,5 t', textSize: 24 },
+  },
+  {
+    id: 'p_zoll',
+    category: 'verbot',
+    name: { de: 'Zollhaltestelle', es: 'Aduana' },
+    meaning: { de: 'An der Zollstelle anhalten – Grenzübertritt.', es: 'Detente en el puesto de aduana: cruce de frontera.' },
+    draw: { shape: 'circleRed', text: 'ZOLL', subtext: 'DOUANE', textSize: 22 },
+  },
+  {
+    id: 'b_ketten',
+    category: 'gebot',
+    name: { de: 'Schneeketten obligatorisch', es: 'Cadenas de nieve obligatorias' },
+    meaning: { de: 'Ab hier nur mit montierten Schneeketten weiterfahren (Bergstrassen im Winter).', es: 'Desde aquí solo se puede continuar con cadenas montadas (carreteras de montaña en invierno).' },
+    draw: { shape: 'circleBlue', pictogram: 'snowflake' },
+  },
+  {
+    id: 'g_gefaelle',
+    category: 'gefahr',
+    name: { de: 'Gefährliches Gefälle', es: 'Bajada peligrosa' },
+    meaning: { de: 'Starkes Gefälle (z. B. 10 %): Motorbremse nutzen, Bremsen nicht überhitzen.', es: 'Pendiente fuerte de bajada (p. ej., 10 %): usa el freno motor y no sobrecalientes los frenos.' },
+    draw: { shape: 'triangle', text: '10%', textSize: 22 },
+  },
+  {
+    id: 'h_ende_zone30',
+    category: 'hinweis',
+    name: { de: 'Ende der Tempo-30-Zone', es: 'Fin de la zona 30' },
+    meaning: { de: 'Die Zone ist zu Ende – es gelten wieder die allgemeinen Regeln und Limiten.', es: 'Termina la zona 30: vuelven las reglas y límites generales.' },
+    draw: { shape: 'squareWhite', text: '30', stripes: true },
+  },
+  {
+    id: 'h_ende_autostrasse',
+    category: 'hinweis',
+    name: { de: 'Ende der Autostrasse', es: 'Fin de la semiautopista' },
+    meaning: { de: 'Die Autostrasse endet – mit Gegenverkehr und langsameren Fahrzeugen rechnen.', es: 'Termina la semiautopista: cuenta con tráfico de frente y vehículos lentos.' },
+    draw: { shape: 'squareGreen', pictogram: 'car', slashes: 1 },
+  },
+
   // ---------- Wegweiser ----------
   {
     id: 'w_gruen',

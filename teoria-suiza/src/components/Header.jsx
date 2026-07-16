@@ -1,6 +1,6 @@
 import { useLang, t } from '../i18n'
 
-export default function Header({ onBack, title, category }) {
+export default function Header({ onBack, title, category, theme, onToggleTheme }) {
   const { lang, setLang } = useLang()
 
   return (
@@ -27,6 +27,15 @@ export default function Header({ onBack, title, category }) {
             </span>
           )}
         </h1>
+        {onToggleTheme && (
+          <button
+            onClick={onToggleTheme}
+            aria-label={t('toggleTheme', lang)}
+            className="rounded-full p-1.5 text-lg leading-none hover:bg-white/15 active:bg-white/25"
+          >
+            {theme === 'dark' ? '☀️' : '🌙'}
+          </button>
+        )}
         <div className="flex overflow-hidden rounded-full border border-white/40 text-sm font-semibold">
           {['de', 'es'].map((l) => (
             <button

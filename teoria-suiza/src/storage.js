@@ -45,6 +45,34 @@ export const storage = {
   getLang: () => read('lang', 'de'),
   setLang: (v) => write('lang', v),
 
+  getTheme() {
+    const saved = read('theme', null)
+    if (saved === 'light' || saved === 'dark') return saved
+    return typeof window !== 'undefined' && window.matchMedia?.('(prefers-color-scheme: dark)').matches
+      ? 'dark'
+      : 'light'
+  },
+  setTheme: (v) => write('theme', v),
+
+  // Backup: exportar/importar todas las claves chfahren.*
+  exportAll() {
+    const data = {}
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i)
+      if (key && key.startsWith(PREFIX)) data[key] = localStorage.getItem(key)
+    }
+    return JSON.stringify({ app: 'chfahren', version: 1, exported: new Date().toISOString(), data })
+  },
+  importAll(json) {
+    const parsed = JSON.parse(json)
+    if (!parsed || parsed.app !== 'chfahren' || typeof parsed.data !== 'object') {
+      throw new Error('invalid backup')
+    }
+    const entries = Object.entries(parsed.data).filter(([k]) => k.startsWith(PREFIX))
+    if (entries.length === 0) throw new Error('empty backup')
+    for (const [k, v] of entries) localStorage.setItem(k, v)
+  },
+
   getCategory: () => read('category', null),
   setCategory: (v) => write('category', v),
 

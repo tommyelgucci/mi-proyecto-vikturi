@@ -73,8 +73,12 @@ export const STRINGS = {
   studyDone: { de: 'Alle Fragen durchgearbeitet! 🎉', es: '¡Has repasado todas las preguntas! 🎉' },
   studyAgain: { de: 'Nochmals durchgehen', es: 'Volver a empezar' },
   disclaimer: {
-    de: 'Übungsfragen ohne Gewähr, basierend auf SVG/VRV/SSV. Kein offizielles Prüfungsmaterial (ASA).',
-    es: 'Preguntas de práctica sin garantía, basadas en SVG/VRV/SSV. No es material oficial del examen (ASA).',
+    de: 'Unabhängiges Lernwerkzeug. Nicht mit der asa (Vereinigung der Strassenverkehrsämter) oder einem kantonalen Strassenverkehrsamt verbunden, von ihnen genehmigt oder unterstützt. Alle Fragen, Texte und Illustrationen sind Originalwerke auf Basis der Schweizer Gesetzgebung (SVG/VRV/SSV); Signale sind vereinfachte Darstellungen zu Lernzwecken. Kein offizielles Prüfungsmaterial, ohne Gewähr.',
+    es: 'Herramienta de estudio independiente. No está afiliada, aprobada ni asociada con la asa (Asociación de las oficinas de tráfico) ni con ninguna oficina de tráfico cantonal. Todas las preguntas, textos e ilustraciones son creaciones originales basadas en la legislación suiza (SVG/VRV/SSV); las señales son representaciones simplificadas con fines didácticos. No es material oficial del examen y se ofrece sin garantía.',
+  },
+  independenceShort: {
+    de: 'Unabhängige Lernsimulation mit Originalfragen – kein offizielles Prüfungsmaterial, nicht mit der asa oder den Strassenverkehrsämtern verbunden.',
+    es: 'Simulación de estudio independiente con preguntas originales: no es material oficial del examen ni está asociada a la asa ni a las oficinas de tráfico.',
   },
   minutes: { de: 'Min.', es: 'min' },
   timeLeft: { de: 'Restzeit', es: 'Tiempo restante' },
@@ -148,6 +152,31 @@ export const STRINGS = {
     es: 'Aún no hay datos: responde antes algunas preguntas en el modo estudio.',
   },
   mastered: { de: 'gefestigt', es: 'dominadas' },
+  flagQuestion: { de: 'Frage markieren', es: 'Marcar pregunta' },
+  flagged: { de: 'markiert', es: 'marcadas' },
+  navigator: { de: 'Fragenübersicht', es: 'Vista de preguntas' },
+  unanswered: { de: 'unbeantwortet', es: 'sin responder' },
+  submitSummaryTitle: { de: 'Prüfung abgeben?', es: '¿Entregar el examen?' },
+  keepReviewing: { de: 'Weiter prüfen', es: 'Seguir revisando' },
+  submitNow: { de: 'Jetzt abgeben', es: 'Entregar ahora' },
+  toggleTheme: { de: 'Dunkelmodus umschalten', es: 'Cambiar modo oscuro' },
+  listenDe: { de: 'Auf Deutsch vorlesen', es: 'Escuchar en alemán' },
+  backupTitle: { de: 'Datensicherung', es: 'Copia de seguridad' },
+  backupHint: {
+    de: 'Dein Fortschritt lebt nur in diesem Browser. Exportiere ihn als Text, um ihn zu sichern oder auf ein anderes Gerät zu übertragen.',
+    es: 'Tu progreso vive solo en este navegador. Expórtalo como texto para guardarlo o pasarlo a otro dispositivo.',
+  },
+  exportBtn: { de: 'Exportieren', es: 'Exportar' },
+  importBtn: { de: 'Importieren', es: 'Importar' },
+  copyBtn: { de: 'Kopieren', es: 'Copiar' },
+  copiedMsg: { de: 'Kopiert!', es: '¡Copiado!' },
+  pasteHere: { de: 'Sicherungstext hier einfügen…', es: 'Pega aquí tu copia de seguridad…' },
+  importConfirm: {
+    de: 'Der aktuelle Fortschritt wird überschrieben. Fortfahren?',
+    es: 'Esto sobreescribirá tu progreso actual. ¿Continuar?',
+  },
+  importDone: { de: 'Fortschritt wiederhergestellt.', es: 'Progreso restaurado.' },
+  importError: { de: 'Ungültige Sicherungsdatei.', es: 'La copia de seguridad no es válida.' },
 }
 
 export function t(key, lang, vars) {

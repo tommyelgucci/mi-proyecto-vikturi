@@ -215,6 +215,17 @@ export const PICTOGRAMS = {
       <rect x={-10} y={-4} width={20} height={8} />
     </g>
   ),
+  snowflake: (c = INK) => (
+    <g stroke={c} strokeWidth={3.2} strokeLinecap="round" fill="none">
+      {[0, 60, 120].map((a) => (
+        <g key={a} transform={`rotate(${a})`}>
+          <line y1={-20} y2={20} />
+          <path d="M -6 -12 L 0 -6 L 6 -12" />
+          <path d="M -6 12 L 0 6 L 6 12" />
+        </g>
+      ))}
+    </g>
+  ),
   wegweiser: (fg) => (
     <g>
       <path d="M -34 -6 L -22 -18 L -10 -6 L -16 -6 L -16 12 L -28 12 L -28 -6 Z" fill={fg} transform="translate(0 -4)" />

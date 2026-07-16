@@ -58,7 +58,7 @@ export default function Study({ category }) {
         <button
           onClick={() => selectTopic('all')}
           className={`shrink-0 rounded-full px-3 py-1.5 text-sm font-medium ${
-            topic === 'all' ? 'bg-swiss text-white' : 'bg-white text-gray-700 ring-1 ring-gray-200'
+            topic === 'all' ? 'bg-swiss text-white' : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 ring-1 ring-gray-200 dark:ring-gray-700'
           }`}
         >
           {t('allTopics', lang)}
@@ -68,7 +68,7 @@ export default function Study({ category }) {
             key={tp.id}
             onClick={() => selectTopic(tp.id)}
             className={`shrink-0 rounded-full px-3 py-1.5 text-sm font-medium ${
-              topic === tp.id ? 'bg-swiss text-white' : 'bg-white text-gray-700 ring-1 ring-gray-200'
+              topic === tp.id ? 'bg-swiss text-white' : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 ring-1 ring-gray-200 dark:ring-gray-700'
             }`}
           >
             {tp.label[lang]}
@@ -77,8 +77,8 @@ export default function Study({ category }) {
       </div>
 
       {done ? (
-        <div className="rounded-2xl bg-white p-8 text-center shadow-sm ring-1 ring-gray-200">
-          <p className="text-lg font-semibold text-gray-900">{t('studyDone', lang)}</p>
+        <div className="rounded-2xl bg-white dark:bg-gray-800 p-8 text-center shadow-sm ring-1 ring-gray-200 dark:ring-gray-700">
+          <p className="text-lg font-semibold text-gray-900 dark:text-gray-100">{t('studyDone', lang)}</p>
           <button
             onClick={() => {
               setRound((r) => r + 1)
@@ -93,7 +93,7 @@ export default function Study({ category }) {
         </div>
       ) : (
         <>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-gray-500 dark:text-gray-400">
             {t('question', lang)} {index + 1} {t('of', lang)} {pool.length}
           </p>
 

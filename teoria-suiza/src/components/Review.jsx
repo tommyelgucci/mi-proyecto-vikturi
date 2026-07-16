@@ -21,10 +21,10 @@ export default function Review() {
   if (queue.length === 0 || index >= queue.length) {
     return (
       <div className="mx-auto max-w-xl px-4 py-10">
-        <div className="rounded-2xl bg-white p-8 text-center shadow-sm ring-1 ring-gray-200">
+        <div className="rounded-2xl bg-white dark:bg-gray-800 p-8 text-center shadow-sm ring-1 ring-gray-200 dark:ring-gray-700">
           <p className="text-4xl">🎉</p>
-          <p className="mt-3 text-lg font-semibold text-gray-900">{t('noFailed', lang)}</p>
-          <p className="mt-2 text-sm text-gray-500">{t('noFailedSub', lang)}</p>
+          <p className="mt-3 text-lg font-semibold text-gray-900 dark:text-gray-100">{t('noFailed', lang)}</p>
+          <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">{t('noFailedSub', lang)}</p>
         </div>
       </div>
     )
@@ -43,7 +43,7 @@ export default function Review() {
 
   return (
     <div className="mx-auto max-w-xl space-y-4 px-4 py-4">
-      <div className="flex items-center justify-between text-sm text-gray-500">
+      <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
         <span>
           {t('question', lang)} {index + 1} {t('of', lang)} {queue.length}
         </span>

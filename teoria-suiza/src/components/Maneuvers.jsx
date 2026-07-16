@@ -14,7 +14,7 @@ export default function Maneuvers({ category }) {
 
   if (list.length === 0) {
     return (
-      <div className="mx-auto max-w-xl px-4 py-10 text-center text-sm text-gray-500">{t('maneuversComingSoon', lang)}</div>
+      <div className="mx-auto max-w-xl px-4 py-10 text-center text-sm text-gray-500 dark:text-gray-400">{t('maneuversComingSoon', lang)}</div>
     )
   }
 
@@ -24,12 +24,12 @@ export default function Maneuvers({ category }) {
         <button
           key={m.id}
           onClick={() => setActive(m)}
-          className="flex w-full items-center gap-4 rounded-2xl bg-white p-4 text-left shadow-sm ring-1 ring-gray-200 transition-colors hover:bg-gray-50 active:bg-gray-100"
+          className="flex w-full items-center gap-4 rounded-2xl bg-white dark:bg-gray-800 p-4 text-left shadow-sm ring-1 ring-gray-200 dark:ring-gray-700 transition-colors hover:bg-gray-50 dark:hover:bg-gray-700 active:bg-gray-100 dark:active:bg-gray-600"
         >
           <span className="text-3xl">{m.icon}</span>
           <span className="min-w-0 flex-1">
-            <span className="block font-semibold text-gray-900">{m.title[lang]}</span>
-            <span className="block text-sm text-gray-500">
+            <span className="block font-semibold text-gray-900 dark:text-gray-100">{m.title[lang]}</span>
+            <span className="block text-sm text-gray-500 dark:text-gray-400">
               {m.variants ? `${m.variants.length} ${t('techniques', lang)}` : `${m.steps.length} ${t('steps', lang)}`}
             </span>
           </span>

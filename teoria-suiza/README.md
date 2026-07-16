@@ -80,6 +80,8 @@ El workflow `.github/workflows/deploy-teoria-suiza.yml` construye y publica `teo
 
 La URL resultante sirve la PWA (instalable, offline) en `https://<usuario>.github.io/<repo>/`.
 
-## Aviso
+## Aviso legal
 
-Las preguntas son **originales**, redactadas a partir de la normativa suiza (SVG, VRV, SSV) con fines de estudio. No son el material oficial del examen (banco ASA, protegido por copyright) y no sustituyen a los cursos ni al material oficial.
+**Herramienta de estudio independiente.** No está afiliada, aprobada ni asociada con la asa (Asociación de las oficinas de tráfico / Vereinigung der Strassenverkehrsämter) ni con ninguna oficina de tráfico cantonal.
+
+Todas las preguntas, textos, escenarios e ilustraciones de esta app son **creaciones 100 % originales**, redactadas desde cero a partir de la legislación suiza de circulación (SVG, VRV, SSV — textos legales de dominio público). No se copia, parafrasea ni deriva contenido del banco oficial de preguntas de la asa, que está protegido por derechos de autor. Las señales de tráfico se muestran como representaciones simplificadas propias con fines didácticos. Esta app no es material oficial del examen, no sustituye a los cursos ni al material oficial, y se ofrece sin garantía.
