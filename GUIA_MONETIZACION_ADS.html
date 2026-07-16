@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía de Monetización — Ads para tu App y Redes Sociales</title>
+<style>
+  :root {
+    --bg: #f6f7fb;
+    --panel: #ffffff;
+    --text: #1c2333;
+    --muted: #5a6478;
+    --accent: #4f6df5;
+    --accent-soft: #e8ecfe;
+    --green: #1fa16b;
+    --green-soft: #e2f5ec;
+    --amber: #b47708;
+    --amber-soft: #fdf3dc;
+    --border: #e3e6ef;
+    --shadow: 0 2px 10px rgba(20, 30, 60, .07);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #12141c;
+      --panel: #1b1f2c;
+      --text: #e8eaf2;
+      --muted: #9aa3b8;
+      --accent: #7d92ff;
+      --accent-soft: #232c4d;
+      --green: #3ecf94;
+      --green-soft: #17352a;
+      --amber: #e5b558;
+      --amber-soft: #3a2f16;
+      --border: #2a3042;
+      --shadow: 0 2px 10px rgba(0, 0, 0, .35);
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  a { color: var(--accent); }
+
+  /* ---------- Layout ---------- */
+  .app {
+    display: flex;
+    min-height: 100vh;
+  }
+  nav {
+    width: 260px;
+    flex-shrink: 0;
+    background: var(--panel);
+    border-right: 1px solid var(--border);
+    padding: 18px 12px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+  }
+  nav h1 {
+    font-size: 1rem;
+    padding: 6px 10px 14px;
+    line-height: 1.35;
+  }
+  nav h1 span { color: var(--accent); }
+  nav button.tab {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    background: transparent;
+    color: var(--text);
+    font-size: .92rem;
+    padding: 10px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 2px;
+  }
+  nav button.tab:hover { background: var(--accent-soft); }
+  nav button.tab.active { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+  nav .emoji { width: 22px; text-align: center; flex-shrink: 0; }
+  nav .mini-progress {
+    margin-left: auto;
+    font-size: .72rem;
+    color: var(--muted);
+    background: var(--bg);
+    border-radius: 20px;
+    padding: 1px 8px;
+    flex-shrink: 0;
+  }
+  nav .mini-progress.done { background: var(--green-soft); color: var(--green); }
+
+  main {
+    flex: 1;
+    padding: 28px clamp(16px, 4vw, 48px) 80px;
+    max-width: 900px;
+  }
+  section.page { display: none; }
+  section.page.active { display: block; animation: fadeIn .25s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+  h2 { font-size: 1.5rem; margin-bottom: 4px; }
+  .subtitle { color: var(--muted); margin-bottom: 22px; font-size: .95rem; }
+  h3 { font-size: 1.08rem; margin: 26px 0 10px; }
+
+  /* ---------- Cards / callouts ---------- */
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow);
+  }
+  .callout {
+    border-left: 4px solid var(--accent);
+    background: var(--accent-soft);
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin: 14px 0;
+    font-size: .93rem;
+  }
+  .callout.ok { border-color: var(--green); background: var(--green-soft); }
+  .callout.warn { border-color: var(--amber); background: var(--amber-soft); }
+  .callout strong:first-child { display: block; margin-bottom: 2px; }
+
+  /* ---------- Steps (checkable) ---------- */
+  .steps { list-style: none; }
+  .steps li {
+    display: flex;
+    gap: 12px;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 10px;
+    background: var(--panel);
+    cursor: pointer;
+    transition: border-color .15s;
+  }
+  .steps li:hover { border-color: var(--accent); }
+  .steps li.done { opacity: .62; }
+  .steps li.done .step-text { text-decoration: line-through; }
+  .steps .box {
+    width: 22px; height: 22px;
+    border: 2px solid var(--muted);
+    border-radius: 7px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: .8rem;
+    color: transparent;
+  }
+  .steps li.done .box { background: var(--green); border-color: var(--green); color: #fff; }
+  .step-text b { display: block; }
+  .step-text small { color: var(--muted); display: block; font-size: .84rem; }
+
+  .progress-wrap { margin: 10px 0 20px; }
+  .progress-bar {
+    height: 8px; border-radius: 8px;
+    background: var(--border);
+    overflow: hidden;
+  }
+  .progress-bar > div {
+    height: 100%; width: 0;
+    background: var(--green);
+    border-radius: 8px;
+    transition: width .3s ease;
+  }
+  .progress-label { font-size: .8rem; color: var(--muted); margin-top: 4px; }
+
+  /* ---------- Tables ---------- */
+  .table-scroll { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: .88rem; min-width: 520px; }
+  th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; font-size: .8rem; text-transform: uppercase; letter-spacing: .03em; }
+
+  .pill {
+    display: inline-block;
+    font-size: .74rem;
+    padding: 2px 10px;
+    border-radius: 20px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 600;
+    margin-right: 6px;
+  }
+  .pill.free { background: var(--green-soft); color: var(--green); }
+  .pill.cost { background: var(--amber-soft); color: var(--amber); }
+
+  details {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+  }
+  details summary { cursor: pointer; font-weight: 600; }
+  details[open] summary { margin-bottom: 8px; }
+
+  footer.note {
+    margin-top: 40px;
+    font-size: .8rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    padding-top: 14px;
+  }
+
+  /* ---------- Mobile ---------- */
+  .menu-btn { display: none; }
+  @media (max-width: 760px) {
+    nav {
+      position: fixed;
+      z-index: 20;
+      transform: translateX(-100%);
+      transition: transform .25s ease;
+      width: 270px;
+    }
+    nav.open { transform: none; box-shadow: 0 0 40px rgba(0,0,0,.4); }
+    .menu-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      position: fixed;
+      z-index: 30;
+      bottom: 18px;
+      right: 18px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      padding: 12px 18px;
+      font-size: .95rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0,0,0,.3);
+    }
+    main { padding-top: 18px; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+<nav id="nav">
+  <h1>💰 Guía de <span>Monetización</span><br><small style="font-weight:400;color:var(--muted)">Ads para tu app y tus redes</small></h1>
+  <button class="tab active" data-page="inicio"><span class="emoji">🏠</span> Inicio</button>
+  <button class="tab" data-page="app-ads"><span class="emoji">📱</span> Ads dentro de tu app <span class="mini-progress" data-prog="app-ads"></span></button>
+  <button class="tab" data-page="promo"><span class="emoji">📣</span> Promocionar tu app <span class="mini-progress" data-prog="promo"></span></button>
+  <button class="tab" data-page="links"><span class="emoji">🔗</span> ¿De dónde salen los links?</button>
+  <button class="tab" data-page="facebook"><span class="emoji">🔵</span> Facebook <span class="mini-progress" data-prog="facebook"></span></button>
+  <button class="tab" data-page="youtube"><span class="emoji">▶️</span> YouTube <span class="mini-progress" data-prog="youtube"></span></button>
+  <button class="tab" data-page="instagram"><span class="emoji">📸</span> Instagram <span class="mini-progress" data-prog="instagram"></span></button>
+  <button class="tab" data-page="tiktok"><span class="emoji">🎵</span> TikTok y más <span class="mini-progress" data-prog="tiktok"></span></button>
+</nav>
+
+<main>
+
+<!-- ============================================================ INICIO -->
+<section class="page active" id="page-inicio">
+  <h2>Bienvenido 👋</h2>
+  <p class="subtitle">Tu guía paso a paso para ganar dinero con anuncios — en tu app y en tus redes sociales.</p>
+
+  <div class="card">
+    <p>Hay <strong>dos caminos distintos</strong> para ganar dinero con "ads", y es importante no confundirlos:</p>
+    <h3>1. Que los anuncios aparezcan <em>dentro de lo tuyo</em> 💵</h3>
+    <p>Pones anuncios de otras empresas dentro de tu app o tus videos, y te pagan por las vistas/clics. Aquí entran <strong>AdMob</strong> (apps), el programa de monetización de <strong>Facebook</strong>, el <strong>Programa de Socios de YouTube</strong>, etc.</p>
+    <h3>2. Anunciar <em>tu app</em> en otros lados 📣</h3>
+    <p>Aquí tú eres quien promociona: quieres que tu app aparezca en páginas y redes para conseguir usuarios, gratis o gastando poco. Esto se cubre en la sección <strong>"Promocionar tu app"</strong>.</p>
+  </div>
+
+  <div class="callout">
+    <strong>💡 Sobre los famosos "links" que te piden</strong>
+    Cuando intentas poner anuncios al subir videos y te piden un link, casi siempre se trata de <strong>links de afiliado</strong> o de vincular una cuenta de cobro — no es que exista un "link mágico" que active los anuncios. La sección <strong>"¿De dónde salen los links?"</strong> te lo explica completo, porque es la duda más común.
+  </div>
+
+  <div class="callout warn">
+    <strong>⚠️ Importante</strong>
+    Los requisitos de cada plataforma (número de seguidores, horas vistas, etc.) <strong>cambian con frecuencia</strong> y varían por país. Esta guía te da el mapa completo y los pasos, pero siempre verifica los números exactos en la página oficial de cada plataforma (los links oficiales están en cada sección).
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">✅ Tu progreso se guarda solo</h3>
+    <p>Cada sección tiene pasos que puedes marcar al completarlos. Se guardan en este navegador automáticamente, así puedes cerrar la guía y continuar después donde te quedaste.</p>
+  </div>
+</section>
+
+<!-- ============================================================ ADS EN TU APP -->
+<section class="page" id="page-app-ads">
+  <h2>📱 Poner anuncios dentro de tu app</h2>
+  <p class="subtitle">Cómo ganar dinero mostrando anuncios de otras empresas dentro de tu propia app. Costo: prácticamente gratis (solo pagas la cuenta de la tienda de apps).</p>
+
+  <div class="callout">
+    <strong>¿Cómo funciona?</strong>
+    Te registras en una <strong>red de anuncios</strong> (la más usada es Google AdMob). La red te da un código que pegas en tu app; ese código muestra anuncios automáticamente y tú cobras según las vistas y clics. No tienes que buscar anunciantes: la red lo hace todo.
+  </div>
+
+  <h3>Paso a paso con Google AdMob (recomendado para empezar)</h3>
+  <div class="progress-wrap">
+    <div class="progress-bar"><div data-fill="app-ads"></div></div>
+    <div class="progress-label" data-label="app-ads"></div>
+  </div>
+  <ul class="steps" data-group="app-ads">
+    <li><span class="box">✓</span><span class="step-text"><b>1. Ten tu app publicada (o casi lista)</b><small>Para cobrar en serio necesitas la app en Google Play (cuenta de desarrollador: pago único de ~25 USD) o App Store (99 USD/año). AdMob permite probar con la app aún sin publicar usando anuncios de prueba.</small></span></li>
+    <li><span class="box">✓</span><span class="step-text"><b>2. Crea tu cuenta en AdMob</b><small>Entra a <a href="https://admob.google.com" target="_blank">admob.google.com</a> con tu cuenta de Google. Es gratis. Acepta los términos y pon tu país y moneda (¡no se puede cambiar después!).</small></span></li>
+    <li><span class="box">✓</span><span class="step-text"><b>3. Registra tu app en AdMob</b><small>En el panel: Apps → Agregar app. Si ya está en la tienda, la buscas; si no, la registras manualmente. AdMob te da un <strong>App ID</strong> (algo como ca-app-pub-1234...~5678).</small></span></li>
+    <li><span class="box">✓</span><span class="step-text"><b>4. Crea "unidades de anuncios"</b><small>Cada espacio de anuncio en tu app es una unidad. Los 3 tipos básicos: <strong>Banner</strong> (barra fija, paga poco pero es constante), <strong>Intersticial</strong> (pantalla completa entre acciones, paga más), <strong>Recompensado</strong> (el usuario ve un video a cambio de algo, el que mejor paga y el que menos molesta).</small></span></li>
+    <li><span class="box">✓</span><span class="step-text"><b>5. Integra el SDK en tu código</b><small>Sigue la guía oficial según tu tecnología: <a href="https://developers.google.com/admob" target="_blank">developers.google.com/admob</a>. Hay guías para Android nativo, iOS, Flutter, React Native y Unity. Pegas tu App ID y los IDs de tus unidades de anuncio.</small></span></li>
+    <li><span class="box">✓</span><span class="step-text"><b>6. Usa anuncios de PRUEBA mientras desarrollas</b><small>AdMob da IDs de prueba especiales. Si haces clic en anuncios reales de tu propia app, Google te puede suspender la cuenta. Cambia a los IDs reales solo al publicar.</small></span></li>
+    <li><span class="box">✓</span><span class="step-text"><b>7. Configura tus datos de pago</b><small>En AdMob → Pagos: agrega tu cuenta bancaria y verifica tu identidad y dirección (Google manda un PIN por correo postal). Te pagan cuando acumulas <strong>100 USD</strong>, alrededor del día 21 de cada mes.</small></span></li>
+    <li><span class="box">✓</span><span class="step-text"><b>8. Publica y monitorea</b><small>Sube la app a la tienda, y revisa en AdMob las métricas (impresiones, eCPM, ingresos). Ajusta: si un intersticial molesta mucho, la gente desinstala y pierdes más de lo que ganas.</small></span></li>
+  </ul>
+
+  <h3>Alternativas y complementos a AdMob</h3>
+  <div class="card table-scroll">
+    <table>
+      <tr><th>Red</th><th>Ideal para</th><th>Notas</th></tr>
+      <tr><td><strong>Google AdMob</strong></td><td>Empezar; cualquier app</td><td>La más grande, mejor relleno de anuncios en Latinoamérica. Gratis.</td></tr>
+      <tr><td><strong>Meta Audience Network</strong></td><td>Complementar AdMob</td><td>Anuncios de Facebook dentro de tu app. Se suele usar junto con AdMob ("mediación").</td></tr>
+      <tr><td><strong>Unity Ads</strong></td><td>Juegos</td><td>Muy fuerte en videos recompensados para juegos.</td></tr>
+      <tr><td><strong>AppLovin</strong></td><td>Juegos / apps con muchos usuarios</td><td>Buena mediación (MAX) cuando ya tienes volumen.</td></tr>
+      <tr><td><strong>AdSense</strong></td><td>Apps web / páginas web</td><td>Si tu "app" es una página web, lo que necesitas es AdSense, no AdMob: <a href="https://adsense.google.com" target="_blank">adsense.google.com</a>.</td></tr>
+    </table>
+  </div>
+
+  <div class="callout ok">
+    <strong>🎯 Consejo realista</strong>
+    Con pocos usuarios, los ingresos por anuncios son pequeños (el eCPM en Latinoamérica suele estar entre 0.5 y 3 USD por cada mil impresiones). La estrategia correcta es: primero consigue usuarios (siguiente sección), después los anuncios se vuelven relevantes.
+  </div>
+</section>
+
+<!-- ============================================================ PROMOCIONAR TU APP -->
+<section class="page" id="page-promo">
+  <h2>📣 Promocionar tu app gratis o con costo mínimo</h2>
+  <p class="subtitle">Cómo hacer que tu app aparezca en páginas, redes y comunidades sin gastar (casi) nada.</p>
+
+  <div class="progress-wrap">
+    <div class="progress-bar"><div data-fill="promo"></div></div>
+    <div class="progress-label" data-label="promo"></div>
+  </div>
+  <ul class="steps" data-group="promo">
+    <li><span class="box">✓</span><span class="step-text"><b>1. Optimiza tu ficha en la tienda (ASO) — GRATIS</b><small>El "SEO de las apps": título con palabras clave, descripción clara, capturas atractivas, ícono profesional. Es la fuente #1 de descargas orgánicas. Herramientas gratis para investigar palabras clave: la propia búsqueda de Google Play y AppFollow (plan gratis).</small></span></li>
+    <li><span class="box">✓</span><span class="step-text"><b>2. Crea página/perfil de tu app en redes — GRATIS</b><small>Página de Facebook, Instagram y TikTok con el nombre de tu app. Sube contenido corto mostrando lo que hace (videos de 15-30 seg funcionan mejor que imágenes).</small></span></li>
+    <li><span class="box">✓</span><span class="step-text"><b>3. Publica en grupos y comunidades — GRATIS</b><small>Grupos de Facebook de tu tema, subreddits (r/androidapps, r/SideProject y los de tu nicho), servidores de Discord, foros. Regla de oro: aporta valor y menciona tu app como solución, no hagas spam o te expulsan.</small></span></li>
+    <li><span class="box">✓</span><span class="step-text"><b>4. Lanza en directorios de apps — GRATIS</b><small><a href="https://www.producthunt.com" target="_blank">Product Hunt</a> (el más importante; un buen lanzamiento trae miles de visitas), AlternativeTo, Uptodown. Registrarse y publicar es gratis.</small></span></li>
+    <li><span class="box">✓</span><span class="step-text"><b>5. Contenido orgánico en video — GRATIS</b><small>Reels/TikToks mostrando el problema que resuelve tu app. Un solo video que pegue puede traer más descargas que meses de anuncios pagados. Constancia: 3-5 videos por semana.</small></span></li>
+    <li><span class="box">✓</span><span class="step-text"><b>6. Pide reseñas y comparte por WhatsApp — GRATIS</b><small>Las primeras 50-100 descargas casi siempre salen de conocidos. Comparte el link de Google Play en estados de WhatsApp y pide reseñas de 5 estrellas a quienes de verdad la usen.</small></span></li>
+    <li><span class="box">✓</span><span class="step-text"><b>7. Micro-colaboraciones — GRATIS o barato</b><small>Busca creadores pequeños (1,000-20,000 seguidores) de tu nicho y ofrece intercambio: acceso premium gratis a cambio de una mención. Muchos aceptan sin cobrar.</small></span></li>
+    <li><span class="box">✓</span><span class="step-text"><b>8. Meta Ads con presupuesto mínimo — DESDE ~1 USD/DÍA</b><small>En Meta Business Suite puedes crear anuncios para Facebook e Instagram desde ~20-40 pesos al día. Empieza con un video corto, objetivo "Descargas de la app", público por intereses de tu nicho, y prueba 5-7 días antes de decidir.</small></span></li>
+    <li><span class="box">✓</span><span class="step-text"><b>9. Google Ads (campañas de apps) — PRESUPUESTO BAJO</b><small>Las "App campaigns" de Google muestran tu app en la Búsqueda, YouTube y Play. Tú solo das textos/videos y presupuesto; Google optimiza. Útil cuando ya validaste que la gente que descarga se queda.</small></span></li>
+  </ul>
+
+  <div class="callout ok">
+    <strong>📊 Orden recomendado</strong>
+    Pasos 1-6 primero (todo gratis). Solo pasa a pagar (pasos 8-9) cuando la app retenga usuarios: si la gente la descarga y la abandona, pagar anuncios es tirar el dinero.
+  </div>
+</section>
+
+<!-- ============================================================ LINKS -->
+<section class="page" id="page-links">
+  <h2>🔗 ¿De dónde salen los "links" que ponen en los videos?</h2>
+  <p class="subtitle">La duda más común, resuelta. Hay 3 tipos de "links" distintos y cada uno sale de un lugar diferente.</p>
+
+  <div class="card">
+    <h3 style="margin-top:0">Caso 1: Links de AFILIADO (el más común) 🛒</h3>
+    <p>Cuando ves a alguien subir un video de un producto (una tele, unos audífonos) y pone un link "para comprarlo", ese es un <strong>link de afiliado</strong>: un link único que la tienda le generó a esa persona, y si alguien compra a través de él, le pagan una comisión (normalmente 1-10%).</p>
+    <p><strong>Ese link NO te lo da Facebook ni YouTube.</strong> Sale de registrarte en el programa de afiliados de una tienda:</p>
+    <div class="table-scroll">
+    <table>
+      <tr><th>Programa</th><th>Dónde registrarse</th><th>Qué vendes</th></tr>
+      <tr><td>Amazon Afiliados</td><td><a href="https://afiliados.amazon.com.mx" target="_blank">afiliados.amazon.com.mx</a></td><td>Cualquier producto de Amazon</td></tr>
+      <tr><td>Mercado Libre (Afiliados)</td><td>Programa de afiliados de Mercado Libre</td><td>Productos de Mercado Libre</td></tr>
+      <tr><td>Hotmart</td><td><a href="https://www.hotmart.com" target="_blank">hotmart.com</a></td><td>Cursos y productos digitales (comisiones altas, 30-60%)</td></tr>
+      <tr><td>Temu / AliExpress / Shein</td><td>Sección "Affiliate" de cada sitio</td><td>Sus productos</td></tr>
+      <tr><td>TikTok Shop</td><td>Dentro de TikTok (donde esté disponible)</td><td>Productos con comisión por video</td></tr>
+    </table>
+    </div>
+    <p style="margin-top:10px"><strong>El flujo completo:</strong> te registras → te aprueban → buscas el producto dentro de su panel de afiliados → el panel te genera TU link único → pegas ese link en la descripción o comentarios de tu video → si alguien compra por tu link, cobras comisión.</p>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">Caso 2: Vincular cuentas para monetización oficial 🏦</h3>
+    <p>Cuando activas la monetización oficial (que Facebook o YouTube te paguen por poner SUS anuncios en tus videos), la plataforma a veces te pide "vincular" cosas — y esto puede parecer que "pide links" pero en realidad pide <strong>conectar cuentas</strong>:</p>
+    <ul style="padding-left:20px">
+      <li><strong>YouTube</strong> te pide vincular una cuenta de <strong>Google AdSense</strong> (ahí es donde cae el dinero). Se crea en el proceso, no necesitas ningún link externo.</li>
+      <li><strong>Facebook/Instagram</strong> te piden configurar tu <strong>cuenta de pagos</strong> (banco, datos fiscales) dentro de Meta Business Suite.</li>
+    </ul>
+    <p>Es decir: <strong>para la monetización oficial no necesitas conseguir ningún link de ningún lado</strong>. Solo cumplir requisitos y conectar tu banco.</p>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">Caso 3: Links de "apoyo" o venta propia 💝</h3>
+    <p>Otros links que verás en videos: <strong>PayPal.me</strong> (donaciones), <strong>Linktree</strong> (junta varios links en uno), links a su propia tienda o WhatsApp Business. Todos esos los genera cada quien en el servicio correspondiente y los pega manualmente en su biografía o descripciones.</p>
+  </div>
+
+  <div class="callout ok">
+    <strong>✅ En resumen</strong>
+    Si tu meta es que <strong>la plataforma te pague por anuncios</strong> → no necesitas links, necesitas cumplir requisitos (ve a las secciones de Facebook/YouTube). Si tu meta es <strong>ganar comisiones recomendando productos</strong> → regístrate en un programa de afiliados y ahí se generan los links.
+  </div>
+</section>
+
+<!-- ============================================================ FACEBOOK -->
+<section class="page" id="page-facebook">
+  <h2>🔵 Monetizar tu página de Facebook</h2>
+  <p class="subtitle">Cómo lograr que Facebook ponga anuncios en tus videos y te pague, más las otras formas de ingreso.</p>
+
+  <div class="callout">
+    <strong>Cómo funciona en Facebook</strong>
+    Tú NO insertas los anuncios manualmente. Cuando tu página cumple los requisitos y te aceptan en el programa, <strong>Facebook inserta los anuncios automáticamente</strong> en tus videos y Reels, y te paga una parte de lo que cobran a los anunciantes. Por eso no hay ningún "link" que poner.
+  </div>
+
+  <h3>Formas de ganar dinero en Facebook</h3>
+  <div class="card table-scroll">
+    <table>
+      <tr><th>Forma</th><th>Qué es</th><th>Requisito típico*</th></tr>
+      <tr><td><strong>Anuncios in-stream / en Reels</strong></td><td>Facebook mete anuncios en tus videos y te paga por vistas</td><td>~10,000 seguidores y minutos de reproducción altos (p. ej. 600,000 min en 60 días para in-stream), 18+, vivir en país elegible</td></tr>
+      <tr><td><strong>Estrellas (Stars)</strong></td><td>Tus seguidores te mandan "estrellas" que valen dinero</td><td>Requisitos bajos (desde ~500 seguidores durante 30+ días)</td></tr>
+      <tr><td><strong>Suscripciones</strong></td><td>Fans pagan mensualidad por contenido exclusivo</td><td>Por invitación / requisitos de seguidores</td></tr>
+      <tr><td><strong>Contenido de marca</strong></td><td>Una marca te paga por mencionar su producto (tú negocias directo)</td><td>Sin mínimo oficial; necesitas audiencia real</td></tr>
+    </table>
+    <p style="font-size:.8rem;color:var(--muted);margin-top:8px">* Meta está unificando todo en un solo programa de "Monetización de contenido". Los números exactos cambian por país: verifica los tuyos en el paso 3 de abajo.</p>
+  </div>
+
+  <h3>Paso a paso</h3>
+  <div class="progress-wrap">
+    <div class="progress-bar"><div data-fill="facebook"></div></div>
+    <div class="progress-label" data-label="facebook"></div>
+  </div>
+  <ul class="steps" data-group="facebook">
+    <li><span class="box">✓</span><span class="step-text"><b>1. Convierte tu perfil/página en modo profesional</b><small>Si usas página: ya lo es. Si usas perfil personal: Menú → activa el "Modo profesional". Sin esto no hay monetización.</small></span></li>
+    <li><span class="box">✓</span><span class="step-text"><b>2. Revisa tu elegibilidad (aquí sabrás qué te falta)</b><small>Entra a <a href="https://business.facebook.com" target="_blank">Meta Business Suite</a> → menú <strong>Monetización</strong>. Ahí Facebook te dice exactamente qué herramientas tienes disponibles, cuáles no, y <strong>qué requisito te falta para cada una</strong> (seguidores, minutos vistos, etc.). Esta pantalla es tu tablero principal.</small></span></li>
+    <li><span class="box">✓</span><span class="step-text"><b>3. Verifica que cumples las normas</b><small>En esa misma sección está el "estado de elegibilidad": tu página debe cumplir las Normas comunitarias y las Políticas de monetización (nada de contenido reposteado de otros, música con copyright, ni videos engañosos). El contenido robado/reposteado es la causa #1 de rechazo.</small></span></li>
+    <li><span class="box">✓</span><span class="step-text"><b>4. Crece hasta cumplir los requisitos</b><small>Publica video constante (Reels de 15-60 seg + videos largos de 3+ min para in-stream). Los minutos de reproducción son el requisito más difícil: los videos de 3+ minutos que la gente ve completos son los que más suman.</small></span></li>
+    <li><span class="box">✓</span><span class="step-text"><b>5. Activa Estrellas primero</b><small>Es la herramienta con requisitos más bajos. En Monetización → Estrellas → Activar, y completa tu información de pagos. Sirve además para dejar listo tu perfil de cobro.</small></span></li>
+    <li><span class="box">✓</span><span class="step-text"><b>6. Solicita la monetización de anuncios cuando el panel te lo permita</b><small>Cuando cumplas requisitos, en Monetización aparecerá el botón para unirte (in-stream / Reels o el programa unificado). Aceptas términos, configuras la cuenta de pagos (banco + datos fiscales) y listo: los anuncios se insertan solos.</small></span></li>
+    <li><span class="box">✓</span><span class="step-text"><b>7. Cobra y da seguimiento</b><small>Los pagos llegan a tu banco cuando pasas el mínimo (~100 USD) alrededor del día 21 de cada mes. Revisa métricas en Business Suite → Monetización para ver qué videos generan más.</small></span></li>
+  </ul>
+
+  <div class="callout warn">
+    <strong>🚫 Cuidado con los atajos</strong>
+    Cualquier tutorial que te venda "activar la monetización sin requisitos", comprar seguidores, o usar "links de monetización" de terceros es estafa o te llevará a que Meta te banee la página. No existe atajo real.
+  </div>
+</section>
+
+<!-- ============================================================ YOUTUBE -->
+<section class="page" id="page-youtube">
+  <h2>▶️ Monetizar en YouTube</h2>
+  <p class="subtitle">El Programa de Socios de YouTube (YPP): anuncios en tus videos, membresías, Súper Chats y más.</p>
+
+  <div class="callout">
+    <strong>Cómo funciona</strong>
+    Igual que Facebook: una vez aceptado en el programa, <strong>YouTube pone los anuncios automáticamente</strong> y te da ~55% de lo que generan (45% en Shorts, repartido). El único "link" del proceso es <strong>vincular tu cuenta de AdSense</strong>, que se crea durante la solicitud — no se consigue en ningún otro lado.
+  </div>
+
+  <h3>Requisitos (verifica los actuales en <a href="https://support.google.com/youtube/answer/72851" target="_blank">la página oficial</a>)</h3>
+  <div class="card table-scroll">
+    <table>
+      <tr><th>Nivel</th><th>Requisitos típicos</th><th>Qué desbloquea</th></tr>
+      <tr><td><strong>Nivel 1 (fan funding)</strong></td><td>500 suscriptores + 3 videos públicos en 90 días + 3,000 horas vistas en el año O 3 millones de vistas de Shorts en 90 días</td><td>Membresías, Súper Chat, Súper Gracias, tienda</td></tr>
+      <tr><td><strong>Nivel 2 (anuncios)</strong></td><td>1,000 suscriptores + 4,000 horas vistas públicas en 12 meses O 10 millones de vistas de Shorts en 90 días</td><td>Ingresos por anuncios (lo principal) y YouTube Premium</td></tr>
+    </table>
+  </div>
+
+  <h3>Paso a paso</h3>
+  <div class="progress-wrap">
+    <div class="progress-bar"><div data-fill="youtube"></div></div>
+    <div class="progress-label" data-label="youtube"></div>
+  </div>
+  <ul class="steps" data-group="youtube">
+    <li><span class="box">✓</span><span class="step-text"><b>1. Crea tu canal y actívalo bien</b><small>Con tu cuenta de Google: youtube.com → Crear canal. Verifica tu número de teléfono en <a href="https://www.youtube.com/verify" target="_blank">youtube.com/verify</a> para desbloquear videos de +15 min y miniaturas personalizadas.</small></span></li>
+    <li><span class="box">✓</span><span class="step-text"><b>2. Activa las funciones avanzadas</b><small>YouTube Studio → Configuración → Canal → Funciones. La verificación de identidad o el historial del canal desbloquean más funciones.</small></span></li>
+    <li><span class="box">✓</span><span class="step-text"><b>3. Sube contenido ORIGINAL constante</b><small>Regla clave: contenido reutilizado de otros (clips de TV, películas, videos ajenos con voz encima sin aporte real) = rechazo del programa. Música con copyright = el dinero se va al dueño de la música.</small></span></li>
+    <li><span class="box">✓</span><span class="step-text"><b>4. Vigila tu progreso en YouTube Studio → pestaña "Obtener ingresos"</b><small>Ahí YouTube te muestra tus números en vivo contra los requisitos, y puedes apuntarte para que te avisen al llegar. Es tu tablero, igual que Business Suite en Facebook.</small></span></li>
+    <li><span class="box">✓</span><span class="step-text"><b>5. Al cumplir requisitos: solicita y firma</b><small>En "Obtener ingresos" → Aplicar: aceptas los términos del programa, y llega la parte del famoso "link"...</small></span></li>
+    <li><span class="box">✓</span><span class="step-text"><b>6. Vincula (o crea) tu cuenta de AdSense</b><small>El propio asistente te lleva a AdSense: si no tienes cuenta, la creas ahí mismo gratis con tus datos y tu banco. AdSense es simplemente la billetera de Google donde cae el dinero de YouTube. ESTE es el único "link/vínculo" real del proceso.</small></span></li>
+    <li><span class="box">✓</span><span class="step-text"><b>7. Espera la revisión y activa los anuncios</b><small>YouTube revisa tu canal (días a semanas). Al aprobarte, en cada video puedes activar anuncios. Te pagan al acumular 100 USD, alrededor del día 21-26 de cada mes.</small></span></li>
+  </ul>
+
+  <div class="callout ok">
+    <strong>💡 Estrategia para llegar más rápido</strong>
+    Los Shorts hacen crecer suscriptores rápido; los videos largos acumulan horas vistas. Combina: Shorts para atraer + videos de 8-12 min sobre lo mismo para las 4,000 horas.
+  </div>
+</section>
+
+<!-- ============================================================ INSTAGRAM -->
+<section class="page" id="page-instagram">
+  <h2>📸 Monetizar en Instagram</h2>
+  <p class="subtitle">Instagram (también de Meta) funciona distinto: hay menos "anuncios automáticos" y más herramientas de fans y marcas.</p>
+
+  <div class="callout warn">
+    <strong>Dato honesto</strong>
+    Instagram ya no paga por anuncios en video a la mayoría de creadores nuevos (los "bonos de Reels" son por invitación y no están en todos los países). En Instagram el dinero real está en <strong>marcas, afiliados y suscripciones</strong>.
+  </div>
+
+  <h3>Formas de ganar en Instagram</h3>
+  <div class="card table-scroll">
+    <table>
+      <tr><th>Forma</th><th>Qué es</th><th>Cómo se activa</th></tr>
+      <tr><td><strong>Regalos en Reels (Gifts)</strong></td><td>Fans mandan "estrellas" en tus Reels</td><td>Cuenta profesional + requisitos por país (similar a Estrellas de FB)</td></tr>
+      <tr><td><strong>Suscripciones</strong></td><td>Contenido exclusivo por mensualidad</td><td>Cuenta de creador, umbral de seguidores (~10,000 en varios países)</td></tr>
+      <tr><td><strong>Contenido de marca</strong></td><td>Marcas te pagan por publicaciones</td><td>Sin mínimo; usa la etiqueta de "colaboración pagada"</td></tr>
+      <tr><td><strong>Afiliados</strong></td><td>Links de afiliado en tu bio/historias</td><td>Tú te registras en los programas (ver sección de Links)</td></tr>
+      <tr><td><strong>Bonos</strong></td><td>Pagos directos por vistas de Reels</td><td>Solo por invitación de Meta</td></tr>
+    </table>
+  </div>
+
+  <h3>Paso a paso</h3>
+  <div class="progress-wrap">
+    <div class="progress-bar"><div data-fill="instagram"></div></div>
+    <div class="progress-label" data-label="instagram"></div>
+  </div>
+  <ul class="steps" data-group="instagram">
+    <li><span class="box">✓</span><span class="step-text"><b>1. Cambia a cuenta profesional (Creador)</b><small>Configuración → Tipo de cuenta → Cambiar a cuenta profesional → Creador. Gratis y desbloquea métricas y herramientas de monetización.</small></span></li>
+    <li><span class="box">✓</span><span class="step-text"><b>2. Revisa tu panel de monetización</b><small>En la app: perfil profesional → Panel profesional → Monetización. Igual que en Facebook, ahí Instagram te dice qué herramientas tienes disponibles en tu país y qué te falta.</small></span></li>
+    <li><span class="box">✓</span><span class="step-text"><b>3. Enfócate en Reels con nicho claro</b><small>El algoritmo de Reels es la vía de crecimiento. Un nicho definido (cocina, finanzas, tu app, humor local) crece mucho más rápido que contenido variado.</small></span></li>
+    <li><span class="box">✓</span><span class="step-text"><b>4. Activa lo que esté disponible (Regalos/Suscripciones)</b><small>Cuando el panel te lo permita, actívalos y conecta tu cuenta de pagos de Meta (la misma que Facebook si vinculas las cuentas en Accounts Center).</small></span></li>
+    <li><span class="box">✓</span><span class="step-text"><b>5. Monetiza con afiliados desde YA</b><small>No necesitas esperar requisitos: pon tu link de afiliado (Amazon, Hotmart...) en tu bio con un Linktree, y menciónalo en tus Reels. Esto funciona desde el primer día.</small></span></li>
+    <li><span class="box">✓</span><span class="step-text"><b>6. Prepara un "media kit" para marcas</b><small>Al pasar ~5,000-10,000 seguidores con buen engagement, las marcas pequeñas ya pagan. Un PDF de 1 página con tus números y precios basta para empezar.</small></span></li>
+  </ul>
+</section>
+
+<!-- ============================================================ TIKTOK -->
+<section class="page" id="page-tiktok">
+  <h2>🎵 TikTok y otras plataformas</h2>
+  <p class="subtitle">TikTok, Kick, X... el mismo patrón se repite: requisitos + panel de monetización + cuenta de pagos.</p>
+
+  <h3>TikTok</h3>
+  <div class="card table-scroll">
+    <table>
+      <tr><th>Forma</th><th>Requisito típico*</th><th>Notas</th></tr>
+      <tr><td><strong>Programa de Recompensas para Creadores</strong></td><td>10,000 seguidores + 100,000 vistas en 30 días + videos de más de 1 minuto</td><td>Paga por vistas "calificadas". Disponibilidad varía por país.</td></tr>
+      <tr><td><strong>Regalos en LIVE</strong></td><td>~1,000 seguidores y 18+</td><td>La forma más accesible de empezar a cobrar en TikTok.</td></tr>
+      <tr><td><strong>TikTok Shop (afiliado)</strong></td><td>Varía por país</td><td>Etiquetas productos en tus videos y ganas comisión — aquí también salen "links" automáticos del propio TikTok.</td></tr>
+    </table>
+    <p style="font-size:.8rem;color:var(--muted);margin-top:8px">* Verifica en la app: Perfil → Menú → TikTok Studio → Monetización.</p>
+  </div>
+
+  <h3>Pasos generales (sirven para cualquier plataforma)</h3>
+  <div class="progress-wrap">
+    <div class="progress-bar"><div data-fill="tiktok"></div></div>
+    <div class="progress-label" data-label="tiktok"></div>
+  </div>
+  <ul class="steps" data-group="tiktok">
+    <li><span class="box">✓</span><span class="step-text"><b>1. Encuentra el panel de monetización de la plataforma</b><small>Todas tienen uno: TikTok Studio → Monetización; X → Premium → Monetización; Kick/Twitch → Creator Dashboard. Ahí están TUS números reales contra los requisitos.</small></span></li>
+    <li><span class="box">✓</span><span class="step-text"><b>2. Cumple los 3 requisitos universales</b><small>(a) Ser mayor de 18, (b) contenido original que cumpla las normas, (c) vivir en país donde el programa esté disponible.</small></span></li>
+    <li><span class="box">✓</span><span class="step-text"><b>3. Reutiliza tu contenido en todas partes</b><small>El mismo video corto sirve para Reels de Facebook, Reels de Instagram, TikTok y Shorts de YouTube. Súbelo SIN marca de agua de otra plataforma (usa el archivo original), porque los algoritmos castigan la marca de agua.</small></span></li>
+    <li><span class="box">✓</span><span class="step-text"><b>4. Configura una sola vez tus datos de cobro por plataforma</b><small>Banco + identificación oficial + datos fiscales. Es el mismo trámite en todas; tenlos a la mano en una carpeta.</small></span></li>
+    <li><span class="box">✓</span><span class="step-text"><b>5. Diversifica: no dependas de una sola fuente</b><small>Los creadores estables combinan: anuncios de plataforma + afiliados + marcas + producto propio (tu app puede ser ese producto propio 😉).</small></span></li>
+  </ul>
+
+  <div class="callout ok">
+    <strong>🔄 Tu app + tus redes = círculo virtuoso</strong>
+    Tus redes promocionan tu app (descargas gratis) → tu app muestra anuncios de AdMob (ingreso 1) → tus videos sobre la app crecen tu audiencia → la audiencia desbloquea la monetización de las plataformas (ingreso 2) → y de paso puedes recomendar productos afiliados (ingreso 3).
+  </div>
+
+  <footer class="note">
+    Guía creada en julio de 2026. Los requisitos y montos citados son aproximados y cambian según el país y las políticas de cada plataforma — usa siempre los paneles oficiales (Meta Business Suite, YouTube Studio, TikTok Studio) como fuente final. Ningún tercero puede "activarte" la monetización: desconfía de quien lo ofrezca.
+  </footer>
+</section>
+
+</main>
+</div>
+
+<button class="menu-btn" id="menuBtn">☰ Menú</button>
+
+<script>
+(function () {
+  var STORAGE_KEY = 'guia-monetizacion-progreso-v1';
+
+  function loadState() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+    catch (e) { return {}; }
+  }
+  function saveState(state) {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
+  }
+  var state = loadState();
+
+  // ---------- Tabs ----------
+  var tabs = document.querySelectorAll('nav .tab');
+  var pages = document.querySelectorAll('section.page');
+  var nav = document.getElementById('nav');
+
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      tabs.forEach(function (t) { t.classList.remove('active'); });
+      pages.forEach(function (p) { p.classList.remove('active'); });
+      tab.classList.add('active');
+      document.getElementById('page-' + tab.dataset.page).classList.add('active');
+      nav.classList.remove('open');
+      window.scrollTo({ top: 0 });
+    });
+  });
+
+  document.getElementById('menuBtn').addEventListener('click', function () {
+    nav.classList.toggle('open');
+  });
+
+  // ---------- Checkable steps ----------
+  function stepKey(group, index) { return group + ':' + index; }
+
+  function refreshProgress(group) {
+    var items = document.querySelectorAll('.steps[data-group="' + group + '"] li');
+    var done = 0;
+    items.forEach(function (li) { if (li.classList.contains('done')) done++; });
+    var pct = items.length ? Math.round(done / items.length * 100) : 0;
+
+    var fill = document.querySelector('[data-fill="' + group + '"]');
+    if (fill) fill.style.width = pct + '%';
+    var label = document.querySelector('[data-label="' + group + '"]');
+    if (label) label.textContent = done + ' de ' + items.length + ' pasos completados (' + pct + '%)';
+    var mini = document.querySelector('[data-prog="' + group + '"]');
+    if (mini) {
+      mini.textContent = done + '/' + items.length;
+      mini.classList.toggle('done', done === items.length && items.length > 0);
+    }
+  }
+
+  document.querySelectorAll('.steps').forEach(function (list) {
+    var group = list.dataset.group;
+    list.querySelectorAll('li').forEach(function (li, i) {
+      if (state[stepKey(group, i)]) li.classList.add('done');
+      li.addEventListener('click', function (e) {
+        if (e.target.tagName === 'A') return; // let links work
+        li.classList.toggle('done');
+        state[stepKey(group, i)] = li.classList.contains('done');
+        saveState(state);
+        refreshProgress(group);
+      });
+    });
+    refreshProgress(group);
+  });
+})();
+</script>
+</body>
+</html>
