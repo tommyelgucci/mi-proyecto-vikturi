@@ -4,6 +4,7 @@ import { storage } from '../storage'
 import { shuffle, isAnswerCorrect, canSpeak, speakDe } from '../utils'
 import { VKU_BLOCKS, VKU_CARDS, VKU_QUESTIONS, VKU_LINKS } from '../data/vku'
 import QuestionCard from './QuestionCard'
+import Confetti from './Confetti'
 
 function HubCard({ onClick, emoji, label, sub, badge }) {
   return (
@@ -174,6 +175,7 @@ function Quiz() {
     const msg = score >= 8 ? t('quizMsgGreat', lang) : score >= 5 ? t('quizMsgOk', lang) : t('quizMsgLow', lang)
     return (
       <div className="rounded-2xl bg-white dark:bg-gray-800 p-8 text-center shadow-sm ring-1 ring-gray-200 dark:ring-gray-700">
+        {score >= questions.length * 0.8 && <Confetti />}
         <p className="text-4xl">{score >= 8 ? '🏆' : score >= 5 ? '👍' : '📖'}</p>
         <p className="mt-3 text-lg font-semibold text-gray-900 dark:text-gray-100">
           {t('quizResult', lang)}: {score}/{questions.length}

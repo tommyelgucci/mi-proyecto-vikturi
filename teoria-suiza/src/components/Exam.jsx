@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useLang, t } from '../i18n'
+import Confetti from './Confetti'
 import { storage } from '../storage'
 import { examConfig, shuffle, isAnswerCorrect } from '../utils'
 import QuestionCard from './QuestionCard'
@@ -299,6 +300,7 @@ export default function Exam({ category, onExit }) {
   // phase === 'result'
   return (
     <div className="mx-auto max-w-xl space-y-4 px-4 py-6">
+      {result.passed && <Confetti />}
       <div
         className={`rounded-2xl p-6 text-center shadow-sm ring-1 ${
           result.passed

@@ -14,6 +14,7 @@ import Stats from './components/Stats'
 import Kontrollfahrt from './components/Kontrollfahrt'
 import Vku from './components/Vku'
 import Wab from './components/Wab'
+import Profiles from './components/Profiles'
 
 export default function App() {
   const [lang, setLangState] = useState(storage.getLang)
@@ -21,6 +22,8 @@ export default function App() {
   const [view, setView] = useState('home')
   const [studyTopic, setStudyTopic] = useState(null)
   const [theme, setThemeState] = useState(storage.getTheme)
+  const [showProfiles, setShowProfiles] = useState(false)
+  const profile = storage.getActiveProfile()
 
   // navegación con filtro de tema opcional (cross-links desde Kontrollfahrt)
   const go = (nextView, topic = null) => {
@@ -71,8 +74,12 @@ export default function App() {
           onBack={view !== 'home' ? () => go('home') : null}
           theme={theme}
           onToggleTheme={toggleTheme}
+          profile={profile}
+          onProfiles={() => setShowProfiles(true)}
         />
-        {view === 'home' && <Home category={category} setCategory={setCategory} navigate={go} />}
+        {showProfiles && <Profiles onClose={() => setShowProfiles(false)} />}
+        <div key={view} className="view-in">
+        {view === 'home' && <Home category={category} setCategory={setCategory} navigate={go} profile={profile} />}
         {view === 'study' && <Study key={studyTopic || 'all'} category={category} initialTopic={studyTopic} />}
         {view === 'exam' && <Exam category={category} onExit={() => setView('home')} />}
         {view === 'review' && <Review />}
@@ -84,6 +91,7 @@ export default function App() {
         {view === 'kontrollfahrt' && <Kontrollfahrt navigate={go} />}
         {view === 'vku' && <Vku />}
         {view === 'wab' && <Wab />}
+        </div>
       </div>
     </LangContext.Provider>
   )

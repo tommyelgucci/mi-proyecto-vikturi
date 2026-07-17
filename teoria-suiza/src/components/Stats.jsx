@@ -5,12 +5,21 @@ import questions from '../data/questions.json'
 import { TOPICS } from '../data/topics'
 import { FIRSTAID_CARDS } from '../data/firstaid'
 import { SIGNS } from '../data/signs'
+import ProgressRing from './ProgressRing'
 
-function StatTile({ emoji, value, label }) {
+function StatTile({ emoji, value, label, ring }) {
   return (
-    <div className="flex-1 rounded-2xl bg-white dark:bg-gray-800 p-3 text-center shadow-sm ring-1 ring-gray-200 dark:ring-gray-700">
-      <div className="text-2xl">{emoji}</div>
-      <div className="text-xl font-bold text-gray-900 dark:text-gray-100">{value}</div>
+    <div className="flex-1 rounded-2xl bg-white dark:bg-gray-800 p-3 text-center shadow-card ring-1 ring-gray-200/70 dark:ring-gray-700">
+      {ring != null ? (
+        <div className="flex justify-center">
+          <ProgressRing value={ring} size={52} stroke={5} color="#da291c">
+            <span className="text-sm">{emoji}</span>
+          </ProgressRing>
+        </div>
+      ) : (
+        <div className="text-2xl">{emoji}</div>
+      )}
+      <div className="mt-0.5 text-xl font-bold text-gray-900 dark:text-gray-100">{value}</div>
       <div className="text-[11px] leading-tight text-gray-500 dark:text-gray-400">{label}</div>
     </div>
   )
@@ -53,7 +62,13 @@ function TopicBars() {
           </div>
           <div className="h-2.5 overflow-hidden rounded-full bg-gray-200 dark:bg-gray-700">
             <div
-              className={`h-full rounded-full ${pct >= 80 ? 'bg-green-500' : pct >= 55 ? 'bg-amber-400' : 'bg-red-500'}`}
+              className={`h-full rounded-full transition-all duration-700 ${
+                pct >= 80
+                  ? 'bg-gradient-to-r from-green-400 to-green-600'
+                  : pct >= 55
+                    ? 'bg-gradient-to-r from-amber-300 to-amber-500'
+                    : 'bg-gradient-to-r from-red-400 to-red-600'
+              }`}
               style={{ width: `${Math.max(pct, 4)}%` }}
             />
           </div>
@@ -165,7 +180,7 @@ export default function Stats() {
   return (
     <div className="mx-auto max-w-xl space-y-5 px-4 py-4">
       <div className="flex gap-3">
-        <StatTile emoji="🔥" value={streak} label={t('streakDays', lang)} />
+        <StatTile emoji="🔥" value={streak} label={t('streakDays', lang)} ring={Math.min(100, storage.getDailyCount() * 5)} />
         <StatTile emoji="📅" value={daysStudied} label={t('daysStudied', lang)} />
         <StatTile emoji="✍️" value={answered} label={t('answeredTotal', lang)} />
       </div>
