@@ -4,10 +4,11 @@ import { questionsForCategory, readinessScore } from '../utils'
 import { maneuversForCategory } from '../data/maneuvers'
 import { topicLabel } from '../data/topics'
 import ProgressRing from './ProgressRing'
+import { CarIcon, MotoIcon } from './CategoryIcons'
 
 const DAILY_GOAL = 20
 
-function CategoryButton({ active, onClick, emoji, label, sub }) {
+function CategoryButton({ active, onClick, icon, label, sub }) {
   return (
     <button
       onClick={onClick}
@@ -15,7 +16,7 @@ function CategoryButton({ active, onClick, emoji, label, sub }) {
         active ? 'border-swiss bg-red-50 shadow-card dark:bg-red-900/30' : 'border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 hover:border-gray-300 dark:hover:border-gray-500'
       }`}
     >
-      <span className="text-4xl">{emoji}</span>
+      {icon}
       <span className="font-bold text-gray-900 dark:text-gray-100">{label}</span>
       <span className="text-xs text-gray-500 dark:text-gray-400">{sub}</span>
     </button>
@@ -138,14 +139,14 @@ export default function Home({ category, setCategory, navigate, profile }) {
         <CategoryButton
           active={category === 'B'}
           onClick={() => setCategory('B')}
-          emoji="🚗"
+          icon={<CarIcon className="h-9 w-auto" />}
           label={t('car', lang)}
           sub={t('carSub', lang)}
         />
         <CategoryButton
           active={category === 'A'}
           onClick={() => setCategory('A')}
-          emoji="🏍️"
+          icon={<MotoIcon className="h-9 w-auto" />}
           label={t('moto', lang)}
           sub={t('motoSub', lang)}
         />
