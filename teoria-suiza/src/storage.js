@@ -101,6 +101,30 @@ function todayKey() {
   return new Date().toISOString().slice(0, 10)
 }
 
+// Valida que el valor de un backup tenga el tipo esperado para su clave,
+// para que un archivo corrupto o manipulado a mano no escriba datos con una
+// forma inesperada que rompa algo más tarde en otro punto de la app.
+const ARRAY_KEYS = new Set(['failed', 'examHistory', 'studyDays'])
+function isValidEntryShape(rest, rawValue) {
+  let value
+  try {
+    value = JSON.parse(rawValue)
+  } catch {
+    return false
+  }
+  if (rest === 'lang' || rest === 'theme' || rest === 'category') {
+    return value === null || typeof value === 'string'
+  }
+  if (rest.endsWith('Checked') || ARRAY_KEYS.has(rest)) {
+    return Array.isArray(value)
+  }
+  if (rest.endsWith('Srs') || rest === 'stats' || rest === 'dailyCount') {
+    return value !== null && typeof value === 'object' && !Array.isArray(value)
+  }
+  // claves desconocidas (versiones futuras): aceptar cualquier JSON válido
+  return true
+}
+
 export const storage = {
   getLang: () => gread('lang', 'de'),
   setLang: (v) => gwrite('lang', v),
@@ -180,15 +204,24 @@ export const storage = {
     }
     const entries = Object.entries(parsed.data).filter(([k]) => k.startsWith(PREFIX))
     if (entries.length === 0) throw new Error('empty backup')
+    let imported = 0
+    let skipped = 0
     for (const [k, v] of entries) {
       const rest = k.slice(PREFIX.length)
       if (rest.startsWith('p.') || rest === 'profiles' || rest === 'activeProfile') continue
+      if (!isValidEntryShape(rest, v)) {
+        skipped += 1
+        continue
+      }
       if (rest === 'lang' || rest === 'theme') {
         localStorage.setItem(PREFIX + rest, v)
       } else {
         localStorage.setItem(pkey(rest), v)
       }
+      imported += 1
     }
+    if (imported === 0) throw new Error('no valid entries')
+    return { imported, skipped }
   },
 
   getCategory: () => read('category', null),
