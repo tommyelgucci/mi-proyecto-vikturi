@@ -95,6 +95,22 @@ El workflow `.github/workflows/deploy-teoria-suiza.yml` construye y publica `teo
 
 La URL resultante sirve la PWA (instalable, offline) en `https://<usuario>.github.io/<repo>/`.
 
+### Publicar en App Store / Play Store
+
+La app es una PWA. Para publicarla en las tiendas:
+
+- **Google Play**: acepta PWAs empaquetadas como *Trusted Web Activity* (herramienta [Bubblewrap](https://github.com/GoogleChromeLabs/bubblewrap) o [PWABuilder](https://www.pwabuilder.com/)).
+- **Apple App Store**: normalmente exige un wrapper nativo (p. ej. [Capacitor](https://capacitorjs.com/)) — una PWA "pelada" suele rechazarse por la regla 4.2 (funcionalidad mínima).
+- Ambas tiendas piden una **URL de política de privacidad** en la ficha: usa `https://<usuario>.github.io/<repo>/privacy.html` (`public/privacy.html`, sin dependencias, en los 5 idiomas).
+
+## Seguridad y privacidad
+
+Sin backend, sin cuentas, sin analítica ni rastreadores de terceros: todo el progreso vive en `localStorage` del dispositivo. Ver `public/privacy.html` para el detalle. Puntos relevantes de la implementación:
+
+- `src/components/ErrorBoundary.jsx` envuelve toda la app (`main.jsx`) para evitar una pantalla en blanco si algún dato guardado resulta corrupto; ofrece reintentar o borrar los datos del dispositivo.
+- `storage.importAll()` valida la forma de cada entrada de un backup antes de escribirla (ver `isValidEntryShape` en `src/storage.js`) y descarta las que no coinciden con el tipo esperado, en vez de confiar ciegamente en el archivo importado.
+- El icono de la app es un diseño propio (coche estilizado en rojo suizo) — deliberadamente **no** es la bandera/cruz suiza, para no sugerir afiliación oficial ante revisores de tienda o usuarios.
+
 ## Aviso legal
 
 **Herramienta de estudio independiente.** No está afiliada, aprobada ni asociada con la asa (Asociación de las oficinas de tráfico / Vereinigung der Strassenverkehrsämter) ni con ninguna oficina de tráfico cantonal.
