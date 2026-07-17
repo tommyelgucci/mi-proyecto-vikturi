@@ -4,6 +4,8 @@ import { hasMultipleCorrect, canSpeak, speakDe } from '../utils'
 import { SIGNS } from '../data/signs'
 import SignSprite from './SignSprite'
 import SceneDiagram from './SceneDiagram'
+import { CarIcon, MotoIcon } from './CategoryIcons'
+import { IconSpeaker, IconCross, IconBulb } from './Icons'
 
 function QuestionImage({ image }) {
   if (!image) return null
@@ -42,8 +44,8 @@ export default function QuestionCard({ question, selected, onToggle, revealed, s
             {topicLabel(question.topic, lang)}
           </span>
           {question.category !== 'both' && (
-            <span className="rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-600 dark:bg-gray-700 dark:text-gray-300">
-              {question.category === 'B' ? '🚗' : '🏍️'} {question.category}
+            <span className="inline-flex items-center gap-1 rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-600 dark:bg-gray-700 dark:text-gray-300">
+              {question.category === 'B' ? <CarIcon className="h-3 w-auto" /> : <MotoIcon className="h-3 w-auto" />} {question.category}
             </span>
           )}
         </div>
@@ -58,9 +60,9 @@ export default function QuestionCard({ question, selected, onToggle, revealed, s
             onClick={() => speakDe(question.question.de)}
             aria-label={t('listenDe', lang)}
             title={t('listenDe', lang)}
-            className="shrink-0 rounded-full p-1 text-lg leading-none opacity-60 hover:opacity-100"
+            className="shrink-0 rounded-full p-1 opacity-60 hover:opacity-100"
           >
-            🔊
+            <IconSpeaker className="h-5 w-5" />
           </button>
         )}
       </div>
@@ -96,7 +98,7 @@ export default function QuestionCard({ question, selected, onToggle, revealed, s
                 ✓
               </span>
               <span className="text-gray-800 dark:text-gray-200">{tr(opt.text, lang)}</span>
-              {revealed && isSelected && !opt.correct && <span className="ml-auto shrink-0">❌</span>}
+              {revealed && isSelected && !opt.correct && <IconCross className="ml-auto h-4 w-4 shrink-0 text-red-500" />}
             </button>
           )
         })}
@@ -104,7 +106,9 @@ export default function QuestionCard({ question, selected, onToggle, revealed, s
 
       {revealed && (
         <div className="mt-4 rounded-xl bg-blue-50 p-3 text-sm text-blue-900 dark:bg-blue-900/30 dark:text-blue-200">
-          <p className="mb-1 font-semibold">💡 {t('explanation', lang)}</p>
+          <p className="mb-1 flex items-center gap-1 font-semibold">
+            <IconBulb className="h-4 w-4" /> {t('explanation', lang)}
+          </p>
           <p>{tr(question.explanation, lang)}</p>
         </div>
       )}

@@ -5,16 +5,30 @@ import { shuffle, isAnswerCorrect, canSpeak, speakDe } from '../utils'
 import { FIRSTAID_TOPICS, FIRSTAID_CARDS, FIRSTAID_QUESTIONS } from '../data/firstaid'
 import QuestionCard from './QuestionCard'
 import Confetti from './Confetti'
+import {
+  IconFirstAid,
+  IconBookOpen,
+  IconCards,
+  IconQuestionBubble,
+  IconConfetti,
+  IconAmbulance,
+  IconTap,
+  IconSpeaker,
+  IconTrophy,
+  IconThumbsUp,
+  IconCheck,
+  IconCross,
+} from './Icons'
 
 const QUIZ_SIZE = 10
 
-function HubCard({ onClick, emoji, label, sub, badge }) {
+function HubCard({ onClick, icon, label, sub, badge }) {
   return (
     <button
       onClick={onClick}
       className="flex w-full items-center gap-4 rounded-2xl bg-white dark:bg-gray-800 p-4 text-left shadow-sm ring-1 ring-gray-200 dark:ring-gray-700 transition-colors hover:bg-gray-50 dark:hover:bg-gray-700 active:bg-gray-100 dark:active:bg-gray-600"
     >
-      <span className="text-3xl">{emoji}</span>
+      <span className="text-swiss dark:text-red-300">{icon}</span>
       <span className="min-w-0 flex-1">
         <span className="block font-semibold text-gray-900 dark:text-gray-100">{label}</span>
         <span className="block text-sm text-gray-500 dark:text-gray-400">{sub}</span>
@@ -88,7 +102,7 @@ function Flashcards() {
     const nextDue = storage.srsNextDue('firstaid')
     return (
       <div className="rounded-2xl bg-white dark:bg-gray-800 p-8 text-center shadow-sm ring-1 ring-gray-200 dark:ring-gray-700">
-        <p className="text-4xl">🎉</p>
+        <IconConfetti className="mx-auto h-10 w-10 text-swiss" />
         <p className="mt-3 text-lg font-semibold text-gray-900 dark:text-gray-100">{t('allCaughtUp', lang)}</p>
         {nextDue && (
           <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
@@ -111,17 +125,17 @@ function Flashcards() {
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
-        <span>
-          🃏 {deck.length} {t('dueToday', lang)}
+        <span className="inline-flex items-center gap-1">
+          <IconCards className="h-4 w-4" /> {deck.length} {t('dueToday', lang)}
         </span>
         <span className="flex items-center gap-2">
           {canSpeak() && (
             <button
               onClick={() => speakDe(flipped ? card.back.de : card.front.de)}
               aria-label={t('listenDe', lang)}
-              className="rounded-full text-base opacity-70 hover:opacity-100"
+              className="rounded-full opacity-70 hover:opacity-100"
             >
-              🔊
+              <IconSpeaker className="h-4 w-4" />
             </button>
           )}
           ✓ {inReview}/{FIRSTAID_CARDS.length} {t('cardsLearned', lang)}
@@ -134,13 +148,15 @@ function Flashcards() {
           flipped ? 'bg-red-50 dark:bg-red-900/30 ring-swiss/40' : 'bg-white dark:bg-gray-800 ring-gray-200 dark:ring-gray-700'
         }`}
       >
-        <span className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-400">
-          {flipped ? '🚑' : '❓'}
+        <span className="mb-2 text-gray-400">
+          {flipped ? <IconAmbulance className="h-6 w-6" /> : <IconQuestionBubble className="h-6 w-6" />}
         </span>
         <span className={`text-lg leading-snug ${flipped ? 'font-bold text-swiss-dark dark:text-red-300' : 'font-semibold text-gray-900 dark:text-gray-100'}`}>
           {flipped ? tr(card.back, lang) : tr(card.front, lang)}
         </span>
-        <span className="mt-4 text-xs text-gray-400">👆 {t('tapToFlip', lang)}</span>
+        <span className="mt-4 inline-flex items-center gap-1 text-xs text-gray-400">
+          <IconTap className="h-3.5 w-3.5" /> {t('tapToFlip', lang)}
+        </span>
       </button>
 
       <div className="flex gap-2">
@@ -182,7 +198,15 @@ function Quiz() {
     return (
       <div className="rounded-2xl bg-white dark:bg-gray-800 p-8 text-center shadow-sm ring-1 ring-gray-200 dark:ring-gray-700">
         {score >= questions.length * 0.8 && <Confetti />}
-        <p className="text-4xl">{score >= 8 ? '🏆' : score >= 5 ? '👍' : '📖'}</p>
+        <div className="flex justify-center text-swiss">
+          {score >= 8 ? (
+            <IconTrophy className="h-10 w-10" />
+          ) : score >= 5 ? (
+            <IconThumbsUp className="h-10 w-10" />
+          ) : (
+            <IconBookOpen className="h-10 w-10" />
+          )}
+        </div>
         <p className="mt-3 text-lg font-semibold text-gray-900 dark:text-gray-100">
           {t('quizResult', lang)}: {score}/{questions.length}
         </p>
@@ -226,11 +250,19 @@ function Quiz() {
 
       {revealed && (
         <p
-          className={`text-center text-lg font-bold ${
+          className={`flex items-center justify-center gap-1.5 text-center text-lg font-bold ${
             isAnswerCorrect(question, selected) ? 'text-green-600' : 'text-red-600'
           }`}
         >
-          {isAnswerCorrect(question, selected) ? `✅ ${t('correct', lang)}` : `❌ ${t('wrong', lang)}`}
+          {isAnswerCorrect(question, selected) ? (
+            <>
+              <IconCheck className="h-5 w-5" /> {t('correct', lang)}
+            </>
+          ) : (
+            <>
+              <IconCross className="h-5 w-5" /> {t('wrong', lang)}
+            </>
+          )}
         </p>
       )}
 
@@ -278,19 +310,19 @@ export default function FirstAid() {
 
   return (
     <div className="mx-auto max-w-xl space-y-4 px-4 py-5">
-      <div className="rounded-2xl bg-red-50 dark:bg-red-900/30 p-4 text-sm leading-relaxed text-red-900 dark:text-red-200 ring-1 ring-red-200 dark:ring-red-800">
-        ⛑️ {t('faIntro', lang)}
+      <div className="flex items-start gap-2 rounded-2xl bg-red-50 dark:bg-red-900/30 p-4 text-sm leading-relaxed text-red-900 dark:text-red-200 ring-1 ring-red-200 dark:ring-red-800">
+        <IconFirstAid className="mt-0.5 h-4 w-4 shrink-0" /> {t('faIntro', lang)}
       </div>
       <div className="space-y-3">
-        <HubCard onClick={() => setView('topics')} emoji="📖" label={t('faTopics', lang)} sub={t('faTopicsSub', lang)} />
+        <HubCard onClick={() => setView('topics')} icon={<IconBookOpen className="h-8 w-8" />} label={t('faTopics', lang)} sub={t('faTopicsSub', lang)} />
         <HubCard
           onClick={() => setView('cards')}
-          emoji="🃏"
+          icon={<IconCards className="h-8 w-8" />}
           label={t('faCardsTitle', lang)}
           sub={t('faCardsSub', lang)}
           badge={unknownCards}
         />
-        <HubCard onClick={() => setView('quiz')} emoji="❓" label={t('faQuizTitle', lang)} sub={t('faQuizSub', lang)} />
+        <HubCard onClick={() => setView('quiz')} icon={<IconQuestionBubble className="h-8 w-8" />} label={t('faQuizTitle', lang)} sub={t('faQuizSub', lang)} />
       </div>
     </div>
   )

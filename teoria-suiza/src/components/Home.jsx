@@ -5,6 +5,23 @@ import { maneuversForCategory } from '../data/maneuvers'
 import { topicLabel } from '../data/topics'
 import ProgressRing from './ProgressRing'
 import { CarIcon, MotoIcon } from './CategoryIcons'
+import {
+  IconFirstAid,
+  IconBookOpen,
+  IconStopwatch,
+  IconRetry,
+  IconWarningSign,
+  IconBrain,
+  IconSteeringWheel,
+  IconTarget,
+  IconIdCard,
+  IconGraduationCap,
+  IconBarChart,
+  IconFlame,
+  IconStack,
+  IconCheck,
+  IconCross,
+} from './Icons'
 
 const DAILY_GOAL = 20
 
@@ -30,14 +47,21 @@ const CHIP_TINTS = {
   green: 'bg-emerald-100 dark:bg-emerald-900/40',
 }
 
-function MenuButton({ onClick, emoji, label, sub, badge, tint = 'red' }) {
+const CHIP_TEXT = {
+  red: 'text-swiss dark:text-red-300',
+  amber: 'text-amber-600 dark:text-amber-300',
+  blue: 'text-sky-600 dark:text-sky-300',
+  green: 'text-emerald-600 dark:text-emerald-300',
+}
+
+function MenuButton({ onClick, icon, label, sub, badge, tint = 'red' }) {
   return (
     <button
       onClick={onClick}
       className="flex w-full items-center gap-3.5 rounded-2xl bg-white dark:bg-gray-800 p-3.5 text-left shadow-card ring-1 ring-gray-200/70 dark:ring-gray-700 transition-all hover:bg-gray-50 dark:hover:bg-gray-700 active:scale-[0.98]"
     >
-      <span className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-2xl ${CHIP_TINTS[tint]}`}>
-        {emoji}
+      <span className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${CHIP_TINTS[tint]} ${CHIP_TEXT[tint]}`}>
+        {icon}
       </span>
       <span className="min-w-0 flex-1">
         <span className="block font-semibold leading-snug text-gray-900 dark:text-gray-100">{label}</span>
@@ -101,7 +125,7 @@ function Hero({ profile, category, navigate }) {
       </div>
       <div className="mt-3 flex items-center gap-3 border-t border-gray-100 pt-3 dark:border-gray-700">
         <span className="flex items-center gap-1 text-sm font-bold text-gray-800 dark:text-gray-200">
-          <span className={streak > 0 ? 'flame' : 'opacity-40'}>🔥</span> {streak}
+          <IconFlame className={`h-4 w-4 ${streak > 0 ? 'flame text-swiss' : 'text-gray-300 dark:text-gray-600'}`} /> {streak}
         </span>
         <div className="h-2 flex-1 overflow-hidden rounded-full bg-gray-100 dark:bg-gray-700">
           <div
@@ -153,8 +177,8 @@ export default function Home({ category, setCategory, navigate, profile }) {
       </div>
 
       <div className="flex items-center justify-between rounded-xl bg-white dark:bg-gray-800 px-4 py-2.5 text-xs text-gray-600 dark:text-gray-300 shadow-card ring-1 ring-gray-200/70 dark:ring-gray-700">
-        <span>
-          📚 {pool.length} {t('categoryQuestions', lang)}
+        <span className="inline-flex items-center gap-1">
+          <IconStack className="h-3.5 w-3.5" /> {pool.length} {t('categoryQuestions', lang)}
         </span>
         <span>
           {seen} {t('progressSeen', lang)} · {mastered} {t('progressMastered', lang)}
@@ -165,18 +189,18 @@ export default function Home({ category, setCategory, navigate, profile }) {
         <GroupLabel>{t('groupBefore', lang)}</GroupLabel>
         <MenuButton
           onClick={() => navigate('firstaid')}
-          emoji="⛑️"
+          icon={<IconFirstAid className="h-6 w-6" />}
           label={t('menuFirstAid', lang)}
           sub={t('menuFirstAidSub', lang)}
           tint="red"
         />
 
         <GroupLabel>{t('groupTheory', lang)}</GroupLabel>
-        <MenuButton onClick={() => navigate('study')} emoji="📖" label={t('menuStudy', lang)} sub={t('menuStudySub', lang)} tint="blue" />
-        <MenuButton onClick={() => navigate('exam')} emoji="⏱️" label={t('menuExam', lang)} sub={t('menuExamSub', lang)} tint="blue" />
+        <MenuButton onClick={() => navigate('study')} icon={<IconBookOpen className="h-6 w-6" />} label={t('menuStudy', lang)} sub={t('menuStudySub', lang)} tint="blue" />
+        <MenuButton onClick={() => navigate('exam')} icon={<IconStopwatch className="h-6 w-6" />} label={t('menuExam', lang)} sub={t('menuExamSub', lang)} tint="blue" />
         <MenuButton
           onClick={() => navigate('review')}
-          emoji="🔁"
+          icon={<IconRetry className="h-6 w-6" />}
           label={t('menuReview', lang)}
           sub={t('menuReviewSub', lang)}
           badge={failedCount}
@@ -184,38 +208,38 @@ export default function Home({ category, setCategory, navigate, profile }) {
         />
         <MenuButton
           onClick={() => navigate('signs')}
-          emoji="🚸"
+          icon={<IconWarningSign className="h-6 w-6" />}
           label={t('menuSigns', lang)}
           sub={t('menuSignsSub', lang)}
           tint="blue"
         />
 
         <GroupLabel>{t('groupPractical', lang)}</GroupLabel>
-        <MenuButton onClick={() => navigate('vku')} emoji="🧠" label={t('menuVku', lang)} sub={t('menuVkuSub', lang)} tint="green" />
+        <MenuButton onClick={() => navigate('vku')} icon={<IconBrain className="h-6 w-6" />} label={t('menuVku', lang)} sub={t('menuVkuSub', lang)} tint="green" />
         <MenuButton
           onClick={() => navigate('maneuvers')}
-          emoji="🚘"
+          icon={<IconSteeringWheel className="h-6 w-6" />}
           label={t('menuManeuvers', lang)}
           sub={t('menuManeuversSub', lang)}
           badge={maneuverCount}
           tint="green"
         />
-        <MenuButton onClick={() => navigate('tips')} emoji="🎯" label={t('menuTips', lang)} sub={t('menuTipsSub', lang)} tint="green" />
+        <MenuButton onClick={() => navigate('tips')} icon={<IconTarget className="h-6 w-6" />} label={t('menuTips', lang)} sub={t('menuTipsSub', lang)} tint="green" />
 
         <GroupLabel>{t('groupSpecial', lang)}</GroupLabel>
         <MenuButton
           onClick={() => navigate('kontrollfahrt')}
-          emoji="🛂"
+          icon={<IconIdCard className="h-6 w-6" />}
           label={t('menuKontrollfahrt', lang)}
           sub={t('menuKontrollfahrtSub', lang)}
           tint="amber"
         />
-        <MenuButton onClick={() => navigate('wab')} emoji="🎓" label={t('menuWab', lang)} sub={t('menuWabSub', lang)} tint="amber" />
+        <MenuButton onClick={() => navigate('wab')} icon={<IconGraduationCap className="h-6 w-6" />} label={t('menuWab', lang)} sub={t('menuWabSub', lang)} tint="amber" />
 
         <div className="pt-1">
           <MenuButton
             onClick={() => navigate('stats')}
-            emoji="📊"
+            icon={<IconBarChart className="h-6 w-6" />}
             label={t('menuStats', lang)}
             sub={t('menuStatsSub', lang)}
             tint="red"
@@ -224,9 +248,14 @@ export default function Home({ category, setCategory, navigate, profile }) {
       </div>
 
       {lastExam && (
-        <p className="text-center text-xs text-gray-500 dark:text-gray-400">
-          {t('lastExam', lang)}: {lastExam.passed ? '✅' : '❌'} {lastExam.penalty}/{lastExam.maxPenalty}{' '}
-          {t('points', lang)}
+        <p className="flex items-center justify-center gap-1 text-center text-xs text-gray-500 dark:text-gray-400">
+          {t('lastExam', lang)}:{' '}
+          {lastExam.passed ? (
+            <IconCheck className="h-3.5 w-3.5 text-emerald-500" />
+          ) : (
+            <IconCross className="h-3.5 w-3.5 text-red-500" />
+          )}{' '}
+          {lastExam.penalty}/{lastExam.maxPenalty} {t('points', lang)}
         </p>
       )}
 

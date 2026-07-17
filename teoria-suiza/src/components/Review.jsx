@@ -4,6 +4,7 @@ import { useLang, t } from '../i18n'
 import { storage } from '../storage'
 import { shuffle, isAnswerCorrect } from '../utils'
 import QuestionCard from './QuestionCard'
+import { IconConfetti, IconRetry, IconCheck, IconCross } from './Icons'
 
 export default function Review() {
   const { lang } = useLang()
@@ -22,7 +23,7 @@ export default function Review() {
     return (
       <div className="mx-auto max-w-xl px-4 py-10">
         <div className="rounded-2xl bg-white dark:bg-gray-800 p-8 text-center shadow-sm ring-1 ring-gray-200 dark:ring-gray-700">
-          <p className="text-4xl">🎉</p>
+          <IconConfetti className="mx-auto h-10 w-10 text-swiss" />
           <p className="mt-3 text-lg font-semibold text-gray-900 dark:text-gray-100">{t('noFailed', lang)}</p>
           <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">{t('noFailedSub', lang)}</p>
         </div>
@@ -47,8 +48,8 @@ export default function Review() {
         <span>
           {t('question', lang)} {index + 1} {t('of', lang)} {queue.length}
         </span>
-        <span>
-          🔁 {queue.length} {t('failedCount', lang)}
+        <span className="inline-flex items-center gap-1">
+          <IconRetry className="h-3.5 w-3.5" /> {queue.length} {t('failedCount', lang)}
         </span>
       </div>
       <p className="text-xs text-gray-400">{t('reviewHint', lang)}</p>
@@ -57,11 +58,19 @@ export default function Review() {
 
       {revealed && (
         <p
-          className={`text-center text-lg font-bold ${
+          className={`flex items-center justify-center gap-1.5 text-center text-lg font-bold ${
             isAnswerCorrect(question, selected) ? 'text-green-600' : 'text-red-600'
           }`}
         >
-          {isAnswerCorrect(question, selected) ? `✅ ${t('correct', lang)}` : `❌ ${t('wrong', lang)}`}
+          {isAnswerCorrect(question, selected) ? (
+            <>
+              <IconCheck className="h-5 w-5" /> {t('correct', lang)}
+            </>
+          ) : (
+            <>
+              <IconCross className="h-5 w-5" /> {t('wrong', lang)}
+            </>
+          )}
         </p>
       )}
 

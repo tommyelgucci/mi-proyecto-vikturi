@@ -466,6 +466,17 @@ export function IconCalendar({ className }) {
   )
 }
 
+export function IconGrid({ className }) {
+  return (
+    <Svg className={className}>
+      <rect x="3.5" y="3.5" width="7" height="7" rx="1.2" stroke="currentColor" strokeWidth="1.6" />
+      <rect x="13.5" y="3.5" width="7" height="7" rx="1.2" stroke="currentColor" strokeWidth="1.6" />
+      <rect x="3.5" y="13.5" width="7" height="7" rx="1.2" stroke="currentColor" strokeWidth="1.6" />
+      <rect x="13.5" y="13.5" width="7" height="7" rx="1.2" stroke="currentColor" strokeWidth="1.6" />
+    </Svg>
+  )
+}
+
 export function IconPencil({ className }) {
   return (
     <Svg className={className}>

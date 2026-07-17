@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useLang, t } from '../i18n'
 import { storage } from '../storage'
+import { IconPeople, IconTrash } from './Icons'
 
 const EMOJIS = ['🚗', '🏍️', '🚙', '🛵', '🚀', '🐨', '🦊', '🐼', '🌸', '⚡', '🎸', '⭐']
 
@@ -43,7 +44,9 @@ export default function Profiles({ onClose }) {
         className="w-full max-w-md rounded-t-3xl bg-white p-5 shadow-float dark:bg-gray-800 sm:rounded-3xl"
       >
         <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100">👥 {t('profilesTitle', lang)}</h2>
+          <h2 className="flex items-center gap-1.5 text-lg font-bold text-gray-900 dark:text-gray-100">
+            <IconPeople className="h-5 w-5" /> {t('profilesTitle', lang)}
+          </h2>
           <button onClick={onClose} aria-label={t('back', lang)} className="rounded-full p-1.5 text-xl leading-none text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">
             ✕
           </button>
@@ -74,7 +77,7 @@ export default function Profiles({ onClose }) {
                       aria-label={t('profileDelete', lang)}
                       className="rounded-full p-2 text-gray-400 hover:bg-red-50 hover:text-swiss dark:hover:bg-red-900/30"
                     >
-                      🗑️
+                      <IconTrash className="h-4 w-4" />
                     </button>
                   )}
                 </li>

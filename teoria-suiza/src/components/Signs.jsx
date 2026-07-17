@@ -5,16 +5,31 @@ import { shuffle, canSpeak, speakDe } from '../utils'
 import { SIGN_CATEGORIES, SIGNS } from '../data/signs'
 import SignSprite from './SignSprite'
 import Confetti from './Confetti'
+import {
+  IconWarningSign,
+  IconStack,
+  IconCards,
+  IconQuestionBubble,
+  IconConfetti,
+  IconTap,
+  IconSpeaker,
+  IconTrophy,
+  IconThumbsUp,
+  IconBookOpen,
+  IconBulb,
+  IconCheck,
+  IconCross,
+} from './Icons'
 
 const QUIZ_SIZE = 10
 
-function HubCard({ onClick, emoji, label, sub, badge }) {
+function HubCard({ onClick, icon, label, sub, badge }) {
   return (
     <button
       onClick={onClick}
       className="flex w-full items-center gap-4 rounded-2xl bg-white dark:bg-gray-800 p-4 text-left shadow-sm ring-1 ring-gray-200 dark:ring-gray-700 transition-colors hover:bg-gray-50 dark:hover:bg-gray-700 active:bg-gray-100 dark:active:bg-gray-600"
     >
-      <span className="text-3xl">{emoji}</span>
+      <span className="text-swiss dark:text-red-300">{icon}</span>
       <span className="min-w-0 flex-1">
         <span className="block font-semibold text-gray-900 dark:text-gray-100">{label}</span>
         <span className="block text-sm text-gray-500 dark:text-gray-400">{sub}</span>
@@ -86,9 +101,9 @@ function SignDetail({ sign }) {
             <button
               onClick={() => speakDe(`${sign.name.de}. ${sign.meaning.de}`)}
               aria-label={t('listenDe', lang)}
-              className="shrink-0 rounded-full text-base opacity-70 hover:opacity-100"
+              className="shrink-0 rounded-full opacity-70 hover:opacity-100"
             >
-              🔊
+              <IconSpeaker className="h-4 w-4" />
             </button>
           )}
         </div>
@@ -125,7 +140,7 @@ function Flashcards() {
     const nextDue = storage.srsNextDue('signs')
     return (
       <div className="rounded-2xl bg-white dark:bg-gray-800 p-8 text-center shadow-sm ring-1 ring-gray-200 dark:ring-gray-700">
-        <p className="text-4xl">🎉</p>
+        <IconConfetti className="mx-auto h-10 w-10 text-swiss" />
         <p className="mt-3 text-lg font-semibold text-gray-900 dark:text-gray-100">{t('allCaughtUp', lang)}</p>
         {nextDue && (
           <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
@@ -148,17 +163,17 @@ function Flashcards() {
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
-        <span>
-          🃏 {deck.length} {t('dueToday', lang)}
+        <span className="inline-flex items-center gap-1">
+          <IconCards className="h-4 w-4" /> {deck.length} {t('dueToday', lang)}
         </span>
         <span className="flex items-center gap-2">
           {canSpeak() && (
             <button
               onClick={() => speakDe(`${sign.name.de}. ${sign.meaning.de}`)}
               aria-label={t('listenDe', lang)}
-              className="rounded-full text-base opacity-70 hover:opacity-100"
+              className="rounded-full opacity-70 hover:opacity-100"
             >
-              🔊
+              <IconSpeaker className="h-4 w-4" />
             </button>
           )}
           ✓ {inReview}/{SIGNS.length} {t('cardsLearned', lang)}
@@ -179,7 +194,9 @@ function Flashcards() {
         ) : (
           <SignSprite draw={sign.draw} size={130} />
         )}
-        <span className="mt-1 text-xs text-gray-400">👆 {t('tapToFlip', lang)}</span>
+        <span className="mt-1 inline-flex items-center gap-1 text-xs text-gray-400">
+          <IconTap className="h-3.5 w-3.5" /> {t('tapToFlip', lang)}
+        </span>
       </button>
 
       <div className="flex gap-2">
@@ -228,7 +245,15 @@ function Quiz() {
     return (
       <div className="rounded-2xl bg-white dark:bg-gray-800 p-8 text-center shadow-sm ring-1 ring-gray-200 dark:ring-gray-700">
         {score >= rounds.length * 0.8 && <Confetti />}
-        <p className="text-4xl">{score >= 8 ? '🏆' : score >= 5 ? '👍' : '📖'}</p>
+        <div className="flex justify-center text-swiss">
+          {score >= 8 ? (
+            <IconTrophy className="h-10 w-10" />
+          ) : score >= 5 ? (
+            <IconThumbsUp className="h-10 w-10" />
+          ) : (
+            <IconBookOpen className="h-10 w-10" />
+          )}
+        </div>
         <p className="mt-3 text-lg font-semibold text-gray-900 dark:text-gray-100">
           {t('quizResult', lang)}: {score}/{rounds.length}
         </p>
@@ -294,15 +319,25 @@ function Quiz() {
         </div>
         {revealed && (
           <div className="mt-3 rounded-xl bg-blue-50 dark:bg-blue-900/30 p-3 text-sm text-blue-900 dark:text-blue-200">
-            <p className="mb-1 font-semibold">💡 {t('explanation', lang)}</p>
+            <p className="mb-1 flex items-center gap-1 font-semibold">
+              <IconBulb className="h-4 w-4" /> {t('explanation', lang)}
+            </p>
             <p>{tr(current.sign.meaning, lang)}</p>
           </div>
         )}
       </div>
 
       {revealed && (
-        <p className={`text-center text-lg font-bold ${isCorrect ? 'text-green-600' : 'text-red-600'}`}>
-          {isCorrect ? `✅ ${t('correct', lang)}` : `❌ ${t('wrong', lang)}`}
+        <p className={`flex items-center justify-center gap-1.5 text-center text-lg font-bold ${isCorrect ? 'text-green-600' : 'text-red-600'}`}>
+          {isCorrect ? (
+            <>
+              <IconCheck className="h-5 w-5" /> {t('correct', lang)}
+            </>
+          ) : (
+            <>
+              <IconCross className="h-5 w-5" /> {t('wrong', lang)}
+            </>
+          )}
         </p>
       )}
 
@@ -341,19 +376,19 @@ export default function Signs() {
 
   return (
     <div className="mx-auto max-w-xl space-y-4 px-4 py-5">
-      <div className="rounded-2xl bg-white dark:bg-gray-800 p-4 text-sm leading-relaxed text-gray-600 dark:text-gray-300 ring-1 ring-gray-200 dark:ring-gray-700">
-        🚸 {t('signsIntro', lang)}
+      <div className="flex items-start gap-2 rounded-2xl bg-white dark:bg-gray-800 p-4 text-sm leading-relaxed text-gray-600 dark:text-gray-300 ring-1 ring-gray-200 dark:ring-gray-700">
+        <IconWarningSign className="mt-0.5 h-4 w-4 shrink-0 text-swiss" /> {t('signsIntro', lang)}
       </div>
       <div className="space-y-3">
-        <HubCard onClick={() => setView('explore')} emoji="📚" label={t('signsExplore', lang)} sub={t('signsExploreSub', lang)} />
+        <HubCard onClick={() => setView('explore')} icon={<IconStack className="h-8 w-8" />} label={t('signsExplore', lang)} sub={t('signsExploreSub', lang)} />
         <HubCard
           onClick={() => setView('cards')}
-          emoji="🃏"
+          icon={<IconCards className="h-8 w-8" />}
           label={t('faCardsTitle', lang)}
           sub={t('signsCardsSub', lang)}
           badge={unknown}
         />
-        <HubCard onClick={() => setView('quiz')} emoji="❓" label={t('faQuizTitle', lang)} sub={t('signsQuizSub', lang)} />
+        <HubCard onClick={() => setView('quiz')} icon={<IconQuestionBubble className="h-8 w-8" />} label={t('faQuizTitle', lang)} sub={t('signsQuizSub', lang)} />
       </div>
     </div>
   )
