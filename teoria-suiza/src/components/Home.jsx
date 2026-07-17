@@ -230,6 +230,11 @@ export default function Home({ category, setCategory, navigate, profile }) {
       )}
 
       <p className="pt-2 text-center text-[11px] leading-relaxed text-gray-400">{t('disclaimer', lang)}</p>
+      <p className="text-center text-[11px]">
+        <a href="./privacy.html" target="_blank" rel="noreferrer" className="text-gray-400 underline hover:text-swiss">
+          {t('privacyPolicy', lang)}
+        </a>
+      </p>
     </div>
   )
 }

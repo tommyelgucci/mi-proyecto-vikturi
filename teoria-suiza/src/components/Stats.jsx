@@ -115,9 +115,9 @@ function Backup() {
   function doImport() {
     if (!window.confirm(t('importConfirm', lang))) return
     try {
-      storage.importAll(text.trim())
-      setMsg(t('importDone', lang))
-      setTimeout(() => window.location.reload(), 600)
+      const { skipped } = storage.importAll(text.trim())
+      setMsg(skipped > 0 ? t('importPartial', lang, { n: skipped }) : t('importDone', lang))
+      setTimeout(() => window.location.reload(), skipped > 0 ? 1800 : 600)
     } catch {
       setMsg(t('importError', lang))
     }
