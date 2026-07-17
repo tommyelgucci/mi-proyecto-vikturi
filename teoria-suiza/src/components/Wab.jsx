@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useLang, t, tr } from '../i18n'
 import { WAB_SECTIONS, WAB_LINKS } from '../data/wab'
+import { Icon, IconGraduationCap } from './Icons'
 
 export default function Wab() {
   const { lang } = useLang()
@@ -8,8 +9,8 @@ export default function Wab() {
 
   return (
     <div className="mx-auto max-w-xl space-y-5 px-4 py-5">
-      <div className="rounded-2xl bg-red-50 dark:bg-red-900/30 p-4 text-sm leading-relaxed text-red-900 dark:text-red-200 ring-1 ring-red-200 dark:ring-red-800">
-        🎓 {t('wabIntro', lang)}
+      <div className="flex items-center gap-2 rounded-2xl bg-red-50 dark:bg-red-900/30 p-4 text-sm leading-relaxed text-red-900 dark:text-red-200 ring-1 ring-red-200 dark:ring-red-800">
+        <IconGraduationCap className="h-5 w-5 shrink-0" /> {t('wabIntro', lang)}
       </div>
 
       <div className="space-y-3">
@@ -21,7 +22,9 @@ export default function Wab() {
                 onClick={() => setOpen(isOpen ? null : section.id)}
                 className="flex w-full items-center gap-3 p-4 text-left"
               >
-                <span className="text-2xl">{section.icon}</span>
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-red-100 text-swiss dark:bg-red-900/40 dark:text-red-300">
+                  <Icon name={section.icon} className="h-5 w-5" />
+                </span>
                 <span className="flex-1 font-semibold text-gray-900 dark:text-gray-100">{tr(section.title, lang)}</span>
                 <span className={`text-gray-400 transition-transform ${isOpen ? 'rotate-90' : ''}`}>›</span>
               </button>

@@ -5,7 +5,7 @@
 export const KF_SECTIONS = [
   {
     id: 'was',
-    icon: '🛂',
+    icon: 'idCard',
     title: {
       de: 'Was ist die Kontrollfahrt?',
       es: '¿Qué es la Kontrollfahrt?',
@@ -46,7 +46,7 @@ export const KF_SECTIONS = [
   },
   {
     id: 'einsatz',
-    icon: '⚠️',
+    icon: 'warningSign',
     title: {
       de: 'Nur EIN Versuch – was steht auf dem Spiel?',
       es: 'Solo UN intento: ¿qué está en juego?',
@@ -87,7 +87,7 @@ export const KF_SECTIONS = [
   },
   {
     id: 'ablauf',
-    icon: '🗺️',
+    icon: 'map',
     title: {
       de: 'So läuft die Fahrt ab',
       es: 'Así transcurre el examen',
@@ -133,7 +133,7 @@ export const KF_SECTIONS = [
 export const KF_MISTAKES = [
   {
     id: 'rechtsvortritt',
-    icon: '➡️',
+    icon: 'priorityRight',
     topic: 'vortritt',
     title: { de: 'Rechtsvortritt übersehen', es: 'No respetar la prioridad de la derecha', fr: 'Priorité de droite manquée', it: 'Precedenza da destra ignorata', en: 'Missing priority to the right' },
     detail: {
@@ -146,7 +146,7 @@ export const KF_MISTAKES = [
   },
   {
     id: 'kreisel',
-    icon: '🔄',
+    icon: 'roundaboutWarn',
     topic: 'kreisverkehr',
     title: { de: 'Kreisel: falsch blinken', es: 'Rotondas: intermitentes mal usados', fr: 'Giratoire : clignotants mal utilisés', it: 'Rotatoria: frecce usate male', en: 'Roundabouts: wrong indicating' },
     detail: {
@@ -159,7 +159,7 @@ export const KF_MISTAKES = [
   },
   {
     id: 'blick',
-    icon: '👀',
+    icon: 'eye',
     title: { de: 'Sicherheitsblick nicht sichtbar', es: 'Mirada de seguridad invisible', fr: 'Contrôle épaule invisible', it: 'Controllo spalla invisibile', en: 'Shoulder check not visible' },
     detail: {
       de: 'Der Experte muss deine Kopfbewegung SEHEN: Schulterblick vor jedem Spurwechsel, Abbiegen, Anfahren und an der Kreiselausfahrt. Nur Spiegel genügt nicht.',
@@ -171,7 +171,7 @@ export const KF_MISTAKES = [
   },
   {
     id: 'fussgaenger',
-    icon: '🚶',
+    icon: 'pedestrian',
     topic: 'fussgaenger',
     title: { de: 'Fussgängerstreifen zu forsch', es: 'Pasos de peatones sin respeto', fr: 'Passages piétons pris trop vite', it: 'Passaggi pedonali presi troppo veloci', en: 'Too pushy at pedestrian crossings' },
     detail: {
@@ -184,7 +184,7 @@ export const KF_MISTAKES = [
   },
   {
     id: 'tempo',
-    icon: '🚦',
+    icon: 'speedGauge',
     topic: 'geschwindigkeit',
     title: { de: 'Tempo: zu schnell UND zu langsam', es: 'Velocidad: ni rápido NI lento de más', fr: 'Vitesse : ni trop vite NI trop lent', it: 'Velocità: né troppo veloce NÉ troppo lento', en: 'Speed: neither too fast NOR too slow' },
     detail: {
@@ -197,7 +197,7 @@ export const KF_MISTAKES = [
   },
   {
     id: 'tram',
-    icon: '🚊',
+    icon: 'tram',
     topic: 'vortritt',
     title: { de: 'Tram & Bus falsch behandelt', es: 'Tranvías y buses mal gestionados', fr: 'Trams et bus mal gérés', it: 'Tram e bus gestiti male', en: 'Trams & buses handled wrongly' },
     detail: {
@@ -210,7 +210,7 @@ export const KF_MISTAKES = [
   },
   {
     id: 'einspuren',
-    icon: '↔️',
+    icon: 'laneChange',
     topic: 'einspuren',
     maneuver: 'links_abbiegen_einspuren',
     title: { de: 'Einspuren vergessen', es: 'No colocarse en el carril (Einspuren)', fr: 'Présélection oubliée', it: 'Preselezione dimenticata', en: 'Forgetting lane positioning' },
@@ -224,7 +224,7 @@ export const KF_MISTAKES = [
   },
   {
     id: 'sicherheitslinie',
-    icon: '⛔',
+    icon: 'noEntry',
     topic: 'signale',
     title: { de: 'Sicherheitslinie touchiert', es: 'Pisar la línea de seguridad', fr: 'Ligne de sécurité touchée', it: 'Linea di sicurezza toccata', en: 'Touching the safety line' },
     detail: {
@@ -237,7 +237,7 @@ export const KF_MISTAKES = [
   },
   {
     id: 'abstand',
-    icon: '📏',
+    icon: 'ruler',
     topic: 'abstand',
     maneuver: 'abstand_2sekunden',
     title: { de: 'Zu wenig Abstand', es: 'Distancia insuficiente', fr: 'Distance insuffisante', it: 'Distanza insufficiente', en: 'Too little distance' },
@@ -251,7 +251,7 @@ export const KF_MISTAKES = [
   },
   {
     id: 'autobahn',
-    icon: '🛣️',
+    icon: 'highway',
     topic: 'autobahn',
     title: { de: 'Autobahn: zögerlich einfahren', es: 'Autopista: incorporación dubitativa', fr: 'Autoroute : insertion hésitante', it: 'Autostrada: immissione esitante', en: 'Motorway: hesitant merging' },
     detail: {
@@ -264,7 +264,7 @@ export const KF_MISTAKES = [
   },
   {
     id: 'zonen',
-    icon: '🏘️',
+    icon: 'neighborhood',
     topic: 'signale',
     title: { de: 'Zonen nicht erkannt (30 / Begegnung)', es: 'No reconocer las zonas (30 / encuentro)', fr: 'Zones non reconnues (30 / rencontre)', it: 'Zone non riconosciute (30 / incontro)', en: 'Zones not recognised (30 / encounter)' },
     detail: {
@@ -277,7 +277,7 @@ export const KF_MISTAKES = [
   },
   {
     id: 'rueckwaerts',
-    icon: '↩️',
+    icon: 'reverseArrow',
     maneuver: 'laengere_strecke_rueckwaerts',
     title: { de: 'Rückwärtsfahren ohne Blicktechnik', es: 'Marcha atrás sin técnica de mirada', fr: 'Marche arrière sans technique du regard', it: 'Retromarcia senza tecnica dello sguardo', en: 'Reversing without proper observation' },
     detail: {

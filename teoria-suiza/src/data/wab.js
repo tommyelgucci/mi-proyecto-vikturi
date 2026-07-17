@@ -5,7 +5,7 @@
 export const WAB_SECTIONS = [
   {
     id: 'probe',
-    icon: '🪪',
+    icon: 'idCard',
     title: {
       de: 'Führerausweis auf Probe (3 Jahre)',
       es: 'Licencia de prueba (3 años)',
@@ -46,7 +46,7 @@ export const WAB_SECTIONS = [
   },
   {
     id: 'kurs',
-    icon: '🎓',
+    icon: 'graduationCap',
     title: {
       de: 'Der WAB-Kurs (Weiterausbildung)',
       es: 'El curso WAB (perfeccionamiento)',
@@ -87,7 +87,7 @@ export const WAB_SECTIONS = [
   },
   {
     id: 'eco',
-    icon: '🌱',
+    icon: 'leaf',
     title: {
       de: 'Eco-Drive: sparsam und prüfungsrelevant',
       es: 'Eco-Drive: eficiente y relevante para el examen',

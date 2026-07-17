@@ -19,6 +19,7 @@ import {
   IconCheck,
   IconCross,
   IconExternalLink,
+  Icon,
 } from './Icons'
 
 function HubCard({ onClick, icon, label, sub, badge }) {
@@ -53,7 +54,9 @@ function Blocks() {
               onClick={() => setOpen(isOpen ? null : block.id)}
               className="flex w-full items-center gap-3 p-4 text-left"
             >
-              <span className="text-2xl">{block.icon}</span>
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-red-100 text-swiss dark:bg-red-900/40 dark:text-red-300">
+                <Icon name={block.icon} className="h-5 w-5" />
+              </span>
               <span className="flex-1 font-semibold text-gray-900 dark:text-gray-100">{tr(block.title, lang)}</span>
               <span className={`text-gray-400 transition-transform ${isOpen ? 'rotate-90' : ''}`}>›</span>
             </button>

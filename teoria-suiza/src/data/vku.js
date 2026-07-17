@@ -5,7 +5,7 @@
 export const VKU_BLOCKS = [
   {
     id: 'sehen',
-    icon: '👁️',
+    icon: 'eye',
     title: {
       de: 'Verkehrssehen – Gefahren erkennen',
       es: 'Ver el tráfico: detectar peligros',
@@ -46,7 +46,7 @@ export const VKU_BLOCKS = [
   },
   {
     id: 'umwelt',
-    icon: '🌍',
+    icon: 'globe',
     title: {
       de: 'Verkehrsumwelt – Partner auf der Strasse',
       es: 'El entorno: compañeros de carretera',
@@ -87,7 +87,7 @@ export const VKU_BLOCKS = [
   },
   {
     id: 'dynamik',
-    icon: '⚙️',
+    icon: 'gear',
     title: {
       de: 'Verkehrsdynamik – Physik am Steuer',
       es: 'Dinámica: la física al volante',
@@ -128,7 +128,7 @@ export const VKU_BLOCKS = [
   },
   {
     id: 'taktik',
-    icon: '🧠',
+    icon: 'brain',
     title: {
       de: 'Verkehrstaktik – der eigene Zustand',
       es: 'Táctica: tu propio estado',

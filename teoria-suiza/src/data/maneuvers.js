@@ -221,7 +221,7 @@ export const MANEUVERS = [
   {
     id: 'seitwaerts_rueckwaerts',
     category: 'B',
-    icon: '🅿️',
+    icon: 'parkingP',
     title: { de: 'Seitwärts rückwärts (Längseinparken)', es: 'Aparcar en paralelo marcha atrás', fr: 'Stationnement en parallèle en marche arrière', it: 'Parcheggio in parallelo in retromarcia', en: 'Reverse parallel parking' },
     scene: parallelBaysScene(),
     steps: [
@@ -319,7 +319,7 @@ export const MANEUVERS = [
   {
     id: 'rechtwinklig_rueckwaerts',
     category: 'B',
-    icon: '📐',
+    icon: 'rightAngle',
     title: { de: 'Rechtwinklig rückwärts parkieren', es: 'Aparcar marcha atrás en perpendicular', fr: 'Stationnement en marche arrière à angle droit', it: 'Parcheggio in retromarcia ad angolo retto', en: 'Reverse parking at right angles' },
     scene: perpendicularBaysScene(),
     steps: [
@@ -398,7 +398,7 @@ export const MANEUVERS = [
   {
     id: 'vorwaerts_parkieren',
     category: 'B',
-    icon: '⬆️',
+    icon: 'arrowUpBay',
     title: { de: 'Vorwärts parkieren', es: 'Aparcar de frente', fr: 'Stationnement en marche avant', it: 'Parcheggio in avanti', en: 'Forward parking' },
     scene: perpendicularBaysScene(),
     steps: [
@@ -456,7 +456,7 @@ export const MANEUVERS = [
   {
     id: 'links_abbiegen_einspuren',
     category: 'B',
-    icon: '⬅️',
+    icon: 'arrowLeft',
     title: { de: 'Links abbiegen mit Einspuren', es: 'Girar a la izquierda y colocarse en el carril', fr: 'Tourner à gauche avec présélection', it: 'Svolta a sinistra con preselezione', en: 'Turning left with lane positioning' },
     scene: junctionScene(),
     steps: [
@@ -555,7 +555,7 @@ export const MANEUVERS = [
   {
     id: 'laengere_strecke_rueckwaerts',
     category: 'B',
-    icon: '🔙',
+    icon: 'reverseArrow',
     title: {
       de: 'Längere Strecke rückwärts (mit Spurwechsel)',
       es: 'Tramo largo marcha atrás (con cambio de carril)',
@@ -690,7 +690,7 @@ export const MANEUVERS = [
   {
     id: 'umkehren_wenden',
     category: 'B',
-    icon: '🔁',
+    icon: 'uTurn',
     title: {
       de: 'Umkehren / Wenden über eine Seitenstrasse',
       es: 'Cambio de sentido usando una calle secundaria',
@@ -786,7 +786,7 @@ export const MANEUVERS = [
   {
     id: 'wendeplatz_kehrtwende',
     category: 'B',
-    icon: '🔄',
+    icon: 'uTurn',
     title: { de: 'Wenden auf dem Wendeplatz', es: 'Cambiar de sentido en el Wendeplatz', fr: 'Demi-tour sur l’aire de retournement', it: 'Inversione nella piazzola di manovra', en: 'Turning on the turning area' },
     // Cuando la calle termina en un Wendeplatz (zona ancha de maniobra), hay
     // espacio de sobra para dar la vuelta: con un solo arco amplio hacia
@@ -943,7 +943,7 @@ export const MANEUVERS = [
   {
     id: 'vollstopp_stop',
     category: 'B',
-    icon: '🛑',
+    icon: 'stopOctagon',
     title: { de: 'Vollstopp beim Stopsignal', es: 'Parada completa en el STOP', fr: 'Arrêt complet au signal stop', it: 'Fermata completa allo stop', en: 'Full stop at the stop sign' },
     scene: stopScene(),
     steps: [
@@ -1014,7 +1014,7 @@ export const MANEUVERS = [
   {
     id: 'vollbremsung',
     category: 'B',
-    icon: '🚨',
+    icon: 'emergencyBrake',
     title: { de: 'Vollbremsung auf Kommando', es: 'Frenada de emergencia por orden del experto', fr: 'Freinage d’urgence sur ordre', it: 'Frenata d’emergenza a comando', en: 'Emergency braking on command' },
     scene: straightRoadScene(),
     steps: [
@@ -1072,7 +1072,7 @@ export const MANEUVERS = [
   {
     id: 'anhalten_strassenrand',
     category: 'B',
-    icon: '📍',
+    icon: 'pin',
     title: { de: '"Anhalten" am Strassenrand', es: 'Parar en el borde ("Anhalten")', fr: '« Anhalten » au bord de la route', it: '«Anhalten» al bordo della strada', en: '"Anhalten" at the roadside' },
     scene: curbRulesScene(),
     steps: [
@@ -1129,7 +1129,7 @@ export const MANEUVERS = [
   {
     id: 'abstand_2sekunden',
     category: 'B',
-    icon: '📏',
+    icon: 'ruler',
     title: { de: 'Abstand: die 2-Sekunden-Regel', es: 'Distancia: la regla de los 2 segundos', fr: 'Distance : la règle des 2 secondes', it: 'Distanza: la regola dei 2 secondi', en: 'Distance: the 2-second rule' },
     scene: straightRoadScene(),
     steps: [
@@ -1189,7 +1189,7 @@ export const MANEUVERS = [
     id: 'moto_spurgasse',
     category: 'A',
     vehicle: 'moto',
-    icon: '🛤️',
+    icon: 'narrowLane',
     title: { de: 'Spurgasse (Langsamfahren)', es: 'Spurgasse (circuito lento)', fr: 'Couloir étroit (conduite lente)', it: 'Corridoio stretto (guida lenta)', en: 'Narrow lane (slow riding)' },
     scene: spurgasseScene(),
     steps: [
@@ -1244,7 +1244,7 @@ export const MANEUVERS = [
     id: 'moto_slalom',
     category: 'A',
     vehicle: 'moto',
-    icon: '〰️',
+    icon: 'wave',
     title: { de: 'Slalom', es: 'Slalom', fr: 'Slalom', it: 'Slalom', en: 'Slalom' },
     scene: slalomScene(),
     steps: [
@@ -1306,7 +1306,7 @@ export const MANEUVERS = [
     id: 'moto_achterfahren',
     category: 'A',
     vehicle: 'moto',
-    icon: '8️⃣',
+    icon: 'figureEight',
     title: { de: 'Achterfahren', es: 'El ocho (Achterfahren)', fr: 'Le huit', it: 'L’otto', en: 'Figure of eight' },
     scene: achterScene(),
     steps: [
@@ -1376,7 +1376,7 @@ export const MANEUVERS = [
     id: 'moto_vollbremsung',
     category: 'A',
     vehicle: 'moto',
-    icon: '🛑',
+    icon: 'emergencyBrake',
     title: { de: 'Vollbremsung', es: 'Frenada de emergencia', fr: 'Freinage d’urgence', it: 'Frenata d’emergenza', en: 'Emergency braking' },
     scene: motoBremsScene(),
     steps: [
@@ -1431,7 +1431,7 @@ export const MANEUVERS = [
     id: 'moto_ausweichen',
     category: 'A',
     vehicle: 'moto',
-    icon: '↪️',
+    icon: 'swerve',
     title: { de: 'Ausweichen', es: 'Esquivar un obstáculo', fr: 'Évitement', it: 'Evitamento', en: 'Swerving' },
     scene: ausweichenScene(),
     steps: [
