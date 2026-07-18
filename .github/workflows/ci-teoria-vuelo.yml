@@ -1,0 +1,31 @@
+name: CI teoria-vuelo
+
+# Red de seguridad pre-merge: main despliega directo a producción, así que
+# cada PR que toque teoria-vuelo debe compilar y pasar la validación de
+# i18n/contenido antes de poder fusionarse.
+on:
+  pull_request:
+    paths: ['teoria-vuelo/**']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: teoria-vuelo/package-lock.json
+      - run: npm ci
+        working-directory: teoria-vuelo
+      - name: Validar i18n y contenido
+        run: npm run check:i18n
+        working-directory: teoria-vuelo
+      - name: Build
+        run: npm run build
+        working-directory: teoria-vuelo
