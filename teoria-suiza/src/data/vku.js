@@ -128,7 +128,7 @@ export const VKU_BLOCKS = [
   },
   {
     id: 'taktik',
-    icon: 'brain',
+    icon: 'thoughtBubble',
     title: {
       de: 'Verkehrstaktik – der eigene Zustand',
       es: 'Táctica: tu propio estado',

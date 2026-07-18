@@ -6,7 +6,7 @@ import { VKU_BLOCKS, VKU_CARDS, VKU_QUESTIONS, VKU_LINKS } from '../data/vku'
 import QuestionCard from './QuestionCard'
 import Confetti from './Confetti'
 import {
-  IconBrain,
+  IconThoughtBubble,
   IconBookOpen,
   IconCards,
   IconQuestionBubble,
@@ -309,7 +309,7 @@ export default function Vku() {
   return (
     <div className="mx-auto max-w-xl space-y-4 px-4 py-5">
       <div className="flex items-start gap-2 rounded-2xl bg-red-50 dark:bg-red-900/30 p-4 text-sm leading-relaxed text-red-900 dark:text-red-200 ring-1 ring-red-200 dark:ring-red-800">
-        <IconBrain className="mt-0.5 h-4 w-4 shrink-0" /> {t('vkuIntro', lang)}
+        <IconThoughtBubble className="mt-0.5 h-4 w-4 shrink-0" /> {t('vkuIntro', lang)}
       </div>
       <div className="space-y-3">
         <HubCard onClick={() => setView('blocks')} icon={<IconBookOpen className="h-8 w-8" />} label={t('vkuBlocksTitle', lang)} sub={t('vkuBlocksSub', lang)} />

@@ -123,16 +123,17 @@ export function IconWarningSign({ className }) {
   )
 }
 
-export function IconBrain({ className }) {
+export function IconThoughtBubble({ className }) {
   return (
     <Svg className={className}>
       <path
-        d="M8 5a3.2 3.2 0 0 0-3 4.3A3 3 0 0 0 6 15h1.5M16 5a3.2 3.2 0 0 1 3 4.3A3 3 0 0 1 18 15h-1.5M8 5c0-1.7 1.8-3 4-3s4 1.3 4 3M8 5v10a4 4 0 0 0 4 4 4 4 0 0 0 4-4V5"
+        d="M8 5.2a4 4 0 0 1 6.7-1.6 3.6 3.6 0 0 1 4.6 3.9A3.8 3.8 0 0 1 17 15H9a4.5 4.5 0 0 1-1-8.8Z"
         stroke="currentColor"
         strokeWidth="1.6"
-        strokeLinecap="round"
         strokeLinejoin="round"
       />
+      <circle cx="8.5" cy="18" r="1.3" fill="currentColor" />
+      <circle cx="6" cy="20.5" r="0.8" fill="currentColor" />
     </Svg>
   )
 }
@@ -942,7 +943,7 @@ const ICON_MAP = {
   scale: IconScale,
   idCard: IconIdCard,
   warningSign: IconWarningSign,
-  brain: IconBrain,
+  thoughtBubble: IconThoughtBubble,
   graduationCap: IconGraduationCap,
   ambulance: IconAmbulance,
 }

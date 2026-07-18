@@ -11,7 +11,7 @@ import {
   IconStopwatch,
   IconRetry,
   IconWarningSign,
-  IconBrain,
+  IconThoughtBubble,
   IconSteeringWheel,
   IconTarget,
   IconIdCard,
@@ -215,7 +215,7 @@ export default function Home({ category, setCategory, navigate, profile }) {
         />
 
         <GroupLabel>{t('groupPractical', lang)}</GroupLabel>
-        <MenuButton onClick={() => navigate('vku')} icon={<IconBrain className="h-6 w-6" />} label={t('menuVku', lang)} sub={t('menuVkuSub', lang)} tint="green" />
+        <MenuButton onClick={() => navigate('vku')} icon={<IconThoughtBubble className="h-6 w-6" />} label={t('menuVku', lang)} sub={t('menuVkuSub', lang)} tint="green" />
         <MenuButton
           onClick={() => navigate('maneuvers')}
           icon={<IconSteeringWheel className="h-6 w-6" />}
