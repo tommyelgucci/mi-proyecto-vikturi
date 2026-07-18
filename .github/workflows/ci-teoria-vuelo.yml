@@ -26,6 +26,9 @@ jobs:
       - name: Validar i18n y contenido
         run: npm run check:i18n
         working-directory: teoria-vuelo
+      - name: Tests unitarios (FlightEngine, MissionTracker)
+        run: npm test
+        working-directory: teoria-vuelo
       - name: Build
         run: npm run build
         working-directory: teoria-vuelo
