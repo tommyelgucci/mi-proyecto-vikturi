@@ -1,4 +1,6 @@
 import { useLang, t, LANGS } from '../i18n'
+import { IconSwiss, IconSun, IconMoon } from './Icons'
+import { CarIcon, MotoIcon } from './CategoryIcons'
 
 export default function Header({ onBack, title, category, theme, onToggleTheme, profile, onProfiles }) {
   const { lang, setLang } = useLang()
@@ -15,15 +17,14 @@ export default function Header({ onBack, title, category, theme, onToggleTheme, 
             ←
           </button>
         ) : (
-          <span className="text-xl" aria-hidden>
-            🇨🇭
-          </span>
+          <IconSwiss className="h-5 w-5" aria-hidden />
         )}
         <h1 className="min-w-0 flex-1 truncate text-lg font-bold tracking-tight">
           {title || t('appName', lang)}
           {category && (
-            <span className="ml-2 rounded-full bg-white/20 px-2 py-0.5 text-xs font-semibold align-middle backdrop-blur-sm">
-              {category === 'B' ? '🚗 B' : '🏍️ A'}
+            <span className="ml-2 inline-flex items-center gap-1 rounded-full bg-white/20 px-2 py-0.5 text-xs font-semibold align-middle backdrop-blur-sm">
+              {category === 'B' ? <CarIcon className="h-3.5 w-auto" /> : <MotoIcon className="h-3.5 w-auto" />}
+              {category === 'B' ? 'B' : 'A'}
             </span>
           )}
         </h1>
@@ -42,7 +43,7 @@ export default function Header({ onBack, title, category, theme, onToggleTheme, 
             aria-label={t('toggleTheme', lang)}
             className="rounded-full p-1.5 text-lg leading-none transition-colors hover:bg-white/15 active:bg-white/25"
           >
-            {theme === 'dark' ? '☀️' : '🌙'}
+            {theme === 'dark' ? <IconSun className="h-[18px] w-[18px]" /> : <IconMoon className="h-[18px] w-[18px]" />}
           </button>
         )}
         <div className="relative">

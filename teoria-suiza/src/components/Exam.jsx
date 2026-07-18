@@ -4,6 +4,7 @@ import Confetti from './Confetti'
 import { storage } from '../storage'
 import { examConfig, shuffle, isAnswerCorrect } from '../utils'
 import QuestionCard from './QuestionCard'
+import { IconStopwatch, IconFlagMark, IconGrid, IconHourglass, IconCheck, IconConfetti, IconSadFace, IconAlarm, IconCross } from './Icons'
 
 function formatTime(sec) {
   const m = Math.floor(sec / 60)
@@ -114,7 +115,7 @@ export default function Exam({ category, onExit }) {
     return (
       <div className="mx-auto max-w-xl space-y-4 px-4 py-6">
         <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-gray-200 dark:bg-gray-800 dark:ring-gray-700">
-          <p className="text-3xl">⏱️</p>
+          <IconStopwatch className="h-8 w-8 text-swiss" />
           <h2 className="mt-2 text-xl font-bold text-gray-900 dark:text-gray-100">{t('examIntroTitle', lang)}</h2>
           <ul className="mt-3 space-y-2 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
             <li>• {t('examIntro1', lang)}</li>
@@ -159,23 +160,23 @@ export default function Exam({ category, onExit }) {
           <button
             onClick={toggleFlag}
             aria-label={t('flagQuestion', lang)}
-            className={`rounded-lg px-2.5 py-1 text-base ring-1 transition-colors ${
+            className={`rounded-lg px-2.5 py-1.5 ring-1 transition-colors ${
               isFlagged
-                ? 'bg-amber-100 ring-amber-400 dark:bg-amber-900/40 dark:ring-amber-500'
-                : 'bg-white ring-gray-300 opacity-60 dark:bg-gray-800 dark:ring-gray-600'
+                ? 'bg-amber-100 text-amber-600 ring-amber-400 dark:bg-amber-900/40 dark:text-amber-300 dark:ring-amber-500'
+                : 'bg-white text-gray-500 ring-gray-300 opacity-60 dark:bg-gray-800 dark:text-gray-400 dark:ring-gray-600'
             }`}
           >
-            ⚑
+            <IconFlagMark className="h-4 w-4" />
           </button>
           <button
             onClick={() => setShowNav(true)}
             aria-label={t('navigator', lang)}
-            className="rounded-lg bg-white px-2.5 py-1 text-base ring-1 ring-gray-300 dark:bg-gray-800 dark:ring-gray-600"
+            className="rounded-lg bg-white px-2.5 py-1.5 text-gray-600 ring-1 ring-gray-300 dark:bg-gray-800 dark:text-gray-300 dark:ring-gray-600"
           >
-            ▦
+            <IconGrid className="h-4 w-4" />
           </button>
-          <span className={`font-mono font-bold ${timeLeft < 60 ? 'text-red-600' : 'text-gray-700 dark:text-gray-300'}`}>
-            ⏳ {formatTime(timeLeft)}
+          <span className={`flex items-center gap-1 font-mono font-bold ${timeLeft < 60 ? 'text-red-600' : 'text-gray-700 dark:text-gray-300'}`}>
+            <IconHourglass className="h-4 w-4" /> {formatTime(timeLeft)}
           </span>
         </div>
         <div className="h-1.5 overflow-hidden rounded-full bg-gray-200 dark:bg-gray-700">
@@ -214,7 +215,12 @@ export default function Exam({ category, onExit }) {
 
         <p className="text-center text-xs text-gray-500 dark:text-gray-400">
           {answeredCount}/{questions.length} {t('answered', lang)}
-          {flags.length > 0 && <span> · ⚑ {flags.length}</span>}
+          {flags.length > 0 && (
+            <span className="inline-flex items-center gap-0.5">
+              {' '}
+              · <IconFlagMark className="h-3 w-3" /> {flags.length}
+            </span>
+          )}
           <button onClick={() => setShowSummary(true)} className="ml-2 font-semibold text-swiss underline">
             {t('submitExam', lang)}
           </button>
@@ -250,15 +256,23 @@ export default function Exam({ category, onExit }) {
                     }`}
                   >
                     {i + 1}
-                    {flagged && <span className="absolute -right-0.5 -top-1.5 text-[9px]">⚑</span>}
+                    {flagged && (
+                      <IconFlagMark className="absolute -right-1 -top-1.5 h-2.5 w-2.5 text-amber-500" />
+                    )}
                   </button>
                 )
               })}
             </div>
             <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-gray-500 dark:text-gray-400">
-              <span>🟩 {t('answered', lang)}</span>
-              <span>⬜ {t('unanswered', lang)}</span>
-              <span>⚑ {t('flagged', lang)}</span>
+              <span className="inline-flex items-center gap-1">
+                <span className="h-2.5 w-2.5 rounded-sm bg-green-400" /> {t('answered', lang)}
+              </span>
+              <span className="inline-flex items-center gap-1">
+                <span className="h-2.5 w-2.5 rounded-sm bg-gray-200 ring-1 ring-gray-300 dark:bg-gray-600 dark:ring-gray-500" /> {t('unanswered', lang)}
+              </span>
+              <span className="inline-flex items-center gap-1">
+                <IconFlagMark className="h-3 w-3 text-amber-500" /> {t('flagged', lang)}
+              </span>
             </div>
           </Overlay>
         )}
@@ -267,14 +281,14 @@ export default function Exam({ category, onExit }) {
           <Overlay onClose={() => setShowSummary(false)}>
             <p className="text-lg font-bold text-gray-900 dark:text-gray-100">{t('submitSummaryTitle', lang)}</p>
             <div className="mt-3 space-y-1.5 text-sm text-gray-700 dark:text-gray-300">
-              <p>
-                ✅ {answeredCount} {t('answered', lang)}
+              <p className="flex items-center gap-1.5">
+                <IconCheck className="h-4 w-4 text-emerald-500" /> {answeredCount} {t('answered', lang)}
               </p>
-              <p className={questions.length - answeredCount > 0 ? 'font-semibold text-red-600' : ''}>
-                ⬜ {questions.length - answeredCount} {t('unanswered', lang)}
+              <p className={`flex items-center gap-1.5 ${questions.length - answeredCount > 0 ? 'font-semibold text-red-600' : ''}`}>
+                <span className="h-3 w-3 rounded-sm ring-1 ring-gray-400" /> {questions.length - answeredCount} {t('unanswered', lang)}
               </p>
-              <p>
-                ⚑ {flags.length} {t('flagged', lang)}
+              <p className="flex items-center gap-1.5">
+                <IconFlagMark className="h-4 w-4 text-amber-500" /> {flags.length} {t('flagged', lang)}
               </p>
             </div>
             <div className="mt-4 flex gap-2">
@@ -308,8 +322,14 @@ export default function Exam({ category, onExit }) {
             : 'bg-red-50 ring-red-200 dark:bg-red-900/20 dark:ring-red-800'
         }`}
       >
-        {timedOut && <p className="mb-1 text-sm font-semibold text-orange-600">⏰ {t('timeUp', lang)}</p>}
-        <p className="text-5xl">{result.passed ? '🎉' : '😓'}</p>
+        {timedOut && (
+          <p className="mb-1 flex items-center justify-center gap-1 text-sm font-semibold text-orange-600">
+            <IconAlarm className="h-4 w-4" /> {t('timeUp', lang)}
+          </p>
+        )}
+        <div className={`flex justify-center ${result.passed ? 'text-green-600' : 'text-red-500'}`}>
+          {result.passed ? <IconConfetti className="h-14 w-14" /> : <IconSadFace className="h-14 w-14" />}
+        </div>
         <h2 className={`mt-2 text-2xl font-bold ${result.passed ? 'text-green-700 dark:text-green-400' : 'text-red-700 dark:text-red-400'}`}>
           {result.passed ? t('passed', lang) : t('failed', lang)}
         </h2>
@@ -338,8 +358,8 @@ export default function Exam({ category, onExit }) {
 
       {result.wrongQuestions.length > 0 && (
         <div className="space-y-4 pt-2">
-          <h3 className="font-bold text-gray-900 dark:text-gray-100">
-            ❌ {t('reviewErrors', lang)} ({result.wrongQuestions.length})
+          <h3 className="flex items-center gap-1.5 font-bold text-gray-900 dark:text-gray-100">
+            <IconCross className="h-5 w-5 text-red-500" /> {t('reviewErrors', lang)} ({result.wrongQuestions.length})
           </h3>
           {result.wrongQuestions.map((q) => (
             <QuestionCard key={q.id} question={q} selected={answers[q.id] || []} onToggle={() => {}} revealed />

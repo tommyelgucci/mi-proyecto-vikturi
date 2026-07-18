@@ -1,0 +1,20 @@
+{
+  "id": "weather-basics",
+  "icon": "cloud-sun",
+  "order": 3,
+  "status": "available",
+  "lessons": [
+    { "id": "wind" },
+    { "id": "clouds-visibility" },
+    { "id": "dangerous-weather" }
+  ],
+  "quiz": {
+    "passScore": 3,
+    "questions": [
+      { "id": "q1", "correct": 0 },
+      { "id": "q2", "correct": 0 },
+      { "id": "q3", "correct": 0 },
+      { "id": "q4", "correct": 0 }
+    ]
+  }
+}

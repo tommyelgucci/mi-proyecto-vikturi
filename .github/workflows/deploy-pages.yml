@@ -1,0 +1,60 @@
+name: Deploy apps a GitHub Pages
+
+# Publica ambas apps en el único sitio de Pages del repo:
+#   https://<usuario>.github.io/<repo>/               → teoria-suiza (URL sin cambios)
+#   https://<usuario>.github.io/<repo>/teoria-vuelo/  → teoria-vuelo (AeroLearn)
+on:
+  push:
+    branches: [main]
+    paths: ['teoria-suiza/**', 'teoria-vuelo/**']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            teoria-suiza/package-lock.json
+            teoria-vuelo/package-lock.json
+
+      - name: Build teoria-suiza
+        run: npm ci && npm run build
+        working-directory: teoria-suiza
+
+      - name: Build teoria-vuelo
+        run: npm ci && npm run build
+        working-directory: teoria-vuelo
+
+      - name: Ensamblar sitio (suiza en raíz, vuelo en /teoria-vuelo/)
+        run: |
+          mkdir -p site/teoria-vuelo
+          cp -r teoria-suiza/dist/. site/
+          cp -r teoria-vuelo/dist/. site/teoria-vuelo/
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

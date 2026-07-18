@@ -1,0 +1,66 @@
+{
+  "title": "Mini simulador",
+  "description": "Um voo livre de 5 minutos para praticar o que aprendeu: decole, suba, curve e pouse.",
+  "briefing": {
+    "title": "Pronto para decolar?",
+    "body": "Aplique potência máxima para acelerar na pista. Acima de 20 m/s, puxe suavemente (S) para levantar o nariz. Mantenha a velocidade — se voar devagar demais, a asa vai estolar.",
+    "start": "Iniciar voo"
+  },
+  "hud": {
+    "speed": "Velocidade",
+    "altitude": "Altitude",
+    "heading": "Proa",
+    "throttle": "Potência",
+    "timeLeft": "Tempo restante",
+    "unitSpeed": "m/s",
+    "unitAltitude": "m"
+  },
+  "stallWarning": "ESTOL — abaixe o nariz e aplique potência",
+  "controls": {
+    "title": "Controles",
+    "pitch": "Arfagem (nariz para baixo / cima)",
+    "roll": "Rolagem (inclinar esquerda / direita)",
+    "yaw": "Guinada (leme esquerda / direita)",
+    "throttle": "Potência (menos / mais)"
+  },
+  "missions": {
+    "title": "Escolha uma missão",
+    "locked": "Desbloqueia ao passar em “{{module}}”",
+    "completed": "Concluída",
+    "backToList": "Missões",
+    "success": {
+      "title": "Missão cumprida!",
+      "body": "Bom voo. Escolha a próxima missão ou repita esta."
+    },
+    "free-flight": {
+      "title": "Voo livre",
+      "objective": "5 minutos de céu aberto — pratique o que quiser."
+    },
+    "first-takeoff": {
+      "title": "Primeira decolagem",
+      "objective": "Decole e suba até 100 m."
+    },
+    "heading-turn": {
+      "title": "Curva para a proa",
+      "objective": "Acima de 40 m, mantenha a proa 270° por 3 segundos."
+    },
+    "safe-landing": {
+      "title": "Pouso seguro",
+      "objective": "Suba acima de 60 m e pouse suavemente de volta."
+    }
+  },
+  "timeUp": {
+    "title": "Sessão de voo concluída",
+    "body": "Seus 5 minutos acabaram. Revise um módulo de teoria ou inicie um novo voo."
+  },
+  "crash": {
+    "title": "Pouso brusco!",
+    "body": "Você tocou o solo com muita força ou muito inclinado. Nivele as asas e desça suavemente antes de tocar a pista."
+  },
+  "stats": {
+    "maxAltitude": "Altitude máxima: {{value}} m",
+    "distance": "Distância percorrida: {{value}} km"
+  },
+  "restart": "Voar de novo",
+  "exit": "Sair do simulador"
+}

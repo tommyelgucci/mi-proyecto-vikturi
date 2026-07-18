@@ -2,7 +2,7 @@
   {
     "id": "b_laengseinparken",
     "category": "B",
-    "icon": "🅿️",
+    "icon": "parkingP",
     "title": {
       "de": "Längseinparken (Parallelparkieren)",
       "es": "Aparcar en paralelo (Längseinparken)",
@@ -51,7 +51,7 @@
   {
     "id": "b_rueckwaertsfahren",
     "category": "B",
-    "icon": "↩️",
+    "icon": "reverseArrow",
     "title": {
       "de": "Rückwärtsfahren (längere Strecke)",
       "es": "Marcha atrás en tramo largo",
@@ -93,7 +93,7 @@
   {
     "id": "b_rechtsvortritt",
     "category": "B",
-    "icon": "➡️",
+    "icon": "priorityRight",
     "title": {
       "de": "Rechtsvortritt",
       "es": "Prioridad de la derecha",
@@ -135,7 +135,7 @@
   {
     "id": "b_kreisverkehr",
     "category": "B",
-    "icon": "🔄",
+    "icon": "roundaboutWarn",
     "title": {
       "de": "Kreisverkehr",
       "es": "Rotondas",
@@ -177,7 +177,7 @@
   {
     "id": "b_sicherheitsblick",
     "category": "B",
-    "icon": "👀",
+    "icon": "eye",
     "title": {
       "de": "Sicherheitsblick (toter Winkel)",
       "es": "Mirada de seguridad (ángulo muerto)",
@@ -219,7 +219,7 @@
   {
     "id": "b_autobahn",
     "category": "B",
-    "icon": "🛣️",
+    "icon": "highway",
     "title": {
       "de": "Autobahnfahren",
       "es": "Conducción en autopista",
@@ -261,7 +261,7 @@
   {
     "id": "b_pruefungstag",
     "category": "B",
-    "icon": "📋",
+    "icon": "checklist",
     "title": {
       "de": "Am Prüfungstag (Auto)",
       "es": "El día del examen (coche)",
@@ -303,7 +303,7 @@
   {
     "id": "a_spurgasse",
     "category": "A",
-    "icon": "🛤️",
+    "icon": "narrowLane",
     "title": {
       "de": "Spurgasse (Langsamfahren)",
       "es": "Spurgasse (circuito lento)",
@@ -345,7 +345,7 @@
   {
     "id": "a_slalom",
     "category": "A",
-    "icon": "〰️",
+    "icon": "wave",
     "title": {
       "de": "Slalom",
       "es": "Slalom",
@@ -387,7 +387,7 @@
   {
     "id": "a_vollbremsung",
     "category": "A",
-    "icon": "🛑",
+    "icon": "emergencyBrake",
     "title": {
       "de": "Vollbremsung",
       "es": "Frenada de emergencia",
@@ -429,7 +429,7 @@
   {
     "id": "a_achterfahren",
     "category": "A",
-    "icon": "8️⃣",
+    "icon": "figureEight",
     "title": {
       "de": "Achterfahren",
       "es": "El ocho (Achterfahren)",
@@ -471,7 +471,7 @@
   {
     "id": "a_ausruestung",
     "category": "A",
-    "icon": "🪖",
+    "icon": "helmet",
     "title": {
       "de": "Ausrüstung & Sitzposition",
       "es": "Equipamiento y posición",
@@ -513,7 +513,7 @@
   {
     "id": "a_pruefungstag",
     "category": "A",
-    "icon": "📋",
+    "icon": "checklist",
     "title": {
       "de": "Am Prüfungstag (Motorrad)",
       "es": "El día del examen (moto)",
@@ -555,7 +555,7 @@
   {
     "id": "wegweiser_farben",
     "category": "both",
-    "icon": "🚦",
+    "icon": "signpost",
     "title": {
       "de": "Wegweiser-Farben",
       "es": "Colores de los indicadores de dirección",
@@ -597,7 +597,7 @@
   {
     "id": "kommandos_experte",
     "category": "both",
-    "icon": "🗣️",
+    "icon": "megaphone",
     "title": {
       "de": "Kommandos des Experten",
       "es": "Órdenes del examinador (glosario)",

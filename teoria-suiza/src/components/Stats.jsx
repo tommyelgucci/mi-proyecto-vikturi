@@ -6,18 +6,35 @@ import { TOPICS } from '../data/topics'
 import { FIRSTAID_CARDS } from '../data/firstaid'
 import { SIGNS } from '../data/signs'
 import ProgressRing from './ProgressRing'
+import { CarIcon, MotoIcon } from './CategoryIcons'
+import {
+  IconFlame,
+  IconCalendar,
+  IconPencil,
+  IconStack,
+  IconStopwatch,
+  IconCheck,
+  IconCross,
+  IconCards,
+  IconFirstAid,
+  IconWarningSign,
+  IconSave,
+  IconDownload,
+  IconUpload,
+  IconCopy,
+} from './Icons'
 
-function StatTile({ emoji, value, label, ring }) {
+function StatTile({ icon, value, label, ring }) {
   return (
     <div className="flex-1 rounded-2xl bg-white dark:bg-gray-800 p-3 text-center shadow-card ring-1 ring-gray-200/70 dark:ring-gray-700">
       {ring != null ? (
         <div className="flex justify-center">
           <ProgressRing value={ring} size={52} stroke={5} color="#da291c">
-            <span className="text-sm">{emoji}</span>
+            {icon}
           </ProgressRing>
         </div>
       ) : (
-        <div className="text-2xl">{emoji}</div>
+        <div className="flex justify-center">{icon}</div>
       )}
       <div className="mt-0.5 text-xl font-bold text-gray-900 dark:text-gray-100">{value}</div>
       <div className="text-[11px] leading-tight text-gray-500 dark:text-gray-400">{label}</div>
@@ -125,21 +142,23 @@ function Backup() {
 
   return (
     <div className="rounded-2xl bg-white dark:bg-gray-800 p-4 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700">
-      <h3 className="font-bold text-gray-900 dark:text-gray-100">💾 {t('backupTitle', lang)}</h3>
+      <h3 className="flex items-center gap-1.5 font-bold text-gray-900 dark:text-gray-100">
+        <IconSave className="h-5 w-5" /> {t('backupTitle', lang)}
+      </h3>
       <p className="mb-3 text-xs text-gray-500 dark:text-gray-400">{t('backupHint', lang)}</p>
       <div className="flex gap-2">
         <button
           onClick={doExport}
-          className="flex-1 rounded-xl bg-swiss py-2.5 text-sm font-semibold text-white hover:bg-swiss-dark"
+          className="flex flex-1 items-center justify-center gap-1.5 rounded-xl bg-swiss py-2.5 text-sm font-semibold text-white hover:bg-swiss-dark"
         >
-          ⬇️ {t('exportBtn', lang)}
+          <IconDownload className="h-4 w-4" /> {t('exportBtn', lang)}
         </button>
         <button
           onClick={doImport}
           disabled={!text.trim()}
-          className="flex-1 rounded-xl bg-white dark:bg-gray-700 py-2.5 text-sm font-semibold text-gray-700 dark:text-gray-200 ring-1 ring-gray-300 dark:ring-gray-600 disabled:opacity-40"
+          className="flex flex-1 items-center justify-center gap-1.5 rounded-xl bg-white dark:bg-gray-700 py-2.5 text-sm font-semibold text-gray-700 dark:text-gray-200 ring-1 ring-gray-300 dark:ring-gray-600 disabled:opacity-40"
         >
-          ⬆️ {t('importBtn', lang)}
+          <IconUpload className="h-4 w-4" /> {t('importBtn', lang)}
         </button>
       </div>
       <textarea
@@ -155,8 +174,8 @@ function Backup() {
       />
       <div className="mt-1 flex items-center justify-between">
         {text.trim() ? (
-          <button onClick={doCopy} className="text-xs font-semibold text-swiss underline">
-            📋 {t('copyBtn', lang)}
+          <button onClick={doCopy} className="inline-flex items-center gap-1 text-xs font-semibold text-swiss underline">
+            <IconCopy className="h-3.5 w-3.5" /> {t('copyBtn', lang)}
           </button>
         ) : (
           <span />
@@ -180,31 +199,45 @@ export default function Stats() {
   return (
     <div className="mx-auto max-w-xl space-y-5 px-4 py-4">
       <div className="flex gap-3">
-        <StatTile emoji="🔥" value={streak} label={t('streakDays', lang)} ring={Math.min(100, storage.getDailyCount() * 5)} />
-        <StatTile emoji="📅" value={daysStudied} label={t('daysStudied', lang)} />
-        <StatTile emoji="✍️" value={answered} label={t('answeredTotal', lang)} />
+        <StatTile
+          icon={<IconFlame className="h-3.5 w-3.5 text-swiss" />}
+          value={streak}
+          label={t('streakDays', lang)}
+          ring={Math.min(100, storage.getDailyCount() * 5)}
+        />
+        <StatTile icon={<IconCalendar className="h-6 w-6 text-gray-700 dark:text-gray-200" />} value={daysStudied} label={t('daysStudied', lang)} />
+        <StatTile icon={<IconPencil className="h-6 w-6 text-gray-700 dark:text-gray-200" />} value={answered} label={t('answeredTotal', lang)} />
       </div>
 
       <div className="rounded-2xl bg-white dark:bg-gray-800 p-4 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700">
-        <h3 className="font-bold text-gray-900 dark:text-gray-100">📚 {t('byTopic', lang)}</h3>
+        <h3 className="flex items-center gap-1.5 font-bold text-gray-900 dark:text-gray-100">
+          <IconStack className="h-5 w-5" /> {t('byTopic', lang)}
+        </h3>
         <p className="mb-3 text-xs text-gray-400">{t('byTopicHint', lang)}</p>
         <TopicBars />
       </div>
 
       <div className="rounded-2xl bg-white dark:bg-gray-800 p-4 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700">
-        <h3 className="mb-3 font-bold text-gray-900 dark:text-gray-100">⏱️ {t('examHistoryTitle', lang)}</h3>
+        <h3 className="mb-3 flex items-center gap-1.5 font-bold text-gray-900 dark:text-gray-100">
+          <IconStopwatch className="h-5 w-5" /> {t('examHistoryTitle', lang)}
+        </h3>
         {history.length === 0 ? (
           <p className="text-sm text-gray-500 dark:text-gray-400">{t('noStatsYet', lang)}</p>
         ) : (
           <ul className="space-y-2">
             {history.map((e, i) => (
               <li key={i} className="flex items-center justify-between text-sm">
-                <span className="text-gray-600 dark:text-gray-300">
+                <span className="inline-flex items-center gap-1 text-gray-600 dark:text-gray-300">
                   {new Date(e.date).toLocaleDateString(dateLocale(lang))} ·{' '}
-                  {e.category === 'B' ? '🚗' : '🏍️'}
+                  {e.category === 'B' ? <CarIcon className="h-3.5 w-auto" /> : <MotoIcon className="h-3.5 w-auto" />}
                 </span>
-                <span className="font-medium text-gray-800 dark:text-gray-200">
-                  {e.penalty}/{e.maxPenalty} {t('points', lang)} {e.passed ? '✅' : '❌'}
+                <span className="inline-flex items-center gap-1 font-medium text-gray-800 dark:text-gray-200">
+                  {e.penalty}/{e.maxPenalty} {t('points', lang)}{' '}
+                  {e.passed ? (
+                    <IconCheck className="h-3.5 w-3.5 text-emerald-500" />
+                  ) : (
+                    <IconCross className="h-3.5 w-3.5 text-red-500" />
+                  )}
                 </span>
               </li>
             ))}
@@ -213,16 +246,22 @@ export default function Stats() {
       </div>
 
       <div className="rounded-2xl bg-white dark:bg-gray-800 p-4 shadow-sm ring-1 ring-gray-200 dark:ring-gray-700">
-        <h3 className="mb-3 font-bold text-gray-900 dark:text-gray-100">🃏 {t('cardsProgress', lang)}</h3>
+        <h3 className="mb-3 flex items-center gap-1.5 font-bold text-gray-900 dark:text-gray-100">
+          <IconCards className="h-5 w-5" /> {t('cardsProgress', lang)}
+        </h3>
         <ul className="space-y-1.5 text-sm text-gray-700 dark:text-gray-300">
           <li className="flex justify-between">
-            <span>⛑️ Nothelfer</span>
+            <span className="inline-flex items-center gap-1.5">
+              <IconFirstAid className="h-4 w-4" /> Nothelfer
+            </span>
             <span>
               {fa.inReview}/{FIRSTAID_CARDS.length} · {fa.mastered} {t('mastered', lang)}
             </span>
           </li>
           <li className="flex justify-between">
-            <span>🚸 {t('menuSigns', lang)}</span>
+            <span className="inline-flex items-center gap-1.5">
+              <IconWarningSign className="h-4 w-4" /> {t('menuSigns', lang)}
+            </span>
             <span>
               {sg.inReview}/{SIGNS.length} · {sg.mastered} {t('mastered', lang)}
             </span>

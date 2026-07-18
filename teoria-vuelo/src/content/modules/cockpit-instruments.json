@@ -1,0 +1,20 @@
+{
+  "id": "cockpit-instruments",
+  "icon": "gauge",
+  "order": 2,
+  "status": "available",
+  "lessons": [
+    { "id": "altimeter" },
+    { "id": "speed-horizon" },
+    { "id": "compass-heading" }
+  ],
+  "quiz": {
+    "passScore": 3,
+    "questions": [
+      { "id": "q1", "correct": 0 },
+      { "id": "q2", "correct": 0 },
+      { "id": "q3", "correct": 0 },
+      { "id": "q4", "correct": 0 }
+    ]
+  }
+}

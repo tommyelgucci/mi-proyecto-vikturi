@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import { t } from '../i18n'
 import { storage } from '../storage'
+import { IconWarningSign } from './Icons'
 
 // Red de seguridad: si cualquier componente lanza durante el render (p. ej.
 // un dato corrupto en localStorage), esto evita una pantalla en blanco total
@@ -35,7 +36,7 @@ export default class ErrorBoundary extends Component {
 
     return (
       <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-gray-100 px-6 text-center dark:bg-gray-950">
-        <span className="text-5xl">⚠️</span>
+        <IconWarningSign className="h-12 w-12 text-amber-500" />
         <h1 className="text-xl font-bold text-gray-900 dark:text-gray-100">{t('errorTitle', lang)}</h1>
         <p className="max-w-sm text-sm leading-relaxed text-gray-600 dark:text-gray-300">{t('errorBody', lang)}</p>
         <div className="mt-2 flex w-full max-w-xs flex-col gap-2">

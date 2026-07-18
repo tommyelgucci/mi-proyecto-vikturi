@@ -5,7 +5,7 @@
 export const FIRSTAID_TOPICS = [
   {
     id: 'notrufnummern',
-    icon: '📞',
+    icon: 'phone',
     title: {
       de: 'Notrufnummern der Schweiz',
       es: 'Números de emergencia en Suiza',
@@ -55,7 +55,7 @@ export const FIRSTAID_TOPICS = [
   },
   {
     id: 'unfallstelle',
-    icon: '⚠️',
+    icon: 'warningSign',
     title: {
       de: 'Unfallstelle sichern',
       es: 'Asegurar el lugar del accidente',
@@ -110,7 +110,7 @@ export const FIRSTAID_TOPICS = [
   },
   {
     id: 'gabi',
-    icon: '🩺',
+    icon: 'stethoscope',
     title: {
       de: 'GABI-Schema: Patientenbeurteilung',
       es: 'Protocolo GABI: evaluar al herido',
@@ -158,7 +158,7 @@ export const FIRSTAID_TOPICS = [
   },
   {
     id: 'seitenlage',
-    icon: '🛌',
+    icon: 'recoveryPosition',
     title: {
       de: 'Stabile Seitenlage',
       es: 'Posición lateral de seguridad',
@@ -206,7 +206,7 @@ export const FIRSTAID_TOPICS = [
   },
   {
     id: 'cpr',
-    icon: '❤️',
+    icon: 'heartPulse',
     title: {
       de: 'Reanimation (BLS) und AED',
       es: 'RCP (BLS) y desfibrilador (DEA)',
@@ -261,7 +261,7 @@ export const FIRSTAID_TOPICS = [
   },
   {
     id: 'blutung',
-    icon: '🩸',
+    icon: 'bloodDrop',
     title: {
       de: 'Starke Blutung und Schock',
       es: 'Hemorragia fuerte y shock',
@@ -309,7 +309,7 @@ export const FIRSTAID_TOPICS = [
   },
   {
     id: 'notfaelle',
-    icon: '🚑',
+    icon: 'ambulance',
     title: {
       de: 'Herzinfarkt, Hirnschlag, Verbrennungen',
       es: 'Infarto, ictus y quemaduras',
@@ -350,7 +350,7 @@ export const FIRSTAID_TOPICS = [
   },
   {
     id: 'recht',
-    icon: '⚖️',
+    icon: 'scale',
     title: {
       de: 'Pflichten & Nothelferausweis',
       es: 'Obligaciones y certificado Nothelfer',

@@ -4,6 +4,7 @@ import { TOPICS } from '../data/topics'
 import { storage } from '../storage'
 import { questionsForCategory, shuffle, isAnswerCorrect } from '../utils'
 import QuestionCard from './QuestionCard'
+import { IconCheck, IconCross } from './Icons'
 
 export default function Study({ category, initialTopic }) {
   const { lang } = useLang()
@@ -101,11 +102,19 @@ export default function Study({ category, initialTopic }) {
 
           {revealed && (
             <p
-              className={`text-center text-lg font-bold ${
+              className={`flex items-center justify-center gap-1.5 text-center text-lg font-bold ${
                 isAnswerCorrect(question, selected) ? 'text-green-600' : 'text-red-600'
               }`}
             >
-              {isAnswerCorrect(question, selected) ? `✅ ${t('correct', lang)}` : `❌ ${t('wrong', lang)}`}
+              {isAnswerCorrect(question, selected) ? (
+                <>
+                  <IconCheck className="h-5 w-5" /> {t('correct', lang)}
+                </>
+              ) : (
+                <>
+                  <IconCross className="h-5 w-5" /> {t('wrong', lang)}
+                </>
+              )}
             </p>
           )}
 

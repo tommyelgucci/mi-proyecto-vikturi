@@ -1,0 +1,66 @@
+{
+  "title": "Mini-Simulator",
+  "description": "Ein freier 5-Minuten-Flug, um das Gelernte zu üben: starten, steigen, kurven und landen.",
+  "briefing": {
+    "title": "Bereit zum Start?",
+    "body": "Gib Vollgas, um auf der Startbahn zu beschleunigen. Über 20 m/s ziehst du sanft (S), um die Nase anzuheben. Halte deine Geschwindigkeit — fliegst du zu langsam, reißt die Strömung ab.",
+    "start": "Flug starten"
+  },
+  "hud": {
+    "speed": "Geschwindigkeit",
+    "altitude": "Höhe",
+    "heading": "Kurs",
+    "throttle": "Gas",
+    "timeLeft": "Restzeit",
+    "unitSpeed": "m/s",
+    "unitAltitude": "m"
+  },
+  "stallWarning": "STRÖMUNGSABRISS — Nase senken und Gas geben",
+  "controls": {
+    "title": "Steuerung",
+    "pitch": "Nicken (Nase runter / hoch)",
+    "roll": "Rollen (links / rechts neigen)",
+    "yaw": "Gieren (Seitenruder links / rechts)",
+    "throttle": "Gas (weniger / mehr)"
+  },
+  "missions": {
+    "title": "Wähle eine Mission",
+    "locked": "Wird freigeschaltet, wenn du „{{module}}“ bestehst",
+    "completed": "Abgeschlossen",
+    "backToList": "Missionen",
+    "success": {
+      "title": "Mission erfüllt!",
+      "body": "Gut geflogen. Wähle deine nächste Mission oder flieg diese erneut."
+    },
+    "free-flight": {
+      "title": "Freier Flug",
+      "objective": "5 Minuten offener Himmel — übe, was du möchtest."
+    },
+    "first-takeoff": {
+      "title": "Erster Start",
+      "objective": "Starte und steige auf 100 m."
+    },
+    "heading-turn": {
+      "title": "Kurvenflug auf Kurs",
+      "objective": "Halte über 40 m den Kurs 270° für 3 Sekunden."
+    },
+    "safe-landing": {
+      "title": "Sichere Landung",
+      "objective": "Steige über 60 m und lande sanft wieder auf dem Boden."
+    }
+  },
+  "timeUp": {
+    "title": "Flugsession beendet",
+    "body": "Deine 5 Minuten sind um. Wiederhole ein Theoriemodul oder starte einen neuen Flug."
+  },
+  "crash": {
+    "title": "Harte Landung!",
+    "body": "Du hast den Boden zu hart oder zu schräg berührt. Halte die Tragflächen waagerecht und sinke sanft, bevor du aufsetzt."
+  },
+  "stats": {
+    "maxAltitude": "Maximale Höhe: {{value}} m",
+    "distance": "Geflogene Strecke: {{value}} km"
+  },
+  "restart": "Noch einmal fliegen",
+  "exit": "Simulator verlassen"
+}

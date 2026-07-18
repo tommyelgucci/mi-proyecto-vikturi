@@ -14,7 +14,7 @@ export const LANGS = [
 ]
 
 export const STRINGS = {
-  appName: { de: 'CH Fahren', es: 'CH Fahren', fr: 'CH Fahren', it: 'CH Fahren', en: 'CH Fahren' },
+  appName: { de: 'TheorieKI', es: 'TheorieKI', fr: 'TheorieKI', it: 'TheorieKI', en: 'TheorieKI' },
   tagline: {
     de: 'Theorie & Praxis für die Schweizer Führerprüfung',
     es: 'Teoría y práctica para el examen de conducir suizo',
