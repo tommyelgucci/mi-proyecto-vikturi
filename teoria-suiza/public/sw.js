@@ -1,7 +1,7 @@
-/* Service worker de CH Fahren: precache del shell + stale-while-revalidate.
+/* Service worker de TheorieKI: precache del shell + stale-while-revalidate.
    Los assets llevan hash en el nombre, así que la caché se renueva sola;
    el index.html se sirve de caché y se actualiza en segundo plano. */
-const CACHE = 'chfahren-v1'
+const CACHE = 'theorieki-v1'
 const SHELL = ['./', './index.html', './manifest.webmanifest']
 
 self.addEventListener('install', (event) => {

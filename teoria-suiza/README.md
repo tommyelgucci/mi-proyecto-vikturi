@@ -1,4 +1,4 @@
-# 🇨🇭 CH Fahren — Teoría Suiza (B + A)
+# 🇨🇭 TheorieKI — Teoría Suiza (B + A)
 
 App web multilingüe (**alemán, español, francés, italiano e inglés**) para estudiar la teoría del examen de conducir suizo y repasar consejos para el examen práctico. Cubre las categorías **B** (coche) y **A/A1** (moto).
 
